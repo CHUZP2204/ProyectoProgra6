@@ -24,6 +24,11 @@
         <AssociationConnector Association="progra6Model.FK_Vehiculos_MarcaVehiculos" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_Vehiculos_TipoVehiculos" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_VehiculosXCliente_Vehiculos1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="progra6Model.Clientes" Width="1.5" PointX="5.25" PointY="8" />
+        <AssociationConnector Association="progra6Model.FK_Clientes_Provincia" />
+        <AssociationConnector Association="progra6Model.FK_EncabezadoFactura_Clientes" />
+        <AssociationConnector Association="progra6Model.FK_ServiciosOProductos_Clientes" />
+        <AssociationConnector Association="progra6Model.FK_VehiculosXCliente_Clientes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

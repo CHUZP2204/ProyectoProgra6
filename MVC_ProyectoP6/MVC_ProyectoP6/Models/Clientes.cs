@@ -31,6 +31,7 @@ namespace MVC_ProyectoP6.Models
         public int idCanton { get; set; }
         public int idDistrito { get; set; }
         public string TipoUsuario { get; set; }
+        public string Contraseña { get; set; }
     
         public virtual Provincia Provincia { get; set; }
         public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }

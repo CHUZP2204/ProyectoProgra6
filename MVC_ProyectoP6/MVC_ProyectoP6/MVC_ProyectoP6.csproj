@@ -178,7 +178,7 @@
     <Compile Include="Models\sp_RetornaCantones_Result.cs">
       <DependentUpon>ProyectoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_RetornaClientesDatos_Result.cs">
+    <Compile Include="Models\sp_RetornaClientes_Result.cs">
       <DependentUpon>ProyectoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_RetornaDetalleFactura_Result.cs">

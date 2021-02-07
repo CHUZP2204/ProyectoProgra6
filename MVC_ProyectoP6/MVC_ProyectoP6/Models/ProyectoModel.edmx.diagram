@@ -6,23 +6,18 @@
     <edmx:Diagrams>
       <Diagram DiagramId="88e916d95a6e49eeadd623a15e704b96" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="progra6Model.Canton" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.Clientes" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.DetalleFactura" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.Distrito" Width="1.5" PointX="7.5" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.EncabezadoFactura" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.MarcaVehiculos" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.PaisFabricante" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.Provincia" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.ServiciosOProductos" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.ServiciosOProductos" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.TipoVehiculos" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.Vehiculos" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.VehiculosXCliente" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="progra6Model.Canton_ref_Provincia" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.Distrito_ref_Canton" ManuallyRouted="false" />
-        <AssociationConnector Association="progra6Model.FK_Clientes_Provincia" ManuallyRouted="false" />
-        <AssociationConnector Association="progra6Model.FK_EncabezadoFactura_Clientes" ManuallyRouted="false" />
-        <AssociationConnector Association="progra6Model.FK_ServiciosOProductos_Clientes1" ManuallyRouted="false" />
-        <AssociationConnector Association="progra6Model.FK_VehiculosXCliente_Clientes" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_EncabezadoFactura_DetalleFactura" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_EncabezadoFactura_Vehiculos" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_MarcaVehiculos_PaisFabricante" ManuallyRouted="false" />

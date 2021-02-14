@@ -440,9 +440,7 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
         </Function>
         <Function Name="sp_RetornaServicioOProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CodigoSOP" Type="varchar" Mode="In" />
-          <Parameter Name="PrecioSOP" Type="varchar" Mode="In" />
           <Parameter Name="TipoSOP" Type="varchar" Mode="In" />
-          <Parameter Name="idCliente" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_RetornaTipoVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CodigoTipoVehiculo" Type="varchar" Mode="In" />
@@ -961,12 +959,6 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <FunctionImport Name="sp_RetornaResidenciaCliente" ReturnType="Collection(progra6Model.sp_RetornaResidenciaCliente_Result)">
           <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaServicioOProducto" ReturnType="Collection(progra6Model.sp_RetornaServicioOProducto_Result)">
-            <Parameter Name="CodigoSOP" Mode="In" Type="String" />
-            <Parameter Name="PrecioSOP" Mode="In" Type="String" />
-            <Parameter Name="TipoSOP" Mode="In" Type="String" />
-            <Parameter Name="idCliente" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_RetornaTipoVehiculo" ReturnType="Collection(progra6Model.sp_RetornaTipoVehiculo_Result)">
             <Parameter Name="CodigoTipoVehiculo" Mode="In" Type="String" />
             <Parameter Name="TipoVehiculo" Mode="In" Type="String" />
@@ -1058,6 +1050,10 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             <Parameter Name="TipoUsuario" Mode="In" Type="String" />
             <Parameter Name="Contraseña" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_RetornaServicioOProducto" ReturnType="Collection(progra6Model.sp_RetornaServicioOProducto_Result)">
+            <Parameter Name="CodigoSOP" Mode="In" Type="String" />
+            <Parameter Name="TipoSOP" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1125,13 +1121,6 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <Property Type="String" Name="Provincia" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Canton" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Distrito" Nullable="false" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="sp_RetornaServicioOProducto_Result">
-          <Property Type="Int32" Name="idSOP" Nullable="false" />
-          <Property Type="String" Name="CodigoSOP" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="TipoSOP" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="idCliente" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_RetornaTipoVehiculo_Result">
           <Property Type="Int32" Name="idTipoVehiculo" Nullable="false" />
@@ -1247,6 +1236,13 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <Property Type="String" Name="Correo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaServicioOProducto_Result">
+          <Property Type="Int32" Name="idSOP" Nullable="false" />
+          <Property Type="String" Name="CodigoSOP" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="TipoSOP" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1508,17 +1504,6 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaServicioOProducto" FunctionName="progra6Model.Store.sp_RetornaServicioOProducto">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaServicioOProducto_Result">
-                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
-                <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
-                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
-                <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_RetornaTipoVehiculo" FunctionName="progra6Model.Store.sp_RetornaTipoVehiculo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="progra6Model.sp_RetornaTipoVehiculo_Result">
@@ -1614,6 +1599,17 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
                 <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaServicioOProducto" FunctionName="progra6Model.Store.sp_RetornaServicioOProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaServicioOProducto_Result">
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+                <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
+                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
+                <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -27,15 +27,14 @@ namespace MVC_ProyectoP6
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/bundles/bundleProyecto").Include(
-                "~/Scripts/jquery-3.4.1.js"
-                )     
-                );
+               "~/Scripts/jquery-3.4.1.js",
+              "~/Scripts/jquery.validate.js",
+              "~/Scripts/ValidacionesGenericas.js"
+                ));
 
-            bundles.Add(new StyleBundle("~/bundles/bundleJquery").Include(
-                       "~/Scripts/jquery-3.4.1.js",
-                      "~/Scripts/jquery.validate.js",
-                       "~/Scripts/ValidacionesGenericas.js"
-                      )); ;
+            bundles.Add(new ScriptBundle("~/bundles/bundlejquery").Include(
+              
+             ));
         }
     }
 }

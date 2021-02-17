@@ -7,15 +7,17 @@ using MVC_ProyectoP6.Models;
 
 namespace MVC_ProyectoP6.Controllers
 {
+
     public class PaisFabricacionController : Controller
     {
         progra6Entities2 modeloBD = new progra6Entities2();
 
         // GET: Registro PaisFabricacion
-     public ActionResult NuevoPaisFabricante()
+        public ActionResult NuevoPaisFabricante()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult NuevoPaisFabricante(sp_RetornaPaisFabricante_Result modeloVista)
         {
@@ -24,7 +26,7 @@ namespace MVC_ProyectoP6.Controllers
             try
             {
                 cantidadRegistrosAfectados =
-                    this.modeloBD.sp_ModificaPaisFabricante(
+                    this.modeloBD.sp_InsertaPaisFabricante(
                         modeloVista.idPaisFabricante,
                         modeloVista.CodigoPaisFabricante,
                         modeloVista.PaisFabricante
@@ -49,6 +51,5 @@ namespace MVC_ProyectoP6.Controllers
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
             return View();
         }
-
     }
 }

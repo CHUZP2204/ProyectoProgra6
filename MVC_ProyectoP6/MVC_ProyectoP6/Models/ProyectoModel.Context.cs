@@ -480,6 +480,27 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaResidenciaCliente_Result>("sp_RetornaResidenciaCliente", idClienteParameter);
         }
     
+        public virtual ObjectResult<sp_RetornaServicioOProducto_Result> sp_RetornaServicioOProducto(string codigoSOP, string precioSOP, string tipoSOP, Nullable<int> idCliente)
+        {
+            var codigoSOPParameter = codigoSOP != null ?
+                new ObjectParameter("CodigoSOP", codigoSOP) :
+                new ObjectParameter("CodigoSOP", typeof(string));
+    
+            var precioSOPParameter = precioSOP != null ?
+                new ObjectParameter("PrecioSOP", precioSOP) :
+                new ObjectParameter("PrecioSOP", typeof(string));
+    
+            var tipoSOPParameter = tipoSOP != null ?
+                new ObjectParameter("TipoSOP", tipoSOP) :
+                new ObjectParameter("TipoSOP", typeof(string));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaServicioOProducto_Result>("sp_RetornaServicioOProducto", codigoSOPParameter, precioSOPParameter, tipoSOPParameter, idClienteParameter);
+        }
+    
         public virtual ObjectResult<sp_RetornaTipoVehiculo_Result> sp_RetornaTipoVehiculo(string codigoTipoVehiculo, string tipoVehiculo)
         {
             var codigoTipoVehiculoParameter = codigoTipoVehiculo != null ?
@@ -735,19 +756,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("Contraseña", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_Result>("sp_RetornaClientes", cedulaParameter, generoParameter, nombreCompletoParameter, correoParameter, tipoUsuarioParameter, contraseñaParameter);
-        }
-    
-        public virtual ObjectResult<sp_RetornaServicioOProducto_Result> sp_RetornaServicioOProducto(string codigoSOP, string tipoSOP)
-        {
-            var codigoSOPParameter = codigoSOP != null ?
-                new ObjectParameter("CodigoSOP", codigoSOP) :
-                new ObjectParameter("CodigoSOP", typeof(string));
-    
-            var tipoSOPParameter = tipoSOP != null ?
-                new ObjectParameter("TipoSOP", tipoSOP) :
-                new ObjectParameter("TipoSOP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaServicioOProducto_Result>("sp_RetornaServicioOProducto", codigoSOPParameter, tipoSOPParameter);
         }
     }
 }

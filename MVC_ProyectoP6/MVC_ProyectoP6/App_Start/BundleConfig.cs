@@ -25,6 +25,17 @@ namespace MVC_ProyectoP6
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/bundleProyecto").Include(
+                "~/Scripts/jquery-3.4.1.js"
+                )     
+                );
+
+            bundles.Add(new StyleBundle("~/bundles/bundleJquery").Include(
+                       "~/Scripts/jquery-3.4.1.js",
+                      "~/Scripts/jquery.validate.js",
+                       "~/Scripts/ValidacionesGenericas.js"
+                      )); ;
         }
     }
 }

@@ -16,10 +16,10 @@ namespace MVC_ProyectoP6.Models
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class progra6Entities1 : DbContext
+    public partial class progra6Entities2 : DbContext
     {
-        public progra6Entities1()
-            : base("name=progra6Entities1")
+        public progra6Entities2()
+            : base("name=progra6Entities2")
         {
         }
     
@@ -37,9 +37,65 @@ namespace MVC_ProyectoP6.Models
         public DbSet<PaisFabricante> PaisFabricante { get; set; }
         public DbSet<Provincia> Provincia { get; set; }
         public DbSet<ServiciosOProductos> ServiciosOProductos { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<TipoVehiculos> TipoVehiculos { get; set; }
         public DbSet<Vehiculos> Vehiculos { get; set; }
         public DbSet<VehiculosXCliente> VehiculosXCliente { get; set; }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
     
         public virtual int sp_Elimina_VehXPers(Nullable<int> idVehxPer)
         {
@@ -133,6 +189,19 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("owner_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
         public virtual int sp_Inserta_VehXPers(Nullable<int> idVehiculo, Nullable<int> idCliente)
@@ -239,8 +308,12 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaEncFactura", idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter, idDetalleFacParameter);
         }
     
-        public virtual int sp_InsertaPaisFabricante(string codigoPaisFabricante, string paisFabricante)
+        public virtual int sp_InsertaPaisFabricante(Nullable<int> idPaisFabricante, string codigoPaisFabricante, string paisFabricante)
         {
+            var idPaisFabricanteParameter = idPaisFabricante.HasValue ?
+                new ObjectParameter("idPaisFabricante", idPaisFabricante) :
+                new ObjectParameter("idPaisFabricante", typeof(int));
+    
             var codigoPaisFabricanteParameter = codigoPaisFabricante != null ?
                 new ObjectParameter("CodigoPaisFabricante", codigoPaisFabricante) :
                 new ObjectParameter("CodigoPaisFabricante", typeof(string));
@@ -249,7 +322,7 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("PaisFabricante", paisFabricante) :
                 new ObjectParameter("PaisFabricante", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaPaisFabricante", codigoPaisFabricanteParameter, paisFabricanteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaPaisFabricante", idPaisFabricanteParameter, codigoPaisFabricanteParameter, paisFabricanteParameter);
         }
     
         public virtual int sp_InsertaServicioOProducto(string codigoSOP, string precioSOP, string tipoSOP, Nullable<int> idCliente)
@@ -815,6 +888,11 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idVehiculo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVehXPers_Result>("sp_RetornaVehXPers", idVehXperParameter, idVehiculoParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

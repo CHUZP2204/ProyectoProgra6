@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="progra6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="progra6BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Canton">
           <Key>
             <PropertyRef Name="id_Canton" />
@@ -108,6 +108,16 @@
           <Property Name="PrecioSOP" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TipoSOP" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idCliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TipoVehiculos">
           <Key>
@@ -272,6 +282,23 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Elimina_VehXPers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idVehxPer" Type="int" Mode="In" />
         </Function>
@@ -300,6 +327,10 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
           <Parameter Name="idTipoVehiculo" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
@@ -333,6 +364,7 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
           <Parameter Name="idDetalleFac" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_InsertaPaisFabricante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPaisFabricante" Type="int" Mode="In" />
           <Parameter Name="CodigoPaisFabricante" Type="varchar" Mode="In" />
           <Parameter Name="PaisFabricante" Type="varchar" Mode="In" />
         </Function>
@@ -505,7 +537,8 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
           <Parameter Name="idVehXper" Type="int" Mode="In" />
           <Parameter Name="idVehiculo" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="progra6ModelStoreContainer">
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="progra6BDModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="dbo" store:Type="Tables" />
@@ -515,6 +548,7 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
           <EntitySet Name="PaisFabricante" EntityType="Self.PaisFabricante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiciosOProductos" EntityType="Self.ServiciosOProductos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoVehiculos" EntityType="Self.TipoVehiculos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiculosXCliente" EntityType="Self.VehiculosXCliente" store:Type="Tables" store:Schema="dbo">
@@ -573,7 +607,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="progra6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="progra6BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Canton">
           <Key>
             <PropertyRef Name="id_Canton" />
@@ -693,6 +727,16 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <Property Name="TipoSOP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idCliente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Clientes" Relationship="Self.FK_ServiciosOProductos_Clientes" FromRole="ServiciosOProductos" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TipoVehiculos">
           <Key>
@@ -861,7 +905,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="progra6Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="progra6Entities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Canton" EntityType="Self.Canton" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" />
@@ -871,6 +915,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <EntitySet Name="PaisFabricante" EntityType="Self.PaisFabricante" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" />
           <EntitySet Name="ServiciosOProductos" EntityType="Self.ServiciosOProductos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TipoVehiculos" EntityType="Self.TipoVehiculos" />
           <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" />
           <EntitySet Name="VehiculosXCliente" EntityType="Self.VehiculosXCliente" />
@@ -918,6 +963,22 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             <End Role="Vehiculos" EntitySet="Vehiculos" />
             <End Role="VehiculosXCliente" EntitySet="VehiculosXCliente" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_Elimina_VehXPers">
             <Parameter Name="idVehxPer" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -945,7 +1006,11 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <FunctionImport Name="sp_EliminaTipoVehiculos">
             <Parameter Name="idTipoVehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(progra6Model.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(progra6BDModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(progra6BDModel.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -979,6 +1044,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             <Parameter Name="idDetalleFac" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_InsertaPaisFabricante">
+            <Parameter Name="idPaisFabricante" Mode="In" Type="Int32" />
             <Parameter Name="CodigoPaisFabricante" Mode="In" Type="String" />
             <Parameter Name="PaisFabricante" Mode="In" Type="String" />
           </FunctionImport>
@@ -1064,14 +1130,14 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaCantones" ReturnType="Collection(progra6Model.sp_RetornaCantones_Result)">
+          <FunctionImport Name="sp_RetornaCantones" ReturnType="Collection(progra6BDModel.sp_RetornaCantones_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaCantones_ID" ReturnType="Collection(progra6Model.sp_RetornaCantones_ID_Result)">
+          <FunctionImport Name="sp_RetornaCantones_ID" ReturnType="Collection(progra6BDModel.sp_RetornaCantones_ID_Result)">
             <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaClientes" ReturnType="Collection(progra6Model.sp_RetornaClientes_Result)">
+          <FunctionImport Name="sp_RetornaClientes" ReturnType="Collection(progra6BDModel.sp_RetornaClientes_Result)">
             <Parameter Name="Cedula" Mode="In" Type="String" />
             <Parameter Name="Genero" Mode="In" Type="String" />
             <Parameter Name="NombreCompleto" Mode="In" Type="String" />
@@ -1079,82 +1145,90 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             <Parameter Name="TipoUsuario" Mode="In" Type="String" />
             <Parameter Name="Contraseña" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaClientes_ID" ReturnType="Collection(progra6Model.sp_RetornaClientes_ID_Result)">
+          <FunctionImport Name="sp_RetornaClientes_ID" ReturnType="Collection(progra6BDModel.sp_RetornaClientes_ID_Result)">
             <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaDetalleFac" ReturnType="Collection(progra6Model.sp_RetornaDetalleFac_Result)">
+          <FunctionImport Name="sp_RetornaDetalleFac" ReturnType="Collection(progra6BDModel.sp_RetornaDetalleFac_Result)">
             <Parameter Name="TipoSOP" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaDetalleFac_ID" ReturnType="Collection(progra6Model.sp_RetornaDetalleFac_ID_Result)">
+          <FunctionImport Name="sp_RetornaDetalleFac_ID" ReturnType="Collection(progra6BDModel.sp_RetornaDetalleFac_ID_Result)">
             <Parameter Name="idDetalleFac" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaDistritos" ReturnType="Collection(progra6Model.sp_RetornaDistritos_Result)">
+          <FunctionImport Name="sp_RetornaDistritos" ReturnType="Collection(progra6BDModel.sp_RetornaDistritos_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaEncFactura" ReturnType="Collection(progra6Model.sp_RetornaEncFactura_Result)">
+          <FunctionImport Name="sp_RetornaEncFactura" ReturnType="Collection(progra6BDModel.sp_RetornaEncFactura_Result)">
             <Parameter Name="estadoFactura" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaEncFactura_ID" ReturnType="Collection(progra6Model.sp_RetornaEncFactura_ID_Result)">
+          <FunctionImport Name="sp_RetornaEncFactura_ID" ReturnType="Collection(progra6BDModel.sp_RetornaEncFactura_ID_Result)">
             <Parameter Name="idEfactura" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaMarcaVehiculo" ReturnType="Collection(progra6Model.sp_RetornaMarcaVehiculo_Result)">
+          <FunctionImport Name="sp_RetornaMarcaVehiculo" ReturnType="Collection(progra6BDModel.sp_RetornaMarcaVehiculo_Result)">
             <Parameter Name="CodigoMarcaVehiculo" Mode="In" Type="String" />
             <Parameter Name="TipoMarcaVehiculo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaMarcaVehiculo_ID" ReturnType="Collection(progra6Model.sp_RetornaMarcaVehiculo_ID_Result)">
+          <FunctionImport Name="sp_RetornaMarcaVehiculo_ID" ReturnType="Collection(progra6BDModel.sp_RetornaMarcaVehiculo_ID_Result)">
             <Parameter Name="idMarcaVehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaPaisFabricante" ReturnType="Collection(progra6Model.sp_RetornaPaisFabricante_Result)">
+          <FunctionImport Name="sp_RetornaPaisFabricante" ReturnType="Collection(progra6BDModel.sp_RetornaPaisFabricante_Result)">
             <Parameter Name="CodigoPaisFabricante" Mode="In" Type="String" />
             <Parameter Name="PaisFabricante" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaPaisFabricante_ID" ReturnType="Collection(progra6Model.sp_RetornaPaisFabricante_ID_Result)">
+          <FunctionImport Name="sp_RetornaPaisFabricante_ID" ReturnType="Collection(progra6BDModel.sp_RetornaPaisFabricante_ID_Result)">
             <Parameter Name="idPaisFabricante" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaProvincias" ReturnType="Collection(progra6Model.sp_RetornaProvincias_Result)">
+          <FunctionImport Name="sp_RetornaProvincias" ReturnType="Collection(progra6BDModel.sp_RetornaProvincias_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaResidenciaCliente" ReturnType="Collection(progra6Model.sp_RetornaResidenciaCliente_Result)">
+          <FunctionImport Name="sp_RetornaResidenciaCliente" ReturnType="Collection(progra6BDModel.sp_RetornaResidenciaCliente_Result)">
             <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaServicioOProducto" ReturnType="Collection(progra6Model.sp_RetornaServicioOProducto_Result)">
+          <FunctionImport Name="sp_RetornaServicioOProducto" ReturnType="Collection(progra6BDModel.sp_RetornaServicioOProducto_Result)">
             <Parameter Name="CodigoSOP" Mode="In" Type="String" />
             <Parameter Name="TipoSOP" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaServiciosOProductos_ID" ReturnType="Collection(progra6Model.sp_RetornaServiciosOProductos_ID_Result)">
+          <FunctionImport Name="sp_RetornaServiciosOProductos_ID" ReturnType="Collection(progra6BDModel.sp_RetornaServiciosOProductos_ID_Result)">
             <Parameter Name="idSOP" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaTipoVehiculo" ReturnType="Collection(progra6Model.sp_RetornaTipoVehiculo_Result)">
+          <FunctionImport Name="sp_RetornaTipoVehiculo" ReturnType="Collection(progra6BDModel.sp_RetornaTipoVehiculo_Result)">
             <Parameter Name="CodigoTipoVehiculo" Mode="In" Type="String" />
             <Parameter Name="TipoVehiculo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaTipoVehiculos_ID" ReturnType="Collection(progra6Model.sp_RetornaTipoVehiculos_ID_Result)">
+          <FunctionImport Name="sp_RetornaTipoVehiculos_ID" ReturnType="Collection(progra6BDModel.sp_RetornaTipoVehiculos_ID_Result)">
             <Parameter Name="idTipoVehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaVehiculo" ReturnType="Collection(progra6Model.sp_RetornaVehiculo_Result)">
+          <FunctionImport Name="sp_RetornaVehiculo" ReturnType="Collection(progra6BDModel.sp_RetornaVehiculo_Result)">
             <Parameter Name="placa" Mode="In" Type="String" />
             <Parameter Name="idTipoVeh" Mode="In" Type="Int32" />
             <Parameter Name="idMarcaVeh" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaVehiculo_ID" ReturnType="Collection(progra6Model.sp_RetornaVehiculo_ID_Result)">
+          <FunctionImport Name="sp_RetornaVehiculo_ID" ReturnType="Collection(progra6BDModel.sp_RetornaVehiculo_ID_Result)">
             <Parameter Name="idVehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaVehiculosXCliente" ReturnType="Collection(progra6Model.sp_RetornaVehiculosXCliente_Result)">
+          <FunctionImport Name="sp_RetornaVehiculosXCliente" ReturnType="Collection(progra6BDModel.sp_RetornaVehiculosXCliente_Result)">
             <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaVehXPer_ID" ReturnType="Collection(progra6Model.sp_RetornaVehXPer_ID_Result)">
+          <FunctionImport Name="sp_RetornaVehXPer_ID" ReturnType="Collection(progra6BDModel.sp_RetornaVehXPer_ID_Result)">
             <Parameter Name="idVehXper" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaVehXPers" ReturnType="Collection(progra6Model.sp_RetornaVehXPers_Result)">
+          <FunctionImport Name="sp_RetornaVehXPers" ReturnType="Collection(progra6BDModel.sp_RetornaVehXPers_Result)">
             <Parameter Name="idVehXper" Mode="In" Type="Int32" />
             <Parameter Name="idVehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1321,9 +1395,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="progra6ModelStoreContainer" CdmEntityContainer="progra6Entities1">
+        <EntityContainerMapping StorageEntityContainer="progra6BDModelStoreContainer" CdmEntityContainer="progra6Entities2">
           <EntitySetMapping Name="Canton">
-            <EntityTypeMapping TypeName="progra6Model.Canton">
+            <EntityTypeMapping TypeName="progra6BDModel.Canton">
               <MappingFragment StoreEntitySet="Canton">
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
@@ -1338,7 +1412,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clientes">
-            <EntityTypeMapping TypeName="progra6Model.Clientes">
+            <EntityTypeMapping TypeName="progra6BDModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
@@ -1355,7 +1429,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DetalleFactura">
-            <EntityTypeMapping TypeName="progra6Model.DetalleFactura">
+            <EntityTypeMapping TypeName="progra6BDModel.DetalleFactura">
               <MappingFragment StoreEntitySet="DetalleFactura">
                 <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
                 <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
@@ -1365,7 +1439,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Distrito">
-            <EntityTypeMapping TypeName="progra6Model.Distrito">
+            <EntityTypeMapping TypeName="progra6BDModel.Distrito">
               <MappingFragment StoreEntitySet="Distrito">
                 <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
@@ -1380,7 +1454,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EncabezadoFactura">
-            <EntityTypeMapping TypeName="progra6Model.EncabezadoFactura">
+            <EntityTypeMapping TypeName="progra6BDModel.EncabezadoFactura">
               <MappingFragment StoreEntitySet="EncabezadoFactura">
                 <ScalarProperty Name="idEncabezadoFac" ColumnName="idEncabezadoFac" />
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
@@ -1393,7 +1467,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MarcaVehiculos">
-            <EntityTypeMapping TypeName="progra6Model.MarcaVehiculos">
+            <EntityTypeMapping TypeName="progra6BDModel.MarcaVehiculos">
               <MappingFragment StoreEntitySet="MarcaVehiculos">
                 <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
                 <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
@@ -1403,7 +1477,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaisFabricante">
-            <EntityTypeMapping TypeName="progra6Model.PaisFabricante">
+            <EntityTypeMapping TypeName="progra6BDModel.PaisFabricante">
               <MappingFragment StoreEntitySet="PaisFabricante">
                 <ScalarProperty Name="idPaisFabricante" ColumnName="idPaisFabricante" />
                 <ScalarProperty Name="CodigoPaisFabricante" ColumnName="CodigoPaisFabricante" />
@@ -1412,7 +1486,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Provincia">
-            <EntityTypeMapping TypeName="progra6Model.Provincia">
+            <EntityTypeMapping TypeName="progra6BDModel.Provincia">
               <MappingFragment StoreEntitySet="Provincia">
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1425,7 +1499,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServiciosOProductos">
-            <EntityTypeMapping TypeName="progra6Model.ServiciosOProductos">
+            <EntityTypeMapping TypeName="progra6BDModel.ServiciosOProductos">
               <MappingFragment StoreEntitySet="ServiciosOProductos">
                 <ScalarProperty Name="idSOP" ColumnName="idSOP" />
                 <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
@@ -1435,8 +1509,19 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="progra6BDModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TipoVehiculos">
-            <EntityTypeMapping TypeName="progra6Model.TipoVehiculos">
+            <EntityTypeMapping TypeName="progra6BDModel.TipoVehiculos">
               <MappingFragment StoreEntitySet="TipoVehiculos">
                 <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
                 <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
@@ -1445,7 +1530,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vehiculos">
-            <EntityTypeMapping TypeName="progra6Model.Vehiculos">
+            <EntityTypeMapping TypeName="progra6BDModel.Vehiculos">
               <MappingFragment StoreEntitySet="Vehiculos">
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
                 <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
@@ -1457,7 +1542,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VehiculosXCliente">
-            <EntityTypeMapping TypeName="progra6Model.VehiculosXCliente">
+            <EntityTypeMapping TypeName="progra6BDModel.VehiculosXCliente">
               <MappingFragment StoreEntitySet="VehiculosXCliente">
                 <ScalarProperty Name="idVehiculoXCliente" ColumnName="idVehiculoXCliente" />
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
@@ -1465,44 +1550,58 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_Elimina_VehXPers" FunctionName="progra6Model.Store.sp_Elimina_VehXPers" />
-          <FunctionImportMapping FunctionImportName="sp_EliminaCliente" FunctionName="progra6Model.Store.sp_EliminaCliente" />
-          <FunctionImportMapping FunctionImportName="sp_EliminaDetalleFactura" FunctionName="progra6Model.Store.sp_EliminaDetalleFactura" />
-          <FunctionImportMapping FunctionImportName="sp_EliminaMarcaVehiculos" FunctionName="progra6Model.Store.sp_EliminaMarcaVehiculos" />
-          <FunctionImportMapping FunctionImportName="sp_EliminaPaisFabricante" FunctionName="progra6Model.Store.sp_EliminaPaisFabricante" />
-          <FunctionImportMapping FunctionImportName="sp_EliminarEncFactura" FunctionName="progra6Model.Store.sp_EliminarEncFactura" />
-          <FunctionImportMapping FunctionImportName="sp_EliminarVehiculo" FunctionName="progra6Model.Store.sp_EliminarVehiculo" />
-          <FunctionImportMapping FunctionImportName="sp_EliminaServicioOProducto" FunctionName="progra6Model.Store.sp_EliminaServicioOProducto" />
-          <FunctionImportMapping FunctionImportName="sp_EliminaTipoVehiculos" FunctionName="progra6Model.Store.sp_EliminaTipoVehiculos" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="progra6Model.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="progra6BDModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="progra6BDModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="progra6BDModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_Elimina_VehXPers" FunctionName="progra6BDModel.Store.sp_Elimina_VehXPers" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaCliente" FunctionName="progra6BDModel.Store.sp_EliminaCliente" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaDetalleFactura" FunctionName="progra6BDModel.Store.sp_EliminaDetalleFactura" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaMarcaVehiculos" FunctionName="progra6BDModel.Store.sp_EliminaMarcaVehiculos" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaPaisFabricante" FunctionName="progra6BDModel.Store.sp_EliminaPaisFabricante" />
+          <FunctionImportMapping FunctionImportName="sp_EliminarEncFactura" FunctionName="progra6BDModel.Store.sp_EliminarEncFactura" />
+          <FunctionImportMapping FunctionImportName="sp_EliminarVehiculo" FunctionName="progra6BDModel.Store.sp_EliminarVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaServicioOProducto" FunctionName="progra6BDModel.Store.sp_EliminaServicioOProducto" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaTipoVehiculos" FunctionName="progra6BDModel.Store.sp_EliminaTipoVehiculos" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="progra6BDModel.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Inserta_VehXPers" FunctionName="progra6Model.Store.sp_Inserta_VehXPers" />
-          <FunctionImportMapping FunctionImportName="sp_InsertaCliente" FunctionName="progra6Model.Store.sp_InsertaCliente" />
-          <FunctionImportMapping FunctionImportName="sp_InsertaDetalleFactura" FunctionName="progra6Model.Store.sp_InsertaDetalleFactura" />
-          <FunctionImportMapping FunctionImportName="sp_InsertaEncFactura" FunctionName="progra6Model.Store.sp_InsertaEncFactura" />
-          <FunctionImportMapping FunctionImportName="sp_InsertaPaisFabricante" FunctionName="progra6Model.Store.sp_InsertaPaisFabricante" />
-          <FunctionImportMapping FunctionImportName="sp_InsertaServicioOProducto" FunctionName="progra6Model.Store.sp_InsertaServicioOProducto" />
-          <FunctionImportMapping FunctionImportName="sp_InsertaTipoVehiculo" FunctionName="progra6Model.Store.sp_InsertaTipoVehiculo" />
-          <FunctionImportMapping FunctionImportName="sp_InsertaVehiculo" FunctionName="progra6Model.Store.sp_InsertaVehiculo" />
-          <FunctionImportMapping FunctionImportName="sp_Modifica_VehXPers" FunctionName="progra6Model.Store.sp_Modifica_VehXPers" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaCliente" FunctionName="progra6Model.Store.sp_ModificaCliente" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaDetalleFactura" FunctionName="progra6Model.Store.sp_ModificaDetalleFactura" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaEncaFact" FunctionName="progra6Model.Store.sp_ModificaEncaFact" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaMarcaVehiculo" FunctionName="progra6Model.Store.sp_ModificaMarcaVehiculo" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaPaisFabricante" FunctionName="progra6Model.Store.sp_ModificaPaisFabricante" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaServicioOProducto" FunctionName="progra6Model.Store.sp_ModificaServicioOProducto" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaTipoVehiculo" FunctionName="progra6Model.Store.sp_ModificaTipoVehiculo" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaVehiculo" FunctionName="progra6Model.Store.sp_ModificaVehiculo" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="progra6Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_RetornaCantones" FunctionName="progra6Model.Store.sp_RetornaCantones">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="progra6BDModel.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaCantones_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Inserta_VehXPers" FunctionName="progra6BDModel.Store.sp_Inserta_VehXPers" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaCliente" FunctionName="progra6BDModel.Store.sp_InsertaCliente" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaDetalleFactura" FunctionName="progra6BDModel.Store.sp_InsertaDetalleFactura" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaEncFactura" FunctionName="progra6BDModel.Store.sp_InsertaEncFactura" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaPaisFabricante" FunctionName="progra6BDModel.Store.sp_InsertaPaisFabricante" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaServicioOProducto" FunctionName="progra6BDModel.Store.sp_InsertaServicioOProducto" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaTipoVehiculo" FunctionName="progra6BDModel.Store.sp_InsertaTipoVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaVehiculo" FunctionName="progra6BDModel.Store.sp_InsertaVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_Modifica_VehXPers" FunctionName="progra6BDModel.Store.sp_Modifica_VehXPers" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaCliente" FunctionName="progra6BDModel.Store.sp_ModificaCliente" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaDetalleFactura" FunctionName="progra6BDModel.Store.sp_ModificaDetalleFactura" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaEncaFact" FunctionName="progra6BDModel.Store.sp_ModificaEncaFact" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaMarcaVehiculo" FunctionName="progra6BDModel.Store.sp_ModificaMarcaVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaPaisFabricante" FunctionName="progra6BDModel.Store.sp_ModificaPaisFabricante" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaServicioOProducto" FunctionName="progra6BDModel.Store.sp_ModificaServicioOProducto" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaTipoVehiculo" FunctionName="progra6BDModel.Store.sp_ModificaTipoVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaVehiculo" FunctionName="progra6BDModel.Store.sp_ModificaVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="progra6BDModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_RetornaCantones" FunctionName="progra6BDModel.Store.sp_RetornaCantones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaCantones_Result">
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="Canton" ColumnName="Canton" />
@@ -1510,9 +1609,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaCantones_ID" FunctionName="progra6Model.Store.sp_RetornaCantones_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaCantones_ID" FunctionName="progra6BDModel.Store.sp_RetornaCantones_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaCantones_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaCantones_ID_Result">
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1526,9 +1625,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaClientes" FunctionName="progra6Model.Store.sp_RetornaClientes">
+          <FunctionImportMapping FunctionImportName="sp_RetornaClientes" FunctionName="progra6BDModel.Store.sp_RetornaClientes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaClientes_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaClientes_Result">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="Genero" ColumnName="Genero" />
@@ -1539,9 +1638,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaClientes_ID" FunctionName="progra6Model.Store.sp_RetornaClientes_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaClientes_ID" FunctionName="progra6BDModel.Store.sp_RetornaClientes_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaClientes_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaClientes_ID_Result">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
@@ -1555,26 +1654,26 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac" FunctionName="progra6Model.Store.sp_RetornaDetalleFac">
+          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac" FunctionName="progra6BDModel.Store.sp_RetornaDetalleFac">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDetalleFac_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaDetalleFac_Result">
                 <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
                 <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac_ID" FunctionName="progra6Model.Store.sp_RetornaDetalleFac_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac_ID" FunctionName="progra6BDModel.Store.sp_RetornaDetalleFac_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDetalleFac_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaDetalleFac_ID_Result">
                 <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
                 <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
                 <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaDistritos" FunctionName="progra6Model.Store.sp_RetornaDistritos">
+          <FunctionImportMapping FunctionImportName="sp_RetornaDistritos" FunctionName="progra6BDModel.Store.sp_RetornaDistritos">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDistritos_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaDistritos_Result">
                 <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="Distrito" ColumnName="Distrito" />
@@ -1582,9 +1681,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaEncFactura" FunctionName="progra6Model.Store.sp_RetornaEncFactura">
+          <FunctionImportMapping FunctionImportName="sp_RetornaEncFactura" FunctionName="progra6BDModel.Store.sp_RetornaEncFactura">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaEncFactura_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaEncFactura_Result">
                 <ScalarProperty Name="idEncabezadoFac" ColumnName="idEncabezadoFac" />
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
@@ -1595,9 +1694,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaEncFactura_ID" FunctionName="progra6Model.Store.sp_RetornaEncFactura_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaEncFactura_ID" FunctionName="progra6BDModel.Store.sp_RetornaEncFactura_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaEncFactura_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaEncFactura_ID_Result">
                 <ScalarProperty Name="idEncabezadoFac" ColumnName="idEncabezadoFac" />
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
@@ -1608,53 +1707,53 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaMarcaVehiculo" FunctionName="progra6Model.Store.sp_RetornaMarcaVehiculo">
+          <FunctionImportMapping FunctionImportName="sp_RetornaMarcaVehiculo" FunctionName="progra6BDModel.Store.sp_RetornaMarcaVehiculo">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaMarcaVehiculo_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaMarcaVehiculo_Result">
                 <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
                 <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
                 <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaMarcaVehiculo_ID" FunctionName="progra6Model.Store.sp_RetornaMarcaVehiculo_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaMarcaVehiculo_ID" FunctionName="progra6BDModel.Store.sp_RetornaMarcaVehiculo_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaMarcaVehiculo_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaMarcaVehiculo_ID_Result">
                 <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
                 <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
                 <ScalarProperty Name="idPaisFabricante" ColumnName="idPaisFabricante" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaPaisFabricante" FunctionName="progra6Model.Store.sp_RetornaPaisFabricante">
+          <FunctionImportMapping FunctionImportName="sp_RetornaPaisFabricante" FunctionName="progra6BDModel.Store.sp_RetornaPaisFabricante">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaPaisFabricante_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaPaisFabricante_Result">
                 <ScalarProperty Name="idPaisFabricante" ColumnName="idPaisFabricante" />
                 <ScalarProperty Name="CodigoPaisFabricante" ColumnName="CodigoPaisFabricante" />
                 <ScalarProperty Name="PaisFabricante" ColumnName="PaisFabricante" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaPaisFabricante_ID" FunctionName="progra6Model.Store.sp_RetornaPaisFabricante_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaPaisFabricante_ID" FunctionName="progra6BDModel.Store.sp_RetornaPaisFabricante_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaPaisFabricante_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaPaisFabricante_ID_Result">
                 <ScalarProperty Name="idPaisFabricante" ColumnName="idPaisFabricante" />
                 <ScalarProperty Name="CodigoPaisFabricante" ColumnName="CodigoPaisFabricante" />
                 <ScalarProperty Name="PaisFabricante" ColumnName="PaisFabricante" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaProvincias" FunctionName="progra6Model.Store.sp_RetornaProvincias">
+          <FunctionImportMapping FunctionImportName="sp_RetornaProvincias" FunctionName="progra6BDModel.Store.sp_RetornaProvincias">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaProvincias_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaProvincias_Result">
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaResidenciaCliente" FunctionName="progra6Model.Store.sp_RetornaResidenciaCliente">
+          <FunctionImportMapping FunctionImportName="sp_RetornaResidenciaCliente" FunctionName="progra6BDModel.Store.sp_RetornaResidenciaCliente">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaResidenciaCliente_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaResidenciaCliente_Result">
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
@@ -1663,9 +1762,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaServicioOProducto" FunctionName="progra6Model.Store.sp_RetornaServicioOProducto">
+          <FunctionImportMapping FunctionImportName="sp_RetornaServicioOProducto" FunctionName="progra6BDModel.Store.sp_RetornaServicioOProducto">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaServicioOProducto_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaServicioOProducto_Result">
                 <ScalarProperty Name="idSOP" ColumnName="idSOP" />
                 <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
                 <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
@@ -1674,9 +1773,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaServiciosOProductos_ID" FunctionName="progra6Model.Store.sp_RetornaServiciosOProductos_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaServiciosOProductos_ID" FunctionName="progra6BDModel.Store.sp_RetornaServiciosOProductos_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaServiciosOProductos_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaServiciosOProductos_ID_Result">
                 <ScalarProperty Name="idSop" ColumnName="idSop" />
                 <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
                 <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
@@ -1685,27 +1784,27 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaTipoVehiculo" FunctionName="progra6Model.Store.sp_RetornaTipoVehiculo">
+          <FunctionImportMapping FunctionImportName="sp_RetornaTipoVehiculo" FunctionName="progra6BDModel.Store.sp_RetornaTipoVehiculo">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaTipoVehiculo_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaTipoVehiculo_Result">
                 <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
                 <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
                 <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaTipoVehiculos_ID" FunctionName="progra6Model.Store.sp_RetornaTipoVehiculos_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaTipoVehiculos_ID" FunctionName="progra6BDModel.Store.sp_RetornaTipoVehiculos_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaTipoVehiculos_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaTipoVehiculos_ID_Result">
                 <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
                 <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
                 <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculo" FunctionName="progra6Model.Store.sp_RetornaVehiculo">
+          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculo" FunctionName="progra6BDModel.Store.sp_RetornaVehiculo">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehiculo_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaVehiculo_Result">
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
                 <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
                 <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
@@ -1715,9 +1814,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculo_ID" FunctionName="progra6Model.Store.sp_RetornaVehiculo_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculo_ID" FunctionName="progra6BDModel.Store.sp_RetornaVehiculo_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehiculo_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaVehiculo_ID_Result">
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
                 <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
                 <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
@@ -1727,9 +1826,9 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculosXCliente" FunctionName="progra6Model.Store.sp_RetornaVehiculosXCliente">
+          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculosXCliente" FunctionName="progra6BDModel.Store.sp_RetornaVehiculosXCliente">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehiculosXCliente_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaVehiculosXCliente_Result">
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
@@ -1738,24 +1837,25 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaVehXPer_ID" FunctionName="progra6Model.Store.sp_RetornaVehXPer_ID">
+          <FunctionImportMapping FunctionImportName="sp_RetornaVehXPer_ID" FunctionName="progra6BDModel.Store.sp_RetornaVehXPer_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehXPer_ID_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaVehXPer_ID_Result">
                 <ScalarProperty Name="idVehiculoXCliente" ColumnName="idVehiculoXCliente" />
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaVehXPers" FunctionName="progra6Model.Store.sp_RetornaVehXPers">
+          <FunctionImportMapping FunctionImportName="sp_RetornaVehXPers" FunctionName="progra6BDModel.Store.sp_RetornaVehXPers">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehXPers_Result">
+              <ComplexTypeMapping TypeName="progra6BDModel.sp_RetornaVehXPers_Result">
                 <ScalarProperty Name="idVehiculoXCliente" ColumnName="idVehiculoXCliente" />
                 <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="progra6BDModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

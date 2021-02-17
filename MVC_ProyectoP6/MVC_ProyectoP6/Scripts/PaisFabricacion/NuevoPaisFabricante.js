@@ -6,13 +6,19 @@ $(function () {
 
 //crea las validaciones para el formulario
 function creaValidaciones() {
-    $("#frmPaisFabricacion").validate(
+    $("#frmPaisFabricante").validate(
         {
             //objeto que contiene "las condiciones" que el formulario
             //debe cumplir para ser validado
             rules: {
 
+                CodigoPaisFabricante: {
+                    required: true,
+                },
 
+                PaisFabricante: {
+                    required: true,
+                },
             }
         }
     );

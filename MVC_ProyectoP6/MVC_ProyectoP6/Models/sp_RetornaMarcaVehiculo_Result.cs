@@ -10,15 +10,11 @@
 namespace MVC_ProyectoP6.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class VehiculosXCliente
+    public partial class sp_RetornaMarcaVehiculo_Result
     {
-        public int idVehiculoXCliente { get; set; }
-        public int idVehiculo { get; set; }
-        public int idCliente { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
-        public virtual Vehiculos Vehiculos { get; set; }
+        public int idMarcaVehiculo { get; set; }
+        public string CodigoMarcaVehiculo { get; set; }
+        public string TipoMarcaVehiculo { get; set; }
     }
 }

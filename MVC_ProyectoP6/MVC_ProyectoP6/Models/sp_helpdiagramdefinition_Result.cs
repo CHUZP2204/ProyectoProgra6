@@ -10,15 +10,10 @@
 namespace MVC_ProyectoP6.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class VehiculosXCliente
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int idVehiculoXCliente { get; set; }
-        public int idVehiculo { get; set; }
-        public int idCliente { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
-        public virtual Vehiculos Vehiculos { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

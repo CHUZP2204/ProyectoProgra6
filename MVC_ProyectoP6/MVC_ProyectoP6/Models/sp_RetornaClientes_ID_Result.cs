@@ -10,19 +10,18 @@
 namespace MVC_ProyectoP6.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class EncabezadoFactura
+    public partial class sp_RetornaClientes_ID_Result
     {
-        public int idEncabezadoFac { get; set; }
         public int idCliente { get; set; }
-        public int idVehiculo { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public decimal MontoTotalServicios { get; set; }
-        public string EstadoFactura { get; set; }
-        public int idDetalleFac { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
-        public virtual DetalleFactura DetalleFactura { get; set; }
+        public string Cedula { get; set; }
+        public System.DateTime FechaNacimiento { get; set; }
+        public string Genero { get; set; }
+        public string NombreCompleto { get; set; }
+        public string Correo { get; set; }
+        public int idProvincia { get; set; }
+        public int idCanton { get; set; }
+        public int idDistrito { get; set; }
+        public string TipoUsuario { get; set; }
     }
 }

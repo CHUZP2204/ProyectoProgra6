@@ -10,19 +10,13 @@
 namespace MVC_ProyectoP6.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class EncabezadoFactura
+    public partial class sp_RetornaServiciosOProductos_ID_Result
     {
-        public int idEncabezadoFac { get; set; }
+        public int idSop { get; set; }
+        public string CodigoSOP { get; set; }
+        public decimal PrecioSOP { get; set; }
+        public string TipoSOP { get; set; }
         public int idCliente { get; set; }
-        public int idVehiculo { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public decimal MontoTotalServicios { get; set; }
-        public string EstadoFactura { get; set; }
-        public int idDetalleFac { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
-        public virtual DetalleFactura DetalleFactura { get; set; }
     }
 }

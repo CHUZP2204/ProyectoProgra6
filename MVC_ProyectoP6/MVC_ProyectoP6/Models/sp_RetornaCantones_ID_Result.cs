@@ -11,7 +11,7 @@ namespace MVC_ProyectoP6.Models
 {
     using System;
     
-    public partial class sp_RetornaCantonesID_Result
+    public partial class sp_RetornaCantones_ID_Result
     {
         public int id_Canton { get; set; }
         public int id_Provincia { get; set; }

@@ -11,10 +11,9 @@ namespace MVC_ProyectoP6.Models
 {
     using System;
     
-    public partial class sp_RetornaMarcaVehiculos_Result
+    public partial class sp_RetornaDetalleFac_Result
     {
-        public int idMarcaVehiculo { get; set; }
-        public string CodigoMarcaVehiculo { get; set; }
-        public string TipoMarcaVehiculo { get; set; }
+        public int idDetalleFac { get; set; }
+        public string TipoSOP { get; set; }
     }
 }

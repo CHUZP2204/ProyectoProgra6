@@ -16,10 +16,10 @@ namespace MVC_ProyectoP6.Models
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class progra6Entities : DbContext
+    public partial class progra6Entities1 : DbContext
     {
-        public progra6Entities()
-            : base("name=progra6Entities")
+        public progra6Entities1()
+            : base("name=progra6Entities1")
         {
         }
     
@@ -29,6 +29,7 @@ namespace MVC_ProyectoP6.Models
         }
     
         public DbSet<Canton> Canton { get; set; }
+        public DbSet<Clientes> Clientes { get; set; }
         public DbSet<DetalleFactura> DetalleFactura { get; set; }
         public DbSet<Distrito> Distrito { get; set; }
         public DbSet<EncabezadoFactura> EncabezadoFactura { get; set; }
@@ -39,7 +40,6 @@ namespace MVC_ProyectoP6.Models
         public DbSet<TipoVehiculos> TipoVehiculos { get; set; }
         public DbSet<Vehiculos> Vehiculos { get; set; }
         public DbSet<VehiculosXCliente> VehiculosXCliente { get; set; }
-        public DbSet<Clientes> Clientes { get; set; }
     
         public virtual int sp_Elimina_VehXPers(Nullable<int> idVehxPer)
         {
@@ -77,22 +77,31 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaMarcaVehiculos", idMarcaVehiculoParameter);
         }
     
-        public virtual int sp_EliminarEncFactura_ID(Nullable<int> idEncFactura)
+        public virtual int sp_EliminaPaisFabricante(Nullable<int> idPaisFabricante)
+        {
+            var idPaisFabricanteParameter = idPaisFabricante.HasValue ?
+                new ObjectParameter("idPaisFabricante", idPaisFabricante) :
+                new ObjectParameter("idPaisFabricante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaPaisFabricante", idPaisFabricanteParameter);
+        }
+    
+        public virtual int sp_EliminarEncFactura(Nullable<int> idEncFactura)
         {
             var idEncFacturaParameter = idEncFactura.HasValue ?
                 new ObjectParameter("idEncFactura", idEncFactura) :
                 new ObjectParameter("idEncFactura", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminarEncFactura_ID", idEncFacturaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminarEncFactura", idEncFacturaParameter);
         }
     
-        public virtual int sp_EliminarVehiculo_ID(Nullable<int> idVehiculo)
+        public virtual int sp_EliminarVehiculo(Nullable<int> idVehiculo)
         {
             var idVehiculoParameter = idVehiculo.HasValue ?
                 new ObjectParameter("idVehiculo", idVehiculo) :
                 new ObjectParameter("idVehiculo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminarVehiculo_ID", idVehiculoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminarVehiculo", idVehiculoParameter);
         }
     
         public virtual int sp_EliminaServicioOProducto(Nullable<int> idSOP)
@@ -113,6 +122,19 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaTipoVehiculos", idTipoVehiculoParameter);
         }
     
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
         public virtual int sp_Inserta_VehXPers(Nullable<int> idVehiculo, Nullable<int> idCliente)
         {
             var idVehiculoParameter = idVehiculo.HasValue ?
@@ -124,6 +146,51 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idCliente", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Inserta_VehXPers", idVehiculoParameter, idClienteParameter);
+        }
+    
+        public virtual int sp_InsertaCliente(string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contraseña)
+        {
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
+    
+            var generoParameter = genero != null ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(string));
+    
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idProvinciaParameter = idProvincia.HasValue ?
+                new ObjectParameter("idProvincia", idProvincia) :
+                new ObjectParameter("idProvincia", typeof(int));
+    
+            var idCantonParameter = idCanton.HasValue ?
+                new ObjectParameter("idCanton", idCanton) :
+                new ObjectParameter("idCanton", typeof(int));
+    
+            var idDistritoParameter = idDistrito.HasValue ?
+                new ObjectParameter("idDistrito", idDistrito) :
+                new ObjectParameter("idDistrito", typeof(int));
+    
+            var tipoUsuarioParameter = tipoUsuario != null ?
+                new ObjectParameter("TipoUsuario", tipoUsuario) :
+                new ObjectParameter("TipoUsuario", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaCliente", cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseñaParameter);
         }
     
         public virtual int sp_InsertaDetalleFactura(string tipoSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP)
@@ -172,6 +239,53 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaEncFactura", idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter, idDetalleFacParameter);
         }
     
+        public virtual int sp_InsertaPaisFabricante(string codigoPaisFabricante, string paisFabricante)
+        {
+            var codigoPaisFabricanteParameter = codigoPaisFabricante != null ?
+                new ObjectParameter("CodigoPaisFabricante", codigoPaisFabricante) :
+                new ObjectParameter("CodigoPaisFabricante", typeof(string));
+    
+            var paisFabricanteParameter = paisFabricante != null ?
+                new ObjectParameter("PaisFabricante", paisFabricante) :
+                new ObjectParameter("PaisFabricante", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaPaisFabricante", codigoPaisFabricanteParameter, paisFabricanteParameter);
+        }
+    
+        public virtual int sp_InsertaServicioOProducto(string codigoSOP, string precioSOP, string tipoSOP, Nullable<int> idCliente)
+        {
+            var codigoSOPParameter = codigoSOP != null ?
+                new ObjectParameter("CodigoSOP", codigoSOP) :
+                new ObjectParameter("CodigoSOP", typeof(string));
+    
+            var precioSOPParameter = precioSOP != null ?
+                new ObjectParameter("PrecioSOP", precioSOP) :
+                new ObjectParameter("PrecioSOP", typeof(string));
+    
+            var tipoSOPParameter = tipoSOP != null ?
+                new ObjectParameter("TipoSOP", tipoSOP) :
+                new ObjectParameter("TipoSOP", typeof(string));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaServicioOProducto", codigoSOPParameter, precioSOPParameter, tipoSOPParameter, idClienteParameter);
+        }
+    
+        public virtual int sp_InsertaTipoVehiculo(string codigoTipoVehiculo, string tipoVehiculo)
+        {
+            var codigoTipoVehiculoParameter = codigoTipoVehiculo != null ?
+                new ObjectParameter("CodigoTipoVehiculo", codigoTipoVehiculo) :
+                new ObjectParameter("CodigoTipoVehiculo", typeof(string));
+    
+            var tipoVehiculoParameter = tipoVehiculo != null ?
+                new ObjectParameter("TipoVehiculo", tipoVehiculo) :
+                new ObjectParameter("TipoVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaTipoVehiculo", codigoTipoVehiculoParameter, tipoVehiculoParameter);
+        }
+    
         public virtual int sp_InsertaVehiculo(string placa, Nullable<int> idTipoVeh, Nullable<int> idMarcaVeh, string puertas, string ruedas)
         {
             var placaParameter = placa != null ?
@@ -214,6 +328,55 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Modifica_VehXPers", idVehxPerParameter, idVehiculoParameter, idClienteParameter);
         }
     
+        public virtual int sp_ModificaCliente(Nullable<int> idCliente, string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contraseña)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
+    
+            var generoParameter = genero != null ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(string));
+    
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idProvinciaParameter = idProvincia.HasValue ?
+                new ObjectParameter("idProvincia", idProvincia) :
+                new ObjectParameter("idProvincia", typeof(int));
+    
+            var idCantonParameter = idCanton.HasValue ?
+                new ObjectParameter("idCanton", idCanton) :
+                new ObjectParameter("idCanton", typeof(int));
+    
+            var idDistritoParameter = idDistrito.HasValue ?
+                new ObjectParameter("idDistrito", idDistrito) :
+                new ObjectParameter("idDistrito", typeof(int));
+    
+            var tipoUsuarioParameter = tipoUsuario != null ?
+                new ObjectParameter("TipoUsuario", tipoUsuario) :
+                new ObjectParameter("TipoUsuario", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCliente", idClienteParameter, cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseñaParameter);
+        }
+    
         public virtual int sp_ModificaDetalleFactura(Nullable<int> idDetalleFactura, string tipoSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP)
         {
             var idDetalleFacturaParameter = idDetalleFactura.HasValue ?
@@ -235,7 +398,7 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaDetalleFactura", idDetalleFacturaParameter, tipoSOPParameter, cantidadSOPParameter, precioSOPParameter);
         }
     
-        public virtual int sp_ModificaEncaFact_ID(Nullable<int> idEfactura, Nullable<decimal> montoTotal, string estadoFactura)
+        public virtual int sp_ModificaEncaFact(Nullable<int> idEfactura, Nullable<decimal> montoTotal, string estadoFactura)
         {
             var idEfacturaParameter = idEfactura.HasValue ?
                 new ObjectParameter("idEfactura", idEfactura) :
@@ -249,7 +412,7 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("EstadoFactura", estadoFactura) :
                 new ObjectParameter("EstadoFactura", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEncaFact_ID", idEfacturaParameter, montoTotalParameter, estadoFacturaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEncaFact", idEfacturaParameter, montoTotalParameter, estadoFacturaParameter);
         }
     
         public virtual int sp_ModificaMarcaVehiculo(Nullable<int> idMarcaVehiculo, string codigoMarcaVehiculo, string tipoMarcaVehiculo, Nullable<int> idPaisFabricante)
@@ -332,7 +495,7 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaTipoVehiculo", idTipoVehiculoParameter, codigoTipoVehiculoParameter, tipoVehiculoParameter);
         }
     
-        public virtual int sp_ModificaVehiculo_ID(Nullable<int> idVehiculo, string placa, Nullable<int> idTipoVeh, Nullable<int> idMarcaVeh, string puertas, string ruedas)
+        public virtual int sp_ModificaVehiculo(Nullable<int> idVehiculo, string placa, Nullable<int> idTipoVeh, Nullable<int> idMarcaVeh, string puertas, string ruedas)
         {
             var idVehiculoParameter = idVehiculo.HasValue ?
                 new ObjectParameter("idVehiculo", idVehiculo) :
@@ -358,16 +521,24 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("ruedas", ruedas) :
                 new ObjectParameter("ruedas", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaVehiculo_ID", idVehiculoParameter, placaParameter, idTipoVehParameter, idMarcaVehParameter, puertasParameter, ruedasParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaVehiculo", idVehiculoParameter, placaParameter, idTipoVehParameter, idMarcaVehParameter, puertasParameter, ruedasParameter);
         }
     
-        public virtual int sp_PaisFabricante(Nullable<int> idPaisFabricante)
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
         {
-            var idPaisFabricanteParameter = idPaisFabricante.HasValue ?
-                new ObjectParameter("idPaisFabricante", idPaisFabricante) :
-                new ObjectParameter("idPaisFabricante", typeof(int));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_PaisFabricante", idPaisFabricanteParameter);
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
         public virtual ObjectResult<sp_RetornaCantones_Result> sp_RetornaCantones(string nombre, Nullable<int> id_Provincia)
@@ -383,22 +554,69 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCantones_Result>("sp_RetornaCantones", nombreParameter, id_ProvinciaParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaCantonesID_Result> sp_RetornaCantonesID(Nullable<int> id_Canton)
+        public virtual ObjectResult<sp_RetornaCantones_ID_Result> sp_RetornaCantones_ID(Nullable<int> id_Canton)
         {
             var id_CantonParameter = id_Canton.HasValue ?
                 new ObjectParameter("id_Canton", id_Canton) :
                 new ObjectParameter("id_Canton", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCantonesID_Result>("sp_RetornaCantonesID", id_CantonParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCantones_ID_Result>("sp_RetornaCantones_ID", id_CantonParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaDetalleFactura_Result> sp_RetornaDetalleFactura(string tipoSOP)
+        public virtual ObjectResult<sp_RetornaClientes_Result> sp_RetornaClientes(string cedula, string genero, string nombreCompleto, string correo, string tipoUsuario, string contraseña)
+        {
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var generoParameter = genero != null ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(string));
+    
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var tipoUsuarioParameter = tipoUsuario != null ?
+                new ObjectParameter("TipoUsuario", tipoUsuario) :
+                new ObjectParameter("TipoUsuario", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_Result>("sp_RetornaClientes", cedulaParameter, generoParameter, nombreCompletoParameter, correoParameter, tipoUsuarioParameter, contraseñaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaClientes_ID_Result> sp_RetornaClientes_ID(Nullable<int> idCliente)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_ID_Result>("sp_RetornaClientes_ID", idClienteParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaDetalleFac_Result> sp_RetornaDetalleFac(string tipoSOP)
         {
             var tipoSOPParameter = tipoSOP != null ?
                 new ObjectParameter("TipoSOP", tipoSOP) :
                 new ObjectParameter("TipoSOP", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFactura_Result>("sp_RetornaDetalleFactura", tipoSOPParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_Result>("sp_RetornaDetalleFac", tipoSOPParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaDetalleFac_ID_Result> sp_RetornaDetalleFac_ID(Nullable<int> idDetalleFac)
+        {
+            var idDetalleFacParameter = idDetalleFac.HasValue ?
+                new ObjectParameter("idDetalleFac", idDetalleFac) :
+                new ObjectParameter("idDetalleFac", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_ID_Result>("sp_RetornaDetalleFac_ID", idDetalleFacParameter);
         }
     
         public virtual ObjectResult<sp_RetornaDistritos_Result> sp_RetornaDistritos(string nombre, Nullable<int> id_Canton)
@@ -432,7 +650,7 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_ID_Result>("sp_RetornaEncFactura_ID", idEfacturaParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaMarcaVehiculos_Result> sp_RetornaMarcaVehiculos(string codigoMarcaVehiculo, string tipoMarcaVehiculo)
+        public virtual ObjectResult<sp_RetornaMarcaVehiculo_Result> sp_RetornaMarcaVehiculo(string codigoMarcaVehiculo, string tipoMarcaVehiculo)
         {
             var codigoMarcaVehiculoParameter = codigoMarcaVehiculo != null ?
                 new ObjectParameter("CodigoMarcaVehiculo", codigoMarcaVehiculo) :
@@ -442,7 +660,16 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("TipoMarcaVehiculo", tipoMarcaVehiculo) :
                 new ObjectParameter("TipoMarcaVehiculo", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculos_Result>("sp_RetornaMarcaVehiculos", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculo_Result>("sp_RetornaMarcaVehiculo", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaMarcaVehiculo_ID_Result> sp_RetornaMarcaVehiculo_ID(Nullable<int> idMarcaVehiculo)
+        {
+            var idMarcaVehiculoParameter = idMarcaVehiculo.HasValue ?
+                new ObjectParameter("idMarcaVehiculo", idMarcaVehiculo) :
+                new ObjectParameter("idMarcaVehiculo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculo_ID_Result>("sp_RetornaMarcaVehiculo_ID", idMarcaVehiculoParameter);
         }
     
         public virtual ObjectResult<sp_RetornaPaisFabricante_Result> sp_RetornaPaisFabricante(string codigoPaisFabricante, string paisFabricante)
@@ -456,6 +683,15 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("PaisFabricante", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaPaisFabricante_Result>("sp_RetornaPaisFabricante", codigoPaisFabricanteParameter, paisFabricanteParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaPaisFabricante_ID_Result> sp_RetornaPaisFabricante_ID(Nullable<int> idPaisFabricante)
+        {
+            var idPaisFabricanteParameter = idPaisFabricante.HasValue ?
+                new ObjectParameter("idPaisFabricante", idPaisFabricante) :
+                new ObjectParameter("idPaisFabricante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaPaisFabricante_ID_Result>("sp_RetornaPaisFabricante_ID", idPaisFabricanteParameter);
         }
     
         public virtual ObjectResult<sp_RetornaProvincias_Result> sp_RetornaProvincias(string nombre, Nullable<int> id_Provincia)
@@ -480,25 +716,26 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaResidenciaCliente_Result>("sp_RetornaResidenciaCliente", idClienteParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaServicioOProducto_Result> sp_RetornaServicioOProducto(string codigoSOP, string precioSOP, string tipoSOP, Nullable<int> idCliente)
+        public virtual ObjectResult<sp_RetornaServicioOProducto_Result> sp_RetornaServicioOProducto(string codigoSOP, string tipoSOP)
         {
             var codigoSOPParameter = codigoSOP != null ?
                 new ObjectParameter("CodigoSOP", codigoSOP) :
                 new ObjectParameter("CodigoSOP", typeof(string));
     
-            var precioSOPParameter = precioSOP != null ?
-                new ObjectParameter("PrecioSOP", precioSOP) :
-                new ObjectParameter("PrecioSOP", typeof(string));
-    
             var tipoSOPParameter = tipoSOP != null ?
                 new ObjectParameter("TipoSOP", tipoSOP) :
                 new ObjectParameter("TipoSOP", typeof(string));
     
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaServicioOProducto_Result>("sp_RetornaServicioOProducto", codigoSOPParameter, tipoSOPParameter);
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaServicioOProducto_Result>("sp_RetornaServicioOProducto", codigoSOPParameter, precioSOPParameter, tipoSOPParameter, idClienteParameter);
+        public virtual ObjectResult<sp_RetornaServiciosOProductos_ID_Result> sp_RetornaServiciosOProductos_ID(Nullable<int> idSOP)
+        {
+            var idSOPParameter = idSOP.HasValue ?
+                new ObjectParameter("idSOP", idSOP) :
+                new ObjectParameter("idSOP", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaServiciosOProductos_ID_Result>("sp_RetornaServiciosOProductos_ID", idSOPParameter);
         }
     
         public virtual ObjectResult<sp_RetornaTipoVehiculo_Result> sp_RetornaTipoVehiculo(string codigoTipoVehiculo, string tipoVehiculo)
@@ -512,6 +749,15 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("TipoVehiculo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaTipoVehiculo_Result>("sp_RetornaTipoVehiculo", codigoTipoVehiculoParameter, tipoVehiculoParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaTipoVehiculos_ID_Result> sp_RetornaTipoVehiculos_ID(Nullable<int> idTipoVehiculo)
+        {
+            var idTipoVehiculoParameter = idTipoVehiculo.HasValue ?
+                new ObjectParameter("idTipoVehiculo", idTipoVehiculo) :
+                new ObjectParameter("idTipoVehiculo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaTipoVehiculos_ID_Result>("sp_RetornaTipoVehiculos_ID", idTipoVehiculoParameter);
         }
     
         public virtual ObjectResult<sp_RetornaVehiculo_Result> sp_RetornaVehiculo(string placa, Nullable<int> idTipoVeh, Nullable<int> idMarcaVeh)
@@ -569,193 +815,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idVehiculo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVehXPers_Result>("sp_RetornaVehXPers", idVehXperParameter, idVehiculoParameter);
-        }
-    
-        public virtual int spInsertaAdicciones(string codigoMarcaVehiculo, string tipoMarcaVehiculo, Nullable<int> idPaisFabricante)
-        {
-            var codigoMarcaVehiculoParameter = codigoMarcaVehiculo != null ?
-                new ObjectParameter("CodigoMarcaVehiculo", codigoMarcaVehiculo) :
-                new ObjectParameter("CodigoMarcaVehiculo", typeof(string));
-    
-            var tipoMarcaVehiculoParameter = tipoMarcaVehiculo != null ?
-                new ObjectParameter("TipoMarcaVehiculo", tipoMarcaVehiculo) :
-                new ObjectParameter("TipoMarcaVehiculo", typeof(string));
-    
-            var idPaisFabricanteParameter = idPaisFabricante.HasValue ?
-                new ObjectParameter("idPaisFabricante", idPaisFabricante) :
-                new ObjectParameter("idPaisFabricante", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertaAdicciones", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter, idPaisFabricanteParameter);
-        }
-    
-        public virtual int spInsertaServicioOProducto(string codigoSOP, string precioSOP, string tipoSOP, Nullable<int> idCliente)
-        {
-            var codigoSOPParameter = codigoSOP != null ?
-                new ObjectParameter("CodigoSOP", codigoSOP) :
-                new ObjectParameter("CodigoSOP", typeof(string));
-    
-            var precioSOPParameter = precioSOP != null ?
-                new ObjectParameter("PrecioSOP", precioSOP) :
-                new ObjectParameter("PrecioSOP", typeof(string));
-    
-            var tipoSOPParameter = tipoSOP != null ?
-                new ObjectParameter("TipoSOP", tipoSOP) :
-                new ObjectParameter("TipoSOP", typeof(string));
-    
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertaServicioOProducto", codigoSOPParameter, precioSOPParameter, tipoSOPParameter, idClienteParameter);
-        }
-    
-        public virtual int spInsertaTipoVehiculo(string codigoTipoVehiculo, string tipoVehiculo)
-        {
-            var codigoTipoVehiculoParameter = codigoTipoVehiculo != null ?
-                new ObjectParameter("CodigoTipoVehiculo", codigoTipoVehiculo) :
-                new ObjectParameter("CodigoTipoVehiculo", typeof(string));
-    
-            var tipoVehiculoParameter = tipoVehiculo != null ?
-                new ObjectParameter("TipoVehiculo", tipoVehiculo) :
-                new ObjectParameter("TipoVehiculo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertaTipoVehiculo", codigoTipoVehiculoParameter, tipoVehiculoParameter);
-        }
-    
-        public virtual int spPaisFabricante(string codigoPaisFabricante, string paisFabricante)
-        {
-            var codigoPaisFabricanteParameter = codigoPaisFabricante != null ?
-                new ObjectParameter("CodigoPaisFabricante", codigoPaisFabricante) :
-                new ObjectParameter("CodigoPaisFabricante", typeof(string));
-    
-            var paisFabricanteParameter = paisFabricante != null ?
-                new ObjectParameter("PaisFabricante", paisFabricante) :
-                new ObjectParameter("PaisFabricante", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spPaisFabricante", codigoPaisFabricanteParameter, paisFabricanteParameter);
-        }
-    
-        public virtual int sp_InsertaCliente(string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contraseña)
-        {
-            var cedulaParameter = cedula != null ?
-                new ObjectParameter("Cedula", cedula) :
-                new ObjectParameter("Cedula", typeof(string));
-    
-            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
-                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
-                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
-    
-            var generoParameter = genero != null ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(string));
-    
-            var nombreCompletoParameter = nombreCompleto != null ?
-                new ObjectParameter("NombreCompleto", nombreCompleto) :
-                new ObjectParameter("NombreCompleto", typeof(string));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var idProvinciaParameter = idProvincia.HasValue ?
-                new ObjectParameter("idProvincia", idProvincia) :
-                new ObjectParameter("idProvincia", typeof(int));
-    
-            var idCantonParameter = idCanton.HasValue ?
-                new ObjectParameter("idCanton", idCanton) :
-                new ObjectParameter("idCanton", typeof(int));
-    
-            var idDistritoParameter = idDistrito.HasValue ?
-                new ObjectParameter("idDistrito", idDistrito) :
-                new ObjectParameter("idDistrito", typeof(int));
-    
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var contraseñaParameter = contraseña != null ?
-                new ObjectParameter("Contraseña", contraseña) :
-                new ObjectParameter("Contraseña", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaCliente", cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseñaParameter);
-        }
-    
-        public virtual int sp_ModificaCliente(Nullable<int> idCliente, string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contraseña)
-        {
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            var cedulaParameter = cedula != null ?
-                new ObjectParameter("Cedula", cedula) :
-                new ObjectParameter("Cedula", typeof(string));
-    
-            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
-                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
-                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
-    
-            var generoParameter = genero != null ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(string));
-    
-            var nombreCompletoParameter = nombreCompleto != null ?
-                new ObjectParameter("NombreCompleto", nombreCompleto) :
-                new ObjectParameter("NombreCompleto", typeof(string));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var idProvinciaParameter = idProvincia.HasValue ?
-                new ObjectParameter("idProvincia", idProvincia) :
-                new ObjectParameter("idProvincia", typeof(int));
-    
-            var idCantonParameter = idCanton.HasValue ?
-                new ObjectParameter("idCanton", idCanton) :
-                new ObjectParameter("idCanton", typeof(int));
-    
-            var idDistritoParameter = idDistrito.HasValue ?
-                new ObjectParameter("idDistrito", idDistrito) :
-                new ObjectParameter("idDistrito", typeof(int));
-    
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var contraseñaParameter = contraseña != null ?
-                new ObjectParameter("Contraseña", contraseña) :
-                new ObjectParameter("Contraseña", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCliente", idClienteParameter, cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseñaParameter);
-        }
-    
-        public virtual ObjectResult<sp_RetornaClientes_Result> sp_RetornaClientes(string cedula, string genero, string nombreCompleto, string correo, string tipoUsuario, string contraseña)
-        {
-            var cedulaParameter = cedula != null ?
-                new ObjectParameter("Cedula", cedula) :
-                new ObjectParameter("Cedula", typeof(string));
-    
-            var generoParameter = genero != null ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(string));
-    
-            var nombreCompletoParameter = nombreCompleto != null ?
-                new ObjectParameter("NombreCompleto", nombreCompleto) :
-                new ObjectParameter("NombreCompleto", typeof(string));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var contraseñaParameter = contraseña != null ?
-                new ObjectParameter("Contraseña", contraseña) :
-                new ObjectParameter("Contraseña", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_Result>("sp_RetornaClientes", cedulaParameter, generoParameter, nombreCompletoParameter, correoParameter, tipoUsuarioParameter, contraseñaParameter);
         }
     }
 }

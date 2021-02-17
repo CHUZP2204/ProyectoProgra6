@@ -16,7 +16,6 @@ namespace MVC_ProyectoP6.Models
     {
         public Vehiculos()
         {
-            this.EncabezadoFactura = new HashSet<EncabezadoFactura>();
             this.VehiculosXCliente = new HashSet<VehiculosXCliente>();
         }
     
@@ -27,7 +26,6 @@ namespace MVC_ProyectoP6.Models
         public string NumeroPuertas { get; set; }
         public string NumeroRuedas { get; set; }
     
-        public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }
         public virtual MarcaVehiculos MarcaVehiculos { get; set; }
         public virtual TipoVehiculos TipoVehiculos { get; set; }
         public virtual ICollection<VehiculosXCliente> VehiculosXCliente { get; set; }

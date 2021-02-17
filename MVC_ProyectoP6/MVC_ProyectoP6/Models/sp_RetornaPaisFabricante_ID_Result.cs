@@ -11,9 +11,10 @@ namespace MVC_ProyectoP6.Models
 {
     using System;
     
-    public partial class sp_RetornaDetalleFactura_Result
+    public partial class sp_RetornaPaisFabricante_ID_Result
     {
-        public int idDetalleFac { get; set; }
-        public string TipoSOP { get; set; }
+        public int idPaisFabricante { get; set; }
+        public string CodigoPaisFabricante { get; set; }
+        public string PaisFabricante { get; set; }
     }
 }

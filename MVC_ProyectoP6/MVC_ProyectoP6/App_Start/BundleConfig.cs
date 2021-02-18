@@ -33,7 +33,9 @@ namespace MVC_ProyectoP6
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/bundlejquery").Include(
-              
+              "~/Scripts/jquery-3.4.1.js",
+              "~/Scripts/jquery.validate.js",
+              "~/Scripts/ValidacionesGenericas.js"
              ));
         }
     }

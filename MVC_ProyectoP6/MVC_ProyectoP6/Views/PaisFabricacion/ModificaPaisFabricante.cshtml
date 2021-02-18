@@ -1,12 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "NuevoPaisFabricante";
+    ViewBag.Title = "ModificaPaisFabricante";
 }
 
-<h2>NuevoPaisFabricante</h2>
+<h2>Modificar Pais Fabricante</h2>
 
-<form id="frmNuevoPaisFabricante" method="post">
-
+<form id="frmModifcaPaisFabricante" method="post">
     <div class="form-group">
         <label>Pais Fabricante</label>
         <input type="text" name="PaisFabricante" id="PaisFabricante" class="form-control" />
@@ -18,15 +17,15 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Guardar" id="btnAceptar" />
+        <input type="submit" value="Modificar" id="btnModificar" />
     </div>
 
-    <a href="~/PaisFabricacion/ListaPaisFabricante">Lista Paises Fabricantes </a>
-
 </form>
+
+
+
 @section scripts{
 
-    <script src="~/Scripts/PaisFabricacion/NuevoPaisFabricante.js"></script>
-    
+    <script src="~/Scripts/PaisFabricacion/ModificaPaisFabricante.js"></script>
 }
 

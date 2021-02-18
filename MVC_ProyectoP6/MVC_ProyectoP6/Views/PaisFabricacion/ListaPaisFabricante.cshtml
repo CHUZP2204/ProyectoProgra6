@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ListaPaisFabricante";
+}
+
+<h2>Lista de Paises Fabricantes</h2>
+<br>
+<a href="~/PaisFabricacion/NuevoPaisFabricante">Nuevo Pais Fabricante </a>
+<br>
+<br>
+<table class="table">
+    <tr>
+        <th>Pais Fabricante </th>
+        <th>Codigo Pais</th>
+    </tr>
+    @{
+        foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result posicionModelo
+         in this.Model)
+        {
+            <tr>
+                <td>@posicionModelo.PaisFabricante</td>
+                <td>@posicionModelo.CodigoPaisFabricante</td>
+                <td>
+                    acciones
+
+                </td>
+            </tr>
+
+        }
+
+    }
+</table>
+
+
+

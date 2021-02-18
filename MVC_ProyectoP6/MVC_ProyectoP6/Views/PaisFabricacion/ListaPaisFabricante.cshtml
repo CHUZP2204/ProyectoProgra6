@@ -17,14 +17,14 @@
         foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result posicionModelo
          in this.Model)
         {
-            <tr>
-                <td>@posicionModelo.PaisFabricante</td>
-                <td>@posicionModelo.CodigoPaisFabricante</td>
-                <td>
-                    acciones
+        <tr>
+            <td>@posicionModelo.PaisFabricante</td>
+            <td>@posicionModelo.CodigoPaisFabricante</td>
 
-                </td>
-            </tr>
+            <td>
+                <a href="~/PaisFabricacion/ModificaPaisFabricante?idPaisFabricante=@posicionModelo.idPaisFabricante">Modificar</a>
+            </td>
+        </tr>
 
         }
 

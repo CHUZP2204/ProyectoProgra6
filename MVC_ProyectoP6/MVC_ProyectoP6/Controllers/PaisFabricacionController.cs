@@ -86,8 +86,8 @@ namespace MVC_ProyectoP6.Controllers
                 cantidadRegistrosAfectados =
                        this.modeloBD.sp_ModificaPaisFabricante(
                            modeloVista.idPaisFabricante,
-                           modeloVista.PaisFabricante,
-                           modeloVista.CodigoPaisFabricante
+                           modeloVista.CodigoPaisFabricante,
+                            modeloVista.PaisFabricante
                            );
             }
             catch (Exception error)

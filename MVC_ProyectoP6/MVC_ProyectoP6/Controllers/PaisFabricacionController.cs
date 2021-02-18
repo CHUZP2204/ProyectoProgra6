@@ -10,7 +10,7 @@ namespace MVC_ProyectoP6.Controllers
 
     public class PaisFabricacionController : Controller
     {
-        progra6Entities2 modeloBD = new progra6Entities2();
+        progra6Entities3 modeloBD = new progra6Entities3();
 
         // GET: Registro PaisFabricacion
         public ActionResult NuevoPaisFabricante()
@@ -27,7 +27,6 @@ namespace MVC_ProyectoP6.Controllers
             {
                 cantidadRegistrosAfectados =
                     this.modeloBD.sp_InsertaPaisFabricante(
-                        modeloVista.idPaisFabricante,
                         modeloVista.CodigoPaisFabricante,
                         modeloVista.PaisFabricante
                         );

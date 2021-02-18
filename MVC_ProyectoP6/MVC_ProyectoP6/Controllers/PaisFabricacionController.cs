@@ -38,7 +38,7 @@ namespace MVC_ProyectoP6.Controllers
             }
             finally
             {
-                if (cantidadRegistrosAfectados >0)
+                if (cantidadRegistrosAfectados > 0)
                 {
                     resultado = "Registro Insertado";
                 }

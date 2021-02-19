@@ -2011,6 +2011,7 @@
     <Content Include="Views\PaisFabricacion\NuevoPaisFabricante.cshtml" />
     <Content Include="Views\PaisFabricacion\ListaPaisFabricante.cshtml" />
     <Content Include="Views\PaisFabricacion\ModificaPaisFabricante.cshtml" />
+    <Content Include="Views\PaisFabricacion\EliminaPaisFabricante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

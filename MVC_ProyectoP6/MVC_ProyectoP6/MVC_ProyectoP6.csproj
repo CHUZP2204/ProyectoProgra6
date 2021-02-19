@@ -2010,8 +2010,8 @@
     <Content Include="Views\Shared\LayoutProyecto.cshtml" />
     <Content Include="Views\PaisFabricacion\NuevoPaisFabricante.cshtml" />
     <Content Include="Views\PaisFabricacion\ListaPaisFabricante.cshtml" />
-    <Content Include="Views\PaisFabricacion\ModificaPaisFabricante.cshtml" />
     <Content Include="Views\PaisFabricacion\EliminaPaisFabricante.cshtml" />
+    <Content Include="Views\PaisFabricacion\ModificaPaisFabricante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

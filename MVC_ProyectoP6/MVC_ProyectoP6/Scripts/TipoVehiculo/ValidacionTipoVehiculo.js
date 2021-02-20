@@ -5,7 +5,7 @@ $(function () {
 
 //crea las validaciones
 function creaValidaciones() {
-    $("frmNuevoTipoVehiculo").validate({
+    $("#frmNuevoTipoVehiculo").validate({
      // condiciones para que el formulario sea validado 
         rules: {
             CodigoTipoVehiculo: {

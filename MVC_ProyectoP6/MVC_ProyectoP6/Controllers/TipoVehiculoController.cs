@@ -70,7 +70,7 @@ namespace MVC_ProyectoP6.Controllers
             modeloVista = this.modeloBD.sp_RetornaTipoVehiculos_ID(idTipoVehiculo).FirstOrDefault();
 
             //enviar modelo a la vista
-            return View();
+            return View(modeloVista);
         }
 
         [HttpPost]
@@ -118,7 +118,7 @@ namespace MVC_ProyectoP6.Controllers
             modeloVista = this.modeloBD.sp_RetornaTipoVehiculos_ID(idTipoVehiculo).FirstOrDefault();
 
             //enviar modelo a la vista
-            return View();
+            return View(modeloVista);
    
         }
 

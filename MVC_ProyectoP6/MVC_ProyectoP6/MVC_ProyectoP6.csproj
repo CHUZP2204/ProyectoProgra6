@@ -1990,10 +1990,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\PaisFabricacion\ModificaPaisFabricante.js" />
-    <Content Include="Scripts\PaisFabricacion\NuevoPaisFabricante.js" />
+    <Content Include="Scripts\PaisFabricacion\ValidacionPaisFabricante.js" />
     <Content Include="Scripts\scriptProyecto.js" />
-    <Content Include="Scripts\TipoVehiculo\NuevoTipoVehiculo.js" />
+    <Content Include="Scripts\TipoVehiculo\ValidacionTipoVehiculo.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2016,8 +2015,8 @@
     <Content Include="Views\PaisFabricacion\ModificaPaisFabricante.cshtml" />
     <Content Include="Views\TipoVehiculo\ListaTipoVehiculos.cshtml" />
     <Content Include="Views\TipoVehiculo\NuevoTipoVehiculo.cshtml" />
-    <Content Include="Views\TipoVehiculo\ModificaTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminaTipoVehiculo.cshtml" />
+    <Content Include="Views\TipoVehiculo\ModificaTipoVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

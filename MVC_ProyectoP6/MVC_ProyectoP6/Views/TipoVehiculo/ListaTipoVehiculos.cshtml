@@ -14,23 +14,24 @@
         <th>Codigo Vehiculo</th>
         <th>Tipo Vehiculo </th>
     </tr>
-    @{ 
-        foreach (MVC_ProyectoP6.Models.sp_RetornaTipoVehiculo_Result posicionModelo 
+    @{
+        foreach (MVC_ProyectoP6.Models.sp_RetornaTipoVehiculo_Result posicionModelo
             in this.Model)
         {
-        <tr>
-            <td> @posicionModelo.CodigoTipoVehiculo</td>
-            <td>@posicionModelo.TipoVehiculo</td>
-            <td>
-                <a href="~/TipoVehiculo/ModificaTipoVehiculo?idTipoVehiculo=@posicionModelo.idTipoVehiculo">Modificar</a>
-                <br />
-                <a href="~/TipoVehiculo/EliminaTipoVehiculo?idTipoVehiculo=@posicionModelo.idTipoVehiculo">Eliminar</a>
+            <tr>
+                <td> @posicionModelo.CodigoTipoVehiculo</td>
+                <td>@posicionModelo.TipoVehiculo</td>
 
-            </td>
-            
+                <td>
+                    <a href="~/TipoVehiculo/ModificaTipoVehiculo?idTipoVehiculo=@posicionModelo.idTipoVehiculo">Modificar</a>
+                    <br />
+                    <a href="~/TipoVehiculo/EliminaTipoVehiculo?idTipoVehiculo=@posicionModelo.idTipoVehiculo">Eliminar</a>
 
-        </tr>
-          
+                </td>
+
+
+            </tr>
+
         }
     }
 

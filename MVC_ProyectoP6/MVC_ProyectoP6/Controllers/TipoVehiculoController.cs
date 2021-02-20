@@ -7,42 +7,39 @@ using MVC_ProyectoP6.Models;
 
 namespace MVC_ProyectoP6.Controllers
 {
-
-    public class PaisFabricacionController : Controller
+    public class TipoVehiculoController : Controller
     {
         progra6Entities3 modeloBD = new progra6Entities3();
-
-        public ActionResult ListaPaisFabricante()
+        // GET: TipoVehiculo
+        public ActionResult ListaTipoVehiculos()
         {
             ///crear la variable que contiene el registro obtenidos
             ///mediante invocar al procedimiento almacenados 
-            List<sp_RetornaPaisFabricante_Result> modeloVista =
-                new List<sp_RetornaPaisFabricante_Result>();
+            List<sp_RetornaTipoVehiculo_Result> modeloVista =
+                  new List<sp_RetornaTipoVehiculo_Result>();
 
-            //asignar a la variable el resultado de llamar al SP
-            modeloVista = this.modeloBD.sp_RetornaPaisFabricante("", "").ToList();
+            //asignar a la variable el resultado de llamar al sp
+            modeloVista = this.modeloBD.sp_RetornaTipoVehiculo("", "").ToList();
 
-            //enciar el modelo a la vista
+            //enviar el modelo a la vista
             return View(modeloVista);
         }
-
-        // GET: Registro PaisFabricacion
-        public ActionResult NuevoPaisFabricante()
+        public ActionResult NuevoTipoVehiculo()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult NuevoPaisFabricante(sp_RetornaPaisFabricante_Result modeloVista)
+        public ActionResult NuevoTipoVehiculo(sp_RetornaTipoVehiculo_Result modeloVista)
         {
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
             try
             {
                 cantidadRegistrosAfectados =
-                    this.modeloBD.sp_InsertaPaisFabricante(
-                        modeloVista.CodigoPaisFabricante,
-                        modeloVista.PaisFabricante
+                    this.modeloBD.sp_InsertaTipoVehiculo(
+                        modeloVista.CodigoTipoVehiculo,
+                        modeloVista.TipoVehiculo
                         );
             }
             catch (Exception error)
@@ -64,18 +61,20 @@ namespace MVC_ProyectoP6.Controllers
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
             return View();
         }
-       
-        public ActionResult ModificaPaisFabricante(int idPaisFabricante)
-        {    ///obtener el registro que se desea modificar
-             /// utilizando el parametro del metodo idPaisFabricante
-            sp_RetornaPaisFabricante_ID_Result modeloVista = new sp_RetornaPaisFabricante_ID_Result();
-            modeloVista = this.modeloBD.sp_RetornaPaisFabricante_ID(idPaisFabricante).FirstOrDefault();
+
+        public ActionResult ModificaTipoVehiculo(int idTipoVehiculo)
+        {
+            ///obtener el registro que se desea modificar
+            /// utilizando el parametro del metodo idPaisFabricante
+            sp_RetornaTipoVehiculos_ID_Result modeloVista = new sp_RetornaTipoVehiculos_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaTipoVehiculos_ID(idTipoVehiculo).FirstOrDefault();
 
             //enviar modelo a la vista
-            return View(modeloVista);
+            return View();
         }
+
         [HttpPost]
-        public ActionResult ModificaPaisFabricante(sp_RetornaPaisFabricante_ID_Result modeloVista)
+        public ActionResult ModificaTipoVehiculo(sp_RetornaTipoVehiculos_ID_Result modeloVista)
         {
             ///varable que registra la cantidad de registro afectados
             ///si un SP que se ejecute Insert,UPDATE,DELETE
@@ -86,16 +85,16 @@ namespace MVC_ProyectoP6.Controllers
             try
             {
                 cantidadRegistrosAfectados =
-                       this.modeloBD.sp_ModificaPaisFabricante(
-                           modeloVista.idPaisFabricante,
-                           modeloVista.CodigoPaisFabricante,
-                            modeloVista.PaisFabricante
+                       this.modeloBD.sp_ModificaTipoVehiculo(
+                           modeloVista.idTipoVehiculo,
+                           modeloVista.CodigoTipoVehiculo,
+                            modeloVista.TipoVehiculo
                            );
             }
             catch (Exception error)
             {
                 resultado = "Ocurrio un Error" + error.Message;
-               
+
             }
             finally
             {
@@ -111,20 +110,20 @@ namespace MVC_ProyectoP6.Controllers
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
             return View(modeloVista);
         }
-
-        public ActionResult EliminaPaisFabricante(int idPaisFabricante)
+        public ActionResult EliminaTipoVehiculo(int idTipoVehiculo)
         {
             ///obtener el registro que se desea modificar
             /// utilizando el parametro del metodo idPaisFabricante
-            sp_RetornaPaisFabricante_ID_Result modeloVista = new sp_RetornaPaisFabricante_ID_Result();
-            modeloVista = this.modeloBD.sp_RetornaPaisFabricante_ID(idPaisFabricante).FirstOrDefault();
+            sp_RetornaTipoVehiculos_ID_Result modeloVista = new sp_RetornaTipoVehiculos_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaTipoVehiculos_ID(idTipoVehiculo).FirstOrDefault();
 
             //enviar modelo a la vista
-            return View(modeloVista);
+            return View();
+   
         }
 
         [HttpPost]
-        public ActionResult EliminaPaisFabricante(sp_RetornaPaisFabricante_ID_Result modeloVista)
+        public ActionResult EliminaTipoVehiculo(sp_RetornaTipoVehiculos_ID_Result modeloVista)
         {
             ///varable que registra la cantidad de registro afectados
             ///si un SP que se ejecute Insert,UPDATE,DELETE
@@ -135,8 +134,8 @@ namespace MVC_ProyectoP6.Controllers
             try
             {
                 cantidadRegistrosAfectados =
-                       this.modeloBD.sp_EliminaPaisFabricante(
-                          modeloVista.idPaisFabricante );
+                       this.modeloBD.sp_EliminaTipoVehiculos(
+                          modeloVista.idTipoVehiculo);
             }
             catch (Exception error)
             {

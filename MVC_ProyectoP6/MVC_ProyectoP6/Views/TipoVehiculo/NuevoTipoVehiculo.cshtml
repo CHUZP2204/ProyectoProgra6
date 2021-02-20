@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "NuevoTipoVehiculo";
+}
+
+<h2>Nuevo Tipo de Vehiculo</h2>
+
+
+<form id="frmNuevoTipoVehiculo" method="post">
+
+    <div class="form-group">
+        <label>Codigo Vehiculo </label>
+        <input type="text" name="CodigoTipoVehiculo" id="CodigoTipoVehiculo" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Tipo Vehiculo</label>
+        <input type="text" name="TipoVehiculo" id="TipoVehiculo" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar" id="btnGuardar" />
+    </div>
+    <br />
+    <a href="~/TipoVehiculo/ListaTipoVehiculos">Lista Tipos Vehiculo</a>
+
+
+</form>
+@section scripts{
+
+    <script src="~/Scripts/TipoVehiculo/NuevoTipoVehiculo.js"></script>
+}

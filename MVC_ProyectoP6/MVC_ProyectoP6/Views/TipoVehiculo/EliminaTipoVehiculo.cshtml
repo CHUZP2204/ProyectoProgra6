@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "EliminaTipoVehiculo";
+}
+
+<h2>EliminaTipoVehiculo</h2>
+
+<form id="frmEliminaTipoVehiculo" method="post">
+
+    <div class="form-group">
+        <label>Codigo Vehiculo </label>
+        <input type="text" name="CodigoTipoVehiculo" id="CodigoTipoVehiculo" class="form-control" value="@Model.CodigoTipoVehiculo" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Tipo Vehiculo</label>
+        <input type="text" name="TipoVehiculo" id="TipoVehiculo" class="form-control" @Model.PaisTipoVehiculo readonly />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar" id="btnGuardar" />
+    </div>
+    <br />
+    <a href="~/TipoVehiculo/ListaTipoVehiculos">Lista Tipos Vehiculo</a>
+
+
+
+</form>
+

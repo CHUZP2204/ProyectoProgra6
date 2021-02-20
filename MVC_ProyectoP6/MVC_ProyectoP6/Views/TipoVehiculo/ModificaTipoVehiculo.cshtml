@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "ModificaTipoVehiculo";
+}
+
+<h2>ModificaTipoVehiculo</h2>
+
+<form id="frmModificaTipoVehiculo" method="post">
+
+    <div class="form-group">
+        <label>Codigo Vehiculo </label>
+        <input type="text" name="CodigoTipoVehiculo" id="CodigoTipoVehiculo" class="form-control" value="@Model.CodigoTipoVehiculo" />
+    </div>
+
+    <div class="form-group">
+        <label>Tipo Vehiculo</label>
+        <input type="text" name="TipoVehiculo" id="TipoVehiculo" class="form-control" value="@Model.TipoVehiculo"/>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Modificar" id="btnModificar" />
+    </div>
+    <br />
+    <a href="~/TipoVehiculo/ListaTipoVehiculos">Lista Tipos Vehiculo</a>
+
+
+</form>

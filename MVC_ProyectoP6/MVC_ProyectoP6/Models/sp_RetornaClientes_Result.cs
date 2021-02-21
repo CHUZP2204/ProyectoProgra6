@@ -15,10 +15,14 @@ namespace MVC_ProyectoP6.Models
     {
         public int idCliente { get; set; }
         public string Cedula { get; set; }
+        public System.DateTime FechaNacimiento { get; set; }
         public string Genero { get; set; }
         public string NombreCompleto { get; set; }
         public string Correo { get; set; }
+        public int idProvincia { get; set; }
+        public int idCanton { get; set; }
+        public int idDistrito { get; set; }
         public string TipoUsuario { get; set; }
-        public string Contraseña { get; set; }
+        public string Contrasenia { get; set; }
     }
 }

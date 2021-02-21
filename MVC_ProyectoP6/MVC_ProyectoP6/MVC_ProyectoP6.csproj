@@ -129,6 +129,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaisFabricacionController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1993,6 +1994,7 @@
     <Content Include="Scripts\PaisFabricacion\ValidacionPaisFabricante.js" />
     <Content Include="Scripts\scriptProyecto.js" />
     <Content Include="Scripts\TipoVehiculo\ValidacionTipoVehiculo.js" />
+    <Content Include="Scripts\Usuarios\ddlEvents.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2017,6 +2019,8 @@
     <Content Include="Views\TipoVehiculo\NuevoTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminaTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\ModificaTipoVehiculo.cshtml" />
+    <Content Include="Views\Usuarios\ListaUsuario.cshtml" />
+    <Content Include="Views\Usuarios\NuevoUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

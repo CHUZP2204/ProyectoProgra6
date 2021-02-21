@@ -23,5 +23,6 @@ namespace MVC_ProyectoP6.Models
         public int idCanton { get; set; }
         public int idDistrito { get; set; }
         public string TipoUsuario { get; set; }
+        public string Contrasenia { get; set; }
     }
 }

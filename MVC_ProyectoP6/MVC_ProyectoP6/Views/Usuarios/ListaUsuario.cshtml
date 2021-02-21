@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "ListaUsuario";
+}
+
+<h2>Lista Usuarios En Sistema</h2>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre Completo</th>
+            <th>Cedula</th>
+            <th>Email</th>
+            <th>Genero</th>
+            <th>Fecha Nacimiento</th>
+            <th>Tipo Usuario</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            foreach(MVC_ProyectoP6.Models.sp_RetornaClientes_Result modeloPosicion in this.Model)
+            {
+                <tr>
+                    <td>@modeloPosicion.NombreCompleto</td>
+                    <td>@modeloPosicion.Cedula</td>
+                    <td>@modeloPosicion.Correo</td>
+                    <td>@modeloPosicion.Genero</td>
+                    <td>@modeloPosicion.FechaNacimiento.ToShortDateString()</td>
+                    <td>@modeloPosicion.TipoUsuario</td>
+                    <td><a class="btn btn-primary">Modificar</a> <a class="btn btn-danger">Eliminar</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-success">Agregar Cliente</a>

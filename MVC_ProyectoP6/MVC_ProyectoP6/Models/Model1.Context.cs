@@ -29,7 +29,6 @@ namespace MVC_ProyectoP6.Models
         }
     
         public DbSet<Canton> Canton { get; set; }
-        public DbSet<Clientes> Clientes { get; set; }
         public DbSet<DetalleFactura> DetalleFactura { get; set; }
         public DbSet<Distrito> Distrito { get; set; }
         public DbSet<EncabezadoFactura> EncabezadoFactura { get; set; }
@@ -41,6 +40,7 @@ namespace MVC_ProyectoP6.Models
         public DbSet<TipoVehiculos> TipoVehiculos { get; set; }
         public DbSet<Vehiculos> Vehiculos { get; set; }
         public DbSet<VehiculosXCliente> VehiculosXCliente { get; set; }
+        public DbSet<Clientes> Clientes { get; set; }
     
         public virtual int sp_Elimina_VehXPers(Nullable<int> idVehxPer)
         {
@@ -134,51 +134,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idCliente", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Inserta_VehXPers", idVehiculoParameter, idClienteParameter);
-        }
-    
-        public virtual int sp_InsertaCliente(string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contraseña)
-        {
-            var cedulaParameter = cedula != null ?
-                new ObjectParameter("Cedula", cedula) :
-                new ObjectParameter("Cedula", typeof(string));
-    
-            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
-                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
-                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
-    
-            var generoParameter = genero != null ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(string));
-    
-            var nombreCompletoParameter = nombreCompleto != null ?
-                new ObjectParameter("NombreCompleto", nombreCompleto) :
-                new ObjectParameter("NombreCompleto", typeof(string));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var idProvinciaParameter = idProvincia.HasValue ?
-                new ObjectParameter("idProvincia", idProvincia) :
-                new ObjectParameter("idProvincia", typeof(int));
-    
-            var idCantonParameter = idCanton.HasValue ?
-                new ObjectParameter("idCanton", idCanton) :
-                new ObjectParameter("idCanton", typeof(int));
-    
-            var idDistritoParameter = idDistrito.HasValue ?
-                new ObjectParameter("idDistrito", idDistrito) :
-                new ObjectParameter("idDistrito", typeof(int));
-    
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var contraseñaParameter = contraseña != null ?
-                new ObjectParameter("Contraseña", contraseña) :
-                new ObjectParameter("Contraseña", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaCliente", cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseñaParameter);
         }
     
         public virtual int sp_InsertaDetalleFactura(string tipoSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP)
@@ -314,55 +269,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idCliente", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Modifica_VehXPers", idVehxPerParameter, idVehiculoParameter, idClienteParameter);
-        }
-    
-        public virtual int sp_ModificaCliente(Nullable<int> idCliente, string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contraseña)
-        {
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            var cedulaParameter = cedula != null ?
-                new ObjectParameter("Cedula", cedula) :
-                new ObjectParameter("Cedula", typeof(string));
-    
-            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
-                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
-                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
-    
-            var generoParameter = genero != null ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(string));
-    
-            var nombreCompletoParameter = nombreCompleto != null ?
-                new ObjectParameter("NombreCompleto", nombreCompleto) :
-                new ObjectParameter("NombreCompleto", typeof(string));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var idProvinciaParameter = idProvincia.HasValue ?
-                new ObjectParameter("idProvincia", idProvincia) :
-                new ObjectParameter("idProvincia", typeof(int));
-    
-            var idCantonParameter = idCanton.HasValue ?
-                new ObjectParameter("idCanton", idCanton) :
-                new ObjectParameter("idCanton", typeof(int));
-    
-            var idDistritoParameter = idDistrito.HasValue ?
-                new ObjectParameter("idDistrito", idDistrito) :
-                new ObjectParameter("idDistrito", typeof(int));
-    
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var contraseñaParameter = contraseña != null ?
-                new ObjectParameter("Contraseña", contraseña) :
-                new ObjectParameter("Contraseña", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCliente", idClienteParameter, cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseñaParameter);
         }
     
         public virtual int sp_ModificaDetalleFactura(Nullable<int> idDetalleFactura, string tipoSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP)
@@ -532,44 +438,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("id_Canton", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCantones_ID_Result>("sp_RetornaCantones_ID", id_CantonParameter);
-        }
-    
-        public virtual ObjectResult<sp_RetornaClientes_Result> sp_RetornaClientes(string cedula, string genero, string nombreCompleto, string correo, string tipoUsuario, string contraseña)
-        {
-            var cedulaParameter = cedula != null ?
-                new ObjectParameter("Cedula", cedula) :
-                new ObjectParameter("Cedula", typeof(string));
-    
-            var generoParameter = genero != null ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(string));
-    
-            var nombreCompletoParameter = nombreCompleto != null ?
-                new ObjectParameter("NombreCompleto", nombreCompleto) :
-                new ObjectParameter("NombreCompleto", typeof(string));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var contraseñaParameter = contraseña != null ?
-                new ObjectParameter("Contraseña", contraseña) :
-                new ObjectParameter("Contraseña", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_Result>("sp_RetornaClientes", cedulaParameter, generoParameter, nombreCompletoParameter, correoParameter, tipoUsuarioParameter, contraseñaParameter);
-        }
-    
-        public virtual ObjectResult<sp_RetornaClientes_ID_Result> sp_RetornaClientes_ID(Nullable<int> idCliente)
-        {
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_ID_Result>("sp_RetornaClientes_ID", idClienteParameter);
         }
     
         public virtual ObjectResult<sp_RetornaDetalleFac_Result> sp_RetornaDetalleFac(string tipoSOP)
@@ -786,6 +654,122 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idVehiculo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVehXPers_Result>("sp_RetornaVehXPers", idVehXperParameter, idVehiculoParameter);
+        }
+    
+        public virtual int sp_InsertaCliente(string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contrasenia)
+        {
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
+    
+            var generoParameter = genero != null ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(string));
+    
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idProvinciaParameter = idProvincia.HasValue ?
+                new ObjectParameter("idProvincia", idProvincia) :
+                new ObjectParameter("idProvincia", typeof(int));
+    
+            var idCantonParameter = idCanton.HasValue ?
+                new ObjectParameter("idCanton", idCanton) :
+                new ObjectParameter("idCanton", typeof(int));
+    
+            var idDistritoParameter = idDistrito.HasValue ?
+                new ObjectParameter("idDistrito", idDistrito) :
+                new ObjectParameter("idDistrito", typeof(int));
+    
+            var tipoUsuarioParameter = tipoUsuario != null ?
+                new ObjectParameter("TipoUsuario", tipoUsuario) :
+                new ObjectParameter("TipoUsuario", typeof(string));
+    
+            var contraseniaParameter = contrasenia != null ?
+                new ObjectParameter("Contrasenia", contrasenia) :
+                new ObjectParameter("Contrasenia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaCliente", cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseniaParameter);
+        }
+    
+        public virtual int sp_ModificaCliente(Nullable<int> idCliente, string cedula, Nullable<System.DateTime> fechaNacimiento, string genero, string nombreCompleto, string correo, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string tipoUsuario, string contrasenia)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
+    
+            var generoParameter = genero != null ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(string));
+    
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idProvinciaParameter = idProvincia.HasValue ?
+                new ObjectParameter("idProvincia", idProvincia) :
+                new ObjectParameter("idProvincia", typeof(int));
+    
+            var idCantonParameter = idCanton.HasValue ?
+                new ObjectParameter("idCanton", idCanton) :
+                new ObjectParameter("idCanton", typeof(int));
+    
+            var idDistritoParameter = idDistrito.HasValue ?
+                new ObjectParameter("idDistrito", idDistrito) :
+                new ObjectParameter("idDistrito", typeof(int));
+    
+            var tipoUsuarioParameter = tipoUsuario != null ?
+                new ObjectParameter("TipoUsuario", tipoUsuario) :
+                new ObjectParameter("TipoUsuario", typeof(string));
+    
+            var contraseniaParameter = contrasenia != null ?
+                new ObjectParameter("Contrasenia", contrasenia) :
+                new ObjectParameter("Contrasenia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCliente", idClienteParameter, cedulaParameter, fechaNacimientoParameter, generoParameter, nombreCompletoParameter, correoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, tipoUsuarioParameter, contraseniaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaClientes_ID_Result> sp_RetornaClientes_ID(Nullable<int> idCliente)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_ID_Result>("sp_RetornaClientes_ID", idClienteParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaClientes_Result> sp_RetornaClientes(string nombreCompleto, string cedula)
+        {
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_Result>("sp_RetornaClientes", nombreCompletoParameter, cedulaParameter);
         }
     }
 }

@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "NuevoUsuario";
+}
+
+<h1>Nuevo Usuario</h1>
+
+<form id="frmNuevoUsuario" method="post">
+
+    <div class="form-group">
+        <label>Cedula</label>
+        <input type="text" name="Cedula" id="Cedula" class="form-control" />
+    </div>
+    <!---->
+    <div class="form-group">
+        <label>Fecha Nacimiento</label>
+        <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" />
+    </div>
+    <!---->
+    <div class="form-group">
+        <label>Genero</label>
+        <select name="Genero" id="Genero" class="form-control">
+            <option value="">Seleccione Un Genero</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Indefenido">Indefinido</option>
+        </select>
+    </div>
+    <!---->
+    <div class="form-group">
+        <label>Nombre Completo: </label>
+        <input type="text" name="NombreCompleto" id="NombreCompleto" class="form-control" />
+    </div>
+    <!---->
+    <div class="form-group">
+        <label>Correo: </label>
+        <input type="email" name="Correo" id="Correo" class="form-control" />
+    </div>
+    <!---->
+    <div class="form-group">
+        <label>Seleccione Su Provincia: </label>
+        <select name="id_Provincia" id="idProvincia" class="form-control">
+            <option value="">Seleccione Una Provincia</option>
+            @{ foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
+                {
+                    <option value="@provincia.id_Provincia">@provincia.Provincia</option>
+                }
+
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Seleccione Su Canton: </label>
+        <select name="id_Canton" id="id_Canton" class="form-control">
+            <option value="">Seleccione Un canton</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Seleccione Su Distrito: </label>
+        <select name="id_Distrito" id="id_Distrito" class="form-control">
+            <option value="">Seleccione Un Distrito</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Tipo Usuario</label>
+        <select name="TipoUsuario" id="TipoUsuario" class="form-control">
+            <option value="">Seleccione Tipo Usuario</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Cliente">Cliente</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Contraseña:</label>
+        <input type="password" name="Contraseña" id="Contraseña" class="form-control"/>
+    </div>
+
+    @section scripts{
+        <script src="~/Scripts/Usuarios/ddlEvents.js"></script>
+    }
+
+</form>
+

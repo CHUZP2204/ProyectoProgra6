@@ -18,7 +18,7 @@ namespace MVC_ProyectoP6.Models
         public int idVehiculo { get; set; }
         public int idCliente { get; set; }
     
-        public virtual Clientes Clientes { get; set; }
         public virtual Vehiculos Vehiculos { get; set; }
+        public virtual Clientes Clientes { get; set; }
     }
 }

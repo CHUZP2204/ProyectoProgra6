@@ -266,6 +266,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Images\Fondo.jpg" />
+    <Content Include="Images\Fondo2.jpg" />
+    <Content Include="Images\Fondo3.jpg" />
+    <Content Include="Images\Fondo4.jpg" />
+    <Content Include="Images\Fondo5.jpg" />
     <Content Include="Estilos\fontawesome-free-5.14.0-web\css\all - copia.css" />
     <Content Include="Estilos\fontawesome-free-5.14.0-web\css\all.css" />
     <Content Include="Estilos\fontawesome-free-5.14.0-web\css\all.min.css" />

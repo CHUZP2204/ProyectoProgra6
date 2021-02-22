@@ -5,133 +5,133 @@
 
 
 
+<div class="jumbotron">
+    <div class="container-fluid" style="width:480px">
 
-<div class="container-fluid" style="width:480px">
 
-
-    <!--Panel-->
-    <div class="panel panel-primary " style="border: solid 5px black;border-radius: 1em;filter: drop-shadow(15px 15px 20px #444);">
-        <!--Encabezado Panel-->
-        <div class="panel-heading">
-            <div class="form-group row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-7">
-                    <h3>Nuevo Usuario</h3>
+        <!--Panel-->
+        <div class="panel panel-primary " style="border: solid 5px black;border-radius: 1em;filter: drop-shadow(15px 15px 20px #444);">
+            <!--Encabezado Panel-->
+            <div class="panel-heading">
+                <div class="form-group row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-7">
+                        <h3>Nuevo Usuario</h3>
+                    </div>
+                    <div>
+                        <a href="~/Usuarios/ListaUsuario" class="btn btn-danger"><i class="fas fa-backspace"></i></a>
+                    </div>
                 </div>
-                <div >
-                    <a href="~/Usuarios/ListaUsuario" class="btn btn-danger"><i class="fas fa-backspace"></i></a>
-                </div>
+
             </div>
+            <!--Cuerpo Panel-->
+            <div class="panel-body" style="background-color: aquamarine;">
 
-        </div>
-        <!--Cuerpo Panel-->
-        <div class="panel-body" style="background-color: aquamarine;">
-
-            <form id="frmNuevoUsuario" method="post">
-                <!--Espacio Cedula-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Cedula</label>
-                    <div class="col-sm-7">
-                        <input type="text" name="Cedula" id="Cedula" class="form-control" />
+                <form id="frmNuevoUsuario" method="post">
+                    <!--Espacio Cedula-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Cedula</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="Cedula" id="Cedula" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Fecha Nacimiento-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Fecha Nacimiento</label>
-                    <div class="col-sm-7">
-                        <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" />
+                    <!--Espacio Fecha Nacimiento-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+                        <div class="col-sm-7">
+                            <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Genero-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Genero</label>
-                    <div class="col-sm-7">
-                        <select name="Genero" id="Genero" class="form-control">
-                            <option value="">Seleccione Un Genero</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Indefenido">Indefinido</option>
-                        </select>
+                    <!--Espacio Genero-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Genero</label>
+                        <div class="col-sm-7">
+                            <select name="Genero" id="Genero" class="form-control">
+                                <option value="">Seleccione Un Genero</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Indefenido">Indefinido</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Nombre-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Nombre Completo: </label>
-                    <div class="col-sm-7">
-                        <input type="text" name="NombreCompleto" id="NombreCompleto" class="form-control" />
+                    <!--Espacio Nombre-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Nombre Completo: </label>
+                        <div class="col-sm-7">
+                            <input type="text" name="NombreCompleto" id="NombreCompleto" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Correo-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Correo: </label>
-                    <div class="col-sm-7">
-                        <input type="email" name="Correo" id="Correo" class="form-control" />
+                    <!--Espacio Correo-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Correo: </label>
+                        <div class="col-sm-7">
+                            <input type="email" name="Correo" id="Correo" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Provincia-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Provincia: </label>
-                    <div class="col-sm-7">
-                        <select name="idProvincia" id="idProvincia" class="form-control">
-                            <option value="">Seleccione Una Provincia</option>
-                            @{ foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
-                                {
-                                    <option value="@provincia.id_Provincia">@provincia.Provincia</option>
+                    <!--Espacio Provincia-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Provincia: </label>
+                        <div class="col-sm-7">
+                            <select name="idProvincia" id="idProvincia" class="form-control">
+                                <option value="">Seleccione Una Provincia</option>
+                                @{ foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
+                                    {
+                                        <option value="@provincia.id_Provincia">@provincia.Provincia</option>
+                                    }
                                 }
-                            }
-                        </select>
-                    </div>
+                            </select>
+                        </div>
 
-                </div>
-                <!--Espacio Canton-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Canton: </label>
-                    <div class="col-sm-7">
-                        <select name="idCanton" id="id_Canton" class="form-control">
-                            <option value="">Seleccione Un canton</option>
-                        </select>
                     </div>
-                </div>
-                <!--Espacio Distrito-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Distrito: </label>
-                    <div class="col-sm-7">
-                        <select name="idDistrito" id="id_Distrito" class="form-control">
-                            <option value="">Seleccione Un Distrito</option>
-                        </select>
+                    <!--Espacio Canton-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Canton: </label>
+                        <div class="col-sm-7">
+                            <select name="idCanton" id="id_Canton" class="form-control">
+                                <option value="">Seleccione Un canton</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Tipo Usuario-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Tipo Usuario</label>
-                    <div class="col-sm-7">
-                        <select name="TipoUsuario" id="TipoUsuario" class="form-control">
-                            <option value="">Seleccione Tipo Usuario</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Cliente">Cliente</option>
-                        </select>
+                    <!--Espacio Distrito-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Distrito: </label>
+                        <div class="col-sm-7">
+                            <select name="idDistrito" id="id_Distrito" class="form-control">
+                                <option value="">Seleccione Un Distrito</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <!--Espacio-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Contraseña:</label>
-                    <div class="col-sm-7">
-                        <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" />
+                    <!--Espacio Tipo Usuario-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Tipo Usuario</label>
+                        <div class="col-sm-7">
+                            <select name="TipoUsuario" id="TipoUsuario" class="form-control">
+                                <option value="">Seleccione Tipo Usuario</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Cliente">Cliente</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Boton-->
-                <button class="btn btn-success" type="submit">Guardar</button>
-            </form>
+                    <!--Espacio-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Contraseña:</label>
+                        <div class="col-sm-7">
+                            <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" />
+                        </div>
+                    </div>
+                    <!--Espacio Boton-->
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                </form>
 
+            </div>
         </div>
+
+
+
+
+
     </div>
-
-
-
-
-
 </div>
-
 
 @section scripts{
     <script src="~/Scripts/Usuarios/ddlEvents.js"></script>

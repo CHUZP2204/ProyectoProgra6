@@ -3,188 +3,190 @@
     ViewBag.Title = "ModificaUsuario";
 }
 
+<div class="jumbotron">
+    <div class="container-fluid" style="width:480px">
 
-<div class="container-fluid" style="width:480px">
 
-
-    <!--Panel-->
-    <div class="panel panel-primary " style="border: solid 5px black;border-radius: 1em;filter: drop-shadow(15px 15px 20px #444);">
-        <!--Encabezado Panel-->
-        <div class="panel-heading">
-            <div class="form-group row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-7">
-                    <h3>Modificar Usuario</h3>
+        <!--Panel-->
+        <div class="panel panel-primary " style="border: solid 5px black;border-radius: 1em;filter: drop-shadow(15px 15px 20px #444);">
+            <!--Encabezado Panel-->
+            <div class="panel-heading">
+                <div class="form-group row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-7">
+                        <h3>Modificar Usuario</h3>
+                    </div>
+                    <div>
+                        <a href="~/Usuarios/ListaUsuario" class="btn btn-danger"><i class="fas fa-backspace"></i></a>
+                    </div>
                 </div>
-                <div>
-                    <a href="~/Usuarios/ListaUsuario" class="btn btn-danger"><i class="fas fa-backspace"></i></a>
-                </div>
+
             </div>
+            <!--Cuerpo Panel-->
+            <div class="panel-body" style="background-color: aquamarine;">
 
-        </div>
-        <!--Cuerpo Panel-->
-        <div class="panel-body" style="background-color: aquamarine;">
-
-            <form id="frmNuevoUsuario" method="post">
-                <!--Espacio Cedula-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Cedula</label>
-                    <div class="col-sm-7">
-                        <input type="text" name="Cedula" id="Cedula" class="form-control" value="@Model.Cedula" />
+                <form id="frmNuevoUsuario" method="post">
+                    <!--Espacio Cedula-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Cedula</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="Cedula" id="Cedula" class="form-control" value="@Model.Cedula" />
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Fecha Nacimiento-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Fecha Nacimiento</label>
-                    <div class="col-sm-7">
-                        <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" value="@Model.FechaNacimiento.Date.ToString("yyyy-MM-dd")" />
+                    <!--Espacio Fecha Nacimiento-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+                        <div class="col-sm-7">
+                            <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" value="@Model.FechaNacimiento.Date.ToString("yyyy-MM-dd")" />
+                        </div>
                     </div>
-                </div>
-                <!--Espacio Genero-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Genero</label>
-                    <div class="col-sm-7">
-                        <select name="Genero" id="Genero" class="form-control">
-                            <option value="">Seleccione Un Genero</option>
+                    <!--Espacio Genero-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Genero</label>
+                        <div class="col-sm-7">
+                            <select name="Genero" id="Genero" class="form-control">
+                                <option value="">Seleccione Un Genero</option>
 
 
-                            @*
-                                Incluir La Propiedad Selected Para que La Opcion aparezca sleccionada
-                                Se Compara la propiedad id_Provincia del ojeto ViewBag contra la propiedad id_Provincia
-                                del modelo vista
-                            *@
-                            @{
-                                //MVC_ProyectoP6.Models.sp_RetornaClientes_ID_Result modelo = new MVC_ProyectoP6.Models.sp_RetornaClientes_ID_Result();
-                                if (@Model.Genero == "Masculino")
-                                {
-                                    <option value="Masculino" selected>Masculino</option>
-                                }
-                                else
-                                {
-                                    <option value="Masculino">Masculino</option>
-                                }
-                                if (@Model.Genero == "Femenino")
-                                {
-                                    <option value="Femenino" selected>Femenino</option>
-                                }
-                                else
-                                {
-                                    <option value="Femenino">Femenino</option>
-                                }
-                                if (@Model.Genero == "Indefenido")
-                                {
-                                    <option value="Indefenido" selected>Indefenido</option>
-                                }
-                                else
-                                {
-                                    <option value="Indefenido">Indefenido</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                </div>
-                <!--Espacio Nombre-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Nombre Completo: </label>
-                    <div class="col-sm-7">
-                        <input type="text" name="NombreCompleto" id="NombreCompleto" class="form-control" value="@Model.NombreCompleto" />
-                    </div>
-                </div>
-                <!--Espacio Correo-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Correo: </label>
-                    <div class="col-sm-7">
-                        <input type="email" name="Correo" id="Correo" class="form-control" value="@Model.Correo" />
-                    </div>
-                </div>
-                <!--Espacio Provincia-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Provincia: </label>
-                    <div class="col-sm-7">
-                        <select name="idProvincia" id="idProvincia" class="form-control">
-                            <option value="">Seleccione Una Provincia</option>
-                            @{
-
-                                foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
-                                {
-                                    bool esIdProvinciaModelo = provincia.id_Provincia == Model.idProvincia;
-
-                                    if (esIdProvinciaModelo)
+                                @*
+                                    Incluir La Propiedad Selected Para que La Opcion aparezca sleccionada
+                                    Se Compara la propiedad id_Provincia del ojeto ViewBag contra la propiedad id_Provincia
+                                    del modelo vista
+                                *@
+                                @{
+                                    //MVC_ProyectoP6.Models.sp_RetornaClientes_ID_Result modelo = new MVC_ProyectoP6.Models.sp_RetornaClientes_ID_Result();
+                                    if (@Model.Genero == "Masculino")
                                     {
-                                        <option value="@provincia.id_Provincia" selected>@provincia.Provincia.ToUpper() </option>
+                                        <option value="Masculino" selected>Masculino</option>
                                     }
                                     else
                                     {
-                                        <option value="@provincia.id_Provincia">@provincia.Provincia.ToUpper() </option>
+                                        <option value="Masculino">Masculino</option>
+                                    }
+                                    if (@Model.Genero == "Femenino")
+                                    {
+                                        <option value="Femenino" selected>Femenino</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Femenino">Femenino</option>
+                                    }
+                                    if (@Model.Genero == "Indefenido")
+                                    {
+                                        <option value="Indefenido" selected>Indefenido</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Indefenido">Indefenido</option>
                                     }
                                 }
-                            }
-                        </select>
+                            </select>
+                        </div>
                     </div>
+                    <!--Espacio Nombre-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Nombre Completo: </label>
+                        <div class="col-sm-7">
+                            <input type="text" name="NombreCompleto" id="NombreCompleto" class="form-control" value="@Model.NombreCompleto" />
+                        </div>
+                    </div>
+                    <!--Espacio Correo-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Correo: </label>
+                        <div class="col-sm-7">
+                            <input type="email" name="Correo" id="Correo" class="form-control" value="@Model.Correo" />
+                        </div>
+                    </div>
+                    <!--Espacio Provincia-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Provincia: </label>
+                        <div class="col-sm-7">
+                            <select name="idProvincia" id="idProvincia" class="form-control">
+                                <option value="">Seleccione Una Provincia</option>
+                                @{
 
-                </div>
-                <!--Espacio Canton-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Canton: </label>
-                    <div class="col-sm-7">
-                        <select name="idCanton" id="id_Canton" class="form-control" required>
-                            <option value="">Seleccione Canton</option>
-                        </select>
-                    </div>
-                </div>
-                <!--Espacio Distrito-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Distrito: </label>
-                    <div class="col-sm-7">
-                        <select name="idDistrito" id="id_Distrito" class="form-control" required>
-                            <option value="">Seleccione Un Distrito</option>
-                        </select>
-                    </div>
-                </div>
-                <!--Espacio Tipo Usuario-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Tipo Usuario</label>
-                    <div class="col-sm-7">
-                        <select name="TipoUsuario" id="TipoUsuario" class="form-control">
-                            <option value="">Seleccione Tipo Usuario</option>
-                            if (@Model.TipoUsuario == "Administrador")
-                            {
-                            <option value="Administrador" selected>Administrador</option>
-                            }
-                            else
-                            {
-                            <option value="Administrador">Administrador</option>
-                            }
-                            if (@Model.TipoUsuario == "Cliente")
-                            {
-                            <option value="Cliente" selected>Cliente</option>
-                            }
-                            else
-                            {
-                            <option value="Cliente">Cliente</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <!--Espacio-->
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Contraseña:</label>
-                    <div class="col-sm-7">
-                        <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" value="@Model.Contrasenia"/>
-                    </div>
-                </div>
-                <!--Espacio Boton-->
-                <button class="btn btn-success" type="submit">Guardar</button>
-            </form>
+                                    foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
+                                    {
+                                        bool esIdProvinciaModelo = provincia.id_Provincia == Model.idProvincia;
 
+                                        if (esIdProvinciaModelo)
+                                        {
+                                            <option value="@provincia.id_Provincia" selected>@provincia.Provincia.ToUpper() </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@provincia.id_Provincia">@provincia.Provincia.ToUpper() </option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <!--Espacio Canton-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Canton: </label>
+                        <div class="col-sm-7">
+                            <select name="idCanton" id="id_Canton" class="form-control" required>
+                                <option value="">Seleccione Canton</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--Espacio Distrito-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Distrito: </label>
+                        <div class="col-sm-7">
+                            <select name="idDistrito" id="id_Distrito" class="form-control" required>
+                                <option value="">Seleccione Un Distrito</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--Espacio Tipo Usuario-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Tipo Usuario</label>
+                        <div class="col-sm-7">
+                            <select name="TipoUsuario" id="TipoUsuario" class="form-control">
+                                <option value="">Seleccione Tipo Usuario</option>
+                                if (@Model.TipoUsuario == "Administrador")
+                                {
+                                <option value="Administrador" selected>Administrador</option>
+                                }
+                                else
+                                {
+                                <option value="Administrador">Administrador</option>
+                                }
+                                if (@Model.TipoUsuario == "Cliente")
+                                {
+                                <option value="Cliente" selected>Cliente</option>
+                                }
+                                else
+                                {
+                                <option value="Cliente">Cliente</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <!--Espacio-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Contraseña:</label>
+                        <div class="col-sm-7">
+                            <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" value="@Model.Contrasenia" />
+                        </div>
+                    </div>
+                    <!--Espacio Boton-->
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                </form>
+
+            </div>
         </div>
+
+
+
+
+
     </div>
-
-
-
-
-
 </div>
+
 
 @section scripts{
     <script src="~/Scripts/Usuarios/ddlEvents.js"></script>

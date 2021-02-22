@@ -3,29 +3,32 @@
     ViewBag.Title = "ModificaTipoVehiculo";
 }
 
-<h2>ModificaTipoVehiculo</h2>
 
-<form id="frmNuevoTipoVehiculo" method="post">
+<div class="jumbotron">
+    <h2>Modificar Tipo Vehiculo</h2>
+    <form id="frmNuevoTipoVehiculo" method="post">
 
-    <div class="form-group">
-        <label>Codigo Vehiculo</label>
-        <input type="text" name="CodigoTipoVehiculo" id="CodigoTipoVehiculo" class="form-control" value="@Model.CodigoTipoVehiculo" />
+        <div class="form-group">
+            <label>Codigo Vehiculo</label>
+            <input type="text" name="CodigoTipoVehiculo" id="CodigoTipoVehiculo" class="form-control" value="@Model.CodigoTipoVehiculo" />
 
-    </div>
+        </div>
 
-    <div class="form-group">
-        <label>Tipo Vehiculo</label>
-        <input type="text" name="TipoVehiculo" id="TipoVehiculo" class="form-control" value="@Model.TipoVehiculo" />
+        <div class="form-group">
+            <label>Tipo Vehiculo</label>
+            <input type="text" name="TipoVehiculo" id="TipoVehiculo" class="form-control" value="@Model.TipoVehiculo" />
 
-    </div>
+        </div>
 
-    <div class="form-group">
-        <input type="submit" value="Modificar" id="btnModificar" />
-    </div>
+        <div class="form-group">
+            <input type="submit" value="Modificar" id="btnModificar" class="btn btn-success" />
+        </div>
+    </form>
+    <a href="~/TipoVehiculo/ListaTipoVehiculos" class="btn btn-primary">Lista Tipos Vehiculo</a>
+</div>
 
-    <br /><a href="~/TipoVehiculo/ListaTipoVehiculos">Lista Tipos de Vehiculo</a>
 
-</form>
+
 @section scripts {
 
     <script src="~/Scripts/TipoVehiculo/ValidacionTipoVehiculo.js"></script>

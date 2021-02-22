@@ -3,35 +3,42 @@
     ViewBag.Title = "ListaPaisFabricante";
 }
 
-<h2>Lista de Paises Fabricantes</h2>
-<br>
-<a href="~/PaisFabricacion/NuevoPaisFabricante">Nuevo Pais Fabricante </a>
-<br>
-<br>
-<table class="table">
-    <tr>
-        <th>Pais Fabricante </th>
-        <th>Codigo Pais</th>
-    </tr>
-    @{
-        foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result posicionModelo
-         in this.Model)
-        {
-        <tr>
-            <td>@posicionModelo.PaisFabricante</td>
-            <td>@posicionModelo.CodigoPaisFabricante</td>
+<div class="jumbotron">
+    <h2>Lista de Paises Fabricantes</h2>
+    <br>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pais Fabricante </th>
+                <th>Codigo Pais</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result posicionModelo
+                 in this.Model)
+                {
+                    <tr>
+                        <td>@posicionModelo.PaisFabricante</td>
+                        <td>@posicionModelo.CodigoPaisFabricante</td>
 
-            <td>
-                <a href="~/PaisFabricacion/ModificaPaisFabricante?idPaisFabricante=@posicionModelo.idPaisFabricante">Modificar</a>
-                <br />
-                <a href="~/PaisFabricacion/EliminaPaisFabricante?idPaisFabricante=@posicionModelo.idPaisFabricante">Eliminar</a>
-            </td>
-        </tr>
+                        <td>
+                            <a href="~/PaisFabricacion/ModificaPaisFabricante?idPaisFabricante=@posicionModelo.idPaisFabricante" class="btn btn-primary">Modificar</a>
+                            <a href="~/PaisFabricacion/EliminaPaisFabricante?idPaisFabricante=@posicionModelo.idPaisFabricante" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a href="~/PaisFabricacion/NuevoPaisFabricante" class="btn btn-success">Agregar Nuevo Pais</a>
+    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
+</div>
 
-        }
 
-    }
-</table>
 
 
 

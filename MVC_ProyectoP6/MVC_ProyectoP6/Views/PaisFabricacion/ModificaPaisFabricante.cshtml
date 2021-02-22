@@ -3,29 +3,31 @@
     ViewBag.Title = "ModificaPaisFabricante";
 }
 
-<h2>Modificar Pais Fabricante</h2>
-<a href="~/PaisFabricacion/ListaPaisFabricante">Lista Paises Fabricantes</a>
-<br />
-<br />
 
-<form id="frmNuevoPaisFabricante" method="post">
-    <div class="form-group">
-        <label>Pais Fabricante</label>
-        <input type="text" name="PaisFabricante" id="PaisFabricante" class="form-control" value="@Model.PaisFabricante" />
-    </div>
+<div class="jumbotron">
+    <h2>Modificar Pais Fabricante</h2>
 
-    <div class="form-group">
-        <label> Codigo Pais Fabricante</label>
-        <input type="text" name="CodigoPaisFabricante" id="CodigoPaisFabricante" class="form-control" value="@Model.CodigoPaisFabricante" />
-    </div>
+    <br />
+    <br />
 
-    <div class="form-group">
-        <input type="submit" value="Guardar" id="btnAceptar" />
-    </div>
+    <form id="frmNuevoPaisFabricante" method="post">
+        <div class="form-group">
+            <label>Pais Fabricante</label>
+            <input type="text" name="PaisFabricante" id="PaisFabricante" class="form-control" value="@Model.PaisFabricante" />
+        </div>
 
-    <a href="~/PaisFabricacion/ListaPaisFabricante">Lista Paises Fabricantes </a>
+        <div class="form-group">
+            <label> Codigo Pais Fabricante</label>
+            <input type="text" name="CodigoPaisFabricante" id="CodigoPaisFabricante" class="form-control" value="@Model.CodigoPaisFabricante" />
+        </div>
 
-</form>
+        <div class="form-group">
+            <input type="submit" value="Guardar" id="btnAceptar" class="btn btn-success" />
+        </div>
+    </form>
+    <a href="~/PaisFabricacion/ListaPaisFabricante" class="btn btn-primary">Lista Paises</a>
+</div>
+
 @section scripts{
 
 

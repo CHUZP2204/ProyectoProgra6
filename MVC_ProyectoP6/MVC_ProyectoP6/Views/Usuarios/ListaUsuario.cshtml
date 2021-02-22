@@ -30,11 +30,11 @@
                     <td>@modeloPosicion.Genero</td>
                     <td>@modeloPosicion.FechaNacimiento.ToShortDateString()</td>
                     <td>@modeloPosicion.TipoUsuario</td>
-                    <td><a class="btn btn-primary">Modificar</a> <a class="btn btn-danger">Eliminar</a></td>
+                    <td><a href="~/Usuarios/ModificaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-primary">Modificar</a> <a href="~/Usuarios/EliminaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-danger">Eliminar</a></td>
                 </tr>
             }
         }
     </tbody>
 </table>
 
-<a class="btn btn-success">Agregar Cliente</a>
+<a href="~/Usuarios/NuevoUsuario" class="btn btn-success">Agregar Cliente</a>

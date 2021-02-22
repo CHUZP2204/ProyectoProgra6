@@ -28,6 +28,187 @@ namespace MVC_ProyectoP6.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult NuevoUsuario(sp_RetornaClientes_Result modeloVista)
+        {
+            ///Variable Que Registra La Cantidad De Registros Afectados
+            ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
+            ///No Afecta Registros Implica Que Hubo Un Error
+
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+
+            /// try Instrucciones que se intenta Realizar
+            /// Catch Administra las exepciones o errores
+            /// Finally Siempre se ejecuta exista o no error
+            try
+            {
+                cantRegistrosAfectados =
+                    this.modeloBD.sp_InsertaCliente(
+                        modeloVista.Cedula,
+                        modeloVista.FechaNacimiento,
+                        modeloVista.Genero,
+                        modeloVista.NombreCompleto,
+                        modeloVista.Correo,
+                        modeloVista.idProvincia,
+                        modeloVista.idCanton,
+                        modeloVista.idDistrito,
+                        modeloVista.TipoUsuario,
+                        modeloVista.Contrasenia
+                        );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio Un Error" + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado = "El Registro Fue Insertado";
+                }
+                else
+                {
+                    resultado += "El Registro No Se Pudo Insertar";
+                }
+            }
+
+            Response.Write("<script language=javascript>" +
+                "alert('" + resultado + "');" +
+                "</script>");
+
+            this.AgregaProvinciasViewBag();
+            return View();
+        }
+        /// <summary>
+        /// Vista Modificar
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        public ActionResult ModificaUsuario(int idCliente)
+        {
+            ///Obtener El Registro Que Se Desea Modifcar
+            ///Utilizando El Parametro del Metodo id_Persona
+            sp_RetornaClientes_ID_Result modeloVista = new sp_RetornaClientes_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaClientes_ID(idCliente).FirstOrDefault();
+
+            this.AgregaProvinciasViewBag();
+            ///Enviar el modelo a la vista
+            return View(modeloVista);
+
+        }
+        /// <summary>
+        /// Metodo Para Modificar datos Del Cliente
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult ModificaUsuario(sp_RetornaClientes_ID_Result modeloVista)
+        {
+            ///Variable Que Registra La Cantidad De Registros Afectados
+            ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
+            ///No Afecta Registros Implica Que Hubo Un Error
+
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+
+            /// try Instrucciones que se intenta Realizar
+            /// Catch Administra las exepciones o errores
+            /// Finally Siempre se ejecuta exista o no error
+            try
+            {
+                cantRegistrosAfectados =
+                    this.modeloBD.sp_ModificaCliente(
+                        modeloVista.idCliente,
+                        modeloVista.Cedula,
+                        modeloVista.FechaNacimiento,
+                        modeloVista.Genero,
+                        modeloVista.NombreCompleto,
+                        modeloVista.Correo,
+                        modeloVista.idProvincia,
+                        modeloVista.idCanton,
+                        modeloVista.idDistrito,
+                        modeloVista.TipoUsuario,
+                        modeloVista.Contrasenia
+                        );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio Un Error" + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado = "El Registro Fue Modificado";
+                }
+                else
+                {
+                    resultado += "El Registro No Se Pudo Insertar";
+                }
+            }
+
+            Response.Write("<script language=javascript>" +
+                "alert('" + resultado + "');" +
+                "</script>");
+
+            this.AgregaProvinciasViewBag();
+            return View(modeloVista);
+        }
+
+        public ActionResult EliminaUsuario(int idCliente)
+        {
+            ///Obtener El Registro Que Se Desea Modifcar
+            ///Utilizando El Parametro del Metodo id_Persona
+            sp_RetornaClientes_ID_Result modeloVista = new sp_RetornaClientes_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaClientes_ID(idCliente).FirstOrDefault();
+
+            this.AgregaProvinciasViewBag();
+            ///Enviar el modelo a la vista
+            return View(modeloVista);
+
+        }
+
+        [HttpPost]
+        public ActionResult EliminaUsuario(sp_RetornaClientes_ID_Result modeloVista)
+        {
+            ///Variable Que Registra La Cantidad De Registros Afectados
+            ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
+            ///No Afecta Registros Implica Que Hubo Un Error
+
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+
+            try
+            {
+                cantRegistrosAfectados = this.modeloBD.sp_EliminaCliente(modeloVista.idCliente);
+
+            }
+            catch (Exception error)
+            {
+
+                resultado = "Ocurrio un error: " + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado = "Registro Eliminado";
+                }
+                else
+                {
+                    resultado = "No Se Pudo Eliminar";
+                }
+            }
+
+            this.AgregaProvinciasViewBag();
+            Response.Write("<script language=javascript>" + "alert('" + resultado + "');" + "</script>");
+            return View(modeloVista);
+        }
+
+        /// <summary>
+        /// Cargar Lista De Provincias Al DDl
+        /// </summary>
         void AgregaProvinciasViewBag()
         {
             this.ViewBag.ListaProvincias = this.modeloBD.sp_RetornaProvincias("", null).ToList();

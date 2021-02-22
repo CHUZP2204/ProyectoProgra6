@@ -2021,6 +2021,8 @@
     <Content Include="Views\TipoVehiculo\ModificaTipoVehiculo.cshtml" />
     <Content Include="Views\Usuarios\ListaUsuario.cshtml" />
     <Content Include="Views\Usuarios\NuevoUsuario.cshtml" />
+    <Content Include="Views\Usuarios\ModificaUsuario.cshtml" />
+    <Content Include="Views\Usuarios\EliminaUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

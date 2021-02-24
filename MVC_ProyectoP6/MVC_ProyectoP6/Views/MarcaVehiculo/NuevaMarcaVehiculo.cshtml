@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "NuevaMarcaVehiculo";
+}
+
+
+
+<div class="jumbotron">
+
+    <h2>Nueva MarcaVehiculo </h2>
+
+    <form id="MarcaVehiculo" method="post">
+
+        <div class=" form-group">
+            <label>Codigo Marca</label>
+            <input type="text" name="CodigoMarcaVehiculo" id="CodigoMarcaVehiculo" class="form-control" />
+        </div>
+
+        <div class=" form-group">
+            <label>Tipo Marca</label>
+            <input type="text" name="TipoMarcaVehiculo" id="TipoMarcaVehiculo" class="form-control" />
+
+        </div>
+
+        <div class=" form-group">
+            <input type="submit" value="Guardar" id="btnAceptar" class="btn btn-success" />
+
+        </div>
+
+        <a href="~/MarcaVehiculo/ListaMarcaVehiculos" class="btn btn-success">Lista Marca Vehiculo</a>
+
+
+    </form>
+
+</div>
+

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "ListaMarcaVehiculos";
+}
+
+<h2>Lista Marcas de Vehiculos</h2>
+
+<div class="jumbotron">
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Codigo Marca</th>
+                <th>Tipo Marca </th>
+                <th>acciones</th>
+            </tr>
+
+        </thead>
+       <tbody>
+         @{ 
+             foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result posicionModelo
+                 in this.Model)
+             {
+                 <tr>
+                     <td>@posicionModelo.CodigoMarcaVehiculo</td>
+                     <td>@posicionModelo.TipoMarcaVehiculo</td>
+                     <td>
+                       Modificar
+                     </td>
+                 </tr>
+             }
+         }
+
+       </tbody>
+
+    </table>
+    <a href="~/MarcaVehiculo/NuevaMarcaVehiculo">Nueva Marca Vehiculo</a>
+</div>
+
+
+
+
+

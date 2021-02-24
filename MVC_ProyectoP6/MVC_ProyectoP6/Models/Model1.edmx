@@ -338,6 +338,10 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
           <Parameter Name="EstadoFactura" Type="varchar" Mode="In" />
           <Parameter Name="idDetalleFac" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_InsertaMarcaVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodigoMarcaVehiculo" Type="varchar" Mode="In" />
+          <Parameter Name="TipoMarcaVehiculo" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_InsertaPaisFabricante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CodigoPaisFabricante" Type="varchar" Mode="In" />
           <Parameter Name="PaisFabricante" Type="varchar" Mode="In" />
@@ -1078,6 +1082,10 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             <Parameter Name="NombreCompleto" Mode="In" Type="String" />
             <Parameter Name="Cedula" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_InsertaMarcaVehiculo">
+            <Parameter Name="CodigoMarcaVehiculo" Mode="In" Type="String" />
+            <Parameter Name="TipoMarcaVehiculo" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1759,6 +1767,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsertaMarcaVehiculo" FunctionName="progra6Model.Store.sp_InsertaMarcaVehiculo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

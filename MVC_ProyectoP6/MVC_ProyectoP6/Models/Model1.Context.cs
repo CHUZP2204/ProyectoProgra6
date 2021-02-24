@@ -771,5 +771,18 @@ namespace MVC_ProyectoP6.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_Result>("sp_RetornaClientes", nombreCompletoParameter, cedulaParameter);
         }
+    
+        public virtual int sp_InsertaMarcaVehiculo(string codigoMarcaVehiculo, string tipoMarcaVehiculo)
+        {
+            var codigoMarcaVehiculoParameter = codigoMarcaVehiculo != null ?
+                new ObjectParameter("CodigoMarcaVehiculo", codigoMarcaVehiculo) :
+                new ObjectParameter("CodigoMarcaVehiculo", typeof(string));
+    
+            var tipoMarcaVehiculoParameter = tipoMarcaVehiculo != null ?
+                new ObjectParameter("TipoMarcaVehiculo", tipoMarcaVehiculo) :
+                new ObjectParameter("TipoMarcaVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaMarcaVehiculo", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter);
+        }
     }
 }

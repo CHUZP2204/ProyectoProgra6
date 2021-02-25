@@ -16,5 +16,6 @@ namespace MVC_ProyectoP6.Models
         public int idMarcaVehiculo { get; set; }
         public string CodigoMarcaVehiculo { get; set; }
         public string TipoMarcaVehiculo { get; set; }
+        public int idPaisFabricante { get; set; }
     }
 }

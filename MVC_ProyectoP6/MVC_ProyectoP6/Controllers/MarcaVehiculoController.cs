@@ -42,7 +42,8 @@ namespace MVC_ProyectoP6.Controllers
                 cantidadRegistrosAfectados =
                     this.modeloBD.sp_InsertaMarcaVehiculo(
                         modeloVista.CodigoMarcaVehiculo,
-                        modeloVista.TipoMarcaVehiculo
+                        modeloVista.TipoMarcaVehiculo,
+                        modeloVista.idPaisFabricante
                         );
             }
             catch (Exception error)

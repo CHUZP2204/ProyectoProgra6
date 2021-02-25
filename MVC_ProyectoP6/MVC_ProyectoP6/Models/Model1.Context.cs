@@ -489,19 +489,6 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_ID_Result>("sp_RetornaEncFactura_ID", idEfacturaParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaMarcaVehiculo_Result> sp_RetornaMarcaVehiculo(string codigoMarcaVehiculo, string tipoMarcaVehiculo)
-        {
-            var codigoMarcaVehiculoParameter = codigoMarcaVehiculo != null ?
-                new ObjectParameter("CodigoMarcaVehiculo", codigoMarcaVehiculo) :
-                new ObjectParameter("CodigoMarcaVehiculo", typeof(string));
-    
-            var tipoMarcaVehiculoParameter = tipoMarcaVehiculo != null ?
-                new ObjectParameter("TipoMarcaVehiculo", tipoMarcaVehiculo) :
-                new ObjectParameter("TipoMarcaVehiculo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculo_Result>("sp_RetornaMarcaVehiculo", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter);
-        }
-    
         public virtual ObjectResult<sp_RetornaMarcaVehiculo_ID_Result> sp_RetornaMarcaVehiculo_ID(Nullable<int> idMarcaVehiculo)
         {
             var idMarcaVehiculoParameter = idMarcaVehiculo.HasValue ?
@@ -772,7 +759,7 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaClientes_Result>("sp_RetornaClientes", nombreCompletoParameter, cedulaParameter);
         }
     
-        public virtual int sp_InsertaMarcaVehiculo(string codigoMarcaVehiculo, string tipoMarcaVehiculo)
+        public virtual int sp_InsertaMarcaVehiculo(string codigoMarcaVehiculo, string tipoMarcaVehiculo, Nullable<int> idPaisFabricante)
         {
             var codigoMarcaVehiculoParameter = codigoMarcaVehiculo != null ?
                 new ObjectParameter("CodigoMarcaVehiculo", codigoMarcaVehiculo) :
@@ -782,7 +769,24 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("TipoMarcaVehiculo", tipoMarcaVehiculo) :
                 new ObjectParameter("TipoMarcaVehiculo", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaMarcaVehiculo", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter);
+            var idPaisFabricanteParameter = idPaisFabricante.HasValue ?
+                new ObjectParameter("idPaisFabricante", idPaisFabricante) :
+                new ObjectParameter("idPaisFabricante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaMarcaVehiculo", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter, idPaisFabricanteParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaMarcaVehiculo_Result> sp_RetornaMarcaVehiculo(string codigoMarcaVehiculo, string tipoMarcaVehiculo)
+        {
+            var codigoMarcaVehiculoParameter = codigoMarcaVehiculo != null ?
+                new ObjectParameter("CodigoMarcaVehiculo", codigoMarcaVehiculo) :
+                new ObjectParameter("CodigoMarcaVehiculo", typeof(string));
+    
+            var tipoMarcaVehiculoParameter = tipoMarcaVehiculo != null ?
+                new ObjectParameter("TipoMarcaVehiculo", tipoMarcaVehiculo) :
+                new ObjectParameter("TipoMarcaVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculo_Result>("sp_RetornaMarcaVehiculo", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter);
         }
     }
 }

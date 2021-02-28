@@ -29,8 +29,16 @@ namespace MVC_ProyectoP6.Controllers
 
         public ActionResult NuevaMarcaVehiculo()
         {
+            this.AgregarPaisesViewBag();
             return View();
         }
+
+        void AgregarPaisesViewBag()
+        {
+            this.ViewBag.ListaPaises =
+                 this.modeloBD.sp_RetornaPaisFabricante("", "").ToList();
+        }
+
 
         [HttpPost]
         public ActionResult NuevaMarcaVehiculo(sp_RetornaMarcaVehiculo_Result modeloVista)
@@ -63,6 +71,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
+            this.AgregarPaisesViewBag();
             return View();
         }
     }

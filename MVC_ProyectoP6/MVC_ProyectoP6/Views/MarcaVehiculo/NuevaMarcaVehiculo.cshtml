@@ -1,12 +1,9 @@
-﻿@{
-    ViewBag.Title = "NuevaMarcaVehiculo";
-}
-
+﻿
 <div class="jumbotron">
 
     <h2>Nueva MarcaVehiculo </h2>
 
-    <form id="MarcaVehiculo" method="post">
+    <form id="MarcaTipoVehiculo" method="post">
 
         <div class=" form-group">
             <label>Codigo Marca</label>
@@ -19,21 +16,35 @@
 
         </div>
 
-        <div class=" form-group">
-            <label>Pais Fabricante</label>
-            <input type="text" name="idPaisFabricante" id="idPaisFabricante" class="form-control" />
-
+        <div class="form-group">
+            <label>Pais Fabricante :</label>
+            <select name="idPaisFabricante" id="idPaisFabricante" class="form-control">
+                <option value="">Seleccione un Pais</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result paises
+                        in this.ViewBag.ListaPaises)
+                    {
+                        <option value="@paises.idPaisFabricante">@paises.PaisFabricante.ToUpper() </option>
+                    }
+                }
+            </select>
         </div>
 
         <div class=" form-group">
             <input type="submit" value="Guardar" id="btnAceptar" class="btn btn-success" />
 
         </div>
-
         <a href="~/MarcaVehiculo/ListaMarcaVehiculos" class="btn btn-success">Lista Marca Vehiculo</a>
-
-
     </form>
-
 </div>
+
+@section scripts{
+
+
+
+
+    <script src="~/Scripts/MarcaTipoVehiculo/ValidacionMarcaTipoVehiculo.js"></script>
+
+}
+
 

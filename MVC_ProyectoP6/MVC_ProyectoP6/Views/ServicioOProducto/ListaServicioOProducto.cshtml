@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "ListaServicioOProducto";
+}
+
+<div class="jumbotron">
+    <h2>Lista de Servicios y Productos </h2>
+    <br>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codigo Servicio O Producto</th>
+                <th>Tipo </th>
+                <th>Precio</th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result posicionModelo
+                 in this.Model)
+                {
+                        <tr>
+                            <td>@posicionModelo.CodigoSOP</td>
+                            <td>@posicionModelo.TipoSOP</td>
+                            <td>@posicionModelo.PrecioSOP</td>
+                            <td>@posicionModelo.idCliente</td>
+
+                            <td>
+                                modificar
+                                eliminar
+                            </td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a href="~/ServicioOProducto/NuevoServicioOproducto" class="btn btn-success">Agregar Nuevo Servicio o Producto</a>
+    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
+</div>

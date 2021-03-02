@@ -129,6 +129,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\PaisFabricacionController.cs" />
+    <Compile Include="Controllers\ServicioOProductoController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2003,6 +2004,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\PaisFabricacion\ValidacionPaisFabricante.js" />
     <Content Include="Scripts\scriptProyecto.js" />
+    <Content Include="Scripts\ServicioProducto\ValidacionServicioProducto.js" />
     <Content Include="Scripts\TipoVehiculo\ValidacionTipoVehiculo.js" />
     <Content Include="Scripts\Usuarios\ddlEvents.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
@@ -2037,6 +2039,8 @@
     <Content Include="Views\MarcaVehiculo\NuevaMarcaVehiculo.cshtml" />
     <Content Include="Views\MarcaVehiculo\ModificaMarcaVehiculo.cshtml" />
     <Content Include="Views\MarcaVehiculo\EliminaMarcaVehiculo.cshtml" />
+    <Content Include="Views\ServicioOProducto\ListaServicioOProducto.cshtml" />
+    <Content Include="Views\ServicioOProducto\NuevoServicioOproducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

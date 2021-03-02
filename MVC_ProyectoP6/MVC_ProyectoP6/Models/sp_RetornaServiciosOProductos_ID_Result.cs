@@ -13,7 +13,7 @@ namespace MVC_ProyectoP6.Models
     
     public partial class sp_RetornaServiciosOProductos_ID_Result
     {
-        public int idSop { get; set; }
+        public int idSOP { get; set; }
         public string CodigoSOP { get; set; }
         public decimal PrecioSOP { get; set; }
         public string TipoSOP { get; set; }

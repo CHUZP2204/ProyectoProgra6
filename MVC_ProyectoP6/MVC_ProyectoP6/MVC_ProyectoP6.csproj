@@ -2041,6 +2041,7 @@
     <Content Include="Views\MarcaVehiculo\EliminaMarcaVehiculo.cshtml" />
     <Content Include="Views\ServicioOProducto\ListaServicioOProducto.cshtml" />
     <Content Include="Views\ServicioOProducto\NuevoServicioOproducto.cshtml" />
+    <Content Include="Views\ServicioOProducto\ModificaServicioOProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

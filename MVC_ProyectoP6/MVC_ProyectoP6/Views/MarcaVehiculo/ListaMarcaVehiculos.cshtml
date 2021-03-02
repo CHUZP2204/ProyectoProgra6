@@ -24,7 +24,10 @@
                      <td>@posicionModelo.CodigoMarcaVehiculo</td>
                      <td>@posicionModelo.TipoMarcaVehiculo</td>
                      <td>
-                       Modificar
+                         <a href="~/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Modificar</a>
+                     </td>
+                     <td>
+                         <a href="~/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Eliminar</a>
                      </td>
                  </tr>
              }

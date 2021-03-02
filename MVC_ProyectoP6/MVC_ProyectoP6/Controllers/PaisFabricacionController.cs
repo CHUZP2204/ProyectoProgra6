@@ -136,7 +136,7 @@ namespace MVC_ProyectoP6.Controllers
             {
                 cantidadRegistrosAfectados =
                        this.modeloBD.sp_EliminaPaisFabricante(
-                          modeloVista.idPaisFabricante );
+                          modeloVista.idPaisFabricante);
             }
             catch (Exception error)
             {

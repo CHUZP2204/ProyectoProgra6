@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "EliminaMarcaVehiculo";
+}
+
+<div class="jumbotron">
+
+    <h2>Elimina  Marca Vehiculo </h2>
+
+    <form id="MarcaTipoVehiculo" method="post">
+
+        <div class=" form-group">
+            <label>Codigo Marca</label>
+            <input type="text" name="CodigoMarcaVehiculo" id="CodigoMarcaVehiculo" class="form-control" value="@Model.CodigoMarcaVehiculo" readonly />
+        </div>
+
+        <div class=" form-group">
+            <label>Tipo Marca</label>
+            <input type="text" name="TipoMarcaVehiculo" id="TipoMarcaVehiculo" class="form-control" value="@Model.TipoMarcaVehiculo" readonly />
+
+        </div>
+
+        <div class="form-group">
+            <label>Pais Fabricante :</label>
+            <select name="idPaisFabricante" id="idPaisFabricante" class="form-control" value="@Model.idPaisFabricante" disabled>
+                <option value="">Seleccione un Pais</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result paises
+                        in this.ViewBag.ListaPaises)
+                    {
+                        bool esIdMarcaVehiculo = paises.idPaisFabricante == Model.idPaisFabricante;
+
+                        if (esIdMarcaVehiculo)
+                        {
+                            <option value="@paises.idPaisFabricante" selected>@paises.PaisFabricante.ToUpper() </option>
+                        }
+                        else
+                        {
+                            <option value="@paises.idPaisFabricante">@paises.PaisFabricante.ToUpper() </option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+
+        <div class=" form-group">
+            <input type="submit" value="Eliminar" id="btnEliminar" class="btn btn-success" />
+
+        </div>
+        <a href="~/MarcaVehiculo/ListaMarcaVehiculos" class="btn btn-success">Lista Marca Vehiculo</a>
+
+    </form>
+</div>
+
+     
+ 
+
+
+
+

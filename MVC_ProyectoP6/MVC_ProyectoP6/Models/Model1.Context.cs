@@ -489,15 +489,6 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_ID_Result>("sp_RetornaEncFactura_ID", idEfacturaParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaMarcaVehiculo_ID_Result> sp_RetornaMarcaVehiculo_ID(Nullable<int> idMarcaVehiculo)
-        {
-            var idMarcaVehiculoParameter = idMarcaVehiculo.HasValue ?
-                new ObjectParameter("idMarcaVehiculo", idMarcaVehiculo) :
-                new ObjectParameter("idMarcaVehiculo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculo_ID_Result>("sp_RetornaMarcaVehiculo_ID", idMarcaVehiculoParameter);
-        }
-    
         public virtual ObjectResult<sp_RetornaPaisFabricante_Result> sp_RetornaPaisFabricante(string codigoPaisFabricante, string paisFabricante)
         {
             var codigoPaisFabricanteParameter = codigoPaisFabricante != null ?
@@ -787,6 +778,24 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("TipoMarcaVehiculo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculo_Result>("sp_RetornaMarcaVehiculo", codigoMarcaVehiculoParameter, tipoMarcaVehiculoParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaMarcaVehiculo_ID_Result> sp_RetornaMarcaVehiculo_ID(Nullable<int> idMarcaVehiculo)
+        {
+            var idMarcaVehiculoParameter = idMarcaVehiculo.HasValue ?
+                new ObjectParameter("idMarcaVehiculo", idMarcaVehiculo) :
+                new ObjectParameter("idMarcaVehiculo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcaVehiculo_ID_Result>("sp_RetornaMarcaVehiculo_ID", idMarcaVehiculoParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaMarcasVehiculo_ID_Result> sp_RetornaMarcasVehiculo_ID(Nullable<int> idMarcaVehiculo)
+        {
+            var idMarcaVehiculoParameter = idMarcaVehiculo.HasValue ?
+                new ObjectParameter("idMarcaVehiculo", idMarcaVehiculo) :
+                new ObjectParameter("idMarcaVehiculo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcasVehiculo_ID_Result>("sp_RetornaMarcasVehiculo_ID", idMarcaVehiculoParameter);
         }
     }
 }

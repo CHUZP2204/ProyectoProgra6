@@ -30,9 +30,13 @@
                             <td>@posicionModelo.idCliente</td>
 
                             <td>
-                                modificar
-                                eliminar
+                                <a href="~/ServicioOProducto/ModificaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Modificar</a>
                             </td>
+
+                            <td
+                                ><a href="~/ServicioOProducto/EliminaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Eliminar</a>
+                            </td>
+                            
                         </tr>
                 }
             }

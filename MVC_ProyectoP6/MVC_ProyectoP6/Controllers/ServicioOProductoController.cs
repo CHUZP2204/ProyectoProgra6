@@ -54,11 +54,11 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (cantidadRegistrosAfectados > 0)
                 {
-                    resultado = "Registro Insertado";
+                    resultado = "Registro Modificado";
                 }
                 else
                 {
-                    resultado += "No se pudo Insertar";
+                    resultado += "No se pudo Modificar";
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
@@ -71,7 +71,6 @@ namespace MVC_ProyectoP6.Controllers
             /// utilizando el parametro del metodo idPaisFabricante
             sp_RetornaServiciosOProductos_ID_Result modeloVista = new sp_RetornaServiciosOProductos_ID_Result();
             modeloVista = this.modeloBD.sp_RetornaServiciosOProductos_ID(idSOP).FirstOrDefault();
-
             //enviar modelo a la vista
             return View(modeloVista);
         }
@@ -90,6 +89,7 @@ namespace MVC_ProyectoP6.Controllers
                         modeloVista.PrecioSOP.ToString(),
                         modeloVista.TipoSOP,
                         modeloVista.idCliente
+                     
                         );
             }
             catch (Exception error)
@@ -109,7 +109,50 @@ namespace MVC_ProyectoP6.Controllers
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
-            return View();
+            return View(modeloVista);
+        }
+        public ActionResult EliminaServicioOProducto( int idSOP)
+        {
+            ///obtener el registro que se desea modificar
+            /// utilizando el parametro del metodo idPaisFabricante
+            sp_RetornaServiciosOProductos_ID_Result modeloVista = new sp_RetornaServiciosOProductos_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaServiciosOProductos_ID(idSOP).FirstOrDefault();
+            //enviar modelo a la vista
+            return View(modeloVista);
+
+        }
+
+        [HttpPost]
+        public ActionResult EliminaServicioOProducto(sp_RetornaServiciosOProductos_ID_Result modeloVista)
+        {
+            int cantidadRegistrosAfectados = 0;
+            string resultado = " ";
+            try
+            {
+                cantidadRegistrosAfectados =
+                    this.modeloBD.sp_EliminaServicioOProducto(
+                       modeloVista.idSOP
+                        );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error: " + error.Message;
+
+            }
+            finally
+            {
+                if (cantidadRegistrosAfectados > 0)
+                {
+                    resultado = "Registro Eliminado";
+                }
+                else
+                {
+                    resultado += "No se pudo Eliminar";
+                }
+            }
+            Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
+            return View(modeloVista);
+
         }
     }
 }

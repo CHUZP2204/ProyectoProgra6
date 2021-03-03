@@ -25,6 +25,12 @@ namespace MVC_ProyectoP6.Controllers
             //enciar el modelo a la vista
             return View(modeloVista);
         }
+       
+        [HttpPost]
+        public ActionResult ListaPaisFabricante (sp_RetornaPaisFabricante_Result modeloVista)
+        {
+            return View (modeloVista);
+        }
 
         // GET: Registro PaisFabricacion
         public ActionResult NuevoPaisFabricante()

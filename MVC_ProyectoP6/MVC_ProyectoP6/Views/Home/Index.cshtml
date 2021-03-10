@@ -9,31 +9,44 @@
         Es Un gusto Estar A Su Servicio, Recordar Iniciar sesion Para Acceder A  <br />
         Todas Las Funcionalidades Del Sistema
     </p>
-    <div class="container-fluid">
-        <div class="container-fluid" style="width:450px">
-            <div>
-                <form method="post">
+    <!--Contenedor De Formulario-->
+    <div class="container" style="background-color: #fafafa; border: 1px solid #ccc">
+        <div class="row">
+            <!--Formulario-->
+            <form method="post" style="margin-bottom: 5px;margin-top:5px">
+                <!--Divs De Los Inputs-->
+                <div style="padding-left: 10px;padding-right: 10px;margin-left: 35%;margin-right: 30%;max-width: 100%;border: 1px solid #808080">
                     <h2 class="text-center">Inicio Sesion</h2>
-                    <div class="form-group row" style="margin-left:50px">
-                        <i class="fas fa-user"></i><input type="text" class="form-control" placeholder="Username" required="required">
-                    </div>
-                    <div class="form-group" style="margin-left:50px">
-                        <i class="fas fa-lock"></i> <input type="password" class="form-control" placeholder="Password" required="required">
-                    </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block">Iniciar Sesion</button>
+                        <i class="fas fa-user" style="float:left"></i>
+                        <input type="text" class="form-control" placeholder="Username" required="required" style="max-width:90%">
                     </div>
-                    <div class="clearfix">
-                        <a href="#" class="btn btn-warning btn-block">Olvidio Contraseña?</a>
-                        <label class="pull-left checkbox-inline"><input type="checkbox"> Recordar Datos</label>
 
+                    <div class="form-group">
+                        <i class="fas fa-lock" style="float:left"></i>
+                        <input type="password" class="form-control" placeholder="Password" required="required" style="max-width:90%">
                     </div>
-                </form>
-                <p class="text-center"><a href="#" class="btn btn-info">Crea Tu Cuenta</a></p>
-            </div>
+
+                    <label class="pull-left checkbox-inline" style="padding-bottom:15px"><input type="checkbox"> Recordar Datos</label>
+
+                    <!--Boton Inicio Sesion-->
+                    <div style="padding-left:10px;padding-right:10px;padding-bottom:15px">
+                        <div class="clearfix" style="max-width:100%;text-align:center;padding-bottom:5px">
+                            <button type="submit" class="btn btn-success btn-block">Iniciar Sesion</button>
+                        </div>
+                    </div>
+                    <!--Fin Boton-->
+                    <!--Botones-->
+                    <p class="text-center"><a href="#" class="btn btn-info">Crea Tu Cuenta</a></p>
+                    <p class="text-center"><a href="#" class="btn btn-warning">Nueva Clave?</a></p>
+                    <!--Fin De Botones-->
+                </div>
+                <!--Fin Inputs-->
+            </form>
+            <!--Fin Formulario-->
         </div>
     </div>
-
+    <!--Fin Contenedor-->
     <div class="row">
         <div class="col-md-4">
             <h2>Getting started</h2>

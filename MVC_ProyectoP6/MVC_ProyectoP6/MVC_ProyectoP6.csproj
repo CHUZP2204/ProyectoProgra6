@@ -2007,6 +2007,7 @@
     <Content Include="Scripts\ServicioProducto\ValidacionServicioProducto.js" />
     <Content Include="Scripts\TipoVehiculo\ValidacionTipoVehiculo.js" />
     <Content Include="Scripts\Usuarios\ddlEvents.js" />
+    <Content Include="Scripts\Usuarios\InicioSesion.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

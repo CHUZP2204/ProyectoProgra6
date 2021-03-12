@@ -3,9 +3,10 @@
     ViewBag.Title = "ListaMarcaVehiculos";
 }
 
-<h2>Lista Marcas de Vehiculos</h2>
+
 
 <div class="jumbotron">
+    <h2>Lista Marcas de Vehiculos</h2>
     <table class="table">
         <thead>
             <tr>
@@ -15,25 +16,25 @@
             </tr>
 
         </thead>
-       <tbody>
-         @{ 
-             foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result posicionModelo
-                 in this.Model)
-             {
-                 <tr>
-                     <td>@posicionModelo.CodigoMarcaVehiculo</td>
-                     <td>@posicionModelo.TipoMarcaVehiculo</td>
-                     <td>
-                         <a href="~/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Modificar</a>
-                     </td>
-                     <td>
-                         <a href="~/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Eliminar</a>
-                     </td>
-                 </tr>
-             }
-         }
+        <tbody>
+            @{
+                foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result posicionModelo
+                    in this.Model)
+                {
+                    <tr>
+                        <td>@posicionModelo.CodigoMarcaVehiculo</td>
+                        <td>@posicionModelo.TipoMarcaVehiculo</td>
+                        <td>
+                            <a href="~/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Modificar</a>
+                        </td>
+                        <td>
+                            <a href="~/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            }
 
-       </tbody>
+        </tbody>
 
     </table>
     <a href="~/MarcaVehiculo/NuevaMarcaVehiculo">Nueva Marca Vehiculo</a>

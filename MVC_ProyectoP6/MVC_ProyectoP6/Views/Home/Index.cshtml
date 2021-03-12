@@ -13,18 +13,18 @@
     <div class="container" style="background-color: #fafafa; border: 1px solid #ccc">
         <div class="row">
             <!--Formulario-->
-            <form method="post" style="margin-bottom: 5px;margin-top:5px">
+            <form method="post" id="frmInicioSesion" style="margin-bottom: 5px;margin-top:5px">
                 <!--Divs De Los Inputs-->
                 <div style="padding-left: 10px;padding-right: 10px;margin-left: 35%;margin-right: 30%;max-width: 100%;border: 1px solid #808080">
                     <h2 class="text-center">Inicio Sesion</h2>
                     <div class="form-group">
                         <i class="fas fa-user" style="float:left"></i>
-                        <input type="text" class="form-control" placeholder="Username" required="required" style="max-width:90%">
+                        <input type="text" name="Correo" id="Correo" class="form-control" placeholder="Username" style="max-width:90%">
                     </div>
 
                     <div class="form-group">
                         <i class="fas fa-lock" style="float:left"></i>
-                        <input type="password" class="form-control" placeholder="Password" required="required" style="max-width:90%">
+                        <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" placeholder="Password"  style="max-width:90%">
                     </div>
 
                     <label class="pull-left checkbox-inline" style="padding-bottom:15px"><input type="checkbox"> Recordar Datos</label>
@@ -32,7 +32,7 @@
                     <!--Boton Inicio Sesion-->
                     <div style="padding-left:10px;padding-right:10px;padding-bottom:15px">
                         <div class="clearfix" style="max-width:100%;text-align:center;padding-bottom:5px">
-                            <button type="submit" class="btn btn-success btn-block">Iniciar Sesion</button>
+                            <button type="button" id="btnAceptar" class="btn btn-success btn-block">Iniciar Sesion</button>
                         </div>
                     </div>
                     <!--Fin Boton-->
@@ -69,3 +69,46 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Exitoso-->
+<div id="myModal" class="modal fade bd-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:aliceblue;background-color:green">
+                
+                <h4 class="modal-title">Inicio Exitoso!</h4>
+            </div>
+            <div class="modal-body">
+                
+                          <h3 id="Bienvenida"></h3>
+            </div>
+            <div class="modal-footer">
+                <p>........Espere Por Favor</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal-->
+<!--Modal De Error-->
+<div id="myModal1" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:aliceblue;background-color:red">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error Al Iniciar!!</h4>
+            </div>
+            <div class="modal-body">
+                <h3>No Se Pudo Ingresar Al Sistema</h3>
+                <p>Verifique Su Clave O Correo</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Usuarios/InicioSesion.js"></script>
+}
+

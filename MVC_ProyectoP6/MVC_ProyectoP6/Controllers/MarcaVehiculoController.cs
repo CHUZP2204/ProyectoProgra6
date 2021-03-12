@@ -14,6 +14,8 @@ namespace MVC_ProyectoP6.Controllers
         // GET: MarcaVehiculo
         public ActionResult ListaMarcaVehiculos()
         {
+            ///Variable De Sesion De Usuario Actual
+            string idUsuarioLogueado = Convert.ToString(this.Session["idClienteLoguedo"]);
 
             ///crear la variable que contiene el registro obtenidos
             ///mediante invocar al procedimiento almacenados 

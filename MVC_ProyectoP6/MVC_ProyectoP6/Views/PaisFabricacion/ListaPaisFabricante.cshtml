@@ -3,23 +3,16 @@
     ViewBag.Title = "ListaPaisFabricante";
 }
 
-<form id="Buscar" method="post">
-    <div class="jumbotron">
-        <label>Pais Fabricante</label>
-        <input type="text" name="PaisFabricante" id="PaisFabricante" class="form-control" />
-        <br />
-        <div class="form-group">
-            <input type="submit" value="Buscar" id="btnBuscar" class="btn btn-success" />
-        </div>
-
-
-    </div>
-</form>
-
-
 <div class="jumbotron">
     <h2>Lista de Paises Fabricantes</h2>
-    <br>
+    <a href="~/PaisFabricacion/NuevoPaisFabricante" class="btn btn-success">Agregar Nuevo Pais</a>
+    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
+    <br />
+    <br />
+    <label>Pais Fabricante</label>
+    <br />
+    <input type="text" name="PaisFabricante" id="PaisFabricante" class="form-group" />
+    <input type="submit" value="Buscar" id="btnBuscar" class="btn btn-primary" />
 
     <table class="table">
         <thead>
@@ -47,12 +40,9 @@
             }
         </tbody>
     </table>
-    <a href="~/PaisFabricacion/NuevoPaisFabricante" class="btn btn-success">Agregar Nuevo Pais</a>
-    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
-
-
 
 </div>
+
 
 
 

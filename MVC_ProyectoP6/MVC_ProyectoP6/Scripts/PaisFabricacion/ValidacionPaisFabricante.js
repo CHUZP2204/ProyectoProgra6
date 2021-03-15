@@ -5,7 +5,7 @@ $(function () {
 
 ///crea las validaciones para el formulario
 function creaValidaciones() {
-    $("#frmNuevoPaisFabricante").validate({
+    $("#frmPaisFabricante").validate({
         ///objeto que contiene "las condiciones" que el formulario
         ///debe cumplir para ser considerado válido
         rules: {

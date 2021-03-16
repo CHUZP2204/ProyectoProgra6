@@ -5,8 +5,8 @@
 
 <div class="jumbotron">
     <h2>Lista de Servicios y Productos </h2>
-    <br>
-    <br>
+    <a href="~/ServicioOProducto/NuevoServicioOproducto" class="btn btn-success">Agregar Nuevo Servicio o Producto</a>
+    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
     <br>
     <table class="table">
         <thead>
@@ -23,25 +23,23 @@
                 foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result posicionModelo
                  in this.Model)
                 {
-                        <tr>
-                            <td>@posicionModelo.CodigoSOP</td>
-                            <td>@posicionModelo.TipoSOP</td>
-                            <td>@posicionModelo.PrecioSOP</td>
-                            <td>@posicionModelo.idCliente</td>
+                    <tr>
+                        <td>@posicionModelo.CodigoSOP</td>
+                        <td>@posicionModelo.TipoSOP</td>
+                        <td>@posicionModelo.PrecioSOP</td>
+                        <td>@posicionModelo.idCliente</td>
 
-                            <td>
-                                <a href="~/ServicioOProducto/ModificaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Modificar</a>
-                            </td>
+                        <td>
+                            <a href="~/ServicioOProducto/ModificaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Modificar</a>
+                            <a href="~/ServicioOProducto/EliminaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-danger">Eliminar</a>
+                        </td>
 
-                            <td
-                                ><a href="~/ServicioOProducto/EliminaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Eliminar</a>
-                            </td>
-                            
-                        </tr>
+                     
+
+                    </tr>
                 }
             }
         </tbody>
     </table>
-    <a href="~/ServicioOProducto/NuevoServicioOproducto" class="btn btn-success">Agregar Nuevo Servicio o Producto</a>
-    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
+
 </div>

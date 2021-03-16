@@ -7,6 +7,9 @@
 
 <div class="jumbotron">
     <h2>Lista Marcas de Vehiculos</h2>
+    <a href="~/MarcaVehiculo/NuevaMarcaVehiculo" class="btn btn-success">Nueva Marca Vehiculo</a>
+    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
+    <br />
     <table class="table">
         <thead>
             <tr>
@@ -26,10 +29,9 @@
                         <td>@posicionModelo.TipoMarcaVehiculo</td>
                         <td>
                             <a href="~/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Modificar</a>
+                            <a href="~/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-danger">Eliminar</a>
                         </td>
-                        <td>
-                            <a href="~/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Eliminar</a>
-                        </td>
+                       
                     </tr>
                 }
             }
@@ -37,7 +39,7 @@
         </tbody>
 
     </table>
-    <a href="~/MarcaVehiculo/NuevaMarcaVehiculo">Nueva Marca Vehiculo</a>
+
 </div>
 
 

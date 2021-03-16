@@ -32,15 +32,54 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult NuevoTipoVehiculo(sp_RetornaTipoVehiculo_Result modeloVista)
         {
+            List<sp_RetornaTipoVehiculo_Result> modeloVista1 = new List<sp_RetornaTipoVehiculo_Result>();
+
+            ///Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
+            modeloVista1 = this.modeloBD.sp_RetornaTipoVehiculo(modeloVista.CodigoTipoVehiculo, "").ToList();
+
+            ///Variable Que Registra La Cantidad De Registros Afectados
+            ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
+            ///No Afecta Registros Implica Que Hubo Un Error
+
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
+
+
+            /// try Instrucciones que se intenta Realizar
+            /// Catch Administra las exepciones o errores
+            /// Finally Siempre se ejecuta exista o no error
             try
             {
-                cantidadRegistrosAfectados =
-                    this.modeloBD.sp_InsertaTipoVehiculo(
-                        modeloVista.CodigoTipoVehiculo,
-                        modeloVista.TipoVehiculo
-                        );
+                ///Variable Que Guardara 1 si se encuentra un Dato, de lo contrario sera 0
+                int NombreEncontrado = 0;
+                ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
+                ///Y Compararlo con el modelovista del view
+                for (int i = 0; i < modeloVista1.Count; i++)
+                {
+                    ///Aqui Se Verifica Si Existe O No El Mismo Codigo
+                    if (modeloVista1[i].CodigoTipoVehiculo.Equals(modeloVista.CodigoTipoVehiculo))
+                    {
+
+                        NombreEncontrado = 1;
+
+                    }
+                }
+
+                ///Si la variable permanece en 0 significa que no hay ningun dato con 
+                ///ese nombre en la BD, Y Se Podra Asignar Los Nuevos Datos
+                if (NombreEncontrado == 0)
+                {
+                    cantidadRegistrosAfectados =
+                   this.modeloBD.sp_InsertaTipoVehiculo(
+                       modeloVista.CodigoTipoVehiculo,
+                            modeloVista.TipoVehiculo
+                       );
+                }
+                else
+                {
+                    cantidadRegistrosAfectados = 0;
+                }
+
             }
             catch (Exception error)
             {
@@ -55,7 +94,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
                 else
                 {
-                    resultado += "No se pudo Insertar";
+                    resultado += "No se pudo Insertar el codigo ya existe";
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
@@ -76,20 +115,55 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult ModificaTipoVehiculo(sp_RetornaTipoVehiculos_ID_Result modeloVista)
         {
-            ///varable que registra la cantidad de registro afectados
-            ///si un SP que se ejecute Insert,UPDATE,DELETE
-            ///no afecta registros implica que hubo un error 
+            List<sp_RetornaTipoVehiculo_Result> modeloVista1 = new List<sp_RetornaTipoVehiculo_Result>();
+
+            ///Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
+            modeloVista1 = this.modeloBD.sp_RetornaTipoVehiculo(modeloVista.CodigoTipoVehiculo, "").ToList();
+
+            ///Variable Que Registra La Cantidad De Registros Afectados
+            ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
+            ///No Afecta Registros Implica Que Hubo Un Error
+
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
 
+
+            /// try Instrucciones que se intenta Realizar
+            /// Catch Administra las exepciones o errores
+            /// Finally Siempre se ejecuta exista o no error
             try
             {
-                cantidadRegistrosAfectados =
-                       this.modeloBD.sp_ModificaTipoVehiculo(
-                           modeloVista.idTipoVehiculo,
-                           modeloVista.CodigoTipoVehiculo,
+                ///Variable Que Guardara 1 si se encuentra un Dato, de lo contrario sera 0
+                int NombreEncontrado = 0;
+                ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
+                ///Y Compararlo con el modelovista del view
+                for (int i = 0; i < modeloVista1.Count; i++)
+                {
+                    ///Aqui Se Verifica Si Existe O No El Mismo Codigo
+                    if (modeloVista1[i].CodigoTipoVehiculo.Equals(modeloVista.CodigoTipoVehiculo))
+                    {
+
+                        NombreEncontrado = 1;
+
+                    }
+                }
+
+                ///Si la variable permanece en 0 significa que no hay ningun dato con 
+                ///ese nombre en la BD, Y Se Podra Asignar Los Nuevos Datos
+                if (NombreEncontrado == 0)
+                {
+                    cantidadRegistrosAfectados =
+                   this.modeloBD.sp_ModificaTipoVehiculo(
+                       modeloVista.idTipoVehiculo,
+                       modeloVista.CodigoTipoVehiculo,
                             modeloVista.TipoVehiculo
-                           );
+                       );
+                }
+                else
+                {
+                    cantidadRegistrosAfectados = 0;
+                }
+
             }
             catch (Exception error)
             {
@@ -119,7 +193,7 @@ namespace MVC_ProyectoP6.Controllers
 
             //enviar modelo a la vista
             return View(modeloVista);
-   
+
         }
 
         [HttpPost]

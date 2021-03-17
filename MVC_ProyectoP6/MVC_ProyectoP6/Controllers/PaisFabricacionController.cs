@@ -12,6 +12,7 @@ namespace MVC_ProyectoP6.Controllers
     {
         progra6Entities3 modeloBD = new progra6Entities3();
 
+
         public ActionResult ListaPaisFabricante()
         {
             ///crear la variable que contiene el registro obtenidos

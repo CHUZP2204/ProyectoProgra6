@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "ModificaVehiculo";
+}
+
+<div class="jumbotron">
+    <h2>Modificar  Vehiculo</h2>
+    <form id="frmModificaVehiculo" method="post">
+
+        <div class="form-group">
+            <label>Placa Vehiculo </label>
+            <input type="text" name="PlacaVehiculo" id="PlacaVehiculo" class="form-control" value="@Model.PlacaVehiculo" />
+        </div>
+
+        <div class="form-group">
+            <label>Tipo Vehiculo:</label>
+            <select name="idTipoVehiculo" id="idTipoVehiculo" class="form-control" >
+                <option value="">Favor seleccione</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaTipoVehiculo_Result ModeloTipoV in this.ViewBag.ListaTipoVehiculos)
+                    {
+                        bool esIdTipoVehiculoModelo = ModeloTipoV.idTipoVehiculo == Model.idTipoVehiculo;
+
+                        @*
+                        Incluir la propiedad selected para que la opción aparezca
+                        seleccionada. Se compara la propiedad id_Provincia
+                        del objeto del viewBag contra la propiedad id_Provincia
+                        del modelo de la vista
+                        *@
+                        if (esIdTipoVehiculoModelo)
+                        {
+                            <option value="@ModeloTipoV.idTipoVehiculo" selected>@ModeloTipoV.TipoVehiculo </option>
+                        }
+                        else
+                        {
+                            <option value="@ModeloTipoV.idTipoVehiculo">@ModeloTipoV.TipoVehiculo </option>
+                        }
+
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo Marca:</label>
+            <select name="idMarcaVehiculo" id="idMarcaVehiculo" class="form-control" >
+                <option value="">Favor seleccione</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result ModeloTipoM in this.ViewBag.ListaTipoMarcaV)
+                    {
+                        bool esIdTipoVehiculoModelo = ModeloTipoM.idMarcaVehiculo == Model.idMarcaVehiculo;
+
+                        @*
+                        Incluir la propiedad selected para que la opción aparezca
+                        seleccionada. Se compara la propiedad id_Provincia
+                        del objeto del viewBag contra la propiedad id_Provincia
+                        del modelo de la vista
+                        *@
+                        if (esIdTipoVehiculoModelo)
+                        {
+                            <option value="@ModeloTipoM.idMarcaVehiculo" selected>@ModeloTipoM.TipoMarcaVehiculo </option>
+                        }
+                        else
+                        {
+                            <option value="@ModeloTipoM.idMarcaVehiculo">@ModeloTipoM.TipoMarcaVehiculo</option>
+                        }
+
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Cantidad Puertas</label>
+            <input type="number" name="NumeroPuertas" id="NumeroPuertas" class="form-control" value="@Model.NumeroPuertas"  />
+        </div>
+        <div class="form-group">
+            <label>Cantidad Ruedas</label>
+            <input type="number" name="NumeroRuedas" id="NumeroRuedas" class="form-control" value="@Model.NumeroRuedas"  />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Modificar" id="btnEliminar" class="btn btn-success" />
+        </div>
+    </form>
+    <a href="~/Vehiculos/ListaVehiculoS" class="btn btn-primary">Lista Vehiculo</a>
+</div>
+

@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "NuevoEncabezadoFactura";
+}
+<div class="jumbotron">
+    <h2> Encabezados de Facturas</h2>
+
+    <form id="EncabezadoFactura" method="post">
+
+        <div class="form-group">
+            <label>Clientes :</label>
+            <select name="idCliente" id="idCliente" class="form-control">
+                <option value="">Seleccione un Cliente</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result clientes
+                        in this.ViewBag.ListaClientes)
+                    {
+                        <option value="@clientes.idCliente">@clientes.NombreCompleto.ToUpper() </option>
+                    }
+                }
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label>Vehiculo :</label>
+            <select name="idVehiculo" id="idVehiculo" class="form-control">
+                <option value="">Seleccione la placa del vehiculo</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result vehiculos
+                        in this.ViewBag.ListaVehiculos)
+                    {
+                        <option value="@vehiculos.idVehiculo">@vehiculos.PlacaVehiculo.ToUpper() </option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class=" form-group">
+            <label>Fecha</label>
+            <input type="text" name="Fecha" id="Fecha" class="form-control" />
+        </div>
+
+        <div class=" form-group">
+            <label>Monto Total Servicios</label>
+            <input type="text" name="MontoTotalServicios" id="MontoTotalServicios" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label>Estado :</label>
+            <select name="Estado" id="Estado" class="form-control">
+                <option value="">Seleccione Estado Factura </option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result estado
+                        in this.ViewBag.ListaEstados)
+                    {
+                        <option value="@estado.idEncabezadoFac">@estado.EstadoFactura.ToUpper() </option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Detalle :</label>
+            <select name="Detalle" id="Detalle" class="form-control">
+                <option value="">Seleccione el Detalle</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle
+                        in this.ViewBag.ListaDetalles)
+                    {
+                        <option value="@detalle.idDetalleFac">@detalle.TipoSOP.ToUpper() </option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class=" form-group">
+            <input type="submit" value="Guardar" id="btnAceptar" class="btn btn-success" />
+
+        </div>
+        <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezados Factura </a>
+
+    </form>
+    
+
+</div>

@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EncabezadoFacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\PaisFabricacionController.cs" />
@@ -2049,6 +2050,8 @@
     <Content Include="Views\Vehiculos\ModificaVehiculo.cshtml" />
     <Content Include="Views\Vehiculos\EliminaVehiculo.cshtml" />
     <Content Include="Views\Vehiculos\NuevoVehiculo.cshtml" />
+    <Content Include="Views\EncabezadoFactura\ListaEncabezadoFactura.cshtml" />
+    <Content Include="Views\EncabezadoFactura\NuevoEncabezadoFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

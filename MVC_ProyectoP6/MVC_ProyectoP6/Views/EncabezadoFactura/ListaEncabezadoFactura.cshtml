@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "ListaEncabezadoFactura";
+}
+
+
+
+<div class="jumbotron">
+    <h2>Lista Encabezado Factura</h2>
+    <a href="~/EncabezadoFactura/NuevoEncabezadoFactura" class="btn btn-success">Agregar Nuevo Encabezado</a>
+    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cliente </th>
+                <th>Vehiculo</th>
+                <th>Fecha</th>
+                <th>Monto Total</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result posicionModelo
+                 in this.Model)
+                {
+                        <tr>
+                            <td>@posicionModelo.idCliente</td>
+                            <td>@posicionModelo.idVehiculo</td>
+                            <td>@posicionModelo.Fecha</td>
+                            <td>@posicionModelo.MontoTotalServicios</td>
+                            <td>@posicionModelo.EstadoFactura</td>
+
+                            <td>
+                                <a href="~/PaisFabricacion/ModificaPaisFabricante?idPaisFabricante=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
+                                <a href="~/PaisFabricacion/EliminaPaisFabricante?idPaisFabricante=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+

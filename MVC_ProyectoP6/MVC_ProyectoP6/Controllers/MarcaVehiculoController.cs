@@ -127,43 +127,12 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult ModificaMarcaVehiculo(sp_RetornaMarcasVehiculo_ID_Result modeloVista)
         {
-            List<sp_RetornaMarcaVehiculo_Result> modeloVista1 = new List<sp_RetornaMarcaVehiculo_Result>();
-
-            ///Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
-            modeloVista1 = this.modeloBD.sp_RetornaMarcaVehiculo(modeloVista.CodigoMarcaVehiculo, "").ToList();
-
-            ///Variable Que Registra La Cantidad De Registros Afectados
-            ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
-            ///No Afecta Registros Implica Que Hubo Un Error
-
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
 
-
-            /// try Instrucciones que se intenta Realizar
-            /// Catch Administra las exepciones o errores
-            /// Finally Siempre se ejecuta exista o no error
             try
             {
-                ///Variable Que Guardara 1 si se encuentra un Dato, de lo contrario sera 0
-                int NombreEncontrado = 0;
-                ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
-                ///Y Compararlo con el modelovista del view
-                for (int i = 0; i < modeloVista1.Count; i++)
-                {
-                    ///Aqui Se Verifica Si Existe O No El Mismo Codigo
-                    if (modeloVista1[i].CodigoMarcaVehiculo.Equals(modeloVista.CodigoMarcaVehiculo))
-                    {
-
-                        NombreEncontrado = 1;
-
-                    }
-                }
-
-                ///Si la variable permanece en 0 significa que no hay ningun dato con 
-                ///ese nombre en la BD, Y Se Podra Asignar Los Nuevos Datos
-                if (NombreEncontrado == 0)
-                {
+                
                     cantidadRegistrosAfectados =
                      this.modeloBD.sp_ModificaMarcaVehiculo(
                          modeloVista.idMarcaVehiculo,
@@ -171,12 +140,8 @@ namespace MVC_ProyectoP6.Controllers
                          modeloVista.TipoMarcaVehiculo,
                          modeloVista.idPaisFabricante
                          );
-                }
-                else
-                {
-                    cantidadRegistrosAfectados = 0;
-                }
-
+                
+               
             }
             catch (Exception error)
             {
@@ -187,7 +152,7 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (cantidadRegistrosAfectados > 0)
                 {
-                    resultado = "El Registro Modificado";
+                    resultado = "Registro Modificado";
                 }
                 else
                 {

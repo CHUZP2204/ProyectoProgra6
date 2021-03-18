@@ -53,7 +53,7 @@
                 <option value="">Seleccione Estado Factura </option>
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result estado
-                        in this.ViewBag.ListaEstados)
+                        in this.ViewBag.ListaEstadoFactura)
                     {
                         <option value="@estado.idEncabezadoFac">@estado.EstadoFactura.ToUpper() </option>
                     }

@@ -39,7 +39,7 @@ namespace MVC_ProyectoP6.Controllers
 
         void AgregarEstadoFacturaViewBag()
         {
-            this.ViewBag.ListaEstados =
+            this.ViewBag.ListaEstadoFactura =
                  this.modeloBD.sp_RetornaEncFactura("").ToList();
         }
 

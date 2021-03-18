@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "ListaVehxClie";
+}
+
+<div class="jumbotron">
+    <h2>Lista Vehiculos De Clientes</h2>
+    <a href="~/VehiculoXcliente/NuevoVehXclie" class="btn btn-success">Nuevo Dato</a>
+    <a href="~/Home/Index" class="btn btn-primary">Inicio</a>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Identificador</th>
+                <th> Vehiculo / Placa </th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+
+
+                foreach (MVC_ProyectoP6.Models.sp_RetornaVehXPers_Result posicionModelo
+                    in this.Model)
+                {
+                    <tr>
+                        <td>@posicionModelo.idVehiculoXCliente</td>
+                        @*
+                            Se Crea Un Nuevo Modelo De Tipo Vehiculo Ya Que, La Clase sp_RetornaVehiculo_Result
+                            Posee El Tipo De Vehiculo Solo El ID Del Tipo, No Muestra al Usuario El Nombre De TipoVehiculo
+                            Con Este Foreach Se Soluciona Este Detalle
+                        *@
+                        @foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result ModeloVh in this.ViewBag.ListaVehiculos)
+                        {
+                            //se valida el idTipoVehiculo del modelo de la vista con el idTipoVehiculo ModeloTipoV
+                            //Si Es True o lo encuentra Obtener desde el ModeloTipoV el Nombre de tipo Vehiculo el
+                            //Cual esta en ModeloTipoV.TipoVehiculo
+                            if (ModeloVh.idVehiculo == posicionModelo.idVehiculo)
+                            {
+                                foreach (MVC_ProyectoP6.Models.sp_RetornaTipoVehiculo_Result ModeloTipoV in this.ViewBag.ListaTipoVehiculos)
+                                {
+                                    if (ModeloTipoV.idTipoVehiculo == ModeloVh.idTipoVehiculo)
+                                    {
+                                        <td>@ModeloTipoV.TipoVehiculo @ModeloVh.PlacaVehiculo</td>
+                                    }
+                                }
+
+                            }
+
+                        }
+
+
+                        @*
+                            Se Crea Un Nuevo Modelo De Marca Vehiculo Ya Que, La Clase sp_RetornaVehiculo_Result solo
+                            Posee El idMarcaVehiculo , No Muestra al Usuario El Nombre De La Marca
+                            Con Este Foreach Se Soluciona Este Detalle
+                        *@
+                        @foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result ModeloCliente in this.ViewBag.ListaCliente)
+                        {
+                            //se valida el idMarcaVehiculo del modelo de la vista con el idMarcaVehiculo del ModeloTipoM
+                            //Si Es True o lo encuentra, se Obtiene desde el ModeloTipoM de la posicion actual el Nombre de la Marca
+                            //Cual esta en ModeloTipoM.TipoMarcaVehiculo
+                            if (ModeloCliente.idCliente == posicionModelo.idCliente)
+                            {
+                                <td>@ModeloCliente.NombreCompleto</td>
+
+                            }
+
+                        }
+                        <td>
+                            <a href="~/VehiculoXcliente/ModificaVehCliente?idVehiculoXCliente=@posicionModelo.idVehiculoXCliente" class="btn btn-primary">Modificar</a>
+                            <a href="~/VehiculoXcliente/EliminaVehCliente?idVehiculoXCliente=@posicionModelo.idVehiculoXCliente" class="btn btn-danger">Eliminar</a>
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>
+

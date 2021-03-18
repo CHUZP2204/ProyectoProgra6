@@ -134,6 +134,7 @@
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\VehiculosController.cs" />
+    <Compile Include="Controllers\VehiculoXclienteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2052,6 +2053,10 @@
     <Content Include="Views\Vehiculos\NuevoVehiculo.cshtml" />
     <Content Include="Views\EncabezadoFactura\ListaEncabezadoFactura.cshtml" />
     <Content Include="Views\EncabezadoFactura\NuevoEncabezadoFactura.cshtml" />
+    <Content Include="Views\VehiculoXcliente\ListaVehxClie.cshtml" />
+    <Content Include="Views\VehiculoXcliente\NuevoVehXclie.cshtml" />
+    <Content Include="Views\VehiculoXcliente\ModificaVehCliente.cshtml" />
+    <Content Include="Views\VehiculoXcliente\EliminaVehCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

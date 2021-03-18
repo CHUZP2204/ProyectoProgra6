@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "NuevoVehXclie";
+}
+
+<div class="jumbotron">
+    <h2>Agregar A Cliente Un Vehiculo</h2>
+    <form id="frmNuevoVehXcliente" method="post">
+
+        <div class="form-group">
+            <label>Cliente:</label>
+            <select name="idCliente" id="idCliente" class="form-control">
+                <option value="">Favor seleccione</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result ModeloCliente in this.ViewBag.ListaCliente)
+                    {
+                        <option value="@ModeloCliente.idCliente">@ModeloCliente.NombreCompleto</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Vehiculo:</label>
+            <select name="idVehiculo" id="idVehiculo" class="form-control">
+                <option value="">Favor seleccione</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result ModeloV in this.ViewBag.ListaVehiculos)
+                    {
+                        <option value="@ModeloV.idVehiculo">@ModeloV.PlacaVehiculo </option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Agregar" id="btnAgregar" class="btn btn-success" />
+        </div>
+    </form>
+    <a href="~/VehiculoXcliente/ListaVehxClie" class="btn btn-primary">Lista Vehiculos Por Cliente</a>
+</div>

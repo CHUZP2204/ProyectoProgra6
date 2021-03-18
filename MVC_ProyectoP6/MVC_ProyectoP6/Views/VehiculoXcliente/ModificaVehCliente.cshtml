@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "ModificaVehCliente";
+}
+
+<div class="jumbotron">
+    <h2>Modificar Datos Cliente Un Vehiculo</h2>
+    <form id="frmModificarVehXcliente" method="post">
+
+        <div class="form-group">
+            <label>Cliente:</label>
+            <select name="idCliente" id="idCliente" class="form-control">
+                <option value="">Favor seleccione</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result ModeloCliente in this.ViewBag.ListaCliente)
+                    {
+                        bool esIdTipoVehiculoModelo = ModeloCliente.idCliente == Model.idCliente;
+
+                        @*
+                            Incluir la propiedad selected para que la opción aparezca
+                            seleccionada. Se compara la propiedad id_Provincia
+                            del objeto del viewBag contra la propiedad id_Provincia
+                            del modelo de la vista
+                        *@
+                        if (esIdTipoVehiculoModelo)
+                        {
+                            <option value="@ModeloCliente.idCliente" selected>@ModeloCliente.NombreCompleto</option>
+                        }
+                        else
+                        {
+                            <option value="@ModeloCliente.idCliente">@ModeloCliente.NombreCompleto</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Vehiculo:</label>
+            <select name="idVehiculo" id="idVehiculo" class="form-control">
+                <option value="">Favor seleccione</option>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result ModeloV in this.ViewBag.ListaVehiculos)
+                    {
+                        bool esIdTipoVehiculoModelo = ModeloV.idVehiculo == Model.idVehiculo;
+
+                        @*
+                            Incluir la propiedad selected para que la opción aparezca
+                            seleccionada. Se compara la propiedad id_Provincia
+                            del objeto del viewBag contra la propiedad id_Provincia
+                            del modelo de la vista
+                        *@
+                        if (esIdTipoVehiculoModelo)
+                        {
+                            <option value="@ModeloV.idVehiculo" selected>@ModeloV.PlacaVehiculo</option>
+                        }
+                        else
+                        {
+                            <option value="@ModeloV.idVehiculo">@ModeloV.PlacaVehiculo</option>
+                        }
+
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Modificar" id="btnModificar" class="btn btn-success" />
+        </div>
+    </form>
+    <a href="~/VehiculoXcliente/ListaVehxClie" class="btn btn-primary">Lista Vehiculos Por Cliente</a>
+</div>
+

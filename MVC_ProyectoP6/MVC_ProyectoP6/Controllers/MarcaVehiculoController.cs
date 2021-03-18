@@ -24,10 +24,11 @@ namespace MVC_ProyectoP6.Controllers
 
             //asignar a la variable el resultado de llamar al SP
             modeloVista = this.modeloBD.sp_RetornaMarcaVehiculo("", "").ToList();
-
+            this.AgregarPaisesViewBag();
             //enciar el modelo a la vista
             return View(modeloVista);
         }
+    
 
         public ActionResult NuevaMarcaVehiculo()
         {
@@ -38,7 +39,7 @@ namespace MVC_ProyectoP6.Controllers
         void AgregarPaisesViewBag()
         {
             this.ViewBag.ListaPaises =
-                 this.modeloBD.sp_RetornaPaisFabricante("", "").ToList();
+                 this.modeloBD.sp_RetornaPaisFabricante(null,null).ToList();
         }
 
 

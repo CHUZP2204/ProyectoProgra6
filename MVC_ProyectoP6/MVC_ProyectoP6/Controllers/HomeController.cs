@@ -104,6 +104,12 @@ namespace MVC_ProyectoP6.Controllers
                 resultado = msj
             });
         }
+        public ActionResult PaginaPrincipal()
+        {
+
+            return View();
+        }
+
 
         public ActionResult About()
         {

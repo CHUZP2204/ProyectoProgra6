@@ -103,7 +103,7 @@ function procesarResultadoMetodo(data) {
 
         ///Pausa Para Redirigir De Pagina
         setTimeout(function () {
-            window.location.href = '/MarcaVehiculo/ListaMarcaVehiculos';
+            window.location.href = '/Home/PaginaPrincipal';
         }, 5000);
 
     }

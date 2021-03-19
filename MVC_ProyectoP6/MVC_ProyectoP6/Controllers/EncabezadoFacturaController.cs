@@ -21,6 +21,8 @@ namespace MVC_ProyectoP6.Controllers
             //asignar a la variable el resultado de llamar al SP
             modeloVista = this.modeloBD.sp_RetornaEncFactura("").ToList();
 
+            this.AgregarClientesViewBag();
+            this.AgregarVehiculosViewBag();
             //enciar el modelo a la vista
             return View(modeloVista);
         }
@@ -46,14 +48,22 @@ namespace MVC_ProyectoP6.Controllers
         void AgregarDetalleViewBag()
         {
             this.ViewBag.ListaDetalles =
-                 this.modeloBD.sp_RetornaDetalleFac("").ToList();
+                 this.modeloBD.sp_RetornaDetalleFac(null).ToList();
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        void AgregTipoSOPViewBag()
+        {
+            this.ViewBag.ListaTipoSOP = this.modeloBD.sp_RetornaServicioOProducto(null, null).ToList();
         }
         public ActionResult NuevoEncabezadoFactura()
         {
             this.AgregarClientesViewBag();
             this.AgregarVehiculosViewBag();
-            AgregarEstadoFacturaViewBag();
-            AgregarDetalleViewBag();
+            this.AgregarEstadoFacturaViewBag();
+            this.AgregarDetalleViewBag();
+            this.AgregTipoSOPViewBag();
             return View();
            
 
@@ -93,7 +103,12 @@ namespace MVC_ProyectoP6.Controllers
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
-            return View();
+            this.AgregarClientesViewBag();
+            this.AgregarVehiculosViewBag();
+            this.AgregarEstadoFacturaViewBag();
+            this.AgregarDetalleViewBag();
+            this.AgregTipoSOPViewBag();
+            return View(modeloVista);
         }
 
     }

@@ -13,7 +13,7 @@ namespace MVC_ProyectoP6.Models
     
     public partial class sp_RetornaDetalleFac_ID_Result
     {
-        public string TipoSOP { get; set; }
+        public Nullable<int> idSOP { get; set; }
         public int CantidadSOP { get; set; }
         public decimal PrecioSOP { get; set; }
     }

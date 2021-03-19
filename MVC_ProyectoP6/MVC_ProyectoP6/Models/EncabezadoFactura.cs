@@ -22,7 +22,7 @@ namespace MVC_ProyectoP6.Models
         public string EstadoFactura { get; set; }
         public int idDetalleFac { get; set; }
     
-        public virtual DetalleFactura DetalleFactura { get; set; }
         public virtual Clientes Clientes { get; set; }
+        public virtual DetalleFactura DetalleFactura { get; set; }
     }
 }

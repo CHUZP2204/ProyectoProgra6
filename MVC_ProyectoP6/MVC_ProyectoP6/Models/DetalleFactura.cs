@@ -20,9 +20,9 @@ namespace MVC_ProyectoP6.Models
         }
     
         public int idDetalleFac { get; set; }
-        public string TipoSOP { get; set; }
         public int CantidadSOP { get; set; }
         public decimal PrecioSOP { get; set; }
+        public Nullable<int> idSOP { get; set; }
     
         public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }
     }

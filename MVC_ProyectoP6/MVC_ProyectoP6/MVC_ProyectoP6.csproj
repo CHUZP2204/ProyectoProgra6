@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DetalleFacturaController.cs" />
     <Compile Include="Controllers\EncabezadoFacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
@@ -2059,6 +2060,8 @@
     <Content Include="Views\VehiculoXcliente\ModificaVehCliente.cshtml" />
     <Content Include="Views\VehiculoXcliente\EliminaVehCliente.cshtml" />
     <Content Include="Views\Home\PaginaPrincipal.cshtml" />
+    <Content Include="Views\DetalleFactura\ListaDetalleFactura.cshtml" />
+    <Content Include="Views\DetalleFactura\NuevoDetalleFac.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

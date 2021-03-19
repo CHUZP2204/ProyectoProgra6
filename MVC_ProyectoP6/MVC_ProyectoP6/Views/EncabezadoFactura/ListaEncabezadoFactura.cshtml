@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th>Cliente </th>
-                <th>Vehiculo</th>
+                <th>Vehiculo Placa</th>
                 <th>Fecha</th>
                 <th>Monto Total</th>
                 <th>Estado</th>
@@ -26,18 +26,35 @@
                 foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result posicionModelo
                  in this.Model)
                 {
-                        <tr>
-                            <td>@posicionModelo.idCliente</td>
-                            <td>@posicionModelo.idVehiculo</td>
-                            <td>@posicionModelo.Fecha</td>
-                            <td>@posicionModelo.MontoTotalServicios</td>
-                            <td>@posicionModelo.EstadoFactura</td>
+                    <tr>
+                        @foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result ModeloC in this.ViewBag.ListaClientes)
+                        {
+                            if (posicionModelo.idCliente == ModeloC.idCliente)
+                            {
+                                <td>@ModeloC.NombreCompleto.ToUpper()</td>
+                            }
+                        }
 
-                            <td>
-                                <a href="~/PaisFabricacion/ModificaPaisFabricante?idPaisFabricante=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
-                                <a href="~/PaisFabricacion/EliminaPaisFabricante?idPaisFabricante=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>
-                            </td>
-                        </tr>
+                        @foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result ModeloV in this.ViewBag.ListaVehiculos)
+                        {
+                            if (posicionModelo.idVehiculo == ModeloV.idVehiculo)
+                            {
+                                <td>@ModeloV.PlacaVehiculo</td>
+                            }
+                        }
+
+
+
+
+                        <td>@posicionModelo.Fecha.ToShortDateString()</td>
+                        <td>@posicionModelo.MontoTotalServicios</td>
+                        <td>@posicionModelo.EstadoFactura</td>
+
+                        <td>
+                            <a href="~/PaisFabricacion/ModificaPaisFabricante?idPaisFabricante=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
+                            <a href="~/PaisFabricacion/EliminaPaisFabricante?idPaisFabricante=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
                 }
             }
         </tbody>

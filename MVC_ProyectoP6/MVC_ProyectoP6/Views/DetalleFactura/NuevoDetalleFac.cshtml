@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "NuevoDetalleFac";
+}
+
+<div class="jumbotron">
+    <h2>Nuevo Detalle Factura</h2>
+    <form id="frmNuevoDetalleFac" method="post">
+
+        <div class="form-group">
+            <label>Tipo Servicio/Producto:</label>
+            <select name="idSOP" id="idSOP" class="form-control">
+                <option value="">Favor seleccione</option>
+                @{
+
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
+                    {
+                        <option value="@ModeloSOP.idSOP">@ModeloSOP.TipoSOP</option>
+                    }
+
+
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Cantidad:</label>
+            <input type="number" name="CantidadSOP" id="CantidadSOP" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Precio:</label>
+            <input type="number" name="PrecioSOP" id="PrecioSOP" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Agregar" id="btnAgregar" class="btn btn-success" />
+        </div>
+    </form>
+    <a href="~/VehiculoXcliente/ListaVehxClie" class="btn btn-primary">Lista Vehiculos Por Cliente</a>
+</div>
+

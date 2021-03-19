@@ -38,7 +38,7 @@
 
         <div class=" form-group">
             <label>Fecha</label>
-            <input type="text" name="Fecha" id="Fecha" class="form-control" />
+            <input type="date" name="Fecha" id="Fecha" class="form-control" />
         </div>
 
         <div class=" form-group">
@@ -49,27 +49,23 @@
 
         <div class="form-group">
             <label>Estado :</label>
-            <select name="Estado" id="Estado" class="form-control">
+            <select name="EstadoFactura" id="Estado" class="form-control">
                 <option value="">Seleccione Estado Factura </option>
-                @{
-                    foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result estado
-                        in this.ViewBag.ListaEstadoFactura)
-                    {
-                        <option value="@estado.idEncabezadoFac">@estado.EstadoFactura.ToUpper() </option>
-                    }
-                }
+
+                <option value="Activa">Activa</option>
+
             </select>
         </div>
 
         <div class="form-group">
             <label>Detalle :</label>
-            <select name="Detalle" id="Detalle" class="form-control">
+            <select name="idDetalleFac" id="idDetalleFac" class="form-control">
                 <option value="">Seleccione el Detalle</option>
                 @{
-                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle
-                        in this.ViewBag.ListaDetalles)
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
+                        this.ViewBag.ListaDetalles)
                     {
-                        <option value="@detalle.idDetalleFac">@detalle.TipoSOP.ToUpper() </option>
+                        <option value="@detalle.idDetalleFac">Factura# @detalle.idDetalleFac </option>
                     }
                 }
             </select>
@@ -82,6 +78,6 @@
         <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezados Factura </a>
 
     </form>
-    
+
 
 </div>

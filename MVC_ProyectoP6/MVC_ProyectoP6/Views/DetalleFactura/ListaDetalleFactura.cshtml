@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "ListaDetalleFactura";
+}
+
+
+<div class="jumbotron">
+    <h2>Lista Detalle Factura</h2>
+    <a href="~/DetalleFactura/NuevoDetalleFac" class="btn btn-success">Nuevo Dato</a>
+    <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Identificador</th>
+                <th>Tipo Servicio</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result posicionModelo
+                    in this.Model)
+                {
+                    <tr>
+                        <td>@posicionModelo.idDetalleFac</td>
+
+                        @foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
+                        {
+                            if (ModeloSOP.idSOP == posicionModelo.idSOP )
+                            {
+                                <td>@ModeloSOP.TipoSOP</td>
+                            }
+                        }
+
+                        <td>@posicionModelo.CantidadSOP</td>
+                        <td>@posicionModelo.PrecioSOP</td>
+                        <td>
+                            <a href="~/VehiculoXcliente/ModificaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-primary">Modificar</a>
+                            <a href="~/VehiculoXcliente/EliminaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-danger">Eliminar</a>
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>

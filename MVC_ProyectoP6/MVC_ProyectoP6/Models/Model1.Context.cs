@@ -780,15 +780,6 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_Result>("sp_RetornaDetalleFac", idSOPParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaDetalleFac_ID_Result> sp_RetornaDetalleFac_ID(Nullable<int> idDetalleFac)
-        {
-            var idDetalleFacParameter = idDetalleFac.HasValue ?
-                new ObjectParameter("idDetalleFac", idDetalleFac) :
-                new ObjectParameter("idDetalleFac", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_ID_Result>("sp_RetornaDetalleFac_ID", idDetalleFacParameter);
-        }
-    
         public virtual ObjectResult<sp_RetornaEncFactura_Result> sp_RetornaEncFactura(string estadoFactura)
         {
             var estadoFacturaParameter = estadoFactura != null ?
@@ -796,6 +787,15 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("estadoFactura", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_Result>("sp_RetornaEncFactura", estadoFacturaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaDetalleFac_ID_Result> sp_RetornaDetalleFac_ID(Nullable<int> idDetalleFac)
+        {
+            var idDetalleFacParameter = idDetalleFac.HasValue ?
+                new ObjectParameter("idDetalleFac", idDetalleFac) :
+                new ObjectParameter("idDetalleFac", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_ID_Result>("sp_RetornaDetalleFac_ID", idDetalleFacParameter);
         }
     }
 }

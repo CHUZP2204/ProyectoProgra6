@@ -2062,6 +2062,8 @@
     <Content Include="Views\Home\PaginaPrincipal.cshtml" />
     <Content Include="Views\DetalleFactura\ListaDetalleFactura.cshtml" />
     <Content Include="Views\DetalleFactura\NuevoDetalleFac.cshtml" />
+    <Content Include="Views\DetalleFactura\ModificaDetalleFac.cshtml" />
+    <Content Include="Views\DetalleFactura\EliminaDetalleFac.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

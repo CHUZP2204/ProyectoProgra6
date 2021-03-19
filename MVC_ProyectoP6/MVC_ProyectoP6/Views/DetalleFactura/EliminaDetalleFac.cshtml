@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "EliminaDetalleFac";
+}
+
+<div class="jumbotron">
+    <h2>Nuevo Detalle Factura</h2>
+    <form id="frmEliminaDetalleFac" method="post">
+
+        <div class="form-group">
+            <label>Tipo Servicio/Producto:</label>
+            <select name="idSOP" id="idSOP" class="form-control" value="@Model.idSOP" readonly>
+                <option value="">Favor seleccione</option>
+                @{
+
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
+                    {
+                        bool esIdSOP = ModeloSOP.idSOP == Model.idSOP;
+                        if (esIdSOP)
+                        {
+                            <option value="@ModeloSOP.idSOP" selected>@ModeloSOP.TipoSOP.ToUpper()</option>
+                        }
+                        else
+                        {
+                            <option value="@ModeloSOP.idSOP">@ModeloSOP.TipoSOP.ToUpper()</option>
+                        }
+
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Cantidad:</label>
+            <input type="number" name="CantidadSOP" id="CantidadSOP" class="form-control" value="@Model.CantidadSOP" readonly/>
+        </div>
+
+        <div class="form-group">
+            <label>Precio:</label>
+            <input type="number" name="PrecioSOP" id="PrecioSOP" class="form-control" value="@Model.PrecioSOP" readonly/>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Eliminar" id="btnEliminar" class="btn btn-danger" />
+        </div>
+    </form>
+    <a href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
+</div>
+

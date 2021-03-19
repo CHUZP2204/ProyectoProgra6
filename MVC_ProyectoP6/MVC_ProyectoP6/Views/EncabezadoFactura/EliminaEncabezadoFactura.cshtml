@@ -1,16 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = "ModificaEncabezadoFactura";
+    ViewBag.Title = "EliminaEncabezadoFactura";
 }
 
 <div class="jumbotron">
-    <h2> Modificando Encabezados de Facturas</h2>
+    <h2> Eliminando Encabezados de Facturas</h2>
 
     <form id="EncabezadoFactura" method="post">
 
         <div class="form-group">
             <label>Clientes :</label>
-            <select name="idCliente" id="idCliente" class="form-control" value=" @Model.idCliente">
+            <select name="idCliente" id="idCliente" class="form-control" value="@Model.idCliente" readonly> 
 
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result clientes
@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label>Vehiculo :</label>
-            <select name=idVehiculo id="idVehiculo" class="form-control" value="@Model.idVehiculo ">
+            <select name=idVehiculo id="idVehiculo" class="form-control" value="@Model.idVehiculo" readonly>
 
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result vehiculos
@@ -39,19 +39,19 @@
 
         <div class=" form-group">
             <label>Fecha</label>
-            <input type="text" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha" readonly />
-            <input type="date" name="Fecha" id="Fecha" class="form-control" />
+            <input type="text" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha" readonly> 
+         
         </div>
 
         <div class=" form-group">
             <label>Monto Total Servicios</label>
-            <input type="text" name="MontoTotalServicios" id="MontoTotalServicios" class="form-control" value="@Model.MontoTotalServicios" />
+            <input type="text" name="MontoTotalServicios" id="MontoTotalServicios" class="form-control" value="@Model.MontoTotalServicios" readonly> 
         </div>
 
 
         <div class="form-group">
             <label>estado :</label>
-            <select name="estadofactura" id="estado" class="form-control" value="@Model.EstadoFactura">
+            <select name="estadofactura" id="estado" class="form-control" value="@Model.EstadoFactura" readonly> 
 
 
                 <option value="activa">activa</option>
@@ -59,9 +59,10 @@
             </select>
         </div>
 
+     
         <div class="form-group">
             <label>Detalle :</label>
-            <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac">
+            <select name="idDetalleFac" id="idDetalleFac" class="form-control" value="@Model.idDetalleFac" readonly>
 
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
@@ -74,7 +75,7 @@
         </div>
 
         <div class=" form-group">
-            <input type="submit" value="Modificar" id="btnGuardar" class="btn btn-primary" />
+            <input type="submit" value="Eliminar" id="btnEliminar" class="btn btn-danger" />
 
         </div>
         <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-success">Lista Encabezadoscde Factura </a>

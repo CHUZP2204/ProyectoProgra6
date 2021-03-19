@@ -65,7 +65,7 @@ namespace MVC_ProyectoP6.Controllers
             this.AgregarDetalleViewBag();
             this.AgregTipoSOPViewBag();
             return View();
-           
+
 
         }
 
@@ -107,29 +107,26 @@ namespace MVC_ProyectoP6.Controllers
             this.AgregarVehiculosViewBag();
             this.AgregarEstadoFacturaViewBag();
             this.AgregarDetalleViewBag();
-            this.AgregTipoSOPViewBag();
+
             return View(modeloVista);
         }
 
-        public ActionResult ModificaEncabezadoFactura (int idEncabezadoFac)
-        {    ///obtener el registro que se desea modificar
-             /// utilizando el parametro del metodo idPaisFabricante
-           sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
+        public ActionResult ModificaEncabezadoFactura(int idEncabezadoFac)
+        {
+            sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
             modeloVista = this.modeloBD.sp_RetornaEncFactura_ID(idEncabezadoFac).FirstOrDefault();
+            AgregarClientesViewBag();
+            AgregarVehiculosViewBag();
+            AgregarEstadoFacturaViewBag();
+            AgregarDetalleViewBag();
 
-            //enviar modelo a la vista
-            this.AgregarClientesViewBag();
-            this.AgregarVehiculosViewBag();
-            this.AgregarEstadoFacturaViewBag();
-            this.AgregarDetalleViewBag();
-            this.AgregTipoSOPViewBag();
             return View(modeloVista);
-           
+
         }
+
         [HttpPost]
         public ActionResult ModificaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
         {
-
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
 
@@ -144,7 +141,7 @@ namespace MVC_ProyectoP6.Controllers
                            modeloVista.MontoTotalServicios,
                            modeloVista.EstadoFactura,
                            modeloVista.idDetalleFac
-                           ); 
+                           );
             }
 
 
@@ -162,6 +159,64 @@ namespace MVC_ProyectoP6.Controllers
                 else
                 {
                     resultado = "No se pudo Modifcar";
+                }
+            }
+
+            AgregarClientesViewBag();
+            AgregarVehiculosViewBag();
+            AgregarEstadoFacturaViewBag();
+            AgregarDetalleViewBag();
+            return View(modeloVista);
+
+        }
+    
+
+        public ActionResult EliminaEncabezadoFactura(int idEncabezadoFac)
+        {
+            ///obtener el registro que se desea modificar
+            /// utilizando el parametro del metodo idPaisFabricante
+            sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
+
+            modeloVista = this.modeloBD.sp_RetornaEncFactura_ID(idEncabezadoFac).FirstOrDefault();
+
+            //enviar modelo a la vista
+            this.AgregarClientesViewBag();
+            this.AgregarVehiculosViewBag();
+            this.AgregarEstadoFacturaViewBag();
+            this.AgregarDetalleViewBag();
+            this.AgregTipoSOPViewBag();
+            return View(modeloVista);
+        }
+
+        [HttpPost]
+        public ActionResult EliminaPaisFabricante(sp_RetornaEncFactura_ID_Result modeloVista)
+        {
+            ///varable que registra la cantidad de registro afectados
+            ///si un SP que se ejecute Insert,UPDATE,DELETE
+            ///no afecta registros implica que hubo un error 
+            int cantidadRegistrosAfectados = 0;
+            string resultado = " ";
+
+            try
+            {
+                cantidadRegistrosAfectados =
+                       this.modeloBD.sp_EliminarEncFactura(
+                          modeloVista.idEncabezadoFac);
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un Error" + error.Message;
+
+            }
+            finally
+            {
+                if (cantidadRegistrosAfectados > 0)
+                {
+                    resultado = "Registro Eliminado";
+                }
+                else
+                {
+                    resultado = "No se pudo Eliminar";
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");

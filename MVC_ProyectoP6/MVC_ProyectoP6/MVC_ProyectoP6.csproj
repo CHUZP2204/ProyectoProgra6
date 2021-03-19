@@ -2064,6 +2064,7 @@
     <Content Include="Views\DetalleFactura\NuevoDetalleFac.cshtml" />
     <Content Include="Views\DetalleFactura\ModificaDetalleFac.cshtml" />
     <Content Include="Views\DetalleFactura\EliminaDetalleFac.cshtml" />
+    <Content Include="Views\EncabezadoFactura\EliminaEncabezadoFactura.cshtml" />
     <Content Include="Views\EncabezadoFactura\ModificaEncabezadoFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -111,5 +111,67 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        public ActionResult ModificaEncabezadoFactura (int idEncabezadoFac)
+        {    ///obtener el registro que se desea modificar
+             /// utilizando el parametro del metodo idPaisFabricante
+           sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaEncFactura_ID(idEncabezadoFac).FirstOrDefault();
+
+            //enviar modelo a la vista
+            this.AgregarClientesViewBag();
+            this.AgregarVehiculosViewBag();
+            this.AgregarEstadoFacturaViewBag();
+            this.AgregarDetalleViewBag();
+            this.AgregTipoSOPViewBag();
+            return View(modeloVista);
+           
+        }
+        [HttpPost]
+        public ActionResult ModificaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
+        {
+
+            int cantidadRegistrosAfectados = 0;
+            string resultado = " ";
+
+            try
+            {
+                cantidadRegistrosAfectados =
+                       this.modeloBD.sp_ModificaEncabezadoFac(
+                           modeloVista.idEncabezadoFac,
+                           modeloVista.idCliente,
+                           modeloVista.idVehiculo,
+                           modeloVista.Fecha,
+                           modeloVista.MontoTotalServicios,
+                           modeloVista.EstadoFactura,
+                           modeloVista.idDetalleFac
+                           ); 
+            }
+
+
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un Error" + error.Message;
+
+            }
+            finally
+            {
+                if (cantidadRegistrosAfectados > 0)
+                {
+                    resultado = "El Registro Modificado";
+                }
+                else
+                {
+                    resultado = "No se pudo Modifcar";
+                }
+            }
+            Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
+            this.AgregarClientesViewBag();
+            this.AgregarVehiculosViewBag();
+            this.AgregarEstadoFacturaViewBag();
+            this.AgregarDetalleViewBag();
+            this.AgregTipoSOPViewBag();
+            return View(modeloVista);
+        }
+
     }
 }

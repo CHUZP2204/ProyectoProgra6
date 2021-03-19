@@ -254,23 +254,6 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Modifica_VehXPers", idVehxPerParameter, idVehiculoParameter, idClienteParameter);
         }
     
-        public virtual int sp_ModificaEncaFact(Nullable<int> idEfactura, Nullable<decimal> montoTotal, string estadoFactura)
-        {
-            var idEfacturaParameter = idEfactura.HasValue ?
-                new ObjectParameter("idEfactura", idEfactura) :
-                new ObjectParameter("idEfactura", typeof(int));
-    
-            var montoTotalParameter = montoTotal.HasValue ?
-                new ObjectParameter("montoTotal", montoTotal) :
-                new ObjectParameter("montoTotal", typeof(decimal));
-    
-            var estadoFacturaParameter = estadoFactura != null ?
-                new ObjectParameter("EstadoFactura", estadoFactura) :
-                new ObjectParameter("EstadoFactura", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEncaFact", idEfacturaParameter, montoTotalParameter, estadoFacturaParameter);
-        }
-    
         public virtual int sp_ModificaMarcaVehiculo(Nullable<int> idMarcaVehiculo, string codigoMarcaVehiculo, string tipoMarcaVehiculo, Nullable<int> idPaisFabricante)
         {
             var idMarcaVehiculoParameter = idMarcaVehiculo.HasValue ?
@@ -796,6 +779,39 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idDetalleFac", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_ID_Result>("sp_RetornaDetalleFac_ID", idDetalleFacParameter);
+        }
+    
+        public virtual int sp_ModificaEncabezadoFac(Nullable<int> idEncabezadoFac, Nullable<int> idCliente, Nullable<int> idVehiculo, Nullable<System.DateTime> fecha, Nullable<decimal> montoTotalServicios, string estadoFactura, Nullable<int> idDetalleFac)
+        {
+            var idEncabezadoFacParameter = idEncabezadoFac.HasValue ?
+                new ObjectParameter("idEncabezadoFac", idEncabezadoFac) :
+                new ObjectParameter("idEncabezadoFac", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var idVehiculoParameter = idVehiculo.HasValue ?
+                new ObjectParameter("idVehiculo", idVehiculo) :
+                new ObjectParameter("idVehiculo", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var montoTotalServiciosParameter = montoTotalServicios.HasValue ?
+                new ObjectParameter("MontoTotalServicios", montoTotalServicios) :
+                new ObjectParameter("MontoTotalServicios", typeof(decimal));
+    
+            var estadoFacturaParameter = estadoFactura != null ?
+                new ObjectParameter("EstadoFactura", estadoFactura) :
+                new ObjectParameter("EstadoFactura", typeof(string));
+    
+            var idDetalleFacParameter = idDetalleFac.HasValue ?
+                new ObjectParameter("idDetalleFac", idDetalleFac) :
+                new ObjectParameter("idDetalleFac", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEncabezadoFac", idEncabezadoFacParameter, idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter, idDetalleFacParameter);
         }
     }
 }

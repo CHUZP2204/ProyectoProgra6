@@ -388,10 +388,14 @@ advertencia 6002: La tabla o vista 'progra6.dbo.VehiculosXCliente' no tiene defi
           <Parameter Name="CantidadSOP" Type="int" Mode="In" />
           <Parameter Name="PrecioSOP" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_ModificaEncaFact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idEfactura" Type="int" Mode="In" />
-          <Parameter Name="montoTotal" Type="decimal" Mode="In" />
+        <Function Name="sp_ModificaEncabezadoFac" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEncabezadoFac" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idVehiculo" Type="int" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+          <Parameter Name="MontoTotalServicios" Type="decimal" Mode="In" />
           <Parameter Name="EstadoFactura" Type="varchar" Mode="In" />
+          <Parameter Name="idDetalleFac" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_ModificaMarcaVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idMarcaVehiculo" Type="int" Mode="In" />
@@ -872,11 +876,6 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
             <Parameter Name="idVehiculo" Mode="In" Type="Int32" />
             <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_ModificaEncaFact">
-            <Parameter Name="idEfactura" Mode="In" Type="Int32" />
-            <Parameter Name="montoTotal" Mode="In" Type="Decimal" />
-            <Parameter Name="EstadoFactura" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_ModificaMarcaVehiculo">
             <Parameter Name="idMarcaVehiculo" Mode="In" Type="Int32" />
             <Parameter Name="CodigoMarcaVehiculo" Mode="In" Type="String" />
@@ -1056,6 +1055,15 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <Parameter Name="estadoFactura" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_RetornaDetalleFac_ID" ReturnType="Collection(progra6Model.sp_RetornaDetalleFac_ID_Result)">
+          <Parameter Name="idDetalleFac" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ModificaEncabezadoFac">
+            <Parameter Name="idEncabezadoFac" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idVehiculo" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="MontoTotalServicios" Mode="In" Type="Decimal" />
+            <Parameter Name="EstadoFactura" Mode="In" Type="String" />
             <Parameter Name="idDetalleFac" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -1473,7 +1481,6 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
           <FunctionImportMapping FunctionImportName="sp_InsertaTipoVehiculo" FunctionName="progra6Model.Store.sp_InsertaTipoVehiculo" />
           <FunctionImportMapping FunctionImportName="sp_InsertaVehiculo" FunctionName="progra6Model.Store.sp_InsertaVehiculo" />
           <FunctionImportMapping FunctionImportName="sp_Modifica_VehXPers" FunctionName="progra6Model.Store.sp_Modifica_VehXPers" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaEncaFact" FunctionName="progra6Model.Store.sp_ModificaEncaFact" />
           <FunctionImportMapping FunctionImportName="sp_ModificaMarcaVehiculo" FunctionName="progra6Model.Store.sp_ModificaMarcaVehiculo" />
           <FunctionImportMapping FunctionImportName="sp_ModificaPaisFabricante" FunctionName="progra6Model.Store.sp_ModificaPaisFabricante" />
           <FunctionImportMapping FunctionImportName="sp_ModificaServicioOProducto" FunctionName="progra6Model.Store.sp_ModificaServicioOProducto" />
@@ -1788,6 +1795,7 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ModificaEncabezadoFac" FunctionName="progra6Model.Store.sp_ModificaEncabezadoFac" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

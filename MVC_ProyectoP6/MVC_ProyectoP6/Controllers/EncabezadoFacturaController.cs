@@ -27,6 +27,13 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        public ActionResult RetornaUsersvehiculos(int idCliente)
+        {
+            List<sp_RetornaDesgloseClientesVeh_ID_Result> vehiculoPorUsuario = new List<sp_RetornaDesgloseClientesVeh_ID_Result>();
+            vehiculoPorUsuario = this.modeloBD.sp_RetornaDesgloseClientesVeh_ID(idCliente).ToList();
+            return Json(vehiculoPorUsuario);
+        }
+
         void AgregarVehiculosViewBag()
         {
             this.ViewBag.ListaVehiculos =

@@ -85,7 +85,7 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (cantidadRegistrosAfectados > 0)
                 {
-                    resultado = "El Registro Insertado";
+                    resultado = "El Registro Insertado / Debes Enlazarlo A Un Cliente";
                 }
                 else
                 {

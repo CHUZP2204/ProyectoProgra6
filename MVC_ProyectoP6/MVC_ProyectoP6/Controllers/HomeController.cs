@@ -55,8 +55,23 @@ namespace MVC_ProyectoP6.Controllers
         /// <returns></returns>
         public ActionResult ValidarUsuario(string pCorreo, string pContrasenia)
         {
+            ///LLAMAR AL METODO QUE VERIFICA SI USUARIO EXISTE
+            bool eventoResul =  this.VerificarUsuario(pCorreo,pContrasenia);
+
+            ///Retornar En Json Para Trabajarlo
+            ///Del Lado Del Cliente
+            return Json(new
+            {
+                resultado = eventoResul
+            });
+        }
+
+        //METODO QUE VERIFICA EL USUARIO LOGUEADO
+        private bool VerificarUsuario(string pCorreo, string pContrasenia)
+        {
             List<sp_RetornaClientes_Result> listaClientes = new List<sp_RetornaClientes_Result>();
             listaClientes = this.ModeloBD.sp_RetornaClientes(null, null).ToList();
+
 
             bool UsuarioVerificado = false;
 
@@ -66,22 +81,15 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (listaClientes[i].Correo.Equals(pCorreo) && listaClientes[i].Contrasenia.Equals(pContrasenia))
                 {
-                    UsuarioVerificado = true;
+                    
                     ///Variable De Sesion Para Guardar Id Del Usuario Actual
                     this.Session.Add("idClienteLoguedo", listaClientes[i].idCliente);
                     this.Session.Add("tipoCliente", listaClientes[i].TipoUsuario);
-                    ;
+                    UsuarioVerificado = true;
                 }
             }
-            
-            ///Retornar En Json Para Trabajarlo
-            ///Del Lado Del Cliente
-            return Json(new
-            {
-                resultado = UsuarioVerificado
-            });
+            return UsuarioVerificado;
         }
-
         /// <summary>
         /// Metodo Que Obtiene Informacion Del Cliente Actual Que Inicio Session
         /// Se Devuelve En Json Para Su Posterior Uso Del Lado Del Cliente
@@ -93,16 +101,19 @@ namespace MVC_ProyectoP6.Controllers
             List<sp_RetornaClientes_ID_Result> modeloCliente = this.ModeloBD.sp_RetornaClientes_ID(idUsuarioLogueado).ToList();
 
             string msj = "";
+            int idUsuario=0  ;
 
             for (int i = 0; i < modeloCliente.Count; i++)
             {
                 msj = modeloCliente[i].NombreCompleto;
+                idUsuario = modeloCliente[i].idCliente;
             }
 
             return Json(new
             {
-                resultado = msj
-            });
+                resultado = msj,
+                usuarioActual = idUsuario
+            }) ;
         }
         public ActionResult PaginaPrincipal()
         {

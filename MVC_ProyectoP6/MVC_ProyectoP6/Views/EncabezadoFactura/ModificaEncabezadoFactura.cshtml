@@ -56,7 +56,7 @@
 
         <div class=" form-group">
             <label>Fecha</label>
-            <input type="text" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha.ToString("yyy-MM-dd")"  />
+            <input type="date" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha.ToString("yyy-MM-dd")"  />
   
         </div>
 
@@ -67,11 +67,12 @@
 
 
         <div class="form-group">
-            <label>estado :</label>
+            <label>Estado :</label>
             <select name="estadofactura" id="estado" class="form-control" value="@Model.EstadoFactura">
 
 
-                <option value="activa">activa</option>
+                <option value="Activa">Activa</option>
+                <option value="Anulada">Anular</option>
 
             </select>
         </div>

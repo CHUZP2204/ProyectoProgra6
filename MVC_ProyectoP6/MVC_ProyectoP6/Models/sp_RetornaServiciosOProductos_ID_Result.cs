@@ -17,6 +17,5 @@ namespace MVC_ProyectoP6.Models
         public string CodigoSOP { get; set; }
         public decimal PrecioSOP { get; set; }
         public string TipoSOP { get; set; }
-        public int idCliente { get; set; }
     }
 }

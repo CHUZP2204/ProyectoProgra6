@@ -14,12 +14,16 @@ namespace MVC_ProyectoP6.Models
     
     public partial class ServiciosOProductos
     {
+        public ServiciosOProductos()
+        {
+            this.DetalleFactura = new HashSet<DetalleFactura>();
+        }
+    
         public int idSOP { get; set; }
         public string CodigoSOP { get; set; }
         public decimal PrecioSOP { get; set; }
         public string TipoSOP { get; set; }
-        public int idCliente { get; set; }
     
-        public virtual Clientes Clientes { get; set; }
+        public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }
     }
 }

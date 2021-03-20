@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7c93cb60269e4cc483874a670859eb1f" Name="Diagram1">
+      <Diagram DiagramId="7c93cb60269e4cc483874a670859eb1f" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="progra6Model.Canton" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.Distrito" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="progra6Model.EncabezadoFactura" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
@@ -25,10 +25,12 @@
         <AssociationConnector Association="progra6Model.FK_Clientes_Provincia" />
         <AssociationConnector Association="progra6Model.FK_EncabezadoFactura_Clientes" />
         <AssociationConnector Association="progra6Model.FK_VehiculosXCliente_Clientes" />
-        <EntityTypeShape EntityType="progra6Model.DetalleFactura" Width="1.5" PointX="8.375" PointY="0.875" />
+        <EntityTypeShape EntityType="progra6Model.DetalleFactura" Width="1.5" PointX="7.875" PointY="0.875" />
         <AssociationConnector Association="progra6Model.FK__DetalleFactura_" />
-        <EntityTypeShape EntityType="progra6Model.ServiciosOProductos" Width="1.5" PointX="5.25" PointY="14" />
-        <AssociationConnector Association="progra6Model.FK_ServiciosOProductos_Clientes" />
+        <EntityTypeShape EntityType="progra6Model.ServiciosOProductos" Width="1.5" PointX="6.125" PointY="14" />
+        <EntityTypeShape EntityType="progra6Model.View_DesgloseFactura" Width="1.5" PointX="10.375" PointY="5.75" />
+        <AssociationConnector Association="progra6Model.FK_DetalleFactura_ServiciosOProductos" />
+        <EntityTypeShape EntityType="progra6Model.View_DesgloseClientesVehiculo" Width="1.5" PointX="12.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

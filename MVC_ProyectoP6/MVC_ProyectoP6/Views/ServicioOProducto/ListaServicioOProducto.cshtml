@@ -14,7 +14,7 @@
                 <th>Codigo Servicio O Producto</th>
                 <th>Tipo </th>
                 <th>Precio</th>
-                <th>Cliente</th>
+                <!--<th>Cliente</th>-->
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -23,20 +23,20 @@
                 foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result posicionModelo
                  in this.Model)
                 {
-                    <tr>
-                        <td>@posicionModelo.CodigoSOP</td>
-                        <td>@posicionModelo.TipoSOP</td>
-                        <td>@posicionModelo.PrecioSOP</td>
-                        <td>@posicionModelo.idCliente</td>
+                        <tr>
+                            <td>@posicionModelo.CodigoSOP</td>
+                            <td>@posicionModelo.TipoSOP</td>
+                            <td>@posicionModelo.PrecioSOP</td>
+                            <!--<td>posicionModelo.idCliente</td>-->
 
-                        <td>
-                            <a href="~/ServicioOProducto/ModificaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Modificar</a>
-                            <a href="~/ServicioOProducto/EliminaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-danger">Eliminar</a>
-                        </td>
+                            <td>
+                                <a href="~/ServicioOProducto/ModificaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Modificar</a>
+                                <a href="~/ServicioOProducto/EliminaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-danger">Eliminar</a>
+                            </td>
 
-                     
 
-                    </tr>
+
+                        </tr>
                 }
             }
         </tbody>

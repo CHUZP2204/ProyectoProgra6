@@ -10,30 +10,30 @@
 namespace MVC_ProyectoP6.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Clientes
+    public partial class sp_RetornaDesgloseClientesVeh_ID_Result
     {
-        public Clientes()
-        {
-            this.EncabezadoFactura = new HashSet<EncabezadoFactura>();
-            this.VehiculosXCliente = new HashSet<VehiculosXCliente>();
-        }
-    
         public int idCliente { get; set; }
-        public string Cedula { get; set; }
-        public System.DateTime FechaNacimiento { get; set; }
-        public string Genero { get; set; }
+        public int idVehiculo { get; set; }
         public string NombreCompleto { get; set; }
+        public string PlacaVehiculo { get; set; }
+        public string NumeroPuertas { get; set; }
+        public string NumeroRuedas { get; set; }
+        public string TipoVehiculo { get; set; }
+        public string TipoMarcaVehiculo { get; set; }
+        public string PaisFabricante { get; set; }
+        public string CodigoPaisFabricante { get; set; }
+        public string CodigoMarcaVehiculo { get; set; }
+        public string CodigoTipoVehiculo { get; set; }
+        public string Cedula { get; set; }
+        public string Genero { get; set; }
+        public string TipoUsuario { get; set; }
         public string Correo { get; set; }
+        public int idTipoVehiculo { get; set; }
+        public int idMarcaVehiculo { get; set; }
         public int idProvincia { get; set; }
         public int idCanton { get; set; }
         public int idDistrito { get; set; }
-        public string TipoUsuario { get; set; }
-        public string Contrasenia { get; set; }
-    
-        public virtual Provincia Provincia { get; set; }
-        public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }
-        public virtual ICollection<VehiculosXCliente> VehiculosXCliente { get; set; }
+        public int idPaisFabricante { get; set; }
     }
 }

@@ -74,8 +74,7 @@ namespace MVC_ProyectoP6.Controllers
                         this.modeloBD.sp_InsertaServicioOProducto(
                     modeloVista.CodigoSOP,
                         modeloVista.PrecioSOP.ToString(),
-                        modeloVista.TipoSOP,
-                        modeloVista.idCliente
+                        modeloVista.TipoSOP
                        );
                 }
                 else
@@ -130,8 +129,7 @@ namespace MVC_ProyectoP6.Controllers
                             modeloVista.idSOP,
                     modeloVista.CodigoSOP,
                         modeloVista.PrecioSOP.ToString(),
-                        modeloVista.TipoSOP,
-                        modeloVista.idCliente
+                        modeloVista.TipoSOP
                        );
              
             }

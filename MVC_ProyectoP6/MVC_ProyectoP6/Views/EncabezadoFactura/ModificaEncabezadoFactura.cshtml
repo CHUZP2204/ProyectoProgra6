@@ -10,13 +10,20 @@
 
         <div class="form-group">
             <label>Clientes :</label>
-            <select name="idCliente" id="idCliente" class="form-control" value=" @Model.idCliente">
+            <select name="idCliente" id="idCliente" class="form-control" value=" @Model.idCliente" readonly>
 
                 @{
-                    foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result clientes
-                        in this.ViewBag.ListaClientes)
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result clientes in this.ViewBag.ListaClientes)
                     {
-                        <option value="@clientes.idCliente">@clientes.NombreCompleto.ToUpper() </option>
+                        bool esIdCliente = clientes.idCliente == Model.idCliente;
+                        if (esIdCliente)
+                        {
+                            <option value="@clientes.idCliente" selected> @clientes.NombreCompleto.ToString()</option >  
+                        }
+                        else
+                        {
+                            <option value="@clientes.idCliente">@clientes.NombreCompleto.ToString() </option>
+                        }
                     }
                 }
             </select>
@@ -31,16 +38,26 @@
                     foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result vehiculos
                         in this.ViewBag.ListaVehiculos)
                     {
-                        <option value="@vehiculos.idVehiculo">@vehiculos.PlacaVehiculo.ToUpper() </option>
+                        bool esIdVehiculo = vehiculos.idVehiculo == Model.idCliente;
+                        if (esIdVehiculo)
+                        {
+                            <option value="@vehiculos.idVehiculo" selected> @vehiculos.PlacaVehiculo.ToString() </option>
+
+                        }
+                        else
+                        {
+                            <option value="@vehiculos.idVehiculo">@vehiculos.PlacaVehiculo.ToString()</option>
+                        }
                     }
+                }
                 }
             </select>
         </div>
 
         <div class=" form-group">
             <label>Fecha</label>
-            <input type="text" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha" readonly />
-            <input type="date" name="Fecha" id="Fecha" class="form-control" />
+            <input type="text" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha.ToString("yyy-MM-dd")"  />
+  
         </div>
 
         <div class=" form-group">
@@ -67,7 +84,16 @@
                     foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
                         this.ViewBag.ListaDetalles)
                     {
-                        <option value="@detalle.idDetalleFac">Factura# @detalle.idDetalleFac </option>
+                        bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
+                        if (esIdDetalleFac)
+                        {
+                            <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
+
+                        }
+                        else
+                        {
+                            <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
+                        }
                     }
                 }
             </select>

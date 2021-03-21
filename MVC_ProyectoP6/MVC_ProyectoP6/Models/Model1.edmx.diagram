@@ -5,32 +5,32 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7c93cb60269e4cc483874a670859eb1f" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="progra6Model.Canton" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.Distrito" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.EncabezadoFactura" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.MarcaVehiculos" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.PaisFabricante" Width="1.5" PointX="1.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.Provincia" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.TipoVehiculos" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.Vehiculos" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="progra6Model.VehiculosXCliente" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.Canton" Width="1.5" PointX="0.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.Distrito" Width="1.5" PointX="0.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.MarcaVehiculos" Width="1.5" PointX="3.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.PaisFabricante" Width="1.5" PointX="0.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.Provincia" Width="1.5" PointX="0.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.sysdiagrams" Width="1.5" PointX="0.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.TipoVehiculos" Width="1.5" PointX="2.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.Vehiculos" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="progra6Model.VehiculosXCliente" Width="1.5" PointX="5" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="progra6Model.Canton_ref_Provincia" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.Distrito_ref_Canton" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_MarcaVehiculos_PaisFabricante" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_Vehiculos_MarcaVehiculos" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_Vehiculos_TipoVehiculos" ManuallyRouted="false" />
         <AssociationConnector Association="progra6Model.FK_VehiculosXCliente_Vehiculos" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="progra6Model.Clientes" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="progra6Model.Clientes" Width="1.5" PointX="6.125" PointY="10.75" />
         <AssociationConnector Association="progra6Model.FK_Clientes_Provincia" />
-        <AssociationConnector Association="progra6Model.FK_EncabezadoFactura_Clientes" />
         <AssociationConnector Association="progra6Model.FK_VehiculosXCliente_Clientes" />
-        <EntityTypeShape EntityType="progra6Model.DetalleFactura" Width="1.5" PointX="7.875" PointY="0.875" />
-        <AssociationConnector Association="progra6Model.FK__DetalleFactura_" />
-        <EntityTypeShape EntityType="progra6Model.ServiciosOProductos" Width="1.5" PointX="6.125" PointY="14" />
-        <EntityTypeShape EntityType="progra6Model.View_DesgloseFactura" Width="1.5" PointX="10.375" PointY="5.75" />
+        <EntityTypeShape EntityType="progra6Model.DetalleFactura" Width="1.5" PointX="9.375" PointY="6.625" />
+        <EntityTypeShape EntityType="progra6Model.ServiciosOProductos" Width="1.5" PointX="8.5" PointY="10.5" />
         <AssociationConnector Association="progra6Model.FK_DetalleFactura_ServiciosOProductos" />
-        <EntityTypeShape EntityType="progra6Model.View_DesgloseClientesVehiculo" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="progra6Model.View_DesgloseClientesVehiculo" Width="1.5" PointX="9.5" PointY="1" />
+        <EntityTypeShape EntityType="progra6Model.EncabezadoFactura" Width="1.5" PointX="7.25" PointY="5.5" />
+        <EntityTypeShape EntityType="progra6Model.View_GeneraFactura" Width="1.5" PointX="3.25" PointY="7.5" />
+        <AssociationConnector Association="progra6Model.FK_EncabezadoFactura_Clientes" />
+        <AssociationConnector Association="progra6Model.DetallesXEncaFac" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

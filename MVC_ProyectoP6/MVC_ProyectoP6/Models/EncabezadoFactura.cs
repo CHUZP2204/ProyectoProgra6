@@ -14,15 +14,19 @@ namespace MVC_ProyectoP6.Models
     
     public partial class EncabezadoFactura
     {
+        public EncabezadoFactura()
+        {
+            this.DetalleFactura = new HashSet<DetalleFactura>();
+        }
+    
         public int idEncabezadoFac { get; set; }
         public int idCliente { get; set; }
         public int idVehiculo { get; set; }
         public System.DateTime Fecha { get; set; }
         public decimal MontoTotalServicios { get; set; }
         public string EstadoFactura { get; set; }
-        public int idDetalleFac { get; set; }
     
         public virtual Clientes Clientes { get; set; }
-        public virtual DetalleFactura DetalleFactura { get; set; }
+        public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }
     }
 }

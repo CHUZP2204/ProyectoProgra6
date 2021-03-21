@@ -24,7 +24,7 @@ namespace MVC_ProyectoP6.Models
         public decimal PrecioSOP { get; set; }
         public int idSOP { get; set; }
     
-        public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }
         public virtual ServiciosOProductos ServiciosOProductos { get; set; }
+        public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }
     }
 }

@@ -19,6 +19,5 @@ namespace MVC_ProyectoP6.Models
         public System.DateTime Fecha { get; set; }
         public decimal MontoTotalServicios { get; set; }
         public string EstadoFactura { get; set; }
-        public int idDetalleFac { get; set; }
     }
 }

@@ -89,8 +89,7 @@ namespace MVC_ProyectoP6.Controllers
                         modeloVista.idVehiculo,
                         modeloVista.Fecha,
                         modeloVista.MontoTotalServicios,
-                        modeloVista.EstadoFactura,
-                        modeloVista.idDetalleFac
+                        modeloVista.EstadoFactura
                         );
             }
             catch (Exception error)
@@ -146,8 +145,7 @@ namespace MVC_ProyectoP6.Controllers
                            modeloVista.idVehiculo,
                            modeloVista.Fecha,
                            modeloVista.MontoTotalServicios,
-                           modeloVista.EstadoFactura,
-                           modeloVista.idDetalleFac
+                           modeloVista.EstadoFactura
                            );
             }
 

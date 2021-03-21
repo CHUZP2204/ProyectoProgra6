@@ -18,7 +18,8 @@
                         bool esIdCliente = clientes.idCliente == Model.idCliente;
                         if (esIdCliente)
                         {
-                            <option value="@clientes.idCliente" selected> @clientes.NombreCompleto.ToString()</option >  
+                            <option value="@clientes.idCliente" selected> @clientes.NombreCompleto.ToString()</option>
+
                         }
                         else
                         {
@@ -56,8 +57,8 @@
 
         <div class=" form-group">
             <label>Fecha</label>
-            <input type="date" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha.ToString("yyy-MM-dd")"  />
-  
+            <input type="date" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha.ToString("yyy-MM-dd")" />
+
         </div>
 
         <div class=" form-group">
@@ -76,29 +77,31 @@
 
             </select>
         </div>
+        @*
+                        <div class="form-group">
+                <label>Detalle :</label>
+                <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac">
 
-        <div class="form-group">
-            <label>Detalle :</label>
-            <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac">
-
-                @{
-                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
-                        this.ViewBag.ListaDetalles)
-                    {
-                        bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
-                        if (esIdDetalleFac)
+                    @{
+                        foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
+                            this.ViewBag.ListaDetalles)
                         {
-                            <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
+                            bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
+                            if (esIdDetalleFac)
+                            {
+                                <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
 
-                        }
-                        else
-                        {
-                            <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
+                            }
+                            else
+                            {
+                                <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
+                            }
                         }
                     }
-                }
-            </select>
-        </div>
+                </select>
+            </div>
+        *@
+
 
         <div class=" form-group">
             <input type="submit" value="Modificar" id="btnGuardar" class="btn btn-primary" />

@@ -10,6 +10,7 @@ namespace MVC_ProyectoP6.Controllers
     public class HomeController : Controller
     {
         progra6Entities3 ModeloBD = new progra6Entities3();
+
         public ActionResult Index()
         {
             return View();
@@ -56,7 +57,7 @@ namespace MVC_ProyectoP6.Controllers
         public ActionResult ValidarUsuario(string pCorreo, string pContrasenia)
         {
             ///LLAMAR AL METODO QUE VERIFICA SI USUARIO EXISTE
-            bool eventoResul =  this.VerificarUsuario(pCorreo,pContrasenia);
+            bool eventoResul = this.VerificarUsuario(pCorreo, pContrasenia);
 
             ///Retornar En Json Para Trabajarlo
             ///Del Lado Del Cliente
@@ -81,7 +82,7 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (listaClientes[i].Correo.Equals(pCorreo) && listaClientes[i].Contrasenia.Equals(pContrasenia))
                 {
-                    
+
                     ///Variable De Sesion Para Guardar Id Del Usuario Actual
                     this.Session.Add("idClienteLoguedo", listaClientes[i].idCliente);
                     this.Session.Add("tipoCliente", listaClientes[i].TipoUsuario);
@@ -101,7 +102,7 @@ namespace MVC_ProyectoP6.Controllers
             List<sp_RetornaClientes_ID_Result> modeloCliente = this.ModeloBD.sp_RetornaClientes_ID(idUsuarioLogueado).ToList();
 
             string msj = "";
-            int idUsuario=0  ;
+            int idUsuario = 0;
 
             for (int i = 0; i < modeloCliente.Count; i++)
             {
@@ -113,7 +114,24 @@ namespace MVC_ProyectoP6.Controllers
             {
                 resultado = msj,
                 usuarioActual = idUsuario
-            }) ;
+            });
+        }
+        public ActionResult CerrarSesionCliente()
+        {
+            int idUsuarioLogueado = Convert.ToInt32(this.Session["idClienteLoguedo"]);
+
+            string msj = "";
+            if (idUsuarioLogueado > 0)
+            {
+                msj = "L";
+                this.Session.Add("idClienteLoguedo",0);
+            }
+
+
+            return Json(new
+            {
+                resultado = msj
+            });
         }
         public ActionResult PaginaPrincipal()
         {

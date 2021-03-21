@@ -16,8 +16,8 @@ namespace MVC_ProyectoP6.Models
     {
         public Clientes()
         {
-            this.EncabezadoFactura = new HashSet<EncabezadoFactura>();
             this.VehiculosXCliente = new HashSet<VehiculosXCliente>();
+            this.EncabezadoFactura = new HashSet<EncabezadoFactura>();
         }
     
         public int idCliente { get; set; }
@@ -33,7 +33,7 @@ namespace MVC_ProyectoP6.Models
         public string Contrasenia { get; set; }
     
         public virtual Provincia Provincia { get; set; }
-        public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }
         public virtual ICollection<VehiculosXCliente> VehiculosXCliente { get; set; }
+        public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; }
     }
 }

@@ -30,7 +30,6 @@ namespace MVC_ProyectoP6.Models
     
         public DbSet<Canton> Canton { get; set; }
         public DbSet<Distrito> Distrito { get; set; }
-        public DbSet<EncabezadoFactura> EncabezadoFactura { get; set; }
         public DbSet<MarcaVehiculos> MarcaVehiculos { get; set; }
         public DbSet<PaisFabricante> PaisFabricante { get; set; }
         public DbSet<Provincia> Provincia { get; set; }
@@ -41,8 +40,9 @@ namespace MVC_ProyectoP6.Models
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<DetalleFactura> DetalleFactura { get; set; }
         public DbSet<ServiciosOProductos> ServiciosOProductos { get; set; }
-        public DbSet<View_DesgloseFactura> View_DesgloseFactura { get; set; }
         public DbSet<View_DesgloseClientesVehiculo> View_DesgloseClientesVehiculo { get; set; }
+        public DbSet<EncabezadoFactura> EncabezadoFactura { get; set; }
+        public DbSet<View_GeneraFactura> View_GeneraFactura { get; set; }
     
         public virtual int sp_Elimina_VehXPers(Nullable<int> idVehxPer)
         {
@@ -136,35 +136,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idCliente", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Inserta_VehXPers", idVehiculoParameter, idClienteParameter);
-        }
-    
-        public virtual int sp_InsertaEncFactura(Nullable<int> idCliente, Nullable<int> idVehiculo, Nullable<System.DateTime> fecha, Nullable<decimal> montoTotalServicios, string estadoFactura, Nullable<int> idDetalleFac)
-        {
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            var idVehiculoParameter = idVehiculo.HasValue ?
-                new ObjectParameter("idVehiculo", idVehiculo) :
-                new ObjectParameter("idVehiculo", typeof(int));
-    
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("Fecha", fecha) :
-                new ObjectParameter("Fecha", typeof(System.DateTime));
-    
-            var montoTotalServiciosParameter = montoTotalServicios.HasValue ?
-                new ObjectParameter("MontoTotalServicios", montoTotalServicios) :
-                new ObjectParameter("MontoTotalServicios", typeof(decimal));
-    
-            var estadoFacturaParameter = estadoFactura != null ?
-                new ObjectParameter("EstadoFactura", estadoFactura) :
-                new ObjectParameter("EstadoFactura", typeof(string));
-    
-            var idDetalleFacParameter = idDetalleFac.HasValue ?
-                new ObjectParameter("idDetalleFac", idDetalleFac) :
-                new ObjectParameter("idDetalleFac", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaEncFactura", idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter, idDetalleFacParameter);
         }
     
         public virtual int sp_InsertaPaisFabricante(string codigoPaisFabricante, string paisFabricante)
@@ -352,15 +323,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("id_Canton", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDistritos_Result>("sp_RetornaDistritos", nombreParameter, id_CantonParameter);
-        }
-    
-        public virtual ObjectResult<sp_RetornaEncFactura_ID_Result> sp_RetornaEncFactura_ID(Nullable<int> idEfactura)
-        {
-            var idEfacturaParameter = idEfactura.HasValue ?
-                new ObjectParameter("idEfactura", idEfactura) :
-                new ObjectParameter("idEfactura", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_ID_Result>("sp_RetornaEncFactura_ID", idEfacturaParameter);
         }
     
         public virtual ObjectResult<sp_RetornaPaisFabricante_Result> sp_RetornaPaisFabricante(string codigoPaisFabricante, string paisFabricante)
@@ -697,15 +659,6 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_Result>("sp_RetornaDetalleFac", idSOPParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaEncFactura_Result> sp_RetornaEncFactura(string estadoFactura)
-        {
-            var estadoFacturaParameter = estadoFactura != null ?
-                new ObjectParameter("estadoFactura", estadoFactura) :
-                new ObjectParameter("estadoFactura", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_Result>("sp_RetornaEncFactura", estadoFacturaParameter);
-        }
-    
         public virtual ObjectResult<sp_RetornaDetalleFac_ID_Result> sp_RetornaDetalleFac_ID(Nullable<int> idDetalleFac)
         {
             var idDetalleFacParameter = idDetalleFac.HasValue ?
@@ -713,39 +666,6 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idDetalleFac", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_ID_Result>("sp_RetornaDetalleFac_ID", idDetalleFacParameter);
-        }
-    
-        public virtual int sp_ModificaEncabezadoFac(Nullable<int> idEncabezadoFac, Nullable<int> idCliente, Nullable<int> idVehiculo, Nullable<System.DateTime> fecha, Nullable<decimal> montoTotalServicios, string estadoFactura, Nullable<int> idDetalleFac)
-        {
-            var idEncabezadoFacParameter = idEncabezadoFac.HasValue ?
-                new ObjectParameter("idEncabezadoFac", idEncabezadoFac) :
-                new ObjectParameter("idEncabezadoFac", typeof(int));
-    
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            var idVehiculoParameter = idVehiculo.HasValue ?
-                new ObjectParameter("idVehiculo", idVehiculo) :
-                new ObjectParameter("idVehiculo", typeof(int));
-    
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("Fecha", fecha) :
-                new ObjectParameter("Fecha", typeof(System.DateTime));
-    
-            var montoTotalServiciosParameter = montoTotalServicios.HasValue ?
-                new ObjectParameter("MontoTotalServicios", montoTotalServicios) :
-                new ObjectParameter("MontoTotalServicios", typeof(decimal));
-    
-            var estadoFacturaParameter = estadoFactura != null ?
-                new ObjectParameter("EstadoFactura", estadoFactura) :
-                new ObjectParameter("EstadoFactura", typeof(string));
-    
-            var idDetalleFacParameter = idDetalleFac.HasValue ?
-                new ObjectParameter("idDetalleFac", idDetalleFac) :
-                new ObjectParameter("idDetalleFac", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEncabezadoFac", idEncabezadoFacParameter, idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter, idDetalleFacParameter);
         }
     
         public virtual int sp_InsertaServicioOProducto(string codigoSOP, string precioSOP, string tipoSOP)
@@ -828,6 +748,100 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idCliente", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDesgloseClientesVeh_ID_Result>("sp_RetornaDesgloseClientesVeh_ID", idClienteParameter);
+        }
+    
+        public virtual int sp_InsertaEncFactura(Nullable<int> idCliente, Nullable<int> idVehiculo, Nullable<System.DateTime> fecha, Nullable<decimal> montoTotalServicios, string estadoFactura)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var idVehiculoParameter = idVehiculo.HasValue ?
+                new ObjectParameter("idVehiculo", idVehiculo) :
+                new ObjectParameter("idVehiculo", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var montoTotalServiciosParameter = montoTotalServicios.HasValue ?
+                new ObjectParameter("MontoTotalServicios", montoTotalServicios) :
+                new ObjectParameter("MontoTotalServicios", typeof(decimal));
+    
+            var estadoFacturaParameter = estadoFactura != null ?
+                new ObjectParameter("EstadoFactura", estadoFactura) :
+                new ObjectParameter("EstadoFactura", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaEncFactura", idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter);
+        }
+    
+        public virtual int sp_ModificaEncabezadoFac(Nullable<int> idEncabezadoFac, Nullable<int> idCliente, Nullable<int> idVehiculo, Nullable<System.DateTime> fecha, Nullable<decimal> montoTotalServicios, string estadoFactura)
+        {
+            var idEncabezadoFacParameter = idEncabezadoFac.HasValue ?
+                new ObjectParameter("idEncabezadoFac", idEncabezadoFac) :
+                new ObjectParameter("idEncabezadoFac", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var idVehiculoParameter = idVehiculo.HasValue ?
+                new ObjectParameter("idVehiculo", idVehiculo) :
+                new ObjectParameter("idVehiculo", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var montoTotalServiciosParameter = montoTotalServicios.HasValue ?
+                new ObjectParameter("MontoTotalServicios", montoTotalServicios) :
+                new ObjectParameter("MontoTotalServicios", typeof(decimal));
+    
+            var estadoFacturaParameter = estadoFactura != null ?
+                new ObjectParameter("EstadoFactura", estadoFactura) :
+                new ObjectParameter("EstadoFactura", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEncabezadoFac", idEncabezadoFacParameter, idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaDesgloseFactura_Result> sp_RetornaDesgloseFactura(string nombreCompleto, string cedula)
+        {
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDesgloseFactura_Result>("sp_RetornaDesgloseFactura", nombreCompletoParameter, cedulaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaDesgloseFactura_IDFactura_Result> sp_RetornaDesgloseFactura_IDFactura(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("idFactura", idFactura) :
+                new ObjectParameter("idFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDesgloseFactura_IDFactura_Result>("sp_RetornaDesgloseFactura_IDFactura", idFacturaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaEncFactura_ID_Result> sp_RetornaEncFactura_ID(Nullable<int> idEfactura)
+        {
+            var idEfacturaParameter = idEfactura.HasValue ?
+                new ObjectParameter("idEfactura", idEfactura) :
+                new ObjectParameter("idEfactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_ID_Result>("sp_RetornaEncFactura_ID", idEfacturaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaEncFactura_Result> sp_RetornaEncFactura(string estadoFactura)
+        {
+            var estadoFacturaParameter = estadoFactura != null ?
+                new ObjectParameter("estadoFactura", estadoFactura) :
+                new ObjectParameter("estadoFactura", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_Result>("sp_RetornaEncFactura", estadoFacturaParameter);
         }
     }
 }

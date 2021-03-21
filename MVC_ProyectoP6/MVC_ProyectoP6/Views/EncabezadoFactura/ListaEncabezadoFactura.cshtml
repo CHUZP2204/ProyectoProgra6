@@ -20,7 +20,7 @@
                 <th>Fecha</th>
                 <th>Monto Total</th>
                 <th>Estado</th>
-                <th>Detalle#</th>
+                
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -53,7 +53,7 @@
                         <td>@posicionModelo.Fecha.ToShortDateString()</td>
                         <td>@posicionModelo.MontoTotalServicios</td>
                         <td>@posicionModelo.EstadoFactura</td>
-                        <td>@posicionModelo.idDetalleFac</td>
+                        
                         <td>
                             <a href="~/EncabezadoFactura/ModificaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
                             <a href="~/EncabezadoFactura/EliminaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>

@@ -9,9 +9,14 @@ namespace MVC_ProyectoP6.Controllers
 {
     public class MarcaVehiculoController : Controller
     {
+        // Modelo BD Conexion
         progra6Entities3 modeloBD = new progra6Entities3();
 
-        // GET: MarcaVehiculo
+        /// <summary>
+        /// Metodo Que Retorna La Vista Con Los
+        /// Datos Lista De Marcas De Vehiculos
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ListaMarcaVehiculos()
         {
             ///Variable De Sesion De Usuario Actual
@@ -28,21 +33,24 @@ namespace MVC_ProyectoP6.Controllers
             //enciar el modelo a la vista
             return View(modeloVista);
         }
-    
 
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para
+        /// Agregar Una Nueva Marca
+        /// </summary>
+        /// <returns></returns>
         public ActionResult NuevaMarcaVehiculo()
         {
             this.AgregarPaisesViewBag();
             return View();
         }
 
-        void AgregarPaisesViewBag()
-        {
-            this.ViewBag.ListaPaises =
-                 this.modeloBD.sp_RetornaPaisFabricante(null,null).ToList();
-        }
-
-
+        /// <summary>
+        /// Metodo Que Almacena Los Datos
+        /// Ingresados En La Vista En La BD
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult NuevaMarcaVehiculo(sp_RetornaMarcaVehiculo_Result modeloVista)
         {
@@ -94,7 +102,7 @@ namespace MVC_ProyectoP6.Controllers
                 {
                     cantidadRegistrosAfectados = 0;
                 }
-                
+
             }
             catch (Exception error)
             {
@@ -117,14 +125,27 @@ namespace MVC_ProyectoP6.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para 
+        /// Modificar Los Datos De Una Marca
+        /// Por Medio De Un ID
+        /// </summary>
+        /// <param name="idMarcaVehiculo"></param>
+        /// <returns></returns>
         public ActionResult ModificaMarcaVehiculo(int idMarcaVehiculo)
         {
-             sp_RetornaMarcasVehiculo_ID_Result modeloVista = new sp_RetornaMarcasVehiculo_ID_Result();
+            sp_RetornaMarcasVehiculo_ID_Result modeloVista = new sp_RetornaMarcasVehiculo_ID_Result();
             modeloVista = this.modeloBD.sp_RetornaMarcasVehiculo_ID(idMarcaVehiculo).FirstOrDefault();
             this.AgregarPaisesViewBag();
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Almacena Los Datos 
+        /// Ingresados En La Vista En La BD
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ModificaMarcaVehiculo(sp_RetornaMarcasVehiculo_ID_Result modeloVista)
         {
@@ -133,16 +154,16 @@ namespace MVC_ProyectoP6.Controllers
 
             try
             {
-                
-                    cantidadRegistrosAfectados =
-                     this.modeloBD.sp_ModificaMarcaVehiculo(
-                         modeloVista.idMarcaVehiculo,
-                         modeloVista.CodigoMarcaVehiculo,
-                         modeloVista.TipoMarcaVehiculo,
-                         modeloVista.idPaisFabricante
-                         );
-                
-               
+
+                cantidadRegistrosAfectados =
+                 this.modeloBD.sp_ModificaMarcaVehiculo(
+                     modeloVista.idMarcaVehiculo,
+                     modeloVista.CodigoMarcaVehiculo,
+                     modeloVista.TipoMarcaVehiculo,
+                     modeloVista.idPaisFabricante
+                     );
+
+
             }
             catch (Exception error)
             {
@@ -165,6 +186,13 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Retorna La Vista 
+        /// Para Eliminar Datos De Una
+        /// Marca Vehiculo
+        /// </summary>
+        /// <param name="idMarcaVehiculo"></param>
+        /// <returns></returns>
         public ActionResult EliminaMarcaVehiculo(int idMarcaVehiculo)
         {
             sp_RetornaMarcasVehiculo_ID_Result modeloVista = new sp_RetornaMarcasVehiculo_ID_Result();
@@ -173,6 +201,13 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Borra De La BD 
+        /// Los Datos De La Vista Por El
+        /// Id Obtenido De La Misma
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EliminaMarcaVehiculo(sp_RetornaMarcasVehiculo_ID_Result modeloVista)
         {
@@ -207,6 +242,16 @@ namespace MVC_ProyectoP6.Controllers
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
             this.AgregarPaisesViewBag();
             return View(modeloVista);
+        }
+
+        /// <summary>
+        /// ViewBag Con Los Datos De
+        /// Lista De Paises Disponibles
+        /// </summary>
+        void AgregarPaisesViewBag()
+        {
+            this.ViewBag.ListaPaises =
+                 this.modeloBD.sp_RetornaPaisFabricante(null, null).ToList();
         }
     }
 }

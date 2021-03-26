@@ -67,12 +67,19 @@ namespace MVC_ProyectoP6.Controllers
             });
         }
 
-        //METODO QUE VERIFICA EL USUARIO LOGUEADO
+        
+        /// <summary>
+        /// METODO QUE VERIFICA SI EL USUARIO
+        /// EXISTE EN LA BD 
+        /// ESTO PARA PODER INGRESAR AL SISTEMA
+        /// </summary>
+        /// <param name="pCorreo"></param>
+        /// <param name="pContrasenia"></param>
+        /// <returns></returns>
         private bool VerificarUsuario(string pCorreo, string pContrasenia)
         {
             List<sp_RetornaClientes_Result> listaClientes = new List<sp_RetornaClientes_Result>();
             listaClientes = this.ModeloBD.sp_RetornaClientes(null, null).ToList();
-
 
             bool UsuarioVerificado = false;
 
@@ -104,6 +111,10 @@ namespace MVC_ProyectoP6.Controllers
             string msj = "";
             int idUsuario = 0;
 
+            ///Del Usuario Que Inicio Sesion, Por Medio
+            ///De La variable De Sesion Obtener Los Datos.
+            /// Recorrer Lista De Usuario Obtenido Por ID
+            /// Obtener ID y El Nombre De Usuario
             for (int i = 0; i < modeloCliente.Count; i++)
             {
                 msj = modeloCliente[i].NombreCompleto;
@@ -116,6 +127,12 @@ namespace MVC_ProyectoP6.Controllers
                 usuarioActual = idUsuario
             });
         }
+
+        /// <summary>
+        /// Metodo Que Borra La Variable De Sesion 
+        /// Con Datos Del Usuario Actual Conectado 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CerrarSesionCliente()
         {
             int idUsuarioLogueado = Convert.ToInt32(this.Session["idClienteLoguedo"]);
@@ -133,6 +150,12 @@ namespace MVC_ProyectoP6.Controllers
                 resultado = msj
             });
         }
+
+        /// <summary>
+        /// Metodo Que Muestra La Pagina Principal 
+        /// Del Proyecto Con Los Debidos Accesos
+        /// </summary>
+        /// <returns></returns>
         public ActionResult PaginaPrincipal()
         {
 

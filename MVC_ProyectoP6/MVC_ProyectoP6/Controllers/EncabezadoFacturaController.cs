@@ -9,8 +9,10 @@ namespace MVC_ProyectoP6.Controllers
 {
     public class EncabezadoFacturaController : Controller
     {
+        // Modelo BD Conexion
         progra6Entities3 modeloBD = new progra6Entities3();
-        // GET: EncabezadoFactura
+
+        // GET: Lista Encabezado Factura
         public ActionResult ListaEncabezadoFactura()
         {
             ///crear la variable que contiene el registro obtenidos
@@ -28,6 +30,12 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Retorna Un Json Con Los Datos De Los
+        /// Vehiculos Por Usuario, Accedida Mediante Jquery
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
         public ActionResult RetornaUsersvehiculos(int idCliente)
         {
             List<sp_RetornaDesgloseClientesVeh_ID_Result> vehiculoPorUsuario = new List<sp_RetornaDesgloseClientesVeh_ID_Result>();
@@ -35,36 +43,11 @@ namespace MVC_ProyectoP6.Controllers
             return Json(vehiculoPorUsuario);
         }
 
-        void AgregarVehiculosViewBag()
-        {
-            this.ViewBag.ListaVehiculos =
-                 this.modeloBD.sp_RetornaVehiculo("", null, null).ToList();
-        }
-
-        void AgregarClientesViewBag()
-        {
-            this.ViewBag.ListaClientes =
-                 this.modeloBD.sp_RetornaClientes("", "").ToList();
-        }
-
-        void AgregarEstadoFacturaViewBag()
-        {
-            this.ViewBag.ListaEstadoFactura =
-                 this.modeloBD.sp_RetornaEncFactura("").ToList();
-        }
-
-        void AgregarDetalleViewBag()
-        {
-            this.ViewBag.ListaDetalles =
-                 this.modeloBD.sp_RetornaDetalleFac(null).ToList();
-        }
         /// <summary>
-        ///
+        /// Metodod Que Retorna Una Vista Para Crear Un
+        /// Nuevo Encabezado De Factura
         /// </summary>
-        void AgregTipoSOPViewBag()
-        {
-            this.ViewBag.ListaTipoSOP = this.modeloBD.sp_RetornaServicioOProducto(null, null).ToList();
-        }
+        /// <returns></returns>
         public ActionResult NuevoEncabezadoFactura()
         {
             this.AgregarClientesViewBag();
@@ -77,6 +60,12 @@ namespace MVC_ProyectoP6.Controllers
 
         }
 
+        /// <summary>
+        /// Metodo Que Almacena Los Datos Ingresados En La Vista 
+        /// En La BD
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult NuevoEncabezadoFactura(sp_RetornaEncFactura_Result modeloVista)
         {
@@ -118,6 +107,13 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para Modificar
+        /// Los Datos De Un Encabezado De Factura
+        /// Accedido Por ID Encabezado
+        /// </summary>
+        /// <param name="idEncabezadoFac"></param>
+        /// <returns></returns>
         public ActionResult ModificaEncabezadoFactura(int idEncabezadoFac)
         {
             sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
@@ -131,6 +127,12 @@ namespace MVC_ProyectoP6.Controllers
 
         }
 
+        /// <summary>
+        /// Metodo Que Almacena Los Datos Ingresados En La Vista
+        /// En La BD
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ModificaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
         {
@@ -175,8 +177,13 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
 
         }
-    
 
+        /// <summary>
+        /// Metodo Que Muestra La Vista Para 
+        /// Eliminar Un Encabezado Por Id
+        /// </summary>
+        /// <param name="idEncabezadoFac"></param>
+        /// <returns></returns>
         public ActionResult EliminaEncabezadoFactura(int idEncabezadoFac)
         {
             ///obtener el registro que se desea modificar
@@ -194,6 +201,14 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Elimina Un Encabezado Por ID
+        /// Obtenido Desde La Vista
+        /// OJO ---> Primero Eliminar Detalles Enlazados 
+        /// A La Factura
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EliminaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
         {
@@ -234,5 +249,53 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// ViewBag Lista De Vehiculos
+        /// Muestra Los Datos Del Vehiculo
+        /// </summary>
+        void AgregarVehiculosViewBag()
+        {
+            this.ViewBag.ListaVehiculos =
+                 this.modeloBD.sp_RetornaVehiculo("", null, null).ToList();
+        }
+
+        /// <summary>
+        /// ViewBag Lista De Clientes
+        /// Muestra Los Datos Del Usuario
+        /// </summary>
+        void AgregarClientesViewBag()
+        {
+            this.ViewBag.ListaClientes =
+                 this.modeloBD.sp_RetornaClientes("", "").ToList();
+        }
+
+        /// <summary>
+        /// ViewBag Lista De Encabezado Factura
+        /// Muestra Los Datos Del Encabezado Factura
+        /// </summary>
+        void AgregarEstadoFacturaViewBag()
+        {
+            this.ViewBag.ListaEstadoFactura =
+                 this.modeloBD.sp_RetornaEncFactura("").ToList();
+        }
+
+        /// <summary>
+        /// ViewBag Lista Detalle Factura
+        /// Muestra Los Datos Del Detalle Factura
+        /// </summary>
+        void AgregarDetalleViewBag()
+        {
+            this.ViewBag.ListaDetalles =
+                 this.modeloBD.sp_RetornaDetalleFac(null).ToList();
+        }
+
+        /// <summary>
+        /// ViewBag Lista De Servicios y productos
+        /// Muestra Los Datos Del Servicio Producto
+        /// </summary>
+        void AgregTipoSOPViewBag()
+        {
+            this.ViewBag.ListaTipoSOP = this.modeloBD.sp_RetornaServicioOProducto(null, null).ToList();
+        }
     }
 }

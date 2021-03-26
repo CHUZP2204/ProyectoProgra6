@@ -10,9 +10,16 @@ namespace MVC_ProyectoP6.Controllers
 
     public class PaisFabricacionController : Controller
     {
+        //Modelo BD Conexion
         progra6Entities3 modeloBD = new progra6Entities3();
 
 
+        /// <summary>
+        /// Metodo Que Retorna La Vista
+        /// Con Los Datos De Paises
+        /// Disponibles 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ListaPaisFabricante()
         {
             ///crear la variable que contiene el registro obtenidos
@@ -27,25 +34,36 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        //Nulo Sin USo
         [HttpPost]
         public ActionResult ListaPaisFabricante(sp_RetornaPaisFabricante_Result modeloVista)
         {
             return View(modeloVista);
         }
 
-        // GET: Registro PaisFabricacion
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para 
+        /// Agregar Un Nuevo Pais Fabricante
+        /// </summary>
+        /// <returns></returns>
         public ActionResult NuevoPaisFabricante()
         {
             return View();
         }
 
+        /// <summary>
+        /// Metodo Que Almacena Los Datos Ingresados
+        /// En La Vista En La BD
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult NuevoPaisFabricante(sp_RetornaPaisFabricante_Result modeloVista)
         {
             List<sp_RetornaPaisFabricante_Result> modeloVista1 = new List<sp_RetornaPaisFabricante_Result>();
 
             ///Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
-            modeloVista1 = this.modeloBD.sp_RetornaPaisFabricante(modeloVista.CodigoPaisFabricante,"").ToList();
+            modeloVista1 = this.modeloBD.sp_RetornaPaisFabricante(modeloVista.CodigoPaisFabricante, "").ToList();
 
             ///Variable Que Registra La Cantidad De Registros Afectados
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
@@ -53,7 +71,7 @@ namespace MVC_ProyectoP6.Controllers
 
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
-            
+
 
             /// try Instrucciones que se intenta Realizar
             /// Catch Administra las exepciones o errores
@@ -111,6 +129,14 @@ namespace MVC_ProyectoP6.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para
+        /// Modificar Datos De Un Pais Fabricante
+        /// Por Medio De Un ID
+        /// </summary>
+        /// <param name="idPaisFabricante"></param>
+        /// <returns></returns>
         public ActionResult ModificaPaisFabricante(int idPaisFabricante)
         {    ///obtener el registro que se desea modificar
              /// utilizando el parametro del metodo idPaisFabricante
@@ -120,24 +146,31 @@ namespace MVC_ProyectoP6.Controllers
             //enviar modelo a la vista
             return View(modeloVista);
         }
+
+        /// <summary>
+        /// Metodo Que Almacena Los Datos Ingresados 
+        /// En La Vista En La BD 
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ModificaPaisFabricante(sp_RetornaPaisFabricante_ID_Result modeloVista)
         {
-           
+
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
 
             try
-            { 
-                    cantidadRegistrosAfectados =
-                           this.modeloBD.sp_ModificaPaisFabricante(
-                               modeloVista.idPaisFabricante,
-                               modeloVista.CodigoPaisFabricante,
-                                modeloVista.PaisFabricante
-                               );
-                }
+            {
+                cantidadRegistrosAfectados =
+                       this.modeloBD.sp_ModificaPaisFabricante(
+                           modeloVista.idPaisFabricante,
+                           modeloVista.CodigoPaisFabricante,
+                            modeloVista.PaisFabricante
+                           );
+            }
 
-            
+
             catch (Exception error)
             {
                 resultado = "Ocurrio un Error" + error.Message;
@@ -158,6 +191,12 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para 
+        /// Eliminar Un Dato De Pais Fabricante
+        /// </summary>
+        /// <param name="idPaisFabricante"></param>
+        /// <returns></returns>
         public ActionResult EliminaPaisFabricante(int idPaisFabricante)
         {
             ///obtener el registro que se desea modificar
@@ -169,6 +208,12 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        /// <summary>
+        /// Metodo Que Elimina EL Dato Seleccionado 
+        /// Desde La Vista, En La BD
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EliminaPaisFabricante(sp_RetornaPaisFabricante_ID_Result modeloVista)
         {

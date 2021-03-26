@@ -8,9 +8,10 @@ $(function () {
 function disable() {
     //$("#btncerrarSesion").attr("disabled", "disabled");
 
-
-
     var pathname = window.location.pathname;
+    if (pathname === '/') {
+        $('#btncerrarSesion').hide();
+    }
 
     if (pathname === '/Home/Index') {
         $('#btncerrarSesion').hide();

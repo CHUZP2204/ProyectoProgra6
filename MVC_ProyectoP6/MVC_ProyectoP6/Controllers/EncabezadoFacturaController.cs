@@ -23,6 +23,7 @@ namespace MVC_ProyectoP6.Controllers
 
             this.AgregarClientesViewBag();
             this.AgregarVehiculosViewBag();
+            this.AgregarDetalleViewBag();
             //enciar el modelo a la vista
             return View(modeloVista);
         }
@@ -194,7 +195,7 @@ namespace MVC_ProyectoP6.Controllers
         }
 
         [HttpPost]
-        public ActionResult EliminaPaisFabricante(sp_RetornaEncFactura_ID_Result modeloVista)
+        public ActionResult EliminaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
         {
             ///varable que registra la cantidad de registro afectados
             ///si un SP que se ejecute Insert,UPDATE,DELETE

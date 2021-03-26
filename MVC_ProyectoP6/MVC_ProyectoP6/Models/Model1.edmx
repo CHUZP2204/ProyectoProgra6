@@ -40,19 +40,10 @@
             <PropertyRef Name="idDetalleFac" />
           </Key>
           <Property Name="idDetalleFac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEncabezadoFact" Type="int" Nullable="false" />
           <Property Name="CantidadSOP" Type="int" Nullable="false" />
           <Property Name="PrecioSOP" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="idSOP" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'progra6.dbo.DetallesXEncaFac' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="DetallesXEncaFac">
-          <Key>
-            <PropertyRef Name="idEncabezadoFac" />
-            <PropertyRef Name="idDetalleFact" />
-          </Key>
-          <Property Name="idEncabezadoFac" Type="int" Nullable="false" />
-          <Property Name="idDetalleFact" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Distrito">
           <Key>
@@ -209,54 +200,54 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_DesgloseClientesVehiculo' n
           <Property Name="idPaisFabricante" Type="int" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'progra6.dbo.View_GeneraFactura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="View_GeneraFactura">
+advertencia 6002: La tabla o vista 'progra6.dbo.View_GenerarFactura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="View_GenerarFactura">
           <Key>
-            <PropertyRef Name="FacturaNumero" />
-            <PropertyRef Name="DetalleNumero" />
-            <PropertyRef Name="IDCliente" />
-            <PropertyRef Name="Cedula" />
-            <PropertyRef Name="NombreCompleto" />
-            <PropertyRef Name="Correo" />
-            <PropertyRef Name="Fecha" />
-            <PropertyRef Name="MontoFinal" />
-            <PropertyRef Name="EstadoFactura" />
-            <PropertyRef Name="Cantidad" />
-            <PropertyRef Name="PrecioXcant" />
-            <PropertyRef Name="IDProducto" />
-            <PropertyRef Name="CodigoProducto" />
-            <PropertyRef Name="PrecioUnitario" />
-            <PropertyRef Name="TipoSOP" />
-            <PropertyRef Name="Placa" />
-            <PropertyRef Name="Marca" />
-            <PropertyRef Name="Tipo" />
+            <PropertyRef Name="idEncabezadoFact" />
+            <PropertyRef Name="idDetalleFac" />
+            <PropertyRef Name="idSOP" />
+            <PropertyRef Name="idCliente" />
             <PropertyRef Name="idVehiculo" />
-            <PropertyRef Name="idMarcaVehiculo" />
-            <PropertyRef Name="idTipoVehiculo" />
+            <PropertyRef Name="NombreCompleto" />
+            <PropertyRef Name="Cedula" />
+            <PropertyRef Name="Correo" />
             <PropertyRef Name="TipoUsuario" />
+            <PropertyRef Name="PlacaVehiculo" />
+            <PropertyRef Name="TipoVehiculo" />
+            <PropertyRef Name="TipoMarcaVehiculo" />
+            <PropertyRef Name="CodigoTipoVehiculo" />
+            <PropertyRef Name="CodigoMarcaVehiculo" />
+            <PropertyRef Name="EstadoFactura" />
+            <PropertyRef Name="CodigoSOP" />
+            <PropertyRef Name="PrecioUnitario" />
+            <PropertyRef Name="ProductoServicio" />
+            <PropertyRef Name="CantidadAdquirida" />
+            <PropertyRef Name="PrecioXunidad" />
+            <PropertyRef Name="MontoFinal" />
+            <PropertyRef Name="Fecha" />
           </Key>
-          <Property Name="FacturaNumero" Type="int" Nullable="false" />
-          <Property Name="DetalleNumero" Type="int" Nullable="false" />
-          <Property Name="IDCliente" Type="int" Nullable="false" />
-          <Property Name="Cedula" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="NombreCompleto" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Correo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="MontoFinal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="EstadoFactura" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Cantidad" Type="int" Nullable="false" />
-          <Property Name="PrecioXcant" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IDProducto" Type="int" Nullable="false" />
-          <Property Name="CodigoProducto" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PrecioUnitario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="TipoSOP" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Placa" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Tipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idEncabezadoFact" Type="int" Nullable="false" />
+          <Property Name="idDetalleFac" Type="int" Nullable="false" />
+          <Property Name="idSOP" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="idVehiculo" Type="int" Nullable="false" />
-          <Property Name="idMarcaVehiculo" Type="int" Nullable="false" />
-          <Property Name="idTipoVehiculo" Type="int" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cedula" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TipoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PlacaVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoMarcaVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodigoTipoVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodigoMarcaVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EstadoFactura" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodigoSOP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductoServicio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CantidadAdquirida" Type="int" Nullable="false" />
+          <Property Name="PrecioXunidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MontoFinal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
         </EntityType>
         <Association Name="Canton_ref_Provincia">
           <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
@@ -294,6 +285,18 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_GeneraFactura' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DetalleFactura_EncabezadoFactura">
+          <End Role="EncabezadoFactura" Type="Self.EncabezadoFactura" Multiplicity="1" />
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EncabezadoFactura">
+              <PropertyRef Name="idEncabezadoFac" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="idEncabezadoFact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DetalleFactura_ServiciosOProductos">
           <End Role="ServiciosOProductos" Type="Self.ServiciosOProductos" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
@@ -303,30 +306,6 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_GeneraFactura' no tiene def
             </Principal>
             <Dependent Role="DetalleFactura">
               <PropertyRef Name="idSOP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DetallesXEncaFac_DetalleFactura">
-          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="1" />
-          <End Role="DetallesXEncaFac" Type="Self.DetallesXEncaFac" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DetalleFactura">
-              <PropertyRef Name="idDetalleFac" />
-            </Principal>
-            <Dependent Role="DetallesXEncaFac">
-              <PropertyRef Name="idDetalleFact" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DetallesXEncaFac_EncabezadoFactura">
-          <End Role="EncabezadoFactura" Type="Self.EncabezadoFactura" Multiplicity="1" />
-          <End Role="DetallesXEncaFac" Type="Self.DetallesXEncaFac" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EncabezadoFactura">
-              <PropertyRef Name="idEncabezadoFac" />
-            </Principal>
-            <Dependent Role="DetallesXEncaFac">
-              <PropertyRef Name="idEncabezadoFac" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -449,6 +428,7 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_GeneraFactura' no tiene def
           <Parameter Name="idSOP" Type="int" Mode="In" />
           <Parameter Name="CantidadSOP" Type="int" Mode="In" />
           <Parameter Name="PrecioSOP" Type="int" Mode="In" />
+          <Parameter Name="idEncabFac" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_InsertaEncFactura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCliente" Type="int" Mode="In" />
@@ -502,6 +482,7 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_GeneraFactura' no tiene def
         </Function>
         <Function Name="sp_ModificaDetalleFactura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idDetalleFactura" Type="int" Mode="In" />
+          <Parameter Name="idEncaFac" Type="int" Mode="In" />
           <Parameter Name="idSOP" Type="int" Mode="In" />
           <Parameter Name="CantidadSOP" Type="int" Mode="In" />
           <Parameter Name="PrecioSOP" Type="int" Mode="In" />
@@ -577,6 +558,9 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_GeneraFactura' no tiene def
         </Function>
         <Function Name="sp_RetornaDetalleFac_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idDetalleFac" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_RetornaDetalleFacXenca_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEncabezado" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_RetornaDistritos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -654,12 +638,6 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_GeneraFactura' no tiene def
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoVehiculos" EntityType="Self.TipoVehiculos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DetallesXEncaFac" EntityType="Self.DetallesXEncaFac" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[DetallesXEncaFac].[idEncabezadoFac] AS [idEncabezadoFac], 
-[DetallesXEncaFac].[idDetalleFact] AS [idDetalleFact]
-FROM [dbo].[DetallesXEncaFac] AS [DetallesXEncaFac]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="VehiculosXCliente" EntityType="Self.VehiculosXCliente" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [VehiculosXCliente].[idVehiculoXCliente] AS [idVehiculoXCliente], 
@@ -693,31 +671,31 @@ FROM [dbo].[VehiculosXCliente] AS [VehiculosXCliente]</DefiningQuery>
 [View_DesgloseClientesVehiculo].[idPaisFabricante] AS [idPaisFabricante]
 FROM [dbo].[View_DesgloseClientesVehiculo] AS [View_DesgloseClientesVehiculo]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="View_GeneraFactura" EntityType="Self.View_GeneraFactura" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="View_GenerarFactura" EntityType="Self.View_GenerarFactura" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-[View_GeneraFactura].[FacturaNumero] AS [FacturaNumero], 
-[View_GeneraFactura].[DetalleNumero] AS [DetalleNumero], 
-[View_GeneraFactura].[IDCliente] AS [IDCliente], 
-[View_GeneraFactura].[Cedula] AS [Cedula], 
-[View_GeneraFactura].[NombreCompleto] AS [NombreCompleto], 
-[View_GeneraFactura].[Correo] AS [Correo], 
-[View_GeneraFactura].[Fecha] AS [Fecha], 
-[View_GeneraFactura].[MontoFinal] AS [MontoFinal], 
-[View_GeneraFactura].[EstadoFactura] AS [EstadoFactura], 
-[View_GeneraFactura].[Cantidad] AS [Cantidad], 
-[View_GeneraFactura].[PrecioXcant] AS [PrecioXcant], 
-[View_GeneraFactura].[IDProducto] AS [IDProducto], 
-[View_GeneraFactura].[CodigoProducto] AS [CodigoProducto], 
-[View_GeneraFactura].[PrecioUnitario] AS [PrecioUnitario], 
-[View_GeneraFactura].[TipoSOP] AS [TipoSOP], 
-[View_GeneraFactura].[Placa] AS [Placa], 
-[View_GeneraFactura].[Marca] AS [Marca], 
-[View_GeneraFactura].[Tipo] AS [Tipo], 
-[View_GeneraFactura].[idVehiculo] AS [idVehiculo], 
-[View_GeneraFactura].[idMarcaVehiculo] AS [idMarcaVehiculo], 
-[View_GeneraFactura].[idTipoVehiculo] AS [idTipoVehiculo], 
-[View_GeneraFactura].[TipoUsuario] AS [TipoUsuario]
-FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
+[View_GenerarFactura].[idEncabezadoFact] AS [idEncabezadoFact], 
+[View_GenerarFactura].[idDetalleFac] AS [idDetalleFac], 
+[View_GenerarFactura].[idSOP] AS [idSOP], 
+[View_GenerarFactura].[idCliente] AS [idCliente], 
+[View_GenerarFactura].[idVehiculo] AS [idVehiculo], 
+[View_GenerarFactura].[NombreCompleto] AS [NombreCompleto], 
+[View_GenerarFactura].[Cedula] AS [Cedula], 
+[View_GenerarFactura].[Correo] AS [Correo], 
+[View_GenerarFactura].[TipoUsuario] AS [TipoUsuario], 
+[View_GenerarFactura].[PlacaVehiculo] AS [PlacaVehiculo], 
+[View_GenerarFactura].[TipoVehiculo] AS [TipoVehiculo], 
+[View_GenerarFactura].[TipoMarcaVehiculo] AS [TipoMarcaVehiculo], 
+[View_GenerarFactura].[CodigoTipoVehiculo] AS [CodigoTipoVehiculo], 
+[View_GenerarFactura].[CodigoMarcaVehiculo] AS [CodigoMarcaVehiculo], 
+[View_GenerarFactura].[EstadoFactura] AS [EstadoFactura], 
+[View_GenerarFactura].[CodigoSOP] AS [CodigoSOP], 
+[View_GenerarFactura].[PrecioUnitario] AS [PrecioUnitario], 
+[View_GenerarFactura].[ProductoServicio] AS [ProductoServicio], 
+[View_GenerarFactura].[CantidadAdquirida] AS [CantidadAdquirida], 
+[View_GenerarFactura].[PrecioXunidad] AS [PrecioXunidad], 
+[View_GenerarFactura].[MontoFinal] AS [MontoFinal], 
+[View_GenerarFactura].[Fecha] AS [Fecha]
+FROM [dbo].[View_GenerarFactura] AS [View_GenerarFactura]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="Canton_ref_Provincia" Association="Self.Canton_ref_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
@@ -731,17 +709,13 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+          <AssociationSet Name="FK_DetalleFactura_EncabezadoFactura" Association="Self.FK_DetalleFactura_EncabezadoFactura">
+            <End Role="EncabezadoFactura" EntitySet="EncabezadoFactura" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
           <AssociationSet Name="FK_DetalleFactura_ServiciosOProductos" Association="Self.FK_DetalleFactura_ServiciosOProductos">
             <End Role="ServiciosOProductos" EntitySet="ServiciosOProductos" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DetallesXEncaFac_DetalleFactura" Association="Self.FK_DetallesXEncaFac_DetalleFactura">
-            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
-            <End Role="DetallesXEncaFac" EntitySet="DetallesXEncaFac" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DetallesXEncaFac_EncabezadoFactura" Association="Self.FK_DetallesXEncaFac_EncabezadoFactura">
-            <End Role="EncabezadoFactura" EntitySet="EncabezadoFactura" />
-            <End Role="DetallesXEncaFac" EntitySet="DetallesXEncaFac" />
           </AssociationSet>
           <AssociationSet Name="FK_EncabezadoFactura_Clientes" Association="Self.FK_EncabezadoFactura_Clientes">
             <End Role="Clientes" EntitySet="Clientes" />
@@ -1169,29 +1143,7 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <FunctionImport Name="sp_RetornaMarcasVehiculo_ID" ReturnType="Collection(progra6Model.sp_RetornaMarcasVehiculo_ID_Result)">
           <Parameter Name="idMarcaVehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="DetalleFactura" EntityType="progra6Model.DetalleFactura" />
-          <FunctionImport Name="sp_InsertaDetalleFactura">
-            <Parameter Name="idSOP" Mode="In" Type="Int32" />
-            <Parameter Name="CantidadSOP" Mode="In" Type="Int32" />
-            <Parameter Name="PrecioSOP" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ModificaDetalleFactura">
-            <Parameter Name="idDetalleFactura" Mode="In" Type="Int32" />
-            <Parameter Name="idSOP" Mode="In" Type="Int32" />
-            <Parameter Name="CantidadSOP" Mode="In" Type="Int32" />
-            <Parameter Name="PrecioSOP" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_RetornaDetalleFac" ReturnType="Collection(progra6Model.sp_RetornaDetalleFac_Result)">
-          <Parameter Name="idSOP" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_RetornaDetalleFac_ID" ReturnType="Collection(progra6Model.sp_RetornaDetalleFac_ID_Result)">
-          <Parameter Name="idDetalleFac" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="ServiciosOProductos" EntityType="progra6Model.ServiciosOProductos" />
-          <AssociationSet Name="FK_DetalleFactura_ServiciosOProductos" Association="progra6Model.FK_DetalleFactura_ServiciosOProductos">
-            <End Role="ServiciosOProductos" EntitySet="ServiciosOProductos" />
-            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
-          </AssociationSet>
           <FunctionImport Name="sp_InsertaServicioOProducto">
             <Parameter Name="CodigoSOP" Mode="In" Type="String" />
             <Parameter Name="PrecioSOP" Mode="In" Type="String" />
@@ -1210,7 +1162,6 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <FunctionImport Name="sp_RetornaServiciosOProductos_ID" ReturnType="Collection(progra6Model.sp_RetornaServiciosOProductos_ID_Result)">
           <Parameter Name="idSOP" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="View_DesgloseClientesVehiculo" EntityType="progra6Model.View_DesgloseClientesVehiculo" />
           <FunctionImport Name="sp_RetornaDesgloseClientesVeh" ReturnType="Collection(progra6Model.sp_RetornaDesgloseClientesVeh_Result)">
             <Parameter Name="NombreCompleto" Mode="In" Type="String" />
             <Parameter Name="Cedula" Mode="In" Type="String" />
@@ -1219,13 +1170,8 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="EncabezadoFactura" EntityType="progra6Model.EncabezadoFactura" />
-          <EntitySet Name="View_GeneraFactura" EntityType="progra6Model.View_GeneraFactura" />
           <AssociationSet Name="FK_EncabezadoFactura_Clientes" Association="progra6Model.FK_EncabezadoFactura_Clientes">
             <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="EncabezadoFactura" EntitySet="EncabezadoFactura" />
-          </AssociationSet>
-          <AssociationSet Name="DetallesXEncaFac" Association="progra6Model.DetallesXEncaFac">
-            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
             <End Role="EncabezadoFactura" EntitySet="EncabezadoFactura" />
           </AssociationSet>
           <FunctionImport Name="sp_InsertaEncFactura">
@@ -1243,6 +1189,36 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
             <Parameter Name="MontoTotalServicios" Mode="In" Type="Decimal" />
             <Parameter Name="EstadoFactura" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_RetornaEncFactura_ID" ReturnType="Collection(progra6Model.sp_RetornaEncFactura_ID_Result)">
+          <Parameter Name="idEfactura" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaEncFactura" ReturnType="Collection(progra6Model.sp_RetornaEncFactura_Result)">
+          <Parameter Name="estadoFactura" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="DetalleFactura" EntityType="progra6Model.DetalleFactura" />
+          <EntitySet Name="View_DesgloseClientesVehiculo" EntityType="progra6Model.View_DesgloseClientesVehiculo" />
+          <EntitySet Name="View_GenerarFactura" EntityType="progra6Model.View_GenerarFactura" />
+          <AssociationSet Name="FK_DetalleFactura_EncabezadoFactura" Association="progra6Model.FK_DetalleFactura_EncabezadoFactura">
+            <End Role="EncabezadoFactura" EntitySet="EncabezadoFactura" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleFactura_ServiciosOProductos" Association="progra6Model.FK_DetalleFactura_ServiciosOProductos">
+            <End Role="ServiciosOProductos" EntitySet="ServiciosOProductos" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <FunctionImport Name="sp_InsertaDetalleFactura">
+            <Parameter Name="idSOP" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadSOP" Mode="In" Type="Int32" />
+            <Parameter Name="PrecioSOP" Mode="In" Type="Int32" />
+            <Parameter Name="idEncabFac" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ModificaDetalleFactura">
+            <Parameter Name="idDetalleFactura" Mode="In" Type="Int32" />
+            <Parameter Name="idEncaFac" Mode="In" Type="Int32" />
+            <Parameter Name="idSOP" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadSOP" Mode="In" Type="Int32" />
+            <Parameter Name="PrecioSOP" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_RetornaDesgloseFactura" ReturnType="Collection(progra6Model.sp_RetornaDesgloseFactura_Result)">
             <Parameter Name="NombreCompleto" Mode="In" Type="String" />
             <Parameter Name="Cedula" Mode="In" Type="String" />
@@ -1250,11 +1226,14 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <FunctionImport Name="sp_RetornaDesgloseFactura_IDFactura" ReturnType="Collection(progra6Model.sp_RetornaDesgloseFactura_IDFactura_Result)">
           <Parameter Name="idFactura" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaEncFactura_ID" ReturnType="Collection(progra6Model.sp_RetornaEncFactura_ID_Result)">
-          <Parameter Name="idEfactura" Mode="In" Type="Int32" />
+          <FunctionImport Name="sp_RetornaDetalleFac" ReturnType="Collection(progra6Model.sp_RetornaDetalleFac_Result)">
+          <Parameter Name="idSOP" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaEncFactura" ReturnType="Collection(progra6Model.sp_RetornaEncFactura_Result)">
-            <Parameter Name="estadoFactura" Mode="In" Type="String" />
+          <FunctionImport Name="sp_RetornaDetalleFac_ID" ReturnType="Collection(progra6Model.sp_RetornaDetalleFac_ID_Result)">
+          <Parameter Name="idDetalleFac" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaDetalleFacXenca_ID" ReturnType="Collection(progra6Model.sp_RetornaDetalleFacXenca_ID_Result)">
+            <Parameter Name="idEncabezado" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetornaCantones_Result">
@@ -1431,29 +1410,6 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <Property Type="String" Name="TipoMarcaVehiculo" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="idPaisFabricante" Nullable="false" />
         </ComplexType>
-        <EntityType Name="DetalleFactura">
-          <Key>
-            <PropertyRef Name="idDetalleFac" />
-          </Key>
-          <Property Name="idDetalleFac" Type="Int32" Nullable="false" />
-          <Property Name="CantidadSOP" Type="Int32" Nullable="false" />
-          <Property Name="PrecioSOP" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="idSOP" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ServiciosOProductos" Relationship="progra6Model.FK_DetalleFactura_ServiciosOProductos" FromRole="DetalleFactura" ToRole="ServiciosOProductos" />
-          <NavigationProperty Name="EncabezadoFactura" Relationship="progra6Model.DetallesXEncaFac" FromRole="DetalleFactura" ToRole="EncabezadoFactura" />
-        </EntityType>
-        <ComplexType Name="sp_RetornaDetalleFac_Result">
-          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
-          <Property Type="Int32" Name="idSOP" Nullable="true" />
-          <Property Type="Int32" Name="CantidadSOP" Nullable="false" />
-          <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
-        </ComplexType>
-        <ComplexType Name="sp_RetornaDetalleFac_ID_Result">
-          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
-          <Property Type="Int32" Name="idSOP" Nullable="true" />
-          <Property Type="Int32" Name="CantidadSOP" Nullable="false" />
-          <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
-        </ComplexType>
         <EntityType Name="ServiciosOProductos">
           <Key>
             <PropertyRef Name="idSOP" />
@@ -1464,18 +1420,6 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <Property Name="TipoSOP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DetalleFactura" Relationship="progra6Model.FK_DetalleFactura_ServiciosOProductos" FromRole="ServiciosOProductos" ToRole="DetalleFactura" />
         </EntityType>
-        <Association Name="FK_DetalleFactura_ServiciosOProductos">
-          <End Type="progra6Model.ServiciosOProductos" Role="ServiciosOProductos" Multiplicity="1" />
-          <End Type="progra6Model.DetalleFactura" Role="DetalleFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ServiciosOProductos">
-              <PropertyRef Name="idSOP" />
-            </Principal>
-            <Dependent Role="DetalleFactura">
-              <PropertyRef Name="idSOP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="sp_RetornaServicioOProducto_Result">
           <Property Type="Int32" Name="idSOP" Nullable="false" />
           <Property Type="String" Name="CodigoSOP" Nullable="false" MaxLength="50" />
@@ -1488,54 +1432,6 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
           <Property Type="String" Name="TipoSOP" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <EntityType Name="View_DesgloseClientesVehiculo">
-          <Key>
-            <PropertyRef Name="idCliente" />
-            <PropertyRef Name="idVehiculo" />
-            <PropertyRef Name="NombreCompleto" />
-            <PropertyRef Name="PlacaVehiculo" />
-            <PropertyRef Name="NumeroPuertas" />
-            <PropertyRef Name="NumeroRuedas" />
-            <PropertyRef Name="TipoVehiculo" />
-            <PropertyRef Name="TipoMarcaVehiculo" />
-            <PropertyRef Name="PaisFabricante" />
-            <PropertyRef Name="CodigoPaisFabricante" />
-            <PropertyRef Name="CodigoMarcaVehiculo" />
-            <PropertyRef Name="CodigoTipoVehiculo" />
-            <PropertyRef Name="Cedula" />
-            <PropertyRef Name="Genero" />
-            <PropertyRef Name="TipoUsuario" />
-            <PropertyRef Name="Correo" />
-            <PropertyRef Name="idTipoVehiculo" />
-            <PropertyRef Name="idMarcaVehiculo" />
-            <PropertyRef Name="idProvincia" />
-            <PropertyRef Name="idCanton" />
-            <PropertyRef Name="idDistrito" />
-            <PropertyRef Name="idPaisFabricante" />
-          </Key>
-          <Property Name="idCliente" Type="Int32" Nullable="false" />
-          <Property Name="idVehiculo" Type="Int32" Nullable="false" />
-          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PlacaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NumeroPuertas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NumeroRuedas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TipoVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TipoMarcaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PaisFabricante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CodigoPaisFabricante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CodigoMarcaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CodigoTipoVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Genero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TipoUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idTipoVehiculo" Type="Int32" Nullable="false" />
-          <Property Name="idMarcaVehiculo" Type="Int32" Nullable="false" />
-          <Property Name="idProvincia" Type="Int32" Nullable="false" />
-          <Property Name="idCanton" Type="Int32" Nullable="false" />
-          <Property Name="idDistrito" Type="Int32" Nullable="false" />
-          <Property Name="idPaisFabricante" Type="Int32" Nullable="false" />
-        </EntityType>
         <ComplexType Name="sp_RetornaDesgloseClientesVeh_Result">
           <Property Type="Int32" Name="idCliente" Nullable="false" />
           <Property Type="Int32" Name="idVehiculo" Nullable="false" />
@@ -1595,55 +1491,7 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <Property Name="MontoTotalServicios" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="EstadoFactura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Clientes" Relationship="progra6Model.FK_EncabezadoFactura_Clientes" FromRole="EncabezadoFactura" ToRole="Clientes" />
-          <NavigationProperty Name="DetalleFactura" Relationship="progra6Model.DetallesXEncaFac" FromRole="EncabezadoFactura" ToRole="DetalleFactura" />
-        </EntityType>
-        <EntityType Name="View_GeneraFactura">
-          <Key>
-            <PropertyRef Name="FacturaNumero" />
-            <PropertyRef Name="DetalleNumero" />
-            <PropertyRef Name="IDCliente" />
-            <PropertyRef Name="Cedula" />
-            <PropertyRef Name="NombreCompleto" />
-            <PropertyRef Name="Correo" />
-            <PropertyRef Name="Fecha" />
-            <PropertyRef Name="MontoFinal" />
-            <PropertyRef Name="EstadoFactura" />
-            <PropertyRef Name="Cantidad" />
-            <PropertyRef Name="PrecioXcant" />
-            <PropertyRef Name="IDProducto" />
-            <PropertyRef Name="CodigoProducto" />
-            <PropertyRef Name="PrecioUnitario" />
-            <PropertyRef Name="TipoSOP" />
-            <PropertyRef Name="Placa" />
-            <PropertyRef Name="Marca" />
-            <PropertyRef Name="Tipo" />
-            <PropertyRef Name="idVehiculo" />
-            <PropertyRef Name="idMarcaVehiculo" />
-            <PropertyRef Name="idTipoVehiculo" />
-            <PropertyRef Name="TipoUsuario" />
-          </Key>
-          <Property Name="FacturaNumero" Type="Int32" Nullable="false" />
-          <Property Name="DetalleNumero" Type="Int32" Nullable="false" />
-          <Property Name="IDCliente" Type="Int32" Nullable="false" />
-          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="MontoFinal" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="EstadoFactura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <Property Name="PrecioXcant" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="IDProducto" Type="Int32" Nullable="false" />
-          <Property Name="CodigoProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="TipoSOP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Placa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idVehiculo" Type="Int32" Nullable="false" />
-          <Property Name="idMarcaVehiculo" Type="Int32" Nullable="false" />
-          <Property Name="idTipoVehiculo" Type="Int32" Nullable="false" />
-          <Property Name="TipoUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DetalleFactura" Relationship="progra6Model.FK_DetalleFactura_EncabezadoFactura" FromRole="EncabezadoFactura" ToRole="DetalleFactura" />
         </EntityType>
         <Association Name="FK_EncabezadoFactura_Clientes">
           <End Type="progra6Model.Clientes" Role="Clientes" Multiplicity="1" />
@@ -1657,58 +1505,6 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DetallesXEncaFac">
-          <End Type="progra6Model.DetalleFactura" Role="DetalleFactura" Multiplicity="*" />
-          <End Type="progra6Model.EncabezadoFactura" Role="EncabezadoFactura" Multiplicity="*" />
-        </Association>
-        <ComplexType Name="sp_RetornaDesgloseFactura_Result">
-          <Property Type="Int32" Name="FacturaNumero" Nullable="false" />
-          <Property Type="Int32" Name="DetalleNumero" Nullable="false" />
-          <Property Type="Int32" Name="IDCliente" Nullable="false" />
-          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Correo" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="Fecha" Nullable="false" />
-          <Property Type="Decimal" Name="MontoFinal" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="EstadoFactura" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Cantidad" Nullable="false" />
-          <Property Type="Decimal" Name="PrecioXcant" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="IDProducto" Nullable="false" />
-          <Property Type="String" Name="CodigoProducto" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="TipoSOP" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Placa" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Marca" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="idVehiculo" Nullable="false" />
-          <Property Type="Int32" Name="idMarcaVehiculo" Nullable="false" />
-          <Property Type="Int32" Name="idTipoVehiculo" Nullable="false" />
-          <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_RetornaDesgloseFactura_IDFactura_Result">
-          <Property Type="Int32" Name="FacturaNumero" Nullable="false" />
-          <Property Type="Int32" Name="DetalleNumero" Nullable="false" />
-          <Property Type="Int32" Name="IDCliente" Nullable="false" />
-          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Correo" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="Fecha" Nullable="false" />
-          <Property Type="Decimal" Name="MontoFinal" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="EstadoFactura" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Cantidad" Nullable="false" />
-          <Property Type="Decimal" Name="PrecioXcant" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="IDProducto" Nullable="false" />
-          <Property Type="String" Name="CodigoProducto" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="TipoSOP" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Placa" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Marca" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="idVehiculo" Nullable="false" />
-          <Property Type="Int32" Name="idMarcaVehiculo" Nullable="false" />
-          <Property Type="Int32" Name="idTipoVehiculo" Nullable="false" />
-          <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="sp_RetornaEncFactura_ID_Result">
           <Property Type="Int32" Name="idEncabezadoFac" Nullable="false" />
           <Property Type="Int32" Name="idCliente" Nullable="false" />
@@ -1724,6 +1520,207 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
           <Property Type="DateTime" Name="Fecha" Nullable="false" />
           <Property Type="Decimal" Name="MontoTotalServicios" Nullable="false" Precision="18" Scale="0" />
           <Property Type="String" Name="EstadoFactura" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="DetalleFactura">
+          <Key>
+            <PropertyRef Name="idDetalleFac" />
+          </Key>
+          <Property Name="idDetalleFac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEncabezadoFact" Type="Int32" Nullable="false" />
+          <Property Name="CantidadSOP" Type="Int32" Nullable="false" />
+          <Property Name="PrecioSOP" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="idSOP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EncabezadoFactura" Relationship="progra6Model.FK_DetalleFactura_EncabezadoFactura" FromRole="DetalleFactura" ToRole="EncabezadoFactura" />
+          <NavigationProperty Name="ServiciosOProductos" Relationship="progra6Model.FK_DetalleFactura_ServiciosOProductos" FromRole="DetalleFactura" ToRole="ServiciosOProductos" />
+        </EntityType>
+        <EntityType Name="View_DesgloseClientesVehiculo">
+          <Key>
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="idVehiculo" />
+            <PropertyRef Name="NombreCompleto" />
+            <PropertyRef Name="PlacaVehiculo" />
+            <PropertyRef Name="NumeroPuertas" />
+            <PropertyRef Name="NumeroRuedas" />
+            <PropertyRef Name="TipoVehiculo" />
+            <PropertyRef Name="TipoMarcaVehiculo" />
+            <PropertyRef Name="PaisFabricante" />
+            <PropertyRef Name="CodigoPaisFabricante" />
+            <PropertyRef Name="CodigoMarcaVehiculo" />
+            <PropertyRef Name="CodigoTipoVehiculo" />
+            <PropertyRef Name="Cedula" />
+            <PropertyRef Name="Genero" />
+            <PropertyRef Name="TipoUsuario" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="idTipoVehiculo" />
+            <PropertyRef Name="idMarcaVehiculo" />
+            <PropertyRef Name="idProvincia" />
+            <PropertyRef Name="idCanton" />
+            <PropertyRef Name="idDistrito" />
+            <PropertyRef Name="idPaisFabricante" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idVehiculo" Type="Int32" Nullable="false" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlacaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroPuertas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroRuedas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoMarcaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaisFabricante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPaisFabricante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoMarcaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoTipoVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Genero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoVehiculo" Type="Int32" Nullable="false" />
+          <Property Name="idMarcaVehiculo" Type="Int32" Nullable="false" />
+          <Property Name="idProvincia" Type="Int32" Nullable="false" />
+          <Property Name="idCanton" Type="Int32" Nullable="false" />
+          <Property Name="idDistrito" Type="Int32" Nullable="false" />
+          <Property Name="idPaisFabricante" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_GenerarFactura">
+          <Key>
+            <PropertyRef Name="idEncabezadoFact" />
+            <PropertyRef Name="idDetalleFac" />
+            <PropertyRef Name="idSOP" />
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="idVehiculo" />
+            <PropertyRef Name="NombreCompleto" />
+            <PropertyRef Name="Cedula" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="TipoUsuario" />
+            <PropertyRef Name="PlacaVehiculo" />
+            <PropertyRef Name="TipoVehiculo" />
+            <PropertyRef Name="TipoMarcaVehiculo" />
+            <PropertyRef Name="CodigoTipoVehiculo" />
+            <PropertyRef Name="CodigoMarcaVehiculo" />
+            <PropertyRef Name="EstadoFactura" />
+            <PropertyRef Name="CodigoSOP" />
+            <PropertyRef Name="PrecioUnitario" />
+            <PropertyRef Name="ProductoServicio" />
+            <PropertyRef Name="CantidadAdquirida" />
+            <PropertyRef Name="PrecioXunidad" />
+            <PropertyRef Name="MontoFinal" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="idEncabezadoFact" Type="Int32" Nullable="false" />
+          <Property Name="idDetalleFac" Type="Int32" Nullable="false" />
+          <Property Name="idSOP" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idVehiculo" Type="Int32" Nullable="false" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlacaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoMarcaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoTipoVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoMarcaVehiculo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoFactura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoSOP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ProductoServicio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadAdquirida" Type="Int32" Nullable="false" />
+          <Property Name="PrecioXunidad" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MontoFinal" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="FK_DetalleFactura_EncabezadoFactura">
+          <End Type="progra6Model.EncabezadoFactura" Role="EncabezadoFactura" Multiplicity="1" />
+          <End Type="progra6Model.DetalleFactura" Role="DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EncabezadoFactura">
+              <PropertyRef Name="idEncabezadoFac" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="idEncabezadoFact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleFactura_ServiciosOProductos">
+          <End Type="progra6Model.ServiciosOProductos" Role="ServiciosOProductos" Multiplicity="1" />
+          <End Type="progra6Model.DetalleFactura" Role="DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiciosOProductos">
+              <PropertyRef Name="idSOP" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="idSOP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_RetornaDesgloseFactura_Result">
+          <Property Type="Int32" Name="idEncabezadoFact" Nullable="false" />
+          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
+          <Property Type="Int32" Name="idSOP" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idVehiculo" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PlacaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoMarcaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoTipoVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoMarcaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EstadoFactura" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoSOP" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="ProductoServicio" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CantidadAdquirida" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioXunidad" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="MontoFinal" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaDesgloseFactura_IDFactura_Result">
+          <Property Type="Int32" Name="idEncabezadoFact" Nullable="false" />
+          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
+          <Property Type="Int32" Name="idSOP" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idVehiculo" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PlacaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoMarcaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoTipoVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoMarcaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EstadoFactura" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoSOP" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="ProductoServicio" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CantidadAdquirida" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioXunidad" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="MontoFinal" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaDetalleFac_Result">
+          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
+          <Property Type="Int32" Name="idEncabezadoFact" Nullable="false" />
+          <Property Type="Int32" Name="CantidadSOP" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="idSOP" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaDetalleFac_ID_Result">
+          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
+          <Property Type="Int32" Name="idEncabezadoFact" Nullable="false" />
+          <Property Type="Int32" Name="CantidadSOP" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="idSOP" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaDetalleFacXenca_ID_Result">
+          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
+          <Property Type="Int32" Name="idEncabezadoFact" Nullable="false" />
+          <Property Type="Int32" Name="CantidadSOP" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioSOP" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="idSOP" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2070,38 +2067,6 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="DetalleFactura">
-            <EntityTypeMapping TypeName="progra6Model.DetalleFactura">
-              <MappingFragment StoreEntitySet="DetalleFactura">
-                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
-                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
-                <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
-                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_InsertaDetalleFactura" FunctionName="progra6Model.Store.sp_InsertaDetalleFactura" />
-          <FunctionImportMapping FunctionImportName="sp_ModificaDetalleFactura" FunctionName="progra6Model.Store.sp_ModificaDetalleFactura" />
-          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac" FunctionName="progra6Model.Store.sp_RetornaDetalleFac">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDetalleFac_Result">
-                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
-                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
-                <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
-                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac_ID" FunctionName="progra6Model.Store.sp_RetornaDetalleFac_ID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDetalleFac_ID_Result">
-                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
-                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
-                <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
-                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="ServiciosOProductos">
             <EntityTypeMapping TypeName="progra6Model.ServiciosOProductos">
               <MappingFragment StoreEntitySet="ServiciosOProductos">
@@ -2134,34 +2099,6 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="View_DesgloseClientesVehiculo">
-            <EntityTypeMapping TypeName="progra6Model.View_DesgloseClientesVehiculo">
-              <MappingFragment StoreEntitySet="View_DesgloseClientesVehiculo">
-                <ScalarProperty Name="idPaisFabricante" ColumnName="idPaisFabricante" />
-                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
-                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
-                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
-                <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
-                <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
-                <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
-                <ScalarProperty Name="CodigoPaisFabricante" ColumnName="CodigoPaisFabricante" />
-                <ScalarProperty Name="PaisFabricante" ColumnName="PaisFabricante" />
-                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
-                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
-                <ScalarProperty Name="NumeroRuedas" ColumnName="NumeroRuedas" />
-                <ScalarProperty Name="NumeroPuertas" ColumnName="NumeroPuertas" />
-                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_RetornaDesgloseClientesVeh" FunctionName="progra6Model.Store.sp_RetornaDesgloseClientesVeh">
             <ResultMapping>
               <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDesgloseClientesVeh_Result">
@@ -2230,100 +2167,8 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="View_GeneraFactura">
-            <EntityTypeMapping TypeName="progra6Model.View_GeneraFactura">
-              <MappingFragment StoreEntitySet="View_GeneraFactura">
-                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
-                <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
-                <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
-                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
-                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
-                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
-                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
-                <ScalarProperty Name="PrecioXcant" ColumnName="PrecioXcant" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
-                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
-                <ScalarProperty Name="DetalleNumero" ColumnName="DetalleNumero" />
-                <ScalarProperty Name="FacturaNumero" ColumnName="FacturaNumero" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="DetallesXEncaFac" TypeName="progra6Model.DetallesXEncaFac" StoreEntitySet="DetallesXEncaFac">
-            <EndProperty Name="EncabezadoFactura">
-              <ScalarProperty Name="idEncabezadoFac" ColumnName="idEncabezadoFac" />
-            </EndProperty>
-            <EndProperty Name="DetalleFactura">
-              <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFact" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_InsertaEncFactura" FunctionName="progra6Model.Store.sp_InsertaEncFactura" />
           <FunctionImportMapping FunctionImportName="sp_ModificaEncabezadoFac" FunctionName="progra6Model.Store.sp_ModificaEncabezadoFac" />
-          <FunctionImportMapping FunctionImportName="sp_RetornaDesgloseFactura" FunctionName="progra6Model.Store.sp_RetornaDesgloseFactura">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDesgloseFactura_Result">
-                <ScalarProperty Name="FacturaNumero" ColumnName="FacturaNumero" />
-                <ScalarProperty Name="DetalleNumero" ColumnName="DetalleNumero" />
-                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
-                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="PrecioXcant" ColumnName="PrecioXcant" />
-                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
-                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
-                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
-                <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
-                <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
-                <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
-                <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
-                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaDesgloseFactura_IDFactura" FunctionName="progra6Model.Store.sp_RetornaDesgloseFactura_IDFactura">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDesgloseFactura_IDFactura_Result">
-                <ScalarProperty Name="FacturaNumero" ColumnName="FacturaNumero" />
-                <ScalarProperty Name="DetalleNumero" ColumnName="DetalleNumero" />
-                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
-                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="PrecioXcant" ColumnName="PrecioXcant" />
-                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
-                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
-                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
-                <ScalarProperty Name="TipoSOP" ColumnName="TipoSOP" />
-                <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
-                <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
-                <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
-                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_RetornaEncFactura_ID" FunctionName="progra6Model.Store.sp_RetornaEncFactura_ID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="progra6Model.sp_RetornaEncFactura_ID_Result">
@@ -2345,6 +2190,164 @@ FROM [dbo].[View_GeneraFactura] AS [View_GeneraFactura]</DefiningQuery>
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="MontoTotalServicios" ColumnName="MontoTotalServicios" />
                 <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="DetalleFactura">
+            <EntityTypeMapping TypeName="progra6Model.DetalleFactura">
+              <MappingFragment StoreEntitySet="DetalleFactura">
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
+                <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_DesgloseClientesVehiculo">
+            <EntityTypeMapping TypeName="progra6Model.View_DesgloseClientesVehiculo">
+              <MappingFragment StoreEntitySet="View_DesgloseClientesVehiculo">
+                <ScalarProperty Name="idPaisFabricante" ColumnName="idPaisFabricante" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
+                <ScalarProperty Name="idTipoVehiculo" ColumnName="idTipoVehiculo" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
+                <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
+                <ScalarProperty Name="CodigoPaisFabricante" ColumnName="CodigoPaisFabricante" />
+                <ScalarProperty Name="PaisFabricante" ColumnName="PaisFabricante" />
+                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="NumeroRuedas" ColumnName="NumeroRuedas" />
+                <ScalarProperty Name="NumeroPuertas" ColumnName="NumeroPuertas" />
+                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_GenerarFactura">
+            <EntityTypeMapping TypeName="progra6Model.View_GenerarFactura">
+              <MappingFragment StoreEntitySet="View_GenerarFactura">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
+                <ScalarProperty Name="PrecioXunidad" ColumnName="PrecioXunidad" />
+                <ScalarProperty Name="CantidadAdquirida" ColumnName="CantidadAdquirida" />
+                <ScalarProperty Name="ProductoServicio" ColumnName="ProductoServicio" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
+                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+                <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
+                <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
+                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsertaDetalleFactura" FunctionName="progra6Model.Store.sp_InsertaDetalleFactura" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaDetalleFactura" FunctionName="progra6Model.Store.sp_ModificaDetalleFactura" />
+          <FunctionImportMapping FunctionImportName="sp_RetornaDesgloseFactura" FunctionName="progra6Model.Store.sp_RetornaDesgloseFactura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDesgloseFactura_Result">
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
+                <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
+                <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
+                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+                <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="ProductoServicio" ColumnName="ProductoServicio" />
+                <ScalarProperty Name="CantidadAdquirida" ColumnName="CantidadAdquirida" />
+                <ScalarProperty Name="PrecioXunidad" ColumnName="PrecioXunidad" />
+                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaDesgloseFactura_IDFactura" FunctionName="progra6Model.Store.sp_RetornaDesgloseFactura_IDFactura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDesgloseFactura_IDFactura_Result">
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
+                <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
+                <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
+                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+                <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="ProductoServicio" ColumnName="ProductoServicio" />
+                <ScalarProperty Name="CantidadAdquirida" ColumnName="CantidadAdquirida" />
+                <ScalarProperty Name="PrecioXunidad" ColumnName="PrecioXunidad" />
+                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac" FunctionName="progra6Model.Store.sp_RetornaDetalleFac">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDetalleFac_Result">
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+                <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
+                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFac_ID" FunctionName="progra6Model.Store.sp_RetornaDetalleFac_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDetalleFac_ID_Result">
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+                <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
+                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaDetalleFacXenca_ID" FunctionName="progra6Model.Store.sp_RetornaDetalleFacXenca_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaDetalleFacXenca_ID_Result">
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+                <ScalarProperty Name="CantidadSOP" ColumnName="CantidadSOP" />
+                <ScalarProperty Name="PrecioSOP" ColumnName="PrecioSOP" />
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -38,11 +38,11 @@ namespace MVC_ProyectoP6.Models
         public DbSet<Vehiculos> Vehiculos { get; set; }
         public DbSet<VehiculosXCliente> VehiculosXCliente { get; set; }
         public DbSet<Clientes> Clientes { get; set; }
-        public DbSet<DetalleFactura> DetalleFactura { get; set; }
         public DbSet<ServiciosOProductos> ServiciosOProductos { get; set; }
-        public DbSet<View_DesgloseClientesVehiculo> View_DesgloseClientesVehiculo { get; set; }
         public DbSet<EncabezadoFactura> EncabezadoFactura { get; set; }
-        public DbSet<View_GeneraFactura> View_GeneraFactura { get; set; }
+        public DbSet<DetalleFactura> DetalleFactura { get; set; }
+        public DbSet<View_DesgloseClientesVehiculo> View_DesgloseClientesVehiculo { get; set; }
+        public DbSet<View_GenerarFactura> View_GenerarFactura { get; set; }
     
         public virtual int sp_Elimina_VehXPers(Nullable<int> idVehxPer)
         {
@@ -612,62 +612,6 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaMarcasVehiculo_ID_Result>("sp_RetornaMarcasVehiculo_ID", idMarcaVehiculoParameter);
         }
     
-        public virtual int sp_InsertaDetalleFactura(Nullable<int> idSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP)
-        {
-            var idSOPParameter = idSOP.HasValue ?
-                new ObjectParameter("idSOP", idSOP) :
-                new ObjectParameter("idSOP", typeof(int));
-    
-            var cantidadSOPParameter = cantidadSOP.HasValue ?
-                new ObjectParameter("CantidadSOP", cantidadSOP) :
-                new ObjectParameter("CantidadSOP", typeof(int));
-    
-            var precioSOPParameter = precioSOP.HasValue ?
-                new ObjectParameter("PrecioSOP", precioSOP) :
-                new ObjectParameter("PrecioSOP", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaDetalleFactura", idSOPParameter, cantidadSOPParameter, precioSOPParameter);
-        }
-    
-        public virtual int sp_ModificaDetalleFactura(Nullable<int> idDetalleFactura, Nullable<int> idSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP)
-        {
-            var idDetalleFacturaParameter = idDetalleFactura.HasValue ?
-                new ObjectParameter("idDetalleFactura", idDetalleFactura) :
-                new ObjectParameter("idDetalleFactura", typeof(int));
-    
-            var idSOPParameter = idSOP.HasValue ?
-                new ObjectParameter("idSOP", idSOP) :
-                new ObjectParameter("idSOP", typeof(int));
-    
-            var cantidadSOPParameter = cantidadSOP.HasValue ?
-                new ObjectParameter("CantidadSOP", cantidadSOP) :
-                new ObjectParameter("CantidadSOP", typeof(int));
-    
-            var precioSOPParameter = precioSOP.HasValue ?
-                new ObjectParameter("PrecioSOP", precioSOP) :
-                new ObjectParameter("PrecioSOP", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaDetalleFactura", idDetalleFacturaParameter, idSOPParameter, cantidadSOPParameter, precioSOPParameter);
-        }
-    
-        public virtual ObjectResult<sp_RetornaDetalleFac_Result> sp_RetornaDetalleFac(Nullable<int> idSOP)
-        {
-            var idSOPParameter = idSOP.HasValue ?
-                new ObjectParameter("idSOP", idSOP) :
-                new ObjectParameter("idSOP", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_Result>("sp_RetornaDetalleFac", idSOPParameter);
-        }
-    
-        public virtual ObjectResult<sp_RetornaDetalleFac_ID_Result> sp_RetornaDetalleFac_ID(Nullable<int> idDetalleFac)
-        {
-            var idDetalleFacParameter = idDetalleFac.HasValue ?
-                new ObjectParameter("idDetalleFac", idDetalleFac) :
-                new ObjectParameter("idDetalleFac", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_ID_Result>("sp_RetornaDetalleFac_ID", idDetalleFacParameter);
-        }
-    
         public virtual int sp_InsertaServicioOProducto(string codigoSOP, string precioSOP, string tipoSOP)
         {
             var codigoSOPParameter = codigoSOP != null ?
@@ -804,6 +748,70 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEncabezadoFac", idEncabezadoFacParameter, idClienteParameter, idVehiculoParameter, fechaParameter, montoTotalServiciosParameter, estadoFacturaParameter);
         }
     
+        public virtual ObjectResult<sp_RetornaEncFactura_ID_Result> sp_RetornaEncFactura_ID(Nullable<int> idEfactura)
+        {
+            var idEfacturaParameter = idEfactura.HasValue ?
+                new ObjectParameter("idEfactura", idEfactura) :
+                new ObjectParameter("idEfactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_ID_Result>("sp_RetornaEncFactura_ID", idEfacturaParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaEncFactura_Result> sp_RetornaEncFactura(string estadoFactura)
+        {
+            var estadoFacturaParameter = estadoFactura != null ?
+                new ObjectParameter("estadoFactura", estadoFactura) :
+                new ObjectParameter("estadoFactura", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_Result>("sp_RetornaEncFactura", estadoFacturaParameter);
+        }
+    
+        public virtual int sp_InsertaDetalleFactura(Nullable<int> idSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP, Nullable<int> idEncabFac)
+        {
+            var idSOPParameter = idSOP.HasValue ?
+                new ObjectParameter("idSOP", idSOP) :
+                new ObjectParameter("idSOP", typeof(int));
+    
+            var cantidadSOPParameter = cantidadSOP.HasValue ?
+                new ObjectParameter("CantidadSOP", cantidadSOP) :
+                new ObjectParameter("CantidadSOP", typeof(int));
+    
+            var precioSOPParameter = precioSOP.HasValue ?
+                new ObjectParameter("PrecioSOP", precioSOP) :
+                new ObjectParameter("PrecioSOP", typeof(int));
+    
+            var idEncabFacParameter = idEncabFac.HasValue ?
+                new ObjectParameter("idEncabFac", idEncabFac) :
+                new ObjectParameter("idEncabFac", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaDetalleFactura", idSOPParameter, cantidadSOPParameter, precioSOPParameter, idEncabFacParameter);
+        }
+    
+        public virtual int sp_ModificaDetalleFactura(Nullable<int> idDetalleFactura, Nullable<int> idEncaFac, Nullable<int> idSOP, Nullable<int> cantidadSOP, Nullable<int> precioSOP)
+        {
+            var idDetalleFacturaParameter = idDetalleFactura.HasValue ?
+                new ObjectParameter("idDetalleFactura", idDetalleFactura) :
+                new ObjectParameter("idDetalleFactura", typeof(int));
+    
+            var idEncaFacParameter = idEncaFac.HasValue ?
+                new ObjectParameter("idEncaFac", idEncaFac) :
+                new ObjectParameter("idEncaFac", typeof(int));
+    
+            var idSOPParameter = idSOP.HasValue ?
+                new ObjectParameter("idSOP", idSOP) :
+                new ObjectParameter("idSOP", typeof(int));
+    
+            var cantidadSOPParameter = cantidadSOP.HasValue ?
+                new ObjectParameter("CantidadSOP", cantidadSOP) :
+                new ObjectParameter("CantidadSOP", typeof(int));
+    
+            var precioSOPParameter = precioSOP.HasValue ?
+                new ObjectParameter("PrecioSOP", precioSOP) :
+                new ObjectParameter("PrecioSOP", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaDetalleFactura", idDetalleFacturaParameter, idEncaFacParameter, idSOPParameter, cantidadSOPParameter, precioSOPParameter);
+        }
+    
         public virtual ObjectResult<sp_RetornaDesgloseFactura_Result> sp_RetornaDesgloseFactura(string nombreCompleto, string cedula)
         {
             var nombreCompletoParameter = nombreCompleto != null ?
@@ -826,22 +834,31 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDesgloseFactura_IDFactura_Result>("sp_RetornaDesgloseFactura_IDFactura", idFacturaParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaEncFactura_ID_Result> sp_RetornaEncFactura_ID(Nullable<int> idEfactura)
+        public virtual ObjectResult<sp_RetornaDetalleFac_Result> sp_RetornaDetalleFac(Nullable<int> idSOP)
         {
-            var idEfacturaParameter = idEfactura.HasValue ?
-                new ObjectParameter("idEfactura", idEfactura) :
-                new ObjectParameter("idEfactura", typeof(int));
+            var idSOPParameter = idSOP.HasValue ?
+                new ObjectParameter("idSOP", idSOP) :
+                new ObjectParameter("idSOP", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_ID_Result>("sp_RetornaEncFactura_ID", idEfacturaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_Result>("sp_RetornaDetalleFac", idSOPParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaEncFactura_Result> sp_RetornaEncFactura(string estadoFactura)
+        public virtual ObjectResult<sp_RetornaDetalleFac_ID_Result> sp_RetornaDetalleFac_ID(Nullable<int> idDetalleFac)
         {
-            var estadoFacturaParameter = estadoFactura != null ?
-                new ObjectParameter("estadoFactura", estadoFactura) :
-                new ObjectParameter("estadoFactura", typeof(string));
+            var idDetalleFacParameter = idDetalleFac.HasValue ?
+                new ObjectParameter("idDetalleFac", idDetalleFac) :
+                new ObjectParameter("idDetalleFac", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaEncFactura_Result>("sp_RetornaEncFactura", estadoFacturaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFac_ID_Result>("sp_RetornaDetalleFac_ID", idDetalleFacParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaDetalleFacXenca_ID_Result> sp_RetornaDetalleFacXenca_ID(Nullable<int> idEncabezado)
+        {
+            var idEncabezadoParameter = idEncabezado.HasValue ?
+                new ObjectParameter("idEncabezado", idEncabezado) :
+                new ObjectParameter("idEncabezado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFacXenca_ID_Result>("sp_RetornaDetalleFacXenca_ID", idEncabezadoParameter);
         }
     }
 }

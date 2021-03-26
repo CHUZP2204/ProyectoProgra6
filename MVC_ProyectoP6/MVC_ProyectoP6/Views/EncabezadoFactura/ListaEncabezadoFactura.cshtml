@@ -6,6 +6,7 @@
 
 
 <div class="jumbotron">
+    <h1 style="text-align:center">Facturas</h1>
     <h2>Lista Encabezado Factura</h2>
     <a href="~/EncabezadoFactura/NuevoEncabezadoFactura" class="btn btn-success">Agregar Nuevo Encabezado</a>
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
@@ -14,14 +15,15 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID Recibo</th>
+                <th>#Factura</th>
                 <th>Cliente </th>
                 <th>Vehiculo Placa</th>
                 <th>Fecha</th>
                 <th>Monto Total</th>
                 <th>Estado</th>
-                
-                <th>Acciones</th>
+
+                <th style="text-align:center">Acciones</th>
+                <th>Detalle Factura</th>
             </tr>
         </thead>
         <tbody>
@@ -53,10 +55,16 @@
                         <td>@posicionModelo.Fecha.ToShortDateString()</td>
                         <td>@posicionModelo.MontoTotalServicios</td>
                         <td>@posicionModelo.EstadoFactura</td>
-                        
+
                         <td>
                             <a href="~/EncabezadoFactura/ModificaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
                             <a href="~/EncabezadoFactura/EliminaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>
+       
+                        </td>
+                        <td>
+                            <a href="~/DetalleFactura/AgregarDetalleFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-success">Agregar </a>
+                            <a href="~/DetalleFactura/ListaDetallePorId?idEncabezadoFact=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Ver </a>
+
                         </td>
                     </tr>
                 }

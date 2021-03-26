@@ -5,15 +5,15 @@
 
 <div class="jumbotron">
     <h2>Lista de Servicios y Productos </h2>
-    <a href="~/ServicioOProducto/NuevoServicioOproducto" class="btn btn-success">Agregar Nuevo Servicio o Producto</a>
+    <a href="~/ServicioOProducto/NuevoServicioOproducto" class="btn btn-success">Agregar S/P</a>
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
     <br>
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo Servicio O Producto</th>
-                <th>Tipo </th>
-                <th>Precio</th>
+                <th>Codigo S/P</th>
+                <th>Tipo S/P</th>
+                <th>Precio/U</th>
                 <!--<th>Cliente</th>-->
                 <th>Acciones</th>
             </tr>
@@ -24,7 +24,7 @@
                  in this.Model)
                 {
                         <tr>
-                            <td>@posicionModelo.CodigoSOP</td>
+                            <td >@posicionModelo.CodigoSOP</td>
                             <td>@posicionModelo.TipoSOP</td>
                             <td>@posicionModelo.PrecioSOP</td>
                             <!--<td>posicionModelo.idCliente</td>-->

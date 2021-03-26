@@ -1,7 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "NuevoDetalleFac";
+    ViewBag.Title = "AgregarDetalleFactura";
 }
+
 
 <div class="jumbotron">
     <h2>Nuevo Detalle Factura</h2>
@@ -35,15 +36,9 @@
 
         <div class="form-group">
             <label>Factura#:</label>
-            <select name="idEncabezadoFact" id="idEncabezadoFact" class="form-control">
-                <option value="">Favor seleccione</option>
+            <select name="idEncabezadoFact" id="idEncabezadoFact" class="form-control" readonly>
                 @{
-
-                    foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result ModeloEncabezado in this.ViewBag.ListaEncabezado)
-                    {
-                        <option value="@ModeloEncabezado.idEncabezadoFac">@ModeloEncabezado.idCliente</option>
-                    }
-
+                    <option value="@Model.idEncabezadoFact" selected>Factura# @Model.idEncabezadoFact</option>
 
                 }
             </select>
@@ -54,6 +49,6 @@
             <input type="submit" value="Agregar" id="btnAgregar" class="btn btn-success" />
         </div>
     </form>
-    <a href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
+    <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezado Factura </a>
 </div>
 

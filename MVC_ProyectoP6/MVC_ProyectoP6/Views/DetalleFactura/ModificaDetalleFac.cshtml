@@ -37,7 +37,32 @@
 
         <div class="form-group">
             <label>Precio:</label>
-            <input type="number" name="PrecioSOP" id="PrecioSOP" class="form-control" value="@Model.PrecioSOP"/>
+            <input type="number" name="PrecioSOP" id="PrecioSOP" class="form-control" value="@Model.PrecioSOP" />
+        </div>
+
+        <div class="form-group">
+            <label>Factura#:</label>
+            <select name="idEncabezadoFact" id="idEncabezadoFact" class="form-control" >
+                @{
+
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result ModeloEncabezado in this.ViewBag.ListaEncabezado)
+                    {
+
+                        bool esIdSOP = ModeloEncabezado.idEncabezadoFac == Model.idEncabezadoFact;
+                        if (esIdSOP)
+                        {
+                                <option value="@ModeloEncabezado.idEncabezadoFac" selected>Factura#@ModeloEncabezado.idEncabezadoFac Cliente#@ModeloEncabezado.idCliente</option>
+                        }
+                        else
+                        {
+                            <option value="@ModeloEncabezado.idEncabezadoFac">Factura#@ModeloEncabezado.idEncabezadoFac Cliente#@ModeloEncabezado.idCliente</option>
+                        }
+
+                    }
+
+
+                }
+            </select>
         </div>
 
         <div class="form-group">

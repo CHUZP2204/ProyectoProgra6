@@ -205,6 +205,9 @@
     <Compile Include="Models\sp_RetornaDesgloseFactura_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_RetornaDetalleFacXenca_ID_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_RetornaDetalleFac_ID_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -283,7 +286,7 @@
     <Compile Include="Models\View_DesgloseClientesVehiculo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\View_GeneraFactura.cs">
+    <Compile Include="Models\View_GenerarFactura.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2085,6 +2088,8 @@
     <Content Include="Views\DetalleFactura\EliminaDetalleFac.cshtml" />
     <Content Include="Views\EncabezadoFactura\EliminaEncabezadoFactura.cshtml" />
     <Content Include="Views\EncabezadoFactura\ModificaEncabezadoFactura.cshtml" />
+    <Content Include="Views\DetalleFactura\AgregarDetalleFactura.cshtml" />
+    <Content Include="Views\DetalleFactura\ListaDetallePorId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

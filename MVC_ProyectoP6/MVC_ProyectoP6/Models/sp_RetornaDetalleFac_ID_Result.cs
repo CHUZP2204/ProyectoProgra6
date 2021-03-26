@@ -14,8 +14,9 @@ namespace MVC_ProyectoP6.Models
     public partial class sp_RetornaDetalleFac_ID_Result
     {
         public int idDetalleFac { get; set; }
-        public Nullable<int> idSOP { get; set; }
+        public int idEncabezadoFact { get; set; }
         public int CantidadSOP { get; set; }
         public decimal PrecioSOP { get; set; }
+        public int idSOP { get; set; }
     }
 }

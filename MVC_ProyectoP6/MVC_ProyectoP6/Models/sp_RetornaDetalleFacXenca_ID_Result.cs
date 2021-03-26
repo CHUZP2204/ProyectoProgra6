@@ -10,17 +10,13 @@
 namespace MVC_ProyectoP6.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class DetalleFactura
+    public partial class sp_RetornaDetalleFacXenca_ID_Result
     {
         public int idDetalleFac { get; set; }
         public int idEncabezadoFact { get; set; }
         public int CantidadSOP { get; set; }
         public decimal PrecioSOP { get; set; }
         public int idSOP { get; set; }
-    
-        public virtual EncabezadoFactura EncabezadoFactura { get; set; }
-        public virtual ServiciosOProductos ServiciosOProductos { get; set; }
     }
 }

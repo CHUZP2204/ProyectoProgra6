@@ -1,7 +1,7 @@
 ﻿///Document On ready
 $(function () {
     creaValidaciones();
-    creaEventos();
+    creaEventosInicioSesion()
 });
 
 ///crea las validaciones para el formulario
@@ -22,7 +22,7 @@ function creaValidaciones() {
 
 ///Llamar Eventos 
 ///Al Iniciar Session
-function creaEventos() {
+function creaEventosInicioSesion() {
     $("#btnAceptar").on("click", function () {
         ///Asignar a la variable formulario
         ///el resultado del selector
@@ -99,7 +99,7 @@ function procesarResultadoMetodo(data) {
     if (resultadoFuncion == true) {
         //alert("Inico Sesion Exitoso");
         cargarDatosUsuario();
-        $("#myModal").modal();
+        $("#myModalExitoso").modal();
 
         ///Pausa Para Redirigir De Pagina
         setTimeout(function () {
@@ -109,7 +109,7 @@ function procesarResultadoMetodo(data) {
     }
     else {
         ///Inicio De Seion Fallido
-        $("#myModal1").modal();
+        $("#myModalErrorSesion").modal();
     }
 }
 

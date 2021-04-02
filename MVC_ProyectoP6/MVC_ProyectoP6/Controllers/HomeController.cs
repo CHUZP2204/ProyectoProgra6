@@ -13,6 +13,7 @@ namespace MVC_ProyectoP6.Controllers
 
         public ActionResult Index()
         {
+            AgregaProvinciasViewBag();
             return View();
         }
         /*[HttpPost] 
@@ -67,7 +68,7 @@ namespace MVC_ProyectoP6.Controllers
             });
         }
 
-        
+
         /// <summary>
         /// METODO QUE VERIFICA SI EL USUARIO
         /// EXISTE EN LA BD 
@@ -141,7 +142,7 @@ namespace MVC_ProyectoP6.Controllers
             if (idUsuarioLogueado > 0)
             {
                 msj = "L";
-                this.Session.Add("idClienteLoguedo",0);
+                this.Session.Add("idClienteLoguedo", 0);
             }
 
 
@@ -175,6 +176,128 @@ namespace MVC_ProyectoP6.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        /// <summary>
+        /// Metodo Que Recibe Los Parametros Para
+        /// Registrar Cliente Con Jquery
+        /// </summary>
+        /// <param name="modeloVista"></param>
+        /// <returns></returns>
+        
+        [HttpPost]
+        public ActionResult RegistrarUsuario(string pCedula,
+            DateTime pFecha,
+            string pGenero,
+            string pNombreC,
+            string pCorreo,
+            int pIdProvincia,
+            int pIdCanton,
+            int pIdDistrito,
+            string pTipoUsuario,
+            string pContrasenia)
+        {
+            ///Variable Que Registra La Cantidad De Registros Afectados
+            ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
+            ///No Afecta Registros Implica Que Hubo Un Error
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            /// Verificar Si Usuario Existe En BD 
+
+            sp_RetornaClientes_Result ModeloVerificar = new sp_RetornaClientes_Result();
+
+            ModeloVerificar = this.ModeloBD.sp_RetornaClientes(null, pCedula).FirstOrDefault();
+
+
+
+
+            /// try Instrucciones que se intenta Realizar
+            /// Catch Administra las exepciones o errores
+            /// Finally Siempre se ejecuta exista o no error
+            try
+            {
+                if (ModeloVerificar.Cedula.Equals(pCedula))
+                {
+                    resultado = " Ya Existe El Cliente En Sistema";
+                }
+                else
+                {
+                    cantRegistrosAfectados =
+                        this.ModeloBD.sp_InsertaCliente(
+                            pCedula,
+                            pFecha,
+                            pGenero,
+                            pNombreC,
+                            pCorreo,
+                            pIdProvincia,
+                            pIdCanton,
+                            pIdDistrito,
+                            pTipoUsuario,
+                            pContrasenia
+                            );
+                }
+
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio Un Error" + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado = "El Registro Fue Insertado";
+                }
+                else
+                {
+                    resultado += "El Registro No Se Pudo Insertar";
+                }
+            }
+
+            return Json(resultado);
+        }
+        /// <summary>
+        /// Cargar Lista De Provincias Al DDl
+        /// </summary>
+        void AgregaProvinciasViewBag()
+        {
+            this.ViewBag.ListaProvincias = this.ModeloBD.sp_RetornaProvincias("", null).ToList();
+        }
+
+        /// <summary>
+        /// Metodo Que Retorna Los Cantones Por Id de Provincia 
+        /// y Se Accede Por Medio de Jquery Ajax
+        /// </summary>
+        /// <param name="id_Provincia"></param>
+        /// <returns></returns>
+        public ActionResult AgregaCantones(int id_Provincia)
+        {
+            List<sp_RetornaCantones_Result> modeloVista = new List<sp_RetornaCantones_Result>();
+            modeloVista = ModeloBD.sp_RetornaCantones("", id_Provincia).ToList();
+
+            /// Los Parametros Dentro De 
+            /// SelectList(dataValueField,dataTextField)
+            /// 
+            return Json(new SelectList(modeloVista, "id_Canton", "Canton"));
+
+        }
+
+        /// <summary>
+        /// Metodo Que Retorna Los Distritos Por Id de Canton 
+        /// y Se Accede Por Medio de Jquery Ajax
+        /// </summary>
+        /// <param name="id_Canton"></param>
+        /// <returns></returns>
+        public ActionResult AgregaDistritos(int id_Canton)
+        {
+            List<sp_RetornaDistritos_Result> modeloVista = new List<sp_RetornaDistritos_Result>();
+            modeloVista = ModeloBD.sp_RetornaDistritos("", id_Canton).ToList();
+
+            /// Los Parametros Dentro De 
+            /// SelectList(dataValueField,dataTextField)
+            /// Se Convierte a un objeto de tipo JSON
+            return Json(new SelectList(modeloVista, "id_Distrito", "Distrito"));
+
         }
     }
 }

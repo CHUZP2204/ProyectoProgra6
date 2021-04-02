@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    creaValidaciones();
+    crearValidaciones();
 
     ///Funcion Para Cambiar Evento De Los DropDownList
     ///A Partir De La Provincia Selecciona Asi Sucesivamente
@@ -74,7 +74,7 @@
 });
 
 ///Validar Que Los Espacios NO Esten Vacios
-function creaValidaciones() {
+function crearValidaciones() {
     $("#frmNuevoUsuario").validate({
         ///objeto que contiene "las condiciones" que el formulario
         ///debe cumplir para ser considerado válido

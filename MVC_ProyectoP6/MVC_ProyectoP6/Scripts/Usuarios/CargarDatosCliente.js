@@ -1,19 +1,34 @@
 ﻿///Document On ready
 $(function () {
-    cargarDatosUsuario();
+    Verificacion();
     creaEventCerrar();
     disable();
 });
 
+///Metodo Que Verifica Pagina Actual 
+///Si Estamos En Pantalla Iniciar Sesion 
+///No Se Debe Llamar Al Metodo Que Verifica 
+///Que Exista Un Usuario Actual Conectado
+///Debido Que Es Donde Se Ingresara
+function Verificacion() {
+    var pathname = window.location.pathname;
+    if (pathname !== '/') {
+        if (pathname !== '/Home/Index') {
+            cargarDatosUsuario1();
+        }
+    }
+
+}
+
 function disable() {
     //$("#btncerrarSesion").attr("disabled", "disabled");
 
-    var pathname = window.location.pathname;
-    if (pathname === '/') {
+    var direccionActual = window.location.pathname;
+    if (direccionActual === '/') {
         $('#btncerrarSesion').hide();
     }
 
-    if (pathname === '/Home/Index') {
+    if (direccionActual === '/Home/Index') {
         $('#btncerrarSesion').hide();
     }
     //alert(pathname);
@@ -21,7 +36,7 @@ function disable() {
 
 }
 ///carga los Datos Del Cliente Desde El Server
-function cargarDatosUsuario() {
+function cargarDatosUsuario1() {
     ///dirección a donde se enviarán los datos
     var url = '/Home/MostrarInfoUsuario';
     ///parámetros del método, es CASE-SENSITIVE
@@ -46,7 +61,7 @@ function cargarDatosUsuario() {
                 }, 5000);
             }
             else {
-                procesarResultadoUsuario(data);
+                procesarResultadoUsuarioA(data);
             }
 
         },
@@ -58,7 +73,7 @@ function cargarDatosUsuario() {
 
 ///Metodo Que Modifca La Etiqueta Por Id #Bienvenida
 ///Muestra EL Nombre Del Usuario que Inicio Session
-function procesarResultadoUsuario(data) {
+function procesarResultadoUsuarioA(data) {
 
 
     var resultadoFuncion = data.resultado;
@@ -70,9 +85,9 @@ function procesarResultadoUsuario(data) {
 //Modal Pequeño
 function showMessageSm(msg) {
 
-    const message = document.querySelector("#message");
+    const message = document.querySelector("#messageError");
 
-    var html = "<div class='modal' data-backdrop='static' id='myModal' tabindex='-1' role='dialog'> " +
+    var html = "<div class='modal' data-backdrop='static' id='myModalError' tabindex='-1' role='dialog'> " +
         "      <div class='modal-dialog modal-sm modal-dialog-centered' >" +
         "        <div class='modal-content'>" +
         "            <div class='modal-header'>" +
@@ -90,7 +105,7 @@ function showMessageSm(msg) {
 
     message.innerHTML = html;
 
-    $("#myModal").modal('show');
+    $("#myModalError").modal('show');
     //no tiene funcion
     /* $(function () {
          $("#btnShow").click(function () {
@@ -166,6 +181,7 @@ function cerrarSesion() {
     });
 }
 
+/// Funcion Para Cerrar Sesion 
 function procesoCerrarSesion(data) {
 
     var estadoUsuario = data.resultado;

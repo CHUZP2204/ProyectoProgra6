@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@section css{
+    <link href="~/Content/jqueryIU.css" rel="stylesheet" />
 }
 
 <div class="jumbotron">
@@ -13,7 +14,7 @@
     <div class="container" style="background-color: #fafafa; border: 1px solid #ccc">
         <div class="row">
             <!--Formulario-->
-            <form method="post" id="frmInicioSesion" style="margin-bottom: 5px;margin-top:5px">
+            <form id="frmInicioSesion" style="margin-bottom: 5px;margin-top:5px">
                 <!--Divs De Los Inputs-->
                 <div style="padding-left: 10px;padding-right: 10px;margin-left: 35%;margin-right: 30%;max-width: 100%;border: 1px solid #808080">
                     <h2 class="text-center">Inicio Sesion</h2>
@@ -24,7 +25,7 @@
 
                     <div class="form-group">
                         <i class="fas fa-lock" style="float:left"></i>
-                        <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" placeholder="Password"  style="max-width:90%">
+                        <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" placeholder="Password" style="max-width:90%">
                     </div>
 
                     <label class="pull-left checkbox-inline" style="padding-bottom:15px"><input type="checkbox"> Recordar Datos</label>
@@ -37,7 +38,7 @@
                     </div>
                     <!--Fin Boton-->
                     <!--Botones-->
-                    <p class="text-center"><a href="#" class="btn btn-info">Crea Tu Cuenta</a></p>
+                    <p class="text-center"><input type="button" class="btn btn-success" id="btMostrarDialog" value="Registrarse" /></p>
                     <p class="text-center"><a href="#" class="btn btn-warning">Nueva Clave?</a></p>
                     <!--Fin De Botones-->
                 </div>
@@ -71,16 +72,16 @@
 </div>
 
 <!-- Modal Exitoso-->
-<div id="myModal" class="modal fade bd-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div id="myModalExitoso" class="modal fade bd-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header" style="color:aliceblue;background-color:green">
-                
+
                 <h4 class="modal-title">Inicio Exitoso!</h4>
             </div>
             <div class="modal-body">
-                
-                          <h3 id="Bienvenida"></h3>
+
+                <h3 id="Bienvenida"></h3>
             </div>
             <div class="modal-footer">
                 <p>........Espere Por Favor</p>
@@ -90,7 +91,7 @@
 </div>
 <!--Modal-->
 <!--Modal De Error-->
-<div id="myModal1" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div id="myModalErrorSesion" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header" style="color:aliceblue;background-color:red">
@@ -108,7 +109,109 @@
     </div>
 </div>
 
+<div id="divDialog" hidden>
+    <form id="frmRegistraUsuario">
+        <!--Espacio Cedula-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Cedula</label>
+            <div class="col-sm-7">
+                <input type="text" name="Cedula" id="Cedula" class="form-control" />
+            </div>
+        </div>
+        <!--Espacio Fecha Nacimiento-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+            <div class="col-sm-7">
+                <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" />
+            </div>
+        </div>
+        <!--Espacio Genero-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Genero</label>
+            <div class="col-sm-7">
+                <select name="Genero" id="Genero" class="form-control">
+                    <option value="">Seleccione Un Genero</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Indefenido">Indefinido</option>
+                </select>
+            </div>
+        </div>
+        <!--Espacio Nombre-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Nombre Completo: </label>
+            <div class="col-sm-7">
+                <input type="text" name="NombreCompleto" id="NombreCompleto" class="form-control" />
+            </div>
+        </div>
+        <!--Espacio Correo-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Correo: </label>
+            <div class="col-sm-7">
+                <input type="email" name="Correo" id="CorreoIngresado" class="form-control" />
+            </div>
+        </div>
+        <!--Espacio Provincia-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Provincia: </label>
+            <div class="col-sm-7">
+                <select name="idProvincia" id="idProvincia" class="form-control">
+                    <option value="">Seleccione Una Provincia</option>
+                    @{ foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
+                        {
+                            <option value="@provincia.id_Provincia">@provincia.Provincia</option>
+                        }
+                    }
+                </select>
+            </div>
+
+        </div>
+        <!--Espacio Canton-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Canton: </label>
+            <div class="col-sm-7">
+                <select name="idCanton" id="id_Canton" class="form-control">
+                    <option value="">Seleccione Un canton</option>
+                </select>
+            </div>
+        </div>
+        <!--Espacio Distrito-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Distrito: </label>
+            <div class="col-sm-7">
+                <select name="idDistrito" id="id_Distrito" class="form-control">
+                    <option value="">Seleccione Un Distrito</option>
+                </select>
+            </div>
+        </div>
+        <!--Espacio Tipo Usuario-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Tipo Usuario</label>
+            <div class="col-sm-7">
+                <select name="TipoUsuario" id="TipoUsuario" class="form-control">
+                    <option value="">Seleccione Tipo Usuario</option>
+                    <option value="Cliente">Cliente</option>
+                </select>
+            </div>
+        </div>
+        <!--Espacio-->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Contraseña:</label>
+            <div class="col-sm-7">
+                <input type="password" name="Contrasenia" id="Contrasenia" class="form-control" />
+            </div>
+        </div>
+        <!--Espacio Boton-->
+        <input id="registrar" class="btn btn-success" value="Guardar" />
+    </form>
+</div>
+<div id="messageRegistrarse"></div>
+<div id="mensaje"></div>
 @section scripts{
     <script src="~/Scripts/Usuarios/InicioSesion.js"></script>
+
+    <script src="~/Scripts/jquery_IU.js"></script>
+    <script src="~/Scripts/Usuarios/jqueryIUEventos.js"></script>
+    <script src="~/Scripts/Usuarios/Registrase.js"></script>
 }
 

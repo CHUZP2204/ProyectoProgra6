@@ -36,6 +36,7 @@ namespace MVC_ProyectoP6
               "~/Scripts/jquery-3.4.1.js",
               "~/Scripts/jquery.validate.js",
               "~/Scripts/ValidacionesGenericas.js",
+              "~/Scripts/scriptGenerico.js",
               ///Scrip Que Valida Usuario Actual y Que este en sesion
               "~/Scripts/Usuarios/CargarDatosCliente.js"
              ));

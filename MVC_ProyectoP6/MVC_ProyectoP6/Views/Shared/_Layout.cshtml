@@ -9,6 +9,7 @@
     <title> HomePage-Progra6</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("css", required: false)
 </head>
 
 
@@ -51,7 +52,7 @@
             </p>
         </footer>
     </div>
-    <div id="message"></div>
+    <div id="messageError"></div>
 
     @Scripts.Render("~/bundles/bundlejquery")
     @Scripts.Render("~/bundles/bootstrap")

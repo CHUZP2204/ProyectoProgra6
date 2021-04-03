@@ -2037,6 +2037,7 @@
     <Content Include="Scripts\ServicioProducto\ValidacionServicioProducto.js" />
     <Content Include="Scripts\TipoVehiculo\ValidacionTipoVehiculo.js" />
     <Content Include="Scripts\Usuarios\CargarDatosCliente.js" />
+    <Content Include="Scripts\Usuarios\cargarVehClien.js" />
     <Content Include="Scripts\Usuarios\ddlEvents.js" />
     <Content Include="Scripts\Usuarios\InicioSesion.js" />
     <Content Include="Scripts\Usuarios\jqueryIUEventos.js" />
@@ -2096,6 +2097,7 @@
     <Content Include="Views\EncabezadoFactura\ModificaEncabezadoFactura.cshtml" />
     <Content Include="Views\DetalleFactura\AgregarDetalleFactura.cshtml" />
     <Content Include="Views\DetalleFactura\ListaDetallePorId.cshtml" />
+    <Content Include="Views\Usuarios\ListaVehiculoCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

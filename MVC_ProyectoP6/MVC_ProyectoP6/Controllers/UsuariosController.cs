@@ -182,12 +182,10 @@ namespace MVC_ProyectoP6.Controllers
             try
             {
                 cantRegistrosAfectados = this.modeloBD.sp_EliminaCliente(modeloVista.idCliente);
-
             }
             catch (Exception error)
             {
-
-                resultado = "Ocurrio un error: " + error.Message;
+                    resultado += "Ocurrio un error: "+error.InnerException;                
             }
             finally
             {
@@ -248,6 +246,19 @@ namespace MVC_ProyectoP6.Controllers
             /// Se Convierte a un objeto de tipo JSON
             return Json(new SelectList(modeloVista, "id_Distrito", "Distrito"));
 
+        }
+
+        public ActionResult ListaVehiculoCliente()
+        {
+            return View();
+        }
+
+        public ActionResult VehiculoCliente()
+        {
+            int idUsuarioLogueado = Convert.ToInt32(this.Session["idClienteLoguedo"]);
+            List<sp_RetornaVehiculosXCliente_Result> vehiculosCliente = this.modeloBD.sp_RetornaVehiculosXCliente(idUsuarioLogueado).ToList();
+
+            return Json(new { resultado = vehiculosCliente });
         }
     }
 

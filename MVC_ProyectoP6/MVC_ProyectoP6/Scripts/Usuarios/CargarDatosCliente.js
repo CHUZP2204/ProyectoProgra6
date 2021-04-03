@@ -78,8 +78,10 @@ function procesarResultadoUsuarioA(data) {
 
     var resultadoFuncion = data.resultado;
     var ddlTexto = $("#Bienvenida");
-    ddlTexto.text("Bienvenido Al Sistema: " + resultadoFuncion);
+    var ddlTextoPrincipal = $("#tipoUsuarioActual");
 
+    ddlTextoPrincipal.text( data.tipoUsuario);
+    ddlTexto.text("Bienvenido Al Sistema: " + resultadoFuncion );
 }
 
 //Modal Pequeño

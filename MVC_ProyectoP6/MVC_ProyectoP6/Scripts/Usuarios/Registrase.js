@@ -151,7 +151,7 @@ function RegistraDatosCLiente() {
         pIdCanton: $("#id_Canton").val(),
         pIdDistrito: $("#id_Distrito").val(),
         pTipoUsuario: $("#TipoUsuario").val(),
-        pContrasenia: $("#Contrasenia").val()
+        pContrasenia: $("#ContraseniaObtenida").val()
     };
 
     var funcion = cargaMensaje;

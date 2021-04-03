@@ -111,7 +111,7 @@ namespace MVC_ProyectoP6.Controllers
 
             string msj = "";
             int idUsuario = 0;
-
+            string tipoUsuarioConectado = this.Session["tipoCliente"].ToString();
             ///Del Usuario Que Inicio Sesion, Por Medio
             ///De La variable De Sesion Obtener Los Datos.
             /// Recorrer Lista De Usuario Obtenido Por ID
@@ -125,7 +125,8 @@ namespace MVC_ProyectoP6.Controllers
             return Json(new
             {
                 resultado = msj,
-                usuarioActual = idUsuario
+                usuarioActual = idUsuario,
+                tipoUsuario = tipoUsuarioConectado
             });
         }
 
@@ -184,7 +185,7 @@ namespace MVC_ProyectoP6.Controllers
         /// </summary>
         /// <param name="modeloVista"></param>
         /// <returns></returns>
-        
+
         [HttpPost]
         public ActionResult RegistrarUsuario(string pCedula,
             DateTime pFecha,
@@ -216,25 +217,26 @@ namespace MVC_ProyectoP6.Controllers
             /// Finally Siempre se ejecuta exista o no error
             try
             {
-                if (ModeloVerificar.Cedula.Equals(pCedula))
-                {
-                    resultado = " Ya Existe El Cliente En Sistema";
-                }
-                else
+
+                if (ModeloVerificar == null)
                 {
                     cantRegistrosAfectados =
-                        this.ModeloBD.sp_InsertaCliente(
-                            pCedula,
-                            pFecha,
-                            pGenero,
-                            pNombreC,
-                            pCorreo,
-                            pIdProvincia,
-                            pIdCanton,
-                            pIdDistrito,
-                            pTipoUsuario,
-                            pContrasenia
-                            );
+                   this.ModeloBD.sp_InsertaCliente(
+                    pCedula,
+                    pFecha,
+                    pGenero,
+                    pNombreC,
+                    pCorreo,
+                    pIdProvincia,
+                    pIdCanton,
+                    pIdDistrito,
+                    pTipoUsuario,
+                    pContrasenia
+                    );
+                }
+                else if (ModeloVerificar.Cedula.Equals(pCedula))
+                {
+                    resultado = " Ya Existe El Cliente En Sistema ";
                 }
 
             }

@@ -248,5 +248,23 @@ namespace MVC_ProyectoP6.Controllers
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
             return View(modeloVista);
         }
+
+        [HttpPost]
+        public ActionResult RetornaPaisFabricacion()
+        {
+            List<sp_RetornaPaisFabricante_Result> listaPaises =
+                this.modeloBD.sp_RetornaPaisFabricante("","").ToList();
+
+            return Json(new
+            {
+                resultado = listaPaises
+            });
+
+
+        }
+        public ActionResult GridPaisFabricacion()
+        {
+            return View();
+        }
     }
 }

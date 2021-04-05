@@ -2030,8 +2030,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery_IU.js" />
+    <Content Include="Scripts\MarcaTipoVehiculo\GridMarcaVehiculo.js" />
     <Content Include="Scripts\MarcaTipoVehiculo\ValidacionMarcaTipoVehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\PaisFabricacion\GridPaisFabricacion.js" />
     <Content Include="Scripts\PaisFabricacion\ValidacionPaisFabricante.js" />
     <Content Include="Scripts\scriptGenerico.js" />
     <Content Include="Scripts\ServicioProducto\ValidacionServicioProducto.js" />
@@ -2098,6 +2100,8 @@
     <Content Include="Views\DetalleFactura\AgregarDetalleFactura.cshtml" />
     <Content Include="Views\DetalleFactura\ListaDetallePorId.cshtml" />
     <Content Include="Views\Usuarios\ListaVehiculoCliente.cshtml" />
+    <Content Include="Views\PaisFabricacion\GridPaisFabricacion.cshtml" />
+    <Content Include="Views\MarcaVehiculo\GridMarcaVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

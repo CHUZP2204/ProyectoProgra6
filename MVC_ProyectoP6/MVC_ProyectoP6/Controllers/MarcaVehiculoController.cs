@@ -253,5 +253,24 @@ namespace MVC_ProyectoP6.Controllers
             this.ViewBag.ListaPaises =
                  this.modeloBD.sp_RetornaPaisFabricante(null, null).ToList();
         }
+
+        [HttpPost]
+        public ActionResult RetornaMarcaVehiculo()
+        {
+            List<sp_RetornaMarcaVehiculo_Result> listaMarcaVehiculos =
+                this.modeloBD.sp_RetornaMarcaVehiculo("", "").ToList();
+
+            return Json(new
+            {
+                resultado = listaMarcaVehiculos
+            });
+
+
+        }
+        public ActionResult GridMarcaVehiculo()
+        {
+            this.AgregarPaisesViewBag();
+            return View();
+        }
     }
 }

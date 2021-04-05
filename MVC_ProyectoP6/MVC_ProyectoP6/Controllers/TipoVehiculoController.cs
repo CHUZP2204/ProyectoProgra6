@@ -200,5 +200,23 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        [HttpPost]
+        public ActionResult RetornaTipoVehiculo()
+        {
+            List<sp_RetornaTipoVehiculo_Result> listaTipoVehiculo =
+                this.modeloBD.sp_RetornaTipoVehiculo("", "").ToList();
+
+            return Json(new
+            {
+                resultado = listaTipoVehiculo
+            });
+
+
+        }
+        public ActionResult GridTipoVehiculo()
+        {
+            return View();
+        }
+
     }
 }

@@ -2036,7 +2036,9 @@
     <Content Include="Scripts\PaisFabricacion\GridPaisFabricacion.js" />
     <Content Include="Scripts\PaisFabricacion\ValidacionPaisFabricante.js" />
     <Content Include="Scripts\scriptGenerico.js" />
+    <Content Include="Scripts\ServicioProducto\GridServicioYProductos.js" />
     <Content Include="Scripts\ServicioProducto\ValidacionServicioProducto.js" />
+    <Content Include="Scripts\TipoVehiculo\GridTipoVehiculo.js" />
     <Content Include="Scripts\TipoVehiculo\ValidacionTipoVehiculo.js" />
     <Content Include="Scripts\Usuarios\CargarDatosCliente.js" />
     <Content Include="Scripts\Usuarios\cargarVehClien.js" />
@@ -2102,6 +2104,8 @@
     <Content Include="Views\Usuarios\ListaVehiculoCliente.cshtml" />
     <Content Include="Views\PaisFabricacion\GridPaisFabricacion.cshtml" />
     <Content Include="Views\MarcaVehiculo\GridMarcaVehiculo.cshtml" />
+    <Content Include="Views\ServicioOProducto\GridServicioOProducto.cshtml" />
+    <Content Include="Views\TipoVehiculo\GridTipoVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

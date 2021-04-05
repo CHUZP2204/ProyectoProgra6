@@ -1,4 +1,5 @@
-﻿$(function () {
+﻿
+$(function () {
     obtenerRegistros();
 });
 
@@ -8,7 +9,7 @@
 // RetornaEmpresas()
 function obtenerRegistros() {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/MarcaVehiculo/RetornaMarcaVehiculo'
+    var urlMetodo = '/TipoVehiculo/RetornaTipoVehiculo'
     var parametros = {};
     var funcion = creaGridKendo;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -31,32 +32,25 @@ function creaGridKendo(data) {
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
-                field: 'CodigoMarcaVehiculo',
+                field: 'CodigoTipoVehiculo',
                 //texto del encabezado
-                title: 'Codigo Marca '
+                title: 'Codigo Tipo Vehiculo '
 
             },
 
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
-                field: 'TipoMarcaVehiculo',
+                field: 'TipoVehiculo',
                 //texto del encabezado
-                title: 'Tipo de Marca '
-            },
-            {
-                //propiedad de la fuente de datos
-                //caseSensitive
-                field: 'idPaisFabricante',
-                //texto del encabezado
-                title: 'PaisFabricante '
+                title: 'Tipo Vehiculo  '
             },
 
             {
                 title: "Acciones",
                 template: function (dataItem) {
-                    return "<a class='btn btn-primary'  href='/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=" + dataItem.idMarcaVehiculo + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=" + dataItem.idMarcaVehiculo + "'>Elimimar</a>"
+                    return "<a class='btn btn-primary' href='/TipoVehiculo/ModificaTipoVehiculo?idTipoVehiculo=" + dataItem.idTipoVehiculo + "'>Modificar</a>"
+                        + " " + "<a class='btn btn-danger' href='/TipoVehiculo/EliminaTipoVehiculo?idTipoVehiculo=" + dataItem.idTipoVehiculo + "'>Elimimar</a>"
 
 
                 }
@@ -66,13 +60,13 @@ function creaGridKendo(data) {
 
         toolbar: ["excel", "pdf"],//propiedad para exportar 
         excel: {
-            fileName: "Lista Marca Vehiculos.xlsx", //agregar nombre al archivo para descarga 
+            fileName: "Lista Tipo Vehiculos.xlsx", //agregar nombre al archivo para descarga 
             filterable: true,
             allPages: true //mostrar todo 
         },
 
         pdf: {
-            fileName: "Lista Marca Vehiculos.pdf", //agregar nombre
+            fileName: "Lista Tipo Vehiculos.pdf", //agregar nombre
             author: "UMCA", //NOMBRE AUTOR
             creator: "Wagner Diaz",//Nombre Creador
             date: new Date(), //fecha

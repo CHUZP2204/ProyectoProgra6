@@ -8,7 +8,7 @@
 // RetornaEmpresas()
 function obtenerRegistros() {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/MarcaVehiculo/RetornaMarcaVehiculo'
+    var urlMetodo = '/ServicioOProducto/RetornaServicioOProducto'
     var parametros = {};
     var funcion = creaGridKendo;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -31,32 +31,32 @@ function creaGridKendo(data) {
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
-                field: 'CodigoMarcaVehiculo',
+                field: 'CodigoSOP',
                 //texto del encabezado
-                title: 'Codigo Marca '
+                title: 'Codigo Servicio O Producto '
 
             },
 
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
-                field: 'TipoMarcaVehiculo',
+                field: 'PrecioSOP',
                 //texto del encabezado
-                title: 'Tipo de Marca '
+                title: 'Precio Servicio O Producto '
             },
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
-                field: 'idPaisFabricante',
+                field: 'TipoSOP',
                 //texto del encabezado
-                title: 'PaisFabricante '
+                title: 'Tipo Servicio o Producto '
             },
 
             {
                 title: "Acciones",
                 template: function (dataItem) {
-                    return "<a class='btn btn-primary'  href='/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=" + dataItem.idMarcaVehiculo + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=" + dataItem.idMarcaVehiculo + "'>Elimimar</a>"
+                    return "<a class='btn btn-primary' href='/ServicioOProducto/ModificaServicioOProducto?idSOP=" + dataItem.idSOP + "'>Modificar</a>"
+                        + " " + "<a class='btn btn-danger' href='/ServicioOProducto/EliminaServicioOProducto?idSOP=" + dataItem.idSOP + "'>Elimimar</a>"
 
 
                 }
@@ -66,13 +66,13 @@ function creaGridKendo(data) {
 
         toolbar: ["excel", "pdf"],//propiedad para exportar 
         excel: {
-            fileName: "Lista Marca Vehiculos.xlsx", //agregar nombre al archivo para descarga 
+            fileName: "Lista Servicios Y Productos.xlsx", //agregar nombre al archivo para descarga 
             filterable: true,
             allPages: true //mostrar todo 
         },
 
         pdf: {
-            fileName: "Lista Marca Vehiculos.pdf", //agregar nombre
+            fileName: "Lista Servicios Y Productos.pdf", //agregar nombre
             author: "UMCA", //NOMBRE AUTOR
             creator: "Wagner Diaz",//Nombre Creador
             date: new Date(), //fecha

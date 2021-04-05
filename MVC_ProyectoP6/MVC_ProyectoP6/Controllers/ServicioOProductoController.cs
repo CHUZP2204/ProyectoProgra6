@@ -196,5 +196,23 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
 
         }
+        [HttpPost]
+        public ActionResult RetornaServicioOProducto()
+        {
+            List<sp_RetornaServicioOProducto_Result> listaServicioYOProductos =
+                this.modeloBD.sp_RetornaServicioOProducto("", "").ToList();
+
+            return Json(new
+            {
+                resultado = listaServicioYOProductos
+            });
+
+
+        }
+        public ActionResult GridServicioOProducto()
+        {
+            return View();
+        }
     }
 }
+

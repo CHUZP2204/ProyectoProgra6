@@ -2047,6 +2047,7 @@
     <Content Include="Scripts\Usuarios\jqueryIUEventos.js" />
     <Content Include="Scripts\Usuarios\Registrase.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
+    <Content Include="Scripts\VehiculosXCliente\VehiculosXCliente.js" />
     <Content Include="Scripts\Vehiculos\GridVehiculos.js" />
     <Content Include="Scripts\Vehiculos\ValidacionesVehiculo.js" />
     <Content Include="Web.config" />
@@ -2109,6 +2110,7 @@
     <Content Include="Views\ServicioOProducto\GridServicioOProducto.cshtml" />
     <Content Include="Views\TipoVehiculo\GridTipoVehiculo.cshtml" />
     <Content Include="Views\Vehiculos\GridVehiculos.cshtml" />
+    <Content Include="Views\VehiculoXcliente\GridVehiculosXCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

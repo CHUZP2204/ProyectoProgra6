@@ -283,5 +283,26 @@ namespace MVC_ProyectoP6.Controllers
         {
             this.ViewBag.ListaTipoMarcaV = this.ModeloBD.sp_RetornaMarcaVehiculo(null, null).ToList();
         }
+
+        [HttpPost]
+        public ActionResult RetornaVehiculosXCliente()
+        {
+            List<sp_RetornaVehXPers_Result> listaVehiculosXCliente =
+                this.ModeloBD.sp_RetornaVehXPers( null,null).ToList();
+
+            return Json(new
+            {
+                resultado = listaVehiculosXCliente
+            });
+
+
+        }
+        public ActionResult GridVehiculosXCliente()
+        {
+            this.AgregVehiculoViewBag();
+            this.AgregTipoVehiculoViewBag();
+            this.AgregClienteViewBag();
+            return View();
+        }
     }
 }

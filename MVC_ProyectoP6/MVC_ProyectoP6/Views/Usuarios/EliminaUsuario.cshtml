@@ -42,14 +42,14 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Genero</label>
                         <div class="col-sm-7">
-                            <select name="Genero" id="Genero" class="form-control" readonly>
+                            <select name="Genero" id="Genero" class="form-control" readonly disabled>
                                 <option value="">Seleccione Un Genero</option>
 
 
                                 @*
-                                    Incluir La Propiedad Selected Para que La Opcion aparezca sleccionada
-                                    Se Compara la propiedad id_Provincia del ojeto ViewBag contra la propiedad id_Provincia
-                                    del modelo vista
+                    Incluir La Propiedad Selected Para que La Opcion aparezca sleccionada
+                    Se Compara la propiedad id_Provincia del ojeto ViewBag contra la propiedad id_Provincia
+                    del modelo vista
                                 *@
                                 @{
                                     //MVC_ProyectoP6.Models.sp_RetornaClientes_ID_Result modelo = new MVC_ProyectoP6.Models.sp_RetornaClientes_ID_Result();
@@ -102,7 +102,7 @@
                             <select name="idProvincia" id="idProvincia" class="form-control" readonly>
                                 <option value="">Seleccione Una Provincia</option>
                                 @{
-
+                      
                                     foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
                                     {
                                         bool esIdProvinciaModelo = provincia.id_Provincia == Model.idProvincia;
@@ -173,6 +173,8 @@
                     </div>
                     <!--Espacio Boton-->
                     <button class="btn btn-danger" type="submit">Eliminar</button>
+                    <!--Espacio lista usuarios-->
+                    <a href="~/Usuarios/GridClientes" class="btn btn-primary">Lista Usuarios</a>
                 </form>
 
             </div>

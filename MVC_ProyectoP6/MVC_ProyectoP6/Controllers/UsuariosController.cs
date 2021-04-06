@@ -260,6 +260,24 @@ namespace MVC_ProyectoP6.Controllers
 
             return Json(new { resultado = vehiculosCliente });
         }
+
+        [HttpPost]
+        public ActionResult RetornaClientes()
+        {
+            List<sp_RetornaClientes_Result> listaClientes =
+                this.modeloBD.sp_RetornaClientes("", "").ToList();
+
+            return Json(new
+            {
+                resultado = listaClientes
+            });
+
+
+        }
+        public ActionResult GridClientes()
+        {
+            return View();
+        }
     }
 
 }

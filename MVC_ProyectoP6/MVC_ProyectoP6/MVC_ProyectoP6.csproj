@@ -2043,6 +2043,7 @@
     <Content Include="Scripts\Usuarios\CargarDatosCliente.js" />
     <Content Include="Scripts\Usuarios\cargarVehClien.js" />
     <Content Include="Scripts\Usuarios\ddlEvents.js" />
+    <Content Include="Scripts\Usuarios\GridClientes.js" />
     <Content Include="Scripts\Usuarios\InicioSesion.js" />
     <Content Include="Scripts\Usuarios\jqueryIUEventos.js" />
     <Content Include="Scripts\Usuarios\Registrase.js" />
@@ -2111,6 +2112,7 @@
     <Content Include="Views\TipoVehiculo\GridTipoVehiculo.cshtml" />
     <Content Include="Views\Vehiculos\GridVehiculos.cshtml" />
     <Content Include="Views\VehiculoXcliente\GridVehiculosXCliente.cshtml" />
+    <Content Include="Views\Usuarios\GridClientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

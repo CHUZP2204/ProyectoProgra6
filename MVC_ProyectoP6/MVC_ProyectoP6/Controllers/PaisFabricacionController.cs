@@ -14,12 +14,8 @@ namespace MVC_ProyectoP6.Controllers
         progra6Entities3 modeloBD = new progra6Entities3();
 
 
-        /// <summary>
-        /// Metodo Que Retorna La Vista
-        /// Con Los Datos De Paises
-        /// Disponibles 
-        /// </summary>
-        /// <returns></returns>
+        
+        #region Metodos
         public ActionResult ListaPaisFabricante()
         {
             ///crear la variable que contiene el registro obtenidos
@@ -32,23 +28,6 @@ namespace MVC_ProyectoP6.Controllers
 
             //enciar el modelo a la vista
             return View(modeloVista);
-        }
-
-        //Nulo Sin USo
-        [HttpPost]
-        public ActionResult ListaPaisFabricante(sp_RetornaPaisFabricante_Result modeloVista)
-        {
-            return View(modeloVista);
-        }
-
-        /// <summary>
-        /// Metodo Que Retorna La Vista Para 
-        /// Agregar Un Nuevo Pais Fabricante
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult NuevoPaisFabricante()
-        {
-            return View();
         }
 
         /// <summary>
@@ -131,23 +110,6 @@ namespace MVC_ProyectoP6.Controllers
 
 
         /// <summary>
-        /// Metodo Que Retorna La Vista Para
-        /// Modificar Datos De Un Pais Fabricante
-        /// Por Medio De Un ID
-        /// </summary>
-        /// <param name="idPaisFabricante"></param>
-        /// <returns></returns>
-        public ActionResult ModificaPaisFabricante(int idPaisFabricante)
-        {    ///obtener el registro que se desea modificar
-             /// utilizando el parametro del metodo idPaisFabricante
-            sp_RetornaPaisFabricante_ID_Result modeloVista = new sp_RetornaPaisFabricante_ID_Result();
-            modeloVista = this.modeloBD.sp_RetornaPaisFabricante_ID(idPaisFabricante).FirstOrDefault();
-
-            //enviar modelo a la vista
-            return View(modeloVista);
-        }
-
-        /// <summary>
         /// Metodo Que Almacena Los Datos Ingresados 
         /// En La Vista En La BD 
         /// </summary>
@@ -188,23 +150,6 @@ namespace MVC_ProyectoP6.Controllers
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
-            return View(modeloVista);
-        }
-
-        /// <summary>
-        /// Metodo Que Retorna La Vista Para 
-        /// Eliminar Un Dato De Pais Fabricante
-        /// </summary>
-        /// <param name="idPaisFabricante"></param>
-        /// <returns></returns>
-        public ActionResult EliminaPaisFabricante(int idPaisFabricante)
-        {
-            ///obtener el registro que se desea modificar
-            /// utilizando el parametro del metodo idPaisFabricante
-            sp_RetornaPaisFabricante_ID_Result modeloVista = new sp_RetornaPaisFabricante_ID_Result();
-            modeloVista = this.modeloBD.sp_RetornaPaisFabricante_ID(idPaisFabricante).FirstOrDefault();
-
-            //enviar modelo a la vista
             return View(modeloVista);
         }
 
@@ -253,7 +198,7 @@ namespace MVC_ProyectoP6.Controllers
         public ActionResult RetornaPaisFabricacion()
         {
             List<sp_RetornaPaisFabricante_Result> listaPaises =
-                this.modeloBD.sp_RetornaPaisFabricante("","").ToList();
+                this.modeloBD.sp_RetornaPaisFabricante("", "").ToList();
 
             return Json(new
             {
@@ -262,9 +207,72 @@ namespace MVC_ProyectoP6.Controllers
 
 
         }
+
+
+
+        #endregion Metodos
+
+
+
+        #region Vistas
+        //Nulo Sin USo
+        [HttpPost]
+        public ActionResult ListaPaisFabricante(sp_RetornaPaisFabricante_Result modeloVista)
+        {
+            return View(modeloVista);
+        }
+
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para 
+        /// Agregar Un Nuevo Pais Fabricante
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NuevoPaisFabricante()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para
+        /// Modificar Datos De Un Pais Fabricante
+        /// Por Medio De Un ID
+        /// </summary>
+        /// <param name="idPaisFabricante"></param>
+        /// <returns></returns>
+        public ActionResult ModificaPaisFabricante(int idPaisFabricante)
+        {    ///obtener el registro que se desea modificar
+             /// utilizando el parametro del metodo idPaisFabricante
+            sp_RetornaPaisFabricante_ID_Result modeloVista = new sp_RetornaPaisFabricante_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaPaisFabricante_ID(idPaisFabricante).FirstOrDefault();
+
+            //enviar modelo a la vista
+            return View(modeloVista);
+        }
+
+        /// <summary>
+        /// Metodo Que Retorna La Vista Para 
+        /// Eliminar Un Dato De Pais Fabricante
+        /// </summary>
+        /// <param name="idPaisFabricante"></param>
+        /// <returns></returns>
+        public ActionResult EliminaPaisFabricante(int idPaisFabricante)
+        {
+            ///obtener el registro que se desea modificar
+            /// utilizando el parametro del metodo idPaisFabricante
+            sp_RetornaPaisFabricante_ID_Result modeloVista = new sp_RetornaPaisFabricante_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaPaisFabricante_ID(idPaisFabricante).FirstOrDefault();
+
+            //enviar modelo a la vista
+            return View(modeloVista);
+        }
+
         public ActionResult GridPaisFabricacion()
         {
             return View();
         }
+
+
+        #endregion Vistas
+
     }
 }

@@ -48,8 +48,10 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult NuevoVehiculo(sp_RetornaVehiculo_Result modeloVista)
         {
+            List<sp_RetornaVehiculo_Result> modeloVista1 = new List<sp_RetornaVehiculo_Result>();
 
-            //Falta Validar placa
+            /////Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
+            modeloVista1 = this.ModeloBD.sp_RetornaVehiculo(modeloVista.PlacaVehiculo, null,null).ToList();
             ///Variable Que Registra La Cantidad De Registros Afectados
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
             ///No Afecta Registros Implica Que Hubo Un Error
@@ -63,18 +65,36 @@ namespace MVC_ProyectoP6.Controllers
             /// Finally Siempre se ejecuta exista o no error
             try
             {
+                ///Variable Que Guardara 1 si se encuentra un Dato, de lo contrario sera 0
+                int NombreEncontrado = 0;
+                ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
+                ///Y Compararlo con el modelovista del view
+                for (int i = 0; i < modeloVista1.Count; i++)
+                {
+                    ///Aqui Se Verifica Si Existe O No El Mismo Codigo
+                    if (modeloVista1[i].PlacaVehiculo.Equals(modeloVista.PlacaVehiculo))
+                    {
 
-                cantidadRegistrosAfectados =
-               this.ModeloBD.sp_InsertaVehiculo(
-                   modeloVista.PlacaVehiculo,
-                   modeloVista.idTipoVehiculo,
-                   modeloVista.idMarcaVehiculo,
-                   modeloVista.NumeroPuertas,
-                   modeloVista.NumeroRuedas
-                   );
+                        NombreEncontrado = 1;
 
-
-
+                    }
+                }
+                if (NombreEncontrado == 0)
+                {
+                    cantidadRegistrosAfectados =
+                                  this.ModeloBD.sp_InsertaVehiculo(
+                                      modeloVista.PlacaVehiculo,
+                                      modeloVista.idTipoVehiculo,
+                                      modeloVista.idMarcaVehiculo,
+                                      modeloVista.NumeroPuertas,
+                                      modeloVista.NumeroRuedas
+                                      );
+                }
+                else
+                {
+                    cantidadRegistrosAfectados = 0;
+                }
+    
             }
             catch (Exception error)
             {
@@ -89,7 +109,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
                 else
                 {
-                    resultado = "No se pudo insertar";
+                    resultado = "No se pudo insertar, la placa ya existe";
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
@@ -244,6 +264,24 @@ namespace MVC_ProyectoP6.Controllers
         void AgregTipoMarcaViewBag()
         {
             this.ViewBag.ListaTipoMarcaV = this.ModeloBD.sp_RetornaMarcaVehiculo(null,null).ToList();
+        }
+
+        [HttpPost]
+        public ActionResult RetornaVehiculos()
+        {
+            List<sp_RetornaVehiculo_Result> listaVehiculos =
+                this.ModeloBD.sp_RetornaVehiculo("",null ,null).ToList();
+
+            return Json(new
+            {
+                resultado = listaVehiculos
+            });
+
+
+        }
+        public ActionResult GridVehiculos()
+        {
+            return View();
         }
     }
 }

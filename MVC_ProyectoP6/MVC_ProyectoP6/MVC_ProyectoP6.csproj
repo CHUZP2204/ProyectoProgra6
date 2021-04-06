@@ -2047,6 +2047,8 @@
     <Content Include="Scripts\Usuarios\jqueryIUEventos.js" />
     <Content Include="Scripts\Usuarios\Registrase.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
+    <Content Include="Scripts\Vehiculos\GridVehiculos.js" />
+    <Content Include="Scripts\Vehiculos\ValidacionesVehiculo.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2106,6 +2108,7 @@
     <Content Include="Views\MarcaVehiculo\GridMarcaVehiculo.cshtml" />
     <Content Include="Views\ServicioOProducto\GridServicioOProducto.cshtml" />
     <Content Include="Views\TipoVehiculo\GridTipoVehiculo.cshtml" />
+    <Content Include="Views\Vehiculos\GridVehiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

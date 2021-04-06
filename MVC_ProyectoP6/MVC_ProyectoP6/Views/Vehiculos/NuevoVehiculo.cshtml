@@ -18,7 +18,7 @@
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaTipoVehiculo_Result ModeloTipoV in this.ViewBag.ListaTipoVehiculos)
                     {
-                            <option value="@ModeloTipoV.idTipoVehiculo">@ModeloTipoV.TipoVehiculo </option>
+                        <option value="@ModeloTipoV.idTipoVehiculo">@ModeloTipoV.TipoVehiculo </option>
                     }
                 }
             </select>
@@ -31,24 +31,29 @@
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result ModeloTipoM in this.ViewBag.ListaTipoMarcaV)
                     {
-                            <option value="@ModeloTipoM.idMarcaVehiculo">@ModeloTipoM.TipoMarcaVehiculo</option>
+                        <option value="@ModeloTipoM.idMarcaVehiculo">@ModeloTipoM.TipoMarcaVehiculo</option>
                     }
                 }
             </select>
         </div>
         <div class="form-group">
             <label>Cantidad Puertas</label>
-            <input type="number" name="NumeroPuertas" id="NumeroPuertas" class="form-control"  />
+            <input type="number" name="NumeroPuertas" id="NumeroPuertas" class="form-control" />
         </div>
         <div class="form-group">
             <label>Cantidad Ruedas</label>
-            <input type="number" name="NumeroRuedas" id="NumeroRuedas" class="form-control"  />
+            <input type="number" name="NumeroRuedas" id="NumeroRuedas" class="form-control" />
         </div>
         <div class="form-group">
             <input type="submit" value="Agregar" id="btnAgregar" class="btn btn-success" />
         </div>
     </form>
-    <a href="~/Vehiculos/ListaVehiculoS" class="btn btn-primary">Lista Vehiculo</a>
+    <a href="~/Vehiculos/GridVehiculos" class="btn btn-primary">Lista Vehiculos</a>
 </div>
+
+@section scripts{
+    <script src="~/Scripts/Vehiculos/ValidacionesVehiculo.js"></script>
+}
+
 
 

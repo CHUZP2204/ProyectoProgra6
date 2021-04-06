@@ -31,6 +31,10 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult NuevoUsuario(sp_RetornaClientes_Result modeloVista)
         {
+            List<sp_RetornaClientes_Result> modeloVista1 = new List<sp_RetornaClientes_Result>();
+
+            ///Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
+            modeloVista1 = this.modeloBD.sp_RetornaClientes(modeloVista.Cedula, "").ToList();
             ///Variable Que Registra La Cantidad De Registros Afectados
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
             ///No Afecta Registros Implica Que Hubo Un Error
@@ -43,19 +47,43 @@ namespace MVC_ProyectoP6.Controllers
             /// Finally Siempre se ejecuta exista o no error
             try
             {
-                cantRegistrosAfectados =
-                    this.modeloBD.sp_InsertaCliente(
-                        modeloVista.Cedula,
-                        modeloVista.FechaNacimiento,
-                        modeloVista.Genero,
-                        modeloVista.NombreCompleto,
-                        modeloVista.Correo,
-                        modeloVista.idProvincia,
-                        modeloVista.idCanton,
-                        modeloVista.idDistrito,
-                        modeloVista.TipoUsuario,
-                        modeloVista.Contrasenia
-                        );
+                ///Variable Que Guardara 1 si se encuentra un Dato, de lo contrario sera 0
+                int NombreEncontrado = 0;
+                ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
+                ///Y Compararlo con el modelovista del view
+                for (int i = 0; i < modeloVista1.Count; i++)
+                {
+                    ///Aqui Se Verifica Si Existe O No El Mismo Codigo
+                    if (modeloVista1[i].Cedula.Equals(modeloVista.Cedula))
+                    {
+
+                        NombreEncontrado = 1;
+
+                    }
+                }
+
+                if (NombreEncontrado == 0)
+                {
+                    cantRegistrosAfectados =
+                                      this.modeloBD.sp_InsertaCliente(
+                                          modeloVista.Cedula,
+                                          modeloVista.FechaNacimiento,
+                                          modeloVista.Genero,
+                                          modeloVista.NombreCompleto,
+                                          modeloVista.Correo,
+                                          modeloVista.idProvincia,
+                                          modeloVista.idCanton,
+                                          modeloVista.idDistrito,
+                                          modeloVista.TipoUsuario,
+                                          modeloVista.Contrasenia
+                                          );
+                }
+                else
+                {
+                    cantRegistrosAfectados = 0;
+                }
+               
+
             }
             catch (Exception error)
             {
@@ -65,11 +93,11 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (cantRegistrosAfectados > 0)
                 {
-                    resultado = "El Registro Fue Insertado";
+                    resultado = "Registro Insertado";
                 }
                 else
                 {
-                    resultado += "El Registro No Se Pudo Insertar";
+                    resultado += "No se pudo la cedula  ya existe";
                 }
             }
 
@@ -144,7 +172,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
                 else
                 {
-                    resultado += "El Registro No Se Pudo Insertar";
+                    resultado += "El Registro No Se Pudo Modificar";
                 }
             }
 

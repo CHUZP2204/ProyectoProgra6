@@ -2019,7 +2019,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\DetalleFactura\GridDetalleFactura.js" />
     <Content Include="Scripts\EncabezadoFactura\EncabezadoFactura.js" />
+    <Content Include="Scripts\EncabezadoFactura\GridEncabezadoFactura.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -2113,6 +2115,8 @@
     <Content Include="Views\Vehiculos\GridVehiculos.cshtml" />
     <Content Include="Views\VehiculoXcliente\GridVehiculosXCliente.cshtml" />
     <Content Include="Views\Usuarios\GridClientes.cshtml" />
+    <Content Include="Views\DetalleFactura\GridDetalleFactura.cshtml" />
+    <Content Include="Views\EncabezadoFactura\GridEncabezadoFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

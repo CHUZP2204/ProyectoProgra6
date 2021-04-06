@@ -366,5 +366,25 @@ namespace MVC_ProyectoP6.Controllers
         {
             this.ViewBag.ListaEncabezado = this.ModeloBD.sp_RetornaEncFactura(null).ToList();
         }
+
+        [HttpPost]
+        public ActionResult RetornaDetalleFactura()
+        {
+            List<sp_RetornaDetalleFac_Result> listadetalleFactura =
+                this.ModeloBD.sp_RetornaDetalleFac(null).ToList();
+
+            return Json(new
+            {
+                resultado = listadetalleFactura
+            });
+
+
+        }
+        public ActionResult GridDetalleFactura()
+        {
+            return View();
+        }
     }
+
+
 }

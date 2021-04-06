@@ -297,5 +297,23 @@ namespace MVC_ProyectoP6.Controllers
         {
             this.ViewBag.ListaTipoSOP = this.modeloBD.sp_RetornaServicioOProducto(null, null).ToList();
         }
+
+        [HttpPost]
+        public ActionResult RetornaEncabezadoFactura()
+        {
+            List<sp_RetornaEncFactura_Result> listaEncabezadosFactura =
+                this.modeloBD.sp_RetornaEncFactura("").ToList();
+
+            return Json(new
+            {
+                resultado = listaEncabezadosFactura
+            });
+
+
+        }
+        public ActionResult GridEncabezadoFactura()
+        {
+            return View();
+        }
     }
 }

@@ -31,14 +31,11 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult NuevoUsuario(sp_RetornaClientes_Result modeloVista)
         {
-            List<sp_RetornaClientes_Result> modeloVista1 = new List<sp_RetornaClientes_Result>();
-
-            ///Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
-            modeloVista1 = this.modeloBD.sp_RetornaClientes(modeloVista.Correo, modeloVista.Cedula).ToList();
+            List<sp_RetornaClientes_Result> ModeloVista1 = new List<sp_RetornaClientes_Result>();
+            ModeloVista1 = this.modeloBD.sp_RetornaClientes(modeloVista.Cedula, modeloVista.Correo).ToList();
             ///Variable Que Registra La Cantidad De Registros Afectados
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
             ///No Afecta Registros Implica Que Hubo Un Error
-
             int cantRegistrosAfectados = 0;
             string resultado = "";
 
@@ -48,23 +45,27 @@ namespace MVC_ProyectoP6.Controllers
             try
             {
                 ///Variable Que Guardara 1 si se encuentra un Dato, de lo contrario sera 0
-                int NombreEncontrado = 0;
                 ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
                 ///Y Compararlo con el modelovista del view
-                for (int i = 0; i < modeloVista1.Count; i++)
+                for (int i = 0; i < ModeloVista1.Count; i++)
                 {
                     ///Aqui Se Verifica Si Existe O No El Mismo Codigo
-                    if (modeloVista1[i].Correo.Equals(modeloVista.Correo) && modeloVista1[i].Cedula.Equals(modeloVista.Cedula))
+                    if (ModeloVista1[i].Cedula.Equals(modeloVista.Cedula))
                     {
-
-                        NombreEncontrado = 1;
-
+                        cantRegistrosAfectados = 1;
                     }
-                }
+                    else if (ModeloVista1[i].Correo.Equals(modeloVista.Correo))
+                    {
+                        cantRegistrosAfectados = 1;
+                    }
+                    else
+                    {
+                        cantRegistrosAfectados = 0;
+                    }
 
-                if (NombreEncontrado == 0)
-                {
-                    cantRegistrosAfectados =
+                     if (cantRegistrosAfectados == 0)
+                    {
+                          cantRegistrosAfectados =
                                       this.modeloBD.sp_InsertaCliente(
                                           modeloVista.Cedula,
                                           modeloVista.FechaNacimiento,
@@ -76,14 +77,16 @@ namespace MVC_ProyectoP6.Controllers
                                           modeloVista.idDistrito,
                                           modeloVista.TipoUsuario,
                                           modeloVista.Contrasenia
-                                          );
-                }
-                else
-                {
-                    cantRegistrosAfectados = 0;
-                }
-               
+                                          );   
+                    }
+                     else
+                    {
+                          cantRegistrosAfectados = 0;
 
+                    }
+                   
+                }
+   
             }
             catch (Exception error)
             {

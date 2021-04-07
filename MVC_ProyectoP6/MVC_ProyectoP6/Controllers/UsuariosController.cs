@@ -34,7 +34,7 @@ namespace MVC_ProyectoP6.Controllers
             List<sp_RetornaClientes_Result> modeloVista1 = new List<sp_RetornaClientes_Result>();
 
             ///Asignar a la variable el resultado de llamar o invocar al Procedimiento almacenado
-            modeloVista1 = this.modeloBD.sp_RetornaClientes(modeloVista.Cedula, "").ToList();
+            modeloVista1 = this.modeloBD.sp_RetornaClientes(modeloVista.Correo, modeloVista.Cedula).ToList();
             ///Variable Que Registra La Cantidad De Registros Afectados
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
             ///No Afecta Registros Implica Que Hubo Un Error
@@ -54,7 +54,7 @@ namespace MVC_ProyectoP6.Controllers
                 for (int i = 0; i < modeloVista1.Count; i++)
                 {
                     ///Aqui Se Verifica Si Existe O No El Mismo Codigo
-                    if (modeloVista1[i].Cedula.Equals(modeloVista.Cedula))
+                    if (modeloVista1[i].Correo.Equals(modeloVista.Correo) && modeloVista1[i].Cedula.Equals(modeloVista.Cedula))
                     {
 
                         NombreEncontrado = 1;
@@ -97,7 +97,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
                 else
                 {
-                    resultado += "No se pudo la cedula  ya existe";
+                    resultado += "No se Insertar cedula o correo ya existen";
                 }
             }
 
@@ -322,6 +322,8 @@ namespace MVC_ProyectoP6.Controllers
         {
             return View();
         }
+    
+
     }
 
 }

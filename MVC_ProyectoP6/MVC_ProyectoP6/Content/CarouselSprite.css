@@ -1,0 +1,59 @@
+﻿.carousel-inner {
+    width: 100%;
+}
+
+.item{
+text-align:center;
+}
+
+.sprite {
+    display: inline-block;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-image: url(../Images/spritePaginaPrincipal.png);
+}
+
+.Logo {
+    width: 264px;
+    height: 191px;
+    background-position: -0px -0px
+}
+
+.servios0 {
+    width: 271px;
+    height: 186px;
+    background-position: -1620px -0px
+}
+
+.Servicios1 {
+    width: 237px;
+    height: 212px;
+    background-position: -539px -0px
+}
+
+.servicios2 {
+    width: 278px;
+    height: 181px;
+    background-position: -776px -0px
+}
+
+.servicios-3 {
+    width: 275px;
+    height: 183px;
+    background-position: -264px -0px
+}
+
+
+
+.servicios5 {
+    width: 291px;
+    height: 173px;
+    background-position: -1054px -0px
+}
+
+.servicios6 {
+    width: 275px;
+    height: 183px;
+    background-position: -1345px -0px
+}
+

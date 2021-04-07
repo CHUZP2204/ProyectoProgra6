@@ -1,7 +1,8 @@
-﻿
-@{
-    ViewBag.Title = "PaginaPrincipal";
+﻿@section css{
+
+    <link href="~/Content/CarouselSprite.css" rel="stylesheet" />
 }
+
 
 <div class="jumbotron">
     <h2 style="text-align:center" id="tipoUsuarioActual"></h2>
@@ -28,17 +29,66 @@
     <a href="~/TipoVehiculo/GridTipoVehiculo" class="btn btn-primary"> grid tipo vehiculo</a>
     <a href="~/Vehiculos/GridVehiculos" class="btn btn-primary">grid  vehiculo</a>
     <a href="~/VehiculoXcliente/GridVehiculosXCliente" class="btn btn-primary">grid vehiculoxcliente </a>
-    <a href="~/Usuarios/GridClientes" class="btn btn-primary" >grid clientes</a>
+    <a href="~/Usuarios/GridClientes" class="btn btn-primary">grid clientes</a>
     <a href="~/DetalleFactura/GridDetalleFactura" class="btn btn-primary">grid detalle Factura </a>
     <a href="~/EncabezadoFactura/GridEncabezadoFactura" class="btn btn-primary">grid encabezado Factura</a>
-    <a href="~/Reportes/ReproteServicioXCliente" class="btn btn-primary" >Reporte Servicio X Cliente </a>
+    <a href="~/Reportes/ReproteServicioXCliente" class="btn btn-primary">Reporte Servicio X Cliente </a>
     <a href="~/Reportes/ReproteServicioXVehiculo" class="btn btn-primary"> Reporte Servicios X Vehiculo</a>
     <a href="~/Reportes/ReporteVehiculosXCliente" class="btn btn-primary"> Reporte  vehiculos X Cliente</a>
-
-
     <br />
     <br />
+
+    <form id="frmAppBootstrap" runat="server">
+        <div class="jumbotron text-center" id="divEncabezadoPagina">
+            <h1> Servicios </h1>
+        </div>
+
+        <div class="container" id="divContenendorContenido">
+          
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol id="olCarousel" class="carousel-indicators">
+                    <li data-target="myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="myCarousel" data-slide-to="1"></li>
+                    <li data-target="myCarousel" data-slide-to="2"></li>
+                    <li data-target="myCarousel" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <span class="sprite servios0">  </span>
+                    </div>
+                    <div class="item">
+                        <span class="sprite Servicios1"> </span>
+                    </div>
+                    <div class="item">
+                        <span class="sprite servicios2"> </span>
+                    </div>
+                    <div class="item">
+                        <span class="sprite servicios-3"> </span>
+                    </div>
+                    <div class="item">
+                        <span class="sprite servicios5"> </span>
+                    </div>
+                    <div class="item">
+                        <span class="sprite servicios6"> </span>
+                    </div>
+
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </div>
+            <br />
+        </div>
+    </form>
+
 </div>
+
+
 
 @section scripts{
     <script src="~/Scripts/Usuarios/CargarDatosCliente.js"></script>

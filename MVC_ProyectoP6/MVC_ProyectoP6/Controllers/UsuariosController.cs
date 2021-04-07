@@ -32,7 +32,7 @@ namespace MVC_ProyectoP6.Controllers
         public ActionResult NuevoUsuario(sp_RetornaClientes_Result modeloVista)
         {
             List<sp_RetornaClientes_Result> ModeloVista1 = new List<sp_RetornaClientes_Result>();
-            ModeloVista1 = this.modeloBD.sp_RetornaClientes(modeloVista.Cedula, modeloVista.Correo).ToList();
+            ModeloVista1 = this.modeloBD.sp_RetornaClientes(null,null).ToList();
             ///Variable Que Registra La Cantidad De Registros Afectados
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
             ///No Afecta Registros Implica Que Hubo Un Error

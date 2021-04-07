@@ -120,6 +120,8 @@ namespace MVC_ProyectoP6.Controllers
             sp_RetornaClientes_ID_Result modeloVista = new sp_RetornaClientes_ID_Result();
             modeloVista = this.modeloBD.sp_RetornaClientes_ID(idCliente).FirstOrDefault();
 
+            AgregaCantonesViewBag();
+            AgregaDistritosViewBag();
             this.AgregaProvinciasViewBag();
             ///Enviar el modelo a la vista
             return View(modeloVista);
@@ -181,6 +183,8 @@ namespace MVC_ProyectoP6.Controllers
                 "</script>");
 
             this.AgregaProvinciasViewBag();
+            AgregaCantonesViewBag();
+            AgregaDistritosViewBag();
             return View(modeloVista);
         }
 
@@ -192,6 +196,8 @@ namespace MVC_ProyectoP6.Controllers
             modeloVista = this.modeloBD.sp_RetornaClientes_ID(idCliente).FirstOrDefault();
 
             this.AgregaProvinciasViewBag();
+            AgregaCantonesViewBag();
+            AgregaDistritosViewBag();
             ///Enviar el modelo a la vista
             return View(modeloVista);
 
@@ -228,6 +234,8 @@ namespace MVC_ProyectoP6.Controllers
             }
 
             this.AgregaProvinciasViewBag();
+            AgregaCantonesViewBag();
+            AgregaDistritosViewBag();
             Response.Write("<script language=javascript>" + "alert('" + resultado + "');" + "</script>");
             return View(modeloVista);
         }
@@ -238,6 +246,14 @@ namespace MVC_ProyectoP6.Controllers
         void AgregaProvinciasViewBag()
         {
             this.ViewBag.ListaProvincias = this.modeloBD.sp_RetornaProvincias("", null).ToList();
+        }
+        void AgregaCantonesViewBag()
+        {
+            this.ViewBag.ListaCantones = this.modeloBD.sp_RetornaCantones("", null).ToList();
+        }
+        void AgregaDistritosViewBag()
+        {
+            this.ViewBag.ListaDistritos = this.modeloBD.sp_RetornaDistritos("", null).ToList();
         }
 
         /// <summary>

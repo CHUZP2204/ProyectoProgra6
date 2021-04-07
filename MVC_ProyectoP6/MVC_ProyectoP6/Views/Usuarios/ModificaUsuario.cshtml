@@ -129,6 +129,22 @@
                         <div class="col-sm-7">
                             <select name="idCanton" id="id_Canton" class="form-control" required>
                                 <option value="">Seleccione Canton</option>
+                                @{
+
+                                    foreach (MVC_ProyectoP6.Models.sp_RetornaCantones_Result Canton in this.ViewBag.ListaCantones)
+                                    {
+                                        bool esIdCantonModelo = Canton.id_Canton == Model.idCanton;
+
+                                        if (esIdCantonModelo)
+                                        {
+                                            <option value="@Canton.id_Canton" selected>@Canton.Canton.ToUpper() </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Canton.id_Canton">@Canton.Canton.ToUpper() </option>
+                                        }
+                                    }
+                                }
                             </select>
                         </div>
                     </div>
@@ -138,6 +154,22 @@
                         <div class="col-sm-7">
                             <select name="idDistrito" id="id_Distrito" class="form-control" required>
                                 <option value="">Seleccione Un Distrito</option>
+                                @{
+
+                                    foreach (MVC_ProyectoP6.Models.sp_RetornaDistritos_Result Distrito in this.ViewBag.ListaDistritos)
+                                    {
+                                        bool esIdCantonDistrito = Distrito.id_Distrito == Model.idDistrito;
+
+                                        if (esIdCantonDistrito)
+                                        {
+                                            <option value="@Distrito.id_Distrito" selected>@Distrito.Distrito.ToUpper() </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Distrito.id_Distrito">@Distrito.Distrito.ToUpper() </option>
+                                        }
+                                    }
+                                }
                             </select>
                         </div>
                     </div>

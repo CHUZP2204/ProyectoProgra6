@@ -43,6 +43,9 @@ namespace MVC_ProyectoP6.Models
         public DbSet<DetalleFactura> DetalleFactura { get; set; }
         public DbSet<View_DesgloseClientesVehiculo> View_DesgloseClientesVehiculo { get; set; }
         public DbSet<View_GenerarFactura> View_GenerarFactura { get; set; }
+        public DbSet<ServiciosXCliente> ServiciosXCliente { get; set; }
+        public DbSet<View_ServiciosXVehiculo> View_ServiciosXVehiculo { get; set; }
+        public DbSet<View_VehiculosXCliente> View_VehiculosXCliente { get; set; }
     
         public virtual int sp_Elimina_VehXPers(Nullable<int> idVehxPer)
         {
@@ -859,6 +862,49 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("idEncabezado", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDetalleFacXenca_ID_Result>("sp_RetornaDetalleFacXenca_ID", idEncabezadoParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaServiciosXCliente_Result> sp_RetornaServiciosXCliente(string nombreCompleto, string cedula, string codigoSOP)
+        {
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("NombreCompleto", nombreCompleto) :
+                new ObjectParameter("NombreCompleto", typeof(string));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var codigoSOPParameter = codigoSOP != null ?
+                new ObjectParameter("CodigoSOP", codigoSOP) :
+                new ObjectParameter("CodigoSOP", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaServiciosXCliente_Result>("sp_RetornaServiciosXCliente", nombreCompletoParameter, cedulaParameter, codigoSOPParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaServiciosXVehiculo_Result> sp_RetornaServiciosXVehiculo(string placaVehiculo, string codigoSOP)
+        {
+            var placaVehiculoParameter = placaVehiculo != null ?
+                new ObjectParameter("PlacaVehiculo", placaVehiculo) :
+                new ObjectParameter("PlacaVehiculo", typeof(string));
+    
+            var codigoSOPParameter = codigoSOP != null ?
+                new ObjectParameter("CodigoSOP", codigoSOP) :
+                new ObjectParameter("CodigoSOP", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaServiciosXVehiculo_Result>("sp_RetornaServiciosXVehiculo", placaVehiculoParameter, codigoSOPParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaVEHICULOSXCLIENTES_Result> sp_RetornaVEHICULOSXCLIENTES(string cedula, string placaVehiculo)
+        {
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var placaVehiculoParameter = placaVehiculo != null ?
+                new ObjectParameter("PlacaVehiculo", placaVehiculo) :
+                new ObjectParameter("PlacaVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVEHICULOSXCLIENTES_Result>("sp_RetornaVEHICULOSXCLIENTES", cedulaParameter, placaVehiculoParameter);
         }
     }
 }

@@ -31,6 +31,9 @@
         <EntityTypeShape EntityType="progra6Model.View_GenerarFactura" Width="1.5" PointX="9.375" PointY="0.75" />
         <AssociationConnector Association="progra6Model.FK_DetalleFactura_EncabezadoFactura" />
         <AssociationConnector Association="progra6Model.FK_DetalleFactura_ServiciosOProductos" />
+        <EntityTypeShape EntityType="progra6Model.ServiciosXCliente" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="progra6Model.View_ServiciosXVehiculo" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="progra6Model.View_VehiculosXCliente" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

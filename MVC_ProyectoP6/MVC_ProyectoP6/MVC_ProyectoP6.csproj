@@ -131,6 +131,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\PaisFabricacionController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\ServicioOProductoController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -179,6 +180,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServiciosOProductos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServiciosXCliente.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_RetornaCantones_ID_Result.cs">
@@ -250,10 +254,19 @@
     <Compile Include="Models\sp_RetornaServiciosOProductos_ID_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_RetornaServiciosXCliente_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_RetornaServiciosXVehiculo_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_RetornaTipoVehiculos_ID_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_RetornaTipoVehiculo_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_RetornaVEHICULOSXCLIENTES_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_RetornaVehiculosXCliente_Result.cs">
@@ -287,6 +300,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\View_GenerarFactura.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_ServiciosXVehiculo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_VehiculosXCliente.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2037,6 +2056,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\PaisFabricacion\GridPaisFabricacion.js" />
     <Content Include="Scripts\PaisFabricacion\ValidacionPaisFabricante.js" />
+    <Content Include="Scripts\Reportes\ReporteServiciosXVehiculo.js" />
+    <Content Include="Scripts\Reportes\ReporteServicioXCliente.js" />
+    <Content Include="Scripts\Reportes\ReporteVehiculoXCliente.js" />
     <Content Include="Scripts\scriptGenerico.js" />
     <Content Include="Scripts\ServicioProducto\GridServicioYProductos.js" />
     <Content Include="Scripts\ServicioProducto\ValidacionServicioProducto.js" />
@@ -2117,6 +2139,9 @@
     <Content Include="Views\Usuarios\GridClientes.cshtml" />
     <Content Include="Views\DetalleFactura\GridDetalleFactura.cshtml" />
     <Content Include="Views\EncabezadoFactura\GridEncabezadoFactura.cshtml" />
+    <Content Include="Views\Reportes\ReporteServicioXVehiculo.cshtml" />
+    <Content Include="Views\Reportes\ReporteServicioXCliente.cshtml" />
+    <Content Include="Views\Reportes\ReporteVehiculosXCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

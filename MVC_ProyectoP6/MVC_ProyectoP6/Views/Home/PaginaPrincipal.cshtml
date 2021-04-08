@@ -38,60 +38,80 @@
     <br />
     <br />
 
-    <form id="frmAppBootstrap" runat="server">
-        <div class="jumbotron text-center" id="divEncabezadoPagina">
-            <h1> Servicios </h1>
-        </div>
-
-        <div class="container" id="divContenendorContenido">
-          
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <ol id="olCarousel" class="carousel-indicators">
-                    <li data-target="myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="myCarousel" data-slide-to="1"></li>
-                    <li data-target="myCarousel" data-slide-to="2"></li>
-                    <li data-target="myCarousel" data-slide-to="3"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <span class="sprite servios0">  </span>
-                    </div>
-                    <div class="item">
-                        <span class="sprite Servicios1"> </span>
-                    </div>
-                    <div class="item">
-                        <span class="sprite servicios2"> </span>
-                    </div>
-                    <div class="item">
-                        <span class="sprite servicios-3"> </span>
-                    </div>
-                    <div class="item">
-                        <span class="sprite servicios5"> </span>
-                    </div>
-                    <div class="item">
-                        <span class="sprite servicios6"> </span>
-                    </div>
-
-                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Anterior</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Siguiente</span>
-                    </a>
+    <div class="container" id="divContenendorContenido">
+        <h1 class="text-center"> Servicios </h1>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol id="olCarousel" class="carousel-indicators">
+                <li data-target="myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="myCarousel" data-slide-to="1"></li>
+                <li data-target="myCarousel" data-slide-to="2"></li>
+                <li data-target="myCarousel" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <span class="sprite servios0">  </span>
                 </div>
+                <div class="item">
+                    <span class="sprite Servicios1"> </span>
+                </div>
+                <div class="item">
+                    <span class="sprite servicios2"> </span>
+                </div>
+                <div class="item">
+                    <span class="sprite servicios-3"> </span>
+                </div>
+                <div class="item">
+                    <span class="sprite servicios5"> </span>
+                </div>
+                <div class="item">
+                    <span class="sprite servicios6"> </span>
+                </div>
+
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
             </div>
-            <br />
         </div>
-    </form>
+        <br />
+    </div>
+    <br />
+
+
+    <div class="container" id="VideoYAudio">
+        <div class="row" id="divRowContenido1">
+
+            <div class="col-sm-4">
+                <h3>Nuestro sistema de Pulido </h3>
+                <video width="600" height="400" controls title="Pulido" allow="accelerometer" clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    <source src="~/Video/SistemaPulido.mp4" />
+                    El navegador no soporta Video.
+                </video>
+            </div>
+
+            <div class="col-sm-4">
+                <h3>   </h3>
+            </div>
+
+            <div class="col-sm-4">
+                <h3>Importancia del cambio aceite a tiempo?</h3>
+                <audio controls>
+                    <source src="~/Video/AudioCambioAceite.mp3">
+                    El navegador no soporta audio.
+                </audio>
+            </div>
+
+        </div>
+    </div>
 
 </div>
-
-
-
-@section scripts{
-    <script src="~/Scripts/Usuarios/CargarDatosCliente.js"></script>
-}
+    
+    @section scripts{
+        <script src="~/Scripts/Usuarios/CargarDatosCliente.js"></script>
+    }
 
 

@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <label>Clientes :</label>
-            <select name="idCliente" id="idCliente" class="form-control" value=" @Model.idCliente" readonly>
+            <select name="idCliente" id="idCliente" class="form-control" value=" @Model.idCliente" >
 
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result clientes in this.ViewBag.ListaClientes)

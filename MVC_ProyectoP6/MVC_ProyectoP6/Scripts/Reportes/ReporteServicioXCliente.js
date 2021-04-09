@@ -43,7 +43,7 @@ function creaGridKendo(data) {
                 title: 'Correo '
             },
             {
-                field: 'TipoSOP',
+                field: 'ProductoServicio',
                 title: 'Tipo Servicio '
             },
             {
@@ -51,11 +51,17 @@ function creaGridKendo(data) {
                 title: 'Codigo S/P '
             },
             {
-                field: 'PrecioSOP',
-                title: 'Precio S/P '
+                field: 'PrecioUnitario',
+                title: ' Unidad '
             },
-
-           
+            {
+                field: 'CantidadAdquirida',
+                title: 'Cantidad '
+            },
+            {
+                field: ' MontoFinal',
+                title: ' Monto Final '
+            },  
         ],
         filterable: true, //propiedad para filtrar
 

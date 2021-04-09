@@ -906,5 +906,26 @@ namespace MVC_ProyectoP6.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVEHICULOSXCLIENTES_Result>("sp_RetornaVEHICULOSXCLIENTES", cedulaParameter, placaVehiculoParameter);
         }
+    
+        public virtual ObjectResult<sp_RetornaViewReportes_Result> sp_RetornaViewReportes(Nullable<int> idCliente, Nullable<int> idVehiculo, string cedula, string placaVehiculo)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var idVehiculoParameter = idVehiculo.HasValue ?
+                new ObjectParameter("idVehiculo", idVehiculo) :
+                new ObjectParameter("idVehiculo", typeof(int));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("cedula", cedula) :
+                new ObjectParameter("cedula", typeof(string));
+    
+            var placaVehiculoParameter = placaVehiculo != null ?
+                new ObjectParameter("PlacaVehiculo", placaVehiculo) :
+                new ObjectParameter("PlacaVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaViewReportes_Result>("sp_RetornaViewReportes", idClienteParameter, idVehiculoParameter, cedulaParameter, placaVehiculoParameter);
+        }
     }
 }

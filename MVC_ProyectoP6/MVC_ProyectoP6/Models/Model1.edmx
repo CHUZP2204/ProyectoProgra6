@@ -692,6 +692,12 @@ advertencia 6002: La tabla o vista 'progra6.dbo.View_VehiculosXCliente' no tiene
           <Parameter Name="idVehXper" Type="int" Mode="In" />
           <Parameter Name="idVehiculo" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_RetornaViewReportes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idVehiculo" Type="int" Mode="In" />
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="PlacaVehiculo" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="progra6ModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
@@ -1348,6 +1354,12 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
             <Parameter Name="Cedula" Mode="In" Type="String" />
             <Parameter Name="PlacaVehiculo" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_RetornaViewReportes" ReturnType="Collection(progra6Model.sp_RetornaViewReportes_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idVehiculo" Mode="In" Type="Int32" />
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="PlacaVehiculo" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1906,6 +1918,30 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
           <Property Type="String" Name="PlacaVehiculo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="TipoMarcaVehiculo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="TipoVehiculo" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaViewReportes_Result">
+          <Property Type="Int32" Name="idEncabezadoFact" Nullable="false" />
+          <Property Type="Int32" Name="idDetalleFac" Nullable="false" />
+          <Property Type="Int32" Name="idSOP" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idVehiculo" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PlacaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoMarcaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoTipoVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoMarcaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EstadoFactura" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CodigoSOP" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="ProductoServicio" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CantidadAdquirida" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioXunidad" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="MontoFinal" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2605,6 +2641,34 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
                 <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
                 <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
                 <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaViewReportes" FunctionName="progra6Model.Store.sp_RetornaViewReportes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaViewReportes_Result">
+                <ScalarProperty Name="idEncabezadoFact" ColumnName="idEncabezadoFact" />
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idSOP" ColumnName="idSOP" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
+                <ScalarProperty Name="CodigoTipoVehiculo" ColumnName="CodigoTipoVehiculo" />
+                <ScalarProperty Name="CodigoMarcaVehiculo" ColumnName="CodigoMarcaVehiculo" />
+                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+                <ScalarProperty Name="CodigoSOP" ColumnName="CodigoSOP" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="ProductoServicio" ColumnName="ProductoServicio" />
+                <ScalarProperty Name="CantidadAdquirida" ColumnName="CantidadAdquirida" />
+                <ScalarProperty Name="PrecioXunidad" ColumnName="PrecioXunidad" />
+                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

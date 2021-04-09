@@ -43,19 +43,22 @@ function creaGridKendo(data) {
                 title: 'Marca Vehiculo '
             },
             {
-                field: 'TipoSOP',
+                field: 'ProductoServicio',
                 title: 'Tipo Servicio '
             },
             {
-                field: 'CodigoSOP',
-                title: 'Codigo S/P '
-            },
+                field: ' PrecioUnitario',
+                title: ' Unidad  '
+            }, 
             {
-                field: 'PrecioSOP',
-                title: 'Precio S/P '
+                field: 'CantidadAdquirida',
+                title: 'Cantidad '
             },
-
-
+           
+            {
+                field: ' MontoFinal',
+                title: ' Monto Final '
+            }, 
         ],
         filterable: true, //propiedad para filtrar
 

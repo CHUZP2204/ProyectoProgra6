@@ -14,8 +14,8 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult RetornaServicioXCliente()
         {
-            List<sp_RetornaServiciosXCliente_Result> listaMarcaServicioXCliente =
-                this.modeloBD.sp_RetornaServiciosXCliente("","","").ToList();
+            List<sp_RetornaViewReportes_Result> listaMarcaServicioXCliente =
+                this.modeloBD.sp_RetornaViewReportes(null,null,"","").ToList();
 
             return Json(new
             {
@@ -31,8 +31,8 @@ namespace MVC_ProyectoP6.Controllers
 
         public ActionResult RetornaServicioXVehiculo()
         {
-            List<sp_RetornaServiciosXVehiculo_Result> listaServicioXVehiculo =
-                this.modeloBD.sp_RetornaServiciosXVehiculo("", "").ToList();
+            List<sp_RetornaViewReportes_Result> listaServicioXVehiculo =
+                this.modeloBD.sp_RetornaViewReportes(null, null, "", "").ToList();
 
             return Json(new
             {
@@ -48,8 +48,8 @@ namespace MVC_ProyectoP6.Controllers
 
         public ActionResult RetornaVehiculosXCliente()
         {
-            List<sp_RetornaVEHICULOSXCLIENTES_Result> listaVehiculosXCliente =
-                this.modeloBD.sp_RetornaVEHICULOSXCLIENTES("","").ToList();
+            List<sp_RetornaViewReportes_Result> listaVehiculosXCliente =
+                this.modeloBD.sp_RetornaViewReportes(null, null, "", "").ToList();
 
             return Json(new
             {

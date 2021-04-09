@@ -39,6 +39,10 @@ function creaGridKendo(data) {
                 title: 'Cedula '
             },
             {
+                field: 'Correo',
+                title: 'Correo '
+            },
+            {
                 field: 'PlacaVehiculo',
                 title: 'Placa Vehiculo '
             },

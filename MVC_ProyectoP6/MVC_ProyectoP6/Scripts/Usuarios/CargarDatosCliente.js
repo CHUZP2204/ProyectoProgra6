@@ -14,10 +14,27 @@ function Verificacion() {
     var pathname = window.location.pathname;
     if (pathname !== '/') {
         if (pathname !== '/Home/Index') {
-            cargarDatosUsuario1();
+            if (pathname !== '/Home/About') {
+
+                if (pathname !== '/Home/Contact') {
+                    cargarDatosUsuario1();
+                }
+
+            }
+
         }
     }
 
+    if (pathname == '/') {
+        evitarPaginaPrincipal();
+    }
+    if (pathname == '/Home/Index') {
+        evitarPaginaPrincipal();
+    }
+
+    if (pathname == '/Home/PaginaPrincipal') {
+        ocultarEtiquetas();
+    }
 }
 
 function disable() {
@@ -35,7 +52,9 @@ function disable() {
     //alert(window.location);
 
 }
-///carga los Datos Del Cliente Desde El Server
+///Verifica Que Exista Usuario Logueado De Lo Contrario
+///No Se Podra Acceder A Ninguna Pagina De La APP WEB
+///Nos Envia A Iniciar Sesion
 function cargarDatosUsuario1() {
     ///dirección a donde se enviarán los datos
     var url = '/Home/MostrarInfoUsuario';
@@ -71,6 +90,81 @@ function cargarDatosUsuario1() {
     });
 }
 
+///Metodo Que Valida Si El Usuario aun Esta En Linea
+///Impide Acceder A La Pagina De Inicio Sesion Ya Que
+///No Tiene Sentido Si El Uso Si Ya Hay Un Usuario 
+///Logueado.
+function evitarPaginaPrincipal() {
+    ///dirección a donde se enviarán los datos
+    var url = '/Home/MostrarInfoUsuario';
+    ///parámetros del método, es CASE-SENSITIVE
+    var parametros = {
+    };
+    ///invocar el método
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(parametros),
+        success: function (data, textStatus, jQxhr) {
+
+            var usuarioIdObtenido = data.usuarioActual;
+            if (usuarioIdObtenido !== 0) {
+                var msj = 'Debes Cerrar Sesion';
+                showMessageSm(msj);
+                setTimeout(function () {
+                    window.location.href = '/Home/PaginaPrincipal';
+
+                }, 5000);
+            }
+        },
+        error: function (jQxhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        },
+    });
+}
+
+///
+///Metodo Que Oculta Las Etiquetas 
+///De Acuerdo A Los Datos Devueltos Por 
+///El Servidor
+function ocultarEtiquetas() {
+    ///dirección a donde se enviarán los datos
+    var url = '/Home/MostrarInfoUsuario';
+    ///parámetros del método, es CASE-SENSITIVE
+    var parametros = {
+    };
+    ///invocar el método
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(parametros),
+        success: function (data, textStatus, jQxhr) {
+
+            var tipoUsuarioActual = data.tipoUsuario;
+            ///Si El usuario Es Cliente 
+            ///Quitar Etiquetas De La Vista
+            ///
+            if (tipoUsuarioActual === 'Cliente') {
+                $("#admi").hide();
+                $("#admi1").hide();
+                $("#admi2").hide();
+                $("#admi3").hide();
+                $("#admi4").hide();
+                $("#admi5").hide();
+                $("#admi6").hide();
+            }
+
+        },
+        error: function (jQxhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        },
+    });
+}
+
 ///Metodo Que Modifca La Etiqueta Por Id #Bienvenida
 ///Muestra EL Nombre Del Usuario que Inicio Session
 function procesarResultadoUsuarioA(data) {
@@ -79,9 +173,12 @@ function procesarResultadoUsuarioA(data) {
     var resultadoFuncion = data.resultado;
     var ddlTexto = $("#Bienvenida");
     var ddlTextoPrincipal = $("#tipoUsuarioActual");
+    var textoNombre = $("#nombreUsuarioActual");
 
-    ddlTextoPrincipal.text( data.tipoUsuario);
-    ddlTexto.text("Bienvenido Al Sistema: " + resultadoFuncion );
+    textoNombre.text(data.resultado);
+
+    ddlTextoPrincipal.text(" " + data.tipoUsuario);
+    ddlTexto.text("Bienvenido Al Sistema: " + resultadoFuncion);
 }
 
 //Modal Pequeño
@@ -100,6 +197,7 @@ function showMessageSm(msg) {
         "            <p>" + msg + "</p>" +
         "        </div>" +
         "        <div class='modal-footer'>" +
+        "        <div><div class='spinner'></div>Redireccionando...</div> "
         "        </div>" +
         "    </div>" +
         "</div >" +

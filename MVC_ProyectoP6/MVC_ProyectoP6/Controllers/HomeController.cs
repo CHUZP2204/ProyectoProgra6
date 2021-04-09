@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC_ProyectoP6.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace MVC_ProyectoP6.Controllers
 {
@@ -111,7 +113,17 @@ namespace MVC_ProyectoP6.Controllers
 
             string msj = "";
             int idUsuario = 0;
-            string tipoUsuarioConectado = this.Session["tipoCliente"].ToString();
+            string tipoUsuarioConectado;
+            ///Validar Si La Variable De Session Esta Vacia
+            if (this.Session["tipoCliente"] == null)
+            {
+                tipoUsuarioConectado = "vacio";
+            }
+            else
+            {
+                tipoUsuarioConectado = this.Session["tipoCliente"].ToString();
+            }
+
             ///Del Usuario Que Inicio Sesion, Por Medio
             ///De La variable De Sesion Obtener Los Datos.
             /// Recorrer Lista De Usuario Obtenido Por ID
@@ -209,6 +221,19 @@ namespace MVC_ProyectoP6.Controllers
 
             ModeloVerificar = this.ModeloBD.sp_RetornaClientes(null, pCedula).FirstOrDefault();
 
+            List<sp_RetornaClientes_Result> ModeloVerificar1 = new List<sp_RetornaClientes_Result>();
+
+            ModeloVerificar1 = this.ModeloBD.sp_RetornaClientes(null, null).ToList();
+
+            bool correoEncontrado = false;
+            for (int i = 0; i < ModeloVerificar1.Count; i++)
+            {
+                if (ModeloVerificar1[i].Correo.Equals(pCorreo))
+                {
+                    correoEncontrado = true;
+                }
+
+            }
 
 
 
@@ -217,27 +242,63 @@ namespace MVC_ProyectoP6.Controllers
             /// Finally Siempre se ejecuta exista o no error
             try
             {
-
+                ///Si El Modelo
                 if (ModeloVerificar == null)
                 {
-                    cantRegistrosAfectados =
-                   this.ModeloBD.sp_InsertaCliente(
-                    pCedula,
-                    pFecha,
-                    pGenero,
-                    pNombreC,
-                    pCorreo,
-                    pIdProvincia,
-                    pIdCanton,
-                    pIdDistrito,
-                    pTipoUsuario,
-                    pContrasenia
-                    );
+                    if (correoEncontrado == true)
+                    {
+                        resultado = " Ya Existe Un Cliente En Sistema Con El Correo Ingresado";
+                    }
+                    else
+                    {
+                        cantRegistrosAfectados =
+                       this.ModeloBD.sp_InsertaCliente(
+                        pCedula,
+                        pFecha,
+                        pGenero,
+                        pNombreC,
+                        pCorreo,
+                        pIdProvincia,
+                        pIdCanton,
+                        pIdDistrito,
+                        pTipoUsuario,
+                        pContrasenia
+                        );
+
+
+                        ///Enviar Un Correo  Al Nuevo Usuario Registrado
+                        MailMessage email = new MailMessage();
+                        MailAddress de = new MailAddress("segurossigloxxi44@gmail.com");
+
+                        email.To.Add(pCorreo);
+
+
+                        email.From = de;
+                        email.Priority = MailPriority.Normal;
+                        email.IsBodyHtml = false;
+                        email.Subject = "ASUNTO: " + "Su Cuenta En ServiRapidos WyJ SA";
+                        email.Body = $"Estimado Cliente: { pNombreC} Cedula: { pCedula}" +
+                                     $" Gracias Por Confiar En ServiRapidos WyJ SA" +
+                                     $" Para Nosotros Es Un  Placer Servirle";
+
+                        ///segurossigloxxi44@gmail.com
+                        ///a2b3c4d05
+                        SmtpClient enviar = new SmtpClient();
+
+                        enviar.Host = "smtp.gmail.com";
+                        enviar.Credentials = new NetworkCredential("segurossigloxxi44@gmail.com", "a2b3c4d05");
+                        enviar.EnableSsl = true;
+                        enviar.Send(email);
+                        email.Dispose();
+                        ///Fin Enviar Correo
+                    }
+
                 }
                 else if (ModeloVerificar.Cedula.Equals(pCedula))
                 {
-                    resultado = " Ya Existe El Cliente En Sistema ";
+                    resultado = " Ya Existe Un Cliente En Sistema Con La Cedula ingresada";
                 }
+
 
             }
             catch (Exception error)
@@ -248,11 +309,11 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (cantRegistrosAfectados > 0)
                 {
-                    resultado = "El Registro Fue Insertado";
+                    resultado = "El Usuario Se Regitro Exitosamente";
                 }
                 else
                 {
-                    resultado += "El Registro No Se Pudo Insertar";
+                    resultado += " No Se Pudo Registrar";
                 }
             }
 

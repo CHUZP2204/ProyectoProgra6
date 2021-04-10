@@ -149,6 +149,7 @@ function ocultarEtiquetas() {
             ///Quitar Etiquetas De La Vista
             ///
             if (tipoUsuarioActual === 'Cliente') {
+
                 $("#admi").hide();
                 $("#admi1").hide();
                 $("#admi2").hide();
@@ -175,6 +176,20 @@ function procesarResultadoUsuarioA(data) {
     var ddlTextoPrincipal = $("#tipoUsuarioActual");
     var textoNombre = $("#nombreUsuarioActual");
 
+
+    var pathnameActual = window.location.pathname;
+    if (pathnameActual == '/Home/PaginaPrincipal') {
+        var htmlboton = "<a class='btn btn-primary' href='/Usuarios/ListaUsuarioActual?idClienteActual=" + data.usuarioActual + "'>Mis Datos</a>"
+
+        var botonClienteActual = document.querySelector("#clienteActualDatos");
+        botonClienteActual.innerHTML = htmlboton;
+    }
+
+
+    if (data.tipoUsuario === 'Cliente') {
+        $("#btnListaUsuario").hide();
+    }
+
     textoNombre.text(data.resultado);
 
     ddlTextoPrincipal.text(" " + data.tipoUsuario);
@@ -198,7 +213,7 @@ function showMessageSm(msg) {
         "        </div>" +
         "        <div class='modal-footer'>" +
         "        <div><div class='spinner'></div>Redireccionando...</div> "
-        "        </div>" +
+    "        </div>" +
         "    </div>" +
         "</div >" +
         "</div >";

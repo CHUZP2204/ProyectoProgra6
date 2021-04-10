@@ -2057,6 +2057,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DetalleFactura\GridDetalleFactura.js" />
     <Content Include="Scripts\EncabezadoFactura\EncabezadoFactura.js" />
+    <Content Include="Scripts\EncabezadoFactura\FacturasClienteActual.js" />
     <Content Include="Scripts\EncabezadoFactura\GridEncabezadoFactura.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2090,6 +2091,7 @@
     <Content Include="Scripts\Usuarios\Registrase.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Scripts\VehiculosXCliente\VehiculosXCliente.js" />
+    <Content Include="Scripts\Vehiculos\GridClienteActual.js" />
     <Content Include="Scripts\Vehiculos\GridVehiculos.js" />
     <Content Include="Scripts\Vehiculos\ValidacionesVehiculo.js" />
     <Content Include="Video\AudioCambioAceite.mp3" />
@@ -2161,6 +2163,9 @@
     <Content Include="Views\Reportes\ReporteServicioXVehiculo.cshtml" />
     <Content Include="Views\Reportes\ReporteServicioXCliente.cshtml" />
     <Content Include="Views\Reportes\ReporteVehiculosXCliente.cshtml" />
+    <Content Include="Views\Usuarios\ListaUsuarioActual.cshtml" />
+    <Content Include="Views\Vehiculos\ListaVehiculosClienteActual.cshtml" />
+    <Content Include="Views\EncabezadoFactura\ListaFacturasClienteActual.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

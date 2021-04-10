@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ListaUsuarioActual";
+}
+
+<div id="gridListaClienteActual">
+
+</div>
+
+<div class="jumbotron">
+    <h2 style="text-align:center">Tu Informacion</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Cedula</th>
+                <th>Email</th>
+                <th>Genero</th>
+                <th>Fecha Nacimiento</th>
+                <th>Tipo Usuario</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_ID_Result modeloPosicion in this.Model)
+                {
+                    <tr>
+                        <td>@modeloPosicion.NombreCompleto</td>
+                        <td>@modeloPosicion.Cedula</td>
+                        <td>@modeloPosicion.Correo</td>
+                        <td>@modeloPosicion.Genero</td>
+                        <td>@modeloPosicion.FechaNacimiento.ToShortDateString()</td>
+                        <td>@modeloPosicion.TipoUsuario</td>
+                        <td><a href="~/Usuarios/ModificaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-primary">Modificar</a> <a href="~/Usuarios/EliminaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
+
+</div>
+

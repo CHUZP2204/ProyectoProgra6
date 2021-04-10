@@ -22,6 +22,17 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+ 
+
+        public ActionResult ListaUsuarioActual(int idClienteActual)
+        {
+            List<sp_RetornaClientes_ID_Result> modeloVista = new List<sp_RetornaClientes_ID_Result>();
+
+            modeloVista = this.modeloBD.sp_RetornaClientes_ID(idClienteActual).ToList();
+
+            return View(modeloVista);
+        }
+
         public ActionResult NuevoUsuario()
         {
             this.AgregaProvinciasViewBag();

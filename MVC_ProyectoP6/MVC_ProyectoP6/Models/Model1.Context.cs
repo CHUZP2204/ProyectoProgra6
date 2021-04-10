@@ -420,15 +420,6 @@ namespace MVC_ProyectoP6.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVehiculo_ID_Result>("sp_RetornaVehiculo_ID", idVehiculoParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaVehiculosXCliente_Result> sp_RetornaVehiculosXCliente(Nullable<int> idCliente)
-        {
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVehiculosXCliente_Result>("sp_RetornaVehiculosXCliente", idClienteParameter);
-        }
-    
         public virtual ObjectResult<sp_RetornaVehXPer_ID_Result> sp_RetornaVehXPer_ID(Nullable<int> idVehXper)
         {
             var idVehXperParameter = idVehXper.HasValue ?
@@ -926,6 +917,15 @@ namespace MVC_ProyectoP6.Models
                 new ObjectParameter("PlacaVehiculo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaViewReportes_Result>("sp_RetornaViewReportes", idClienteParameter, idVehiculoParameter, cedulaParameter, placaVehiculoParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaVehiculosXCliente_Result> sp_RetornaVehiculosXCliente(Nullable<int> idCliente)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVehiculosXCliente_Result>("sp_RetornaVehiculosXCliente", idClienteParameter);
         }
     }
 }

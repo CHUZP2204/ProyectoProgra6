@@ -13,9 +13,11 @@ namespace MVC_ProyectoP6.Models
     
     public partial class sp_RetornaVehiculosXCliente_Result
     {
+        public int idCliente { get; set; }
         public string NombreCompleto { get; set; }
         public string Cedula { get; set; }
         public string PlacaVehiculo { get; set; }
+        public int idVehiculo { get; set; }
         public string TipoMarcaVehiculo { get; set; }
         public string TipoVehiculo { get; set; }
     }

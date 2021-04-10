@@ -30,8 +30,11 @@ namespace MVC_ProyectoP6.Controllers
             this.AgregTipoMarcaViewBag();
             //enviar el modelo a la vista
             return View(modeloVista);
-        
-        
+        }
+
+        public ActionResult ListaVehiculosClienteActual()
+        {
+            return View();
         }
         /// <summary>
         /// Vista Nuevo Vehiculo
@@ -271,6 +274,19 @@ namespace MVC_ProyectoP6.Controllers
         {
             List<sp_RetornaVehiculo_Result> listaVehiculos =
                 this.ModeloBD.sp_RetornaVehiculo("",null ,null).ToList();
+
+            return Json(new
+            {
+                resultado = listaVehiculos
+            });
+
+
+        }
+
+        public ActionResult RetornaVehiculosClienteActual(int idCliente)
+        {
+            List<sp_RetornaVehiculosXCliente_Result> listaVehiculos =
+                this.ModeloBD.sp_RetornaVehiculosXCliente(idCliente).ToList();
 
             return Json(new
             {

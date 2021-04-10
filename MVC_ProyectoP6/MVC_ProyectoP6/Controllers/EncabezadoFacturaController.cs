@@ -30,6 +30,20 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
+        public ActionResult ListaFacturasClienteActual()
+        {
+            return View();
+        }
+
+        public ActionResult RetornaFacturasCliente(int idCliente)
+        {
+            List<sp_RetornaViewReportes_Result> facturasCliente = new List<sp_RetornaViewReportes_Result>();
+            facturasCliente = this.modeloBD.sp_RetornaViewReportes(idCliente, null, null, null).ToList();
+            return Json(new
+            {
+                resultado = facturasCliente
+            });
+        }
         /// <summary>
         /// Metodo Que Retorna Un Json Con Los Datos De Los
         /// Vehiculos Por Usuario, Accedida Mediante Jquery

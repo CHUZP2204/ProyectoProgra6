@@ -3,23 +3,49 @@ $(function () {
     obtenerRegistros();
 });
 
-/// funcion que obtiene los registros
-// del metodo del controlador
-// RetornaEmpresas()
+
+
 function obtenerRegistros() {
-    /////construir la dirección del método del servidor
-    var urlMetodo = '/Vehiculos/RetornaVehiculos'
-    var parametros = {};
-    var funcion = creaGridKendo;
-    ///ejecuta la función $.ajax utilizando un método genérico
-    //para no declarar toda la instrucción siempre
-    ejecutaAjax(urlMetodo, parametros, funcion);
+
+        ///dirección a donde se enviarán los datos
+        var url = '/Home/MostrarInfoUsuario';
+        ///parámetros del método, es CASE-SENSITIVE
+        var parametros = {
+        };
+        ///invocar el método
+        var usuarioIdObtenido;
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify(parametros),
+            success: function (data, textStatus, jQxhr) {
+
+                usuarioIdObtenido = data.usuarioActual;
+                /////construir la dirección del método del servidor
+                var urlMetodo = '/Vehiculos/RetornaVehiculosClienteActual'
+                var parametros = {
+                    idCliente: usuarioIdObtenido
+                };
+                var funcion = creaGridKendo;
+                ///ejecuta la función $.ajax utilizando un método genérico
+                //para no declarar toda la instrucción siempre
+                ejecutaAjax(urlMetodo, parametros, funcion);
+            },
+            error: function (jQxhr, textStatus, errorThrown) {
+                alert(errorThrown);
+            },
+        });
+    
+
 }
+
 ///encargada de crear el grid de kendo y mostrar
 //los datos obtenidos al llamar al método
 // RetornaListaClientes
 function creaGridKendo(data) {
-    $("#divKendoGrid").kendoGrid({
+    $("#gridClienteVehiculos").kendoGrid({
         //asignar la fuente de datos al objeto
         //kendo grid
         dataSource: {
@@ -28,8 +54,20 @@ function creaGridKendo(data) {
         },
         pageable: true,  //pasar paginas numeracion 
         columns: [  //Mostrar las columnas 
-
-            
+            {
+                //propiedad de la fuente de datos
+                //caseSensitive
+                field: 'Cedula',
+                //texto del encabezado
+                title: 'Cedula'
+            },
+            {
+                //propiedad de la fuente de datos
+                //caseSensitive
+                field: 'NombreCompleto',
+                //texto del encabezado
+                title: 'Nombre Cliente'
+            },
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
@@ -37,21 +75,6 @@ function creaGridKendo(data) {
                 //texto del encabezado
                 title: 'Placa Vehiculo '
 
-            },
-
-            {
-                //propiedad de la fuente de datos
-                //caseSensitive
-                field: ' NumeroPuertas',
-                //texto del encabezado
-                title: ' Numero Puertas '
-            },
-            {
-                //propiedad de la fuente de datos
-                //caseSensitive
-                field: ' NumeroRuedas',
-                //texto del encabezado
-                title: ' Numero Ruedas '
             },
             {
                 title: "Acciones",

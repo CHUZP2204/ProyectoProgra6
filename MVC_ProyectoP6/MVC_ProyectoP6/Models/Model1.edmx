@@ -1180,9 +1180,6 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
           <FunctionImport Name="sp_RetornaVehiculo_ID" ReturnType="Collection(progra6Model.sp_RetornaVehiculo_ID_Result)">
           <Parameter Name="idVehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaVehiculosXCliente" ReturnType="Collection(progra6Model.sp_RetornaVehiculosXCliente_Result)">
-          <Parameter Name="idCliente" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_RetornaVehXPer_ID" ReturnType="Collection(progra6Model.sp_RetornaVehXPer_ID_Result)">
           <Parameter Name="idVehXper" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1360,6 +1357,9 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
             <Parameter Name="cedula" Mode="In" Type="String" />
             <Parameter Name="PlacaVehiculo" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_RetornaVehiculosXCliente" ReturnType="Collection(progra6Model.sp_RetornaVehiculosXCliente_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1431,13 +1431,6 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
           <Property Type="Int32" Name="idMarcaVehiculo" Nullable="false" />
           <Property Type="String" Name="NumeroPuertas" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NumeroRuedas" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_RetornaVehiculosXCliente_Result">
-          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="PlacaVehiculo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="TipoMarcaVehiculo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="TipoVehiculo" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_RetornaVehXPer_ID_Result">
           <Property Type="Int32" Name="idVehiculoXCliente" Nullable="false" />
@@ -1943,6 +1936,15 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
           <Property Type="Decimal" Name="MontoFinal" Nullable="false" Precision="18" Scale="0" />
           <Property Type="DateTime" Name="Fecha" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="sp_RetornaVehiculosXCliente_Result">
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PlacaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="idVehiculo" Nullable="false" />
+          <Property Type="String" Name="TipoMarcaVehiculo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="false" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2182,17 +2184,6 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
                 <ScalarProperty Name="idMarcaVehiculo" ColumnName="idMarcaVehiculo" />
                 <ScalarProperty Name="NumeroPuertas" ColumnName="NumeroPuertas" />
                 <ScalarProperty Name="NumeroRuedas" ColumnName="NumeroRuedas" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculosXCliente" FunctionName="progra6Model.Store.sp_RetornaVehiculosXCliente">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehiculosXCliente_Result">
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
-                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
-                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2669,6 +2660,19 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
                 <ScalarProperty Name="PrecioXunidad" ColumnName="PrecioXunidad" />
                 <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaVehiculosXCliente" FunctionName="progra6Model.Store.sp_RetornaVehiculosXCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehiculosXCliente_Result">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="TipoMarcaVehiculo" ColumnName="TipoMarcaVehiculo" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

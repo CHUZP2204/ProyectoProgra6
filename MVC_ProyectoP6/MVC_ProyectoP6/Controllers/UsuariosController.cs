@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC_ProyectoP6.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace MVC_ProyectoP6.Controllers
 {
@@ -22,7 +24,7 @@ namespace MVC_ProyectoP6.Controllers
             return View(modeloVista);
         }
 
- 
+
 
         public ActionResult ListaUsuarioActual(int idClienteActual)
         {
@@ -43,12 +45,15 @@ namespace MVC_ProyectoP6.Controllers
         public ActionResult NuevoUsuario(sp_RetornaClientes_Result modeloVista)
         {
             List<sp_RetornaClientes_Result> ModeloVista1 = new List<sp_RetornaClientes_Result>();
-            ModeloVista1 = this.modeloBD.sp_RetornaClientes(null,null).ToList();
+
+            ModeloVista1 = this.modeloBD.sp_RetornaClientes(null, null).ToList();
             ///Variable Que Registra La Cantidad De Registros Afectados
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
             ///No Afecta Registros Implica Que Hubo Un Error
             int cantRegistrosAfectados = 0;
             string resultado = "";
+
+
 
             /// try Instrucciones que se intenta Realizar
             /// Catch Administra las exepciones o errores
@@ -57,47 +62,77 @@ namespace MVC_ProyectoP6.Controllers
             {
                 ///Variable Que Guardara 1 si se encuentra un Dato, de lo contrario sera 0
                 ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
-                ///Y Compararlo con el modelovista del view
+                ///Y Compararlo con el modelovista del view    
+
+                bool correoEncontrado = false;
+                bool cedulaEncontrada = false;
+
+                //Verificar Si Existe Un Usuario Con La Cedula O Correo Ingresado 
+                //En La BD
                 for (int i = 0; i < ModeloVista1.Count; i++)
                 {
-                    ///Aqui Se Verifica Si Existe O No El Mismo Codigo
+                    if (ModeloVista1[i].Correo.Equals(modeloVista.Correo))
+                    {
+                        correoEncontrado = true;
+                    }
+                    
                     if (ModeloVista1[i].Cedula.Equals(modeloVista.Cedula))
                     {
-                        cantRegistrosAfectados = 1;
-                    }
-                    else if (ModeloVista1[i].Correo.Equals(modeloVista.Correo))
-                    {
-                        cantRegistrosAfectados = 1;
-                    }
-                    else
-                    {
-                        cantRegistrosAfectados = 0;
+                        cedulaEncontrada = true;
                     }
 
-                     if (cantRegistrosAfectados == 0)
-                    {
-                          cantRegistrosAfectados =
-                                      this.modeloBD.sp_InsertaCliente(
-                                          modeloVista.Cedula,
-                                          modeloVista.FechaNacimiento,
-                                          modeloVista.Genero,
-                                          modeloVista.NombreCompleto,
-                                          modeloVista.Correo,
-                                          modeloVista.idProvincia,
-                                          modeloVista.idCanton,
-                                          modeloVista.idDistrito,
-                                          modeloVista.TipoUsuario,
-                                          modeloVista.Contrasenia
-                                          );   
-                    }
-                     else
-                    {
-                          cantRegistrosAfectados = 0;
-
-                    }
-                   
                 }
-   
+
+
+                if (correoEncontrado)
+                {
+                    resultado = " Ya Existe Un Usuario Con El Correo Ingresado";
+                }
+                else if (cedulaEncontrada)
+                {
+                    resultado = " Ya Existe Un Usuario Con La Cedula Ingresada";
+                }
+                else
+                {
+                    cantRegistrosAfectados = this.modeloBD.sp_InsertaCliente(
+                    modeloVista.Cedula,
+                    modeloVista.FechaNacimiento,
+                    modeloVista.Genero,
+                    modeloVista.NombreCompleto,
+                    modeloVista.Correo,
+                    modeloVista.idProvincia,
+                    modeloVista.idCanton,
+                    modeloVista.idDistrito,
+                    modeloVista.TipoUsuario,
+                    modeloVista.Contrasenia);
+
+                    ///Enviar Un Correo  Al Nuevo Usuario Registrado
+                    MailMessage email = new MailMessage();
+                    MailAddress de = new MailAddress("segurossigloxxi44@gmail.com");
+
+                    email.To.Add(modeloVista.Correo);
+
+
+                    email.From = de;
+                    email.Priority = MailPriority.Normal;
+                    email.IsBodyHtml = false;
+                    email.Subject = "ASUNTO: " + "Su Cuenta En ServiRapidos WyJ SA";
+                    email.Body = $"Estimado Cliente: {modeloVista.NombreCompleto} Cedula: {modeloVista.Cedula}" +
+                                 $" Gracias Por Confiar En ServiRapidos WyJ SA" +
+                                 $" Para Nosotros Es Un  Placer Servirle";
+
+                    ///segurossigloxxi44@gmail.com
+                    ///a2b3c4d05
+                    SmtpClient enviar = new SmtpClient();
+
+                    enviar.Host = "smtp.gmail.com";
+                    enviar.Credentials = new NetworkCredential("segurossigloxxi44@gmail.com", "a2b3c4d05");
+                    enviar.EnableSsl = true;
+                    enviar.Send(email);
+                    email.Dispose();
+                    ///Fin Enviar Correo
+                }
+
             }
             catch (Exception error)
             {
@@ -111,7 +146,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
                 else
                 {
-                    resultado += "No se Insertar cedula o correo ya existen";
+                    resultado += " No se Pudo Registrar";
                 }
             }
 
@@ -233,7 +268,7 @@ namespace MVC_ProyectoP6.Controllers
             }
             catch (Exception error)
             {
-                    resultado += "Ocurrio un error: "+error.InnerException;                
+                resultado += "Ocurrio un error: " + error.InnerException;
             }
             finally
             {
@@ -336,7 +371,7 @@ namespace MVC_ProyectoP6.Controllers
         {
             return View();
         }
-    
+
 
     }
 

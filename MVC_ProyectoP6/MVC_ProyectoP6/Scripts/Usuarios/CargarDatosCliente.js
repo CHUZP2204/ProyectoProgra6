@@ -157,6 +157,12 @@ function ocultarEtiquetas() {
                 $("#admi4").hide();
                 $("#admi5").hide();
                 $("#admi6").hide();
+                $("#admi7").hide();
+                $("#admi8").hide();
+                $("#admi9").hide();
+                $("#admi10").hide();
+                $("#admi11").hide();
+                $("#admi12").hide();
             }
 
         },

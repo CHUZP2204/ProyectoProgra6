@@ -61,21 +61,41 @@ namespace MVC_ProyectoP6.Controllers
             int cantidadRegistrosAfectados = 0;
             string resultado = " ";
 
+            List<sp_RetornaVehXPers_Result> modeloVista1 = new List<sp_RetornaVehXPers_Result>();
+            modeloVista1 = this.ModeloBD.sp_RetornaVehXPers(null,null).ToList();
 
+            int NombreEncontrado = 0;
             /// try Instrucciones que se intenta Realizar
             /// Catch Administra las exepciones o errores
-            /// Finally Siempre se ejecuta exista o no error
+            /// Finally                int NombreEncontrado = 0;
+            ///Recorrer El Modelo Obtenido Con Los Datos Ingresados Por usuario "modeloVista"
+            ///Y Compararlo con el modelovista del view
+            for (int i = 0; i < modeloVista1.Count; i++)
+            {
+                ///Aqui Se Verifica Si Existe O No El Mismo Codigo
+                if (modeloVista1[i].idCliente == modeloVista.idCliente)
+                {
+                    if (modeloVista1[i].idVehiculo == modeloVista.idVehiculo)
+                    {
+                        NombreEncontrado = 1;
+                    }
+
+
+                }
+            }
             try
             {
-
-                cantidadRegistrosAfectados =
-               this.ModeloBD.sp_Inserta_VehXPers(
-                   modeloVista.idVehiculo,
-                   modeloVista.idCliente
-                   );
-
-
-
+                if (NombreEncontrado == 1)
+                {
+                    resultado = " Ya El Cliente Tiene Asignado El Vehiculo ";
+                }
+                else
+                {
+                    cantidadRegistrosAfectados = this.ModeloBD.sp_Inserta_VehXPers(
+                       modeloVista.idVehiculo,
+                       modeloVista.idCliente
+                       );
+                }
             }
             catch (Exception error)
             {
@@ -90,7 +110,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
                 else
                 {
-                    resultado = "No se pudo Ingresar";
+                    resultado += "No se pudo Ingresar";
                 }
             }
             Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
@@ -288,7 +308,7 @@ namespace MVC_ProyectoP6.Controllers
         public ActionResult RetornaVehiculosXCliente()
         {
             List<sp_RetornaVehXPers_Result> listaVehiculosXCliente =
-                this.ModeloBD.sp_RetornaVehXPers( null,null).ToList();
+                this.ModeloBD.sp_RetornaVehXPers(null, null).ToList();
 
             return Json(new
             {

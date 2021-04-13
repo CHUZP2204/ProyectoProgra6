@@ -177,223 +177,223 @@ namespace MVC_ProyectoP6.Controllers
         public ActionResult ModificaEstadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
         {
             int registroModificado = 0;
-           string mensaje = "";
+            string mensaje = "";
 
-            try
-            {
-                registroModificado = this.modeloBD.sp_ModificaEstadoFactura(modeloVista.idEncabezadoFac, modeloVista.EstadoFactura);
-            }
-            catch (Exception error)
-            {
-
-                mensaje = "Ocurrio un Error" + error.Message;
-            }
-            finally
-            {
-                if (registroModificado > 0)
+                try
                 {
-                    mensaje = "Se Actualizo El Estado De La Factura";
+                    registroModificado = this.modeloBD.sp_ModificaEstadoFactura(modeloVista.idEncabezadoFac, modeloVista.EstadoFactura);
                 }
-                else
+                catch (Exception error)
                 {
-                    mensaje += " No Se Actualizo El Estado Factura";
+
+                    mensaje = "Ocurrio un Error" + error.Message;
                 }
-            }
-
-            Response.Write("<script languaje=javascript>alert('" + mensaje + "');</script>");
-            AgregarClientesViewBag();
-            AgregarVehiculosViewBag();
-            AgregarEstadoFacturaViewBag();
-            AgregarDetalleViewBag();
-            return View(modeloVista);
-        }
-        /// <summary>
-        /// Metodo Que Almacena Los Datos Ingresados En La Vista
-        /// En La BD
-        /// </summary>
-        /// <param name="modeloVista"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult ModificaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
-        {
-            int cantidadRegistrosAfectados = 0;
-            string resultado = " ";
-
-            try
-            {
-                cantidadRegistrosAfectados =
-                       this.modeloBD.sp_ModificaEncabezadoFac(
-                           modeloVista.idEncabezadoFac,
-                           modeloVista.idCliente,
-                           modeloVista.idVehiculo,
-                           modeloVista.Fecha,
-                           modeloVista.MontoTotalServicios,
-                           modeloVista.EstadoFactura
-                           );
-            }
-
-
-            catch (Exception error)
-            {
-                resultado = "Ocurrio un Error" + error.Message;
-
-            }
-            finally
-            {
-                if (cantidadRegistrosAfectados > 0)
+                finally
                 {
-                    resultado = "El Registro fue Modificado";
+                    if (registroModificado > 0)
+                    {
+                        mensaje = "Se Actualizo El Estado De La Factura";
+                    }
+                    else
+                    {
+                        mensaje += " No Se Actualizo El Estado Factura";
+                    }
                 }
-                else
+
+                Response.Write("<script languaje=javascript>alert('" + mensaje + "');</script>");
+                AgregarClientesViewBag();
+                AgregarVehiculosViewBag();
+                AgregarEstadoFacturaViewBag();
+                AgregarDetalleViewBag();
+                return View(modeloVista);
+            }
+            /// <summary>
+            /// Metodo Que Almacena Los Datos Ingresados En La Vista
+            /// En La BD
+            /// </summary>
+            /// <param name="modeloVista"></param>
+            /// <returns></returns>
+            [HttpPost]
+            public ActionResult ModificaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
+            {
+                int cantidadRegistrosAfectados = 0;
+                string resultado = " ";
+
+                try
                 {
-                    resultado = "No se pudo Modifcar";
+                    cantidadRegistrosAfectados =
+                           this.modeloBD.sp_ModificaEncabezadoFac(
+                               modeloVista.idEncabezadoFac,
+                               modeloVista.idCliente,
+                               modeloVista.idVehiculo,
+                               modeloVista.Fecha,
+                               modeloVista.MontoTotalServicios,
+                               modeloVista.EstadoFactura
+                               );
                 }
-            }
-            Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
-            AgregarClientesViewBag();
-            AgregarVehiculosViewBag();
-            AgregarEstadoFacturaViewBag();
-            AgregarDetalleViewBag();
-            return View(modeloVista);
 
-        }
 
-        /// <summary>
-        /// Metodo Que Muestra La Vista Para 
-        /// Eliminar Un Encabezado Por Id
-        /// </summary>
-        /// <param name="idEncabezadoFac"></param>
-        /// <returns></returns>
-        public ActionResult EliminaEncabezadoFactura(int idEncabezadoFac)
-        {
-            ///obtener el registro que se desea modificar
-            /// utilizando el parametro del metodo idPaisFabricante
-            sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
-
-            modeloVista = this.modeloBD.sp_RetornaEncFactura_ID(idEncabezadoFac).FirstOrDefault();
-
-            //enviar modelo a la vista
-            this.AgregarClientesViewBag();
-            this.AgregarVehiculosViewBag();
-            this.AgregarEstadoFacturaViewBag();
-            this.AgregarDetalleViewBag();
-            this.AgregTipoSOPViewBag();
-            return View(modeloVista);
-        }
-
-        /// <summary>
-        /// Metodo Que Elimina Un Encabezado Por ID
-        /// Obtenido Desde La Vista
-        /// OJO ---> Primero Eliminar Detalles Enlazados 
-        /// A La Factura
-        /// </summary>
-        /// <param name="modeloVista"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult EliminaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
-        {
-            ///varable que registra la cantidad de registro afectados
-            ///si un SP que se ejecute Insert,UPDATE,DELETE
-            ///no afecta registros implica que hubo un error 
-            int cantidadRegistrosAfectados = 0;
-            string resultado = " ";
-
-            try
-            {
-                cantidadRegistrosAfectados =
-                       this.modeloBD.sp_EliminarEncFactura(
-                          modeloVista.idEncabezadoFac);
-            }
-            catch (Exception error)
-            {
-                resultado = "Ocurrio un Error" + error.Message;
-
-            }
-            finally
-            {
-                if (cantidadRegistrosAfectados > 0)
+                catch (Exception error)
                 {
-                    resultado = "Registro Eliminado";
+                    resultado = "Ocurrio un Error" + error.Message;
+
                 }
-                else
+                finally
                 {
-                    resultado = "No se pudo Eliminar";
+                    if (cantidadRegistrosAfectados > 0)
+                    {
+                        resultado = "El Registro fue Modificado";
+                    }
+                    else
+                    {
+                        resultado = "No se pudo Modifcar";
+                    }
                 }
+                Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
+                AgregarClientesViewBag();
+                AgregarVehiculosViewBag();
+                AgregarEstadoFacturaViewBag();
+                AgregarDetalleViewBag();
+                return View(modeloVista);
+
             }
-            Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
-            this.AgregarClientesViewBag();
-            this.AgregarVehiculosViewBag();
-            this.AgregarEstadoFacturaViewBag();
-            this.AgregarDetalleViewBag();
-            this.AgregTipoSOPViewBag();
-            return View(modeloVista);
-        }
 
-        /// <summary>
-        /// ViewBag Lista De Vehiculos
-        /// Muestra Los Datos Del Vehiculo
-        /// </summary>
-        void AgregarVehiculosViewBag()
-        {
-            this.ViewBag.ListaVehiculos =
-                 this.modeloBD.sp_RetornaVehiculo("", null, null).ToList();
-        }
-
-        /// <summary>
-        /// ViewBag Lista De Clientes
-        /// Muestra Los Datos Del Usuario
-        /// </summary>
-        void AgregarClientesViewBag()
-        {
-            this.ViewBag.ListaClientes =
-                 this.modeloBD.sp_RetornaClientes("", "").ToList();
-        }
-
-        /// <summary>
-        /// ViewBag Lista De Encabezado Factura
-        /// Muestra Los Datos Del Encabezado Factura
-        /// </summary>
-        void AgregarEstadoFacturaViewBag()
-        {
-            this.ViewBag.ListaEstadoFactura =
-                 this.modeloBD.sp_RetornaEncFactura("").ToList();
-        }
-
-        /// <summary>
-        /// ViewBag Lista Detalle Factura
-        /// Muestra Los Datos Del Detalle Factura
-        /// </summary>
-        void AgregarDetalleViewBag()
-        {
-            this.ViewBag.ListaDetalles =
-                 this.modeloBD.sp_RetornaDetalleFac(null).ToList();
-        }
-
-        /// <summary>
-        /// ViewBag Lista De Servicios y productos
-        /// Muestra Los Datos Del Servicio Producto
-        /// </summary>
-        void AgregTipoSOPViewBag()
-        {
-            this.ViewBag.ListaTipoSOP = this.modeloBD.sp_RetornaServicioOProducto(null, null).ToList();
-        }
-
-        [HttpPost]
-        public ActionResult RetornaEncabezadoFactura()
-        {
-            List<sp_RetornaEncFactura_Result> listaEncabezadosFactura =
-                this.modeloBD.sp_RetornaEncFactura("").ToList();
-
-            return Json(new
+            /// <summary>
+            /// Metodo Que Muestra La Vista Para 
+            /// Eliminar Un Encabezado Por Id
+            /// </summary>
+            /// <param name="idEncabezadoFac"></param>
+            /// <returns></returns>
+            public ActionResult EliminaEncabezadoFactura(int idEncabezadoFac)
             {
-                resultado = listaEncabezadosFactura
-            });
+                ///obtener el registro que se desea modificar
+                /// utilizando el parametro del metodo idPaisFabricante
+                sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
+
+                modeloVista = this.modeloBD.sp_RetornaEncFactura_ID(idEncabezadoFac).FirstOrDefault();
+
+                //enviar modelo a la vista
+                this.AgregarClientesViewBag();
+                this.AgregarVehiculosViewBag();
+                this.AgregarEstadoFacturaViewBag();
+                this.AgregarDetalleViewBag();
+                this.AgregTipoSOPViewBag();
+                return View(modeloVista);
+            }
+
+            /// <summary>
+            /// Metodo Que Elimina Un Encabezado Por ID
+            /// Obtenido Desde La Vista
+            /// OJO ---> Primero Eliminar Detalles Enlazados 
+            /// A La Factura
+            /// </summary>
+            /// <param name="modeloVista"></param>
+            /// <returns></returns>
+            [HttpPost]
+            public ActionResult EliminaEncabezadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
+            {
+                ///varable que registra la cantidad de registro afectados
+                ///si un SP que se ejecute Insert,UPDATE,DELETE
+                ///no afecta registros implica que hubo un error 
+                int cantidadRegistrosAfectados = 0;
+                string resultado = " ";
+
+                try
+                {
+                    cantidadRegistrosAfectados =
+                           this.modeloBD.sp_EliminarEncFactura(
+                              modeloVista.idEncabezadoFac);
+                }
+                catch (Exception error)
+                {
+                    resultado = "Ocurrio un Error" + error.Message;
+
+                }
+                finally
+                {
+                    if (cantidadRegistrosAfectados > 0)
+                    {
+                        resultado = "Registro Eliminado";
+                    }
+                    else
+                    {
+                        resultado = "No se pudo Eliminar";
+                    }
+                }
+                Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
+                this.AgregarClientesViewBag();
+                this.AgregarVehiculosViewBag();
+                this.AgregarEstadoFacturaViewBag();
+                this.AgregarDetalleViewBag();
+                this.AgregTipoSOPViewBag();
+                return View(modeloVista);
+            }
+
+            /// <summary>
+            /// ViewBag Lista De Vehiculos
+            /// Muestra Los Datos Del Vehiculo
+            /// </summary>
+            void AgregarVehiculosViewBag()
+            {
+                this.ViewBag.ListaVehiculos =
+                     this.modeloBD.sp_RetornaVehiculo("", null, null).ToList();
+            }
+
+            /// <summary>
+            /// ViewBag Lista De Clientes
+            /// Muestra Los Datos Del Usuario
+            /// </summary>
+            void AgregarClientesViewBag()
+            {
+                this.ViewBag.ListaClientes =
+                     this.modeloBD.sp_RetornaClientes("", "").ToList();
+            }
+
+            /// <summary>
+            /// ViewBag Lista De Encabezado Factura
+            /// Muestra Los Datos Del Encabezado Factura
+            /// </summary>
+            void AgregarEstadoFacturaViewBag()
+            {
+                this.ViewBag.ListaEstadoFactura =
+                     this.modeloBD.sp_RetornaEncFactura("").ToList();
+            }
+
+            /// <summary>
+            /// ViewBag Lista Detalle Factura
+            /// Muestra Los Datos Del Detalle Factura
+            /// </summary>
+            void AgregarDetalleViewBag()
+            {
+                this.ViewBag.ListaDetalles =
+                     this.modeloBD.sp_RetornaDetalleFac(null).ToList();
+            }
+
+            /// <summary>
+            /// ViewBag Lista De Servicios y productos
+            /// Muestra Los Datos Del Servicio Producto
+            /// </summary>
+            void AgregTipoSOPViewBag()
+            {
+                this.ViewBag.ListaTipoSOP = this.modeloBD.sp_RetornaServicioOProducto(null, null).ToList();
+            }
+
+            [HttpPost]
+            public ActionResult RetornaEncabezadoFactura()
+            {
+                List<sp_RetornaEncFactura_Result> listaEncabezadosFactura =
+                    this.modeloBD.sp_RetornaEncFactura("").ToList();
+
+                return Json(new
+                {
+                    resultado = listaEncabezadosFactura
+                });
 
 
-        }
-        public ActionResult GridEncabezadoFactura()
-        {
-            return View();
+            }
+            public ActionResult GridEncabezadoFactura()
+            {
+                return View();
+            }
         }
     }
-}

@@ -10,6 +10,8 @@
     <h2>Lista Encabezado Factura</h2>
     <a href="~/EncabezadoFactura/NuevoEncabezadoFactura" class="btn btn-success">Agregar Nuevo Encabezado</a>
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
+    <a href="~/EncabezadoFactura/GridEncabezadoFactura" class="btn btn-success">Reporte Nuevo Encabezado</a>
+    <a href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Ver Lista Detalles Factura</a>
     <br />
 
     <table class="table">
@@ -59,7 +61,7 @@
                         <td>
                             <a href="~/EncabezadoFactura/ModificaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
                             <a href="~/EncabezadoFactura/EliminaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>
-       
+
                         </td>
                         <td>
                             <a href="~/DetalleFactura/AgregarDetalleFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-success">Agregar </a>

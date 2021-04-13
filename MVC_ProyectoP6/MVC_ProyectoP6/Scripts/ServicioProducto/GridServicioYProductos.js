@@ -51,16 +51,6 @@ function creaGridKendo(data) {
                 //texto del encabezado
                 title: 'Tipo Servicio o Producto '
             },
-
-            {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/ServicioOProducto/ModificaServicioOProducto?idSOP=" + dataItem.idSOP + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/ServicioOProducto/EliminaServicioOProducto?idSOP=" + dataItem.idSOP + "'>Elimimar</a>"
-
-
-                }
-            }
         ],
         filterable: true, //propiedad para filtrar
 

@@ -41,8 +41,8 @@ function creaGridKendo(data) {
             },*/
             {
                 field: 'Fecha',
-                title: 'Fecha'
-
+                title: 'Fecha',
+                template: "#= kendo.toString(kendo.parseDate(Fecha, 'yyyy-MM-dd'), 'MM/dd/yyyy') #"
             },
             {
                 field: 'MontoTotalServicios', 
@@ -54,16 +54,7 @@ function creaGridKendo(data) {
                 field: 'EstadoFactura',
                 title: 'Estado Factura '
             },
-
-            {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/EncabezadoFactura/ModificaEncabezadoFactura?idEncabezadoFac=" + dataItem.idEncabezadoFac + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/EncabezadoFactura/EliminaEncabezadoFactura?idEncabezadoFac=" + dataItem.idEncabezadoFac + "'>Elimimar</a>"
-
-
-                }
-            }
+   
         ],
         filterable: true, //propiedad para filtrar
 

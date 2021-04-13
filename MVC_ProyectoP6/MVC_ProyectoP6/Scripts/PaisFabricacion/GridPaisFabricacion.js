@@ -45,16 +45,7 @@ function creaGridKendo(data) {
                 //texto del encabezado
                 title: 'Nombre Pais '
             },
-              
-            {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/PaisFabricacion/ModificaPaisFabricante?idPaisFabricante=" + dataItem.idPaisFabricante + "'>Modificar</a>" 
-                        + " " + "<a class='btn btn-danger' href='/PaisFabricacion/EliminaPaisFabricante?idPaisFabricante=" + dataItem.idPaisFabricante + "'>Elimimar</a>"
-
                    
-                }
-            }            
         ],
         filterable: true, //propiedad para filtrar
 

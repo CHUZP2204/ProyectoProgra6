@@ -4,7 +4,7 @@
 }
 
 <div class="jumbotron">
-    <h2> Eliminando Encabezados de Facturas</h2>
+    <h2> Eliminar Encabezados de Facturas</h2>
 
     <form id="EncabezadoFactura" method="post">
 
@@ -78,35 +78,35 @@
         </div>
 
         @*
-                <div class="form-group">
-                <label>Detalle :</label>
-                <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac" disabled >
+            <div class="form-group">
+            <label>Detalle :</label>
+            <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac" disabled >
 
-                    @{
-                        foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
-                            this.ViewBag.ListaDetalles)
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
+                        this.ViewBag.ListaDetalles)
+                    {
+                        bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
+                        if (esIdDetalleFac)
                         {
-                            bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
-                            if (esIdDetalleFac)
-                            {
-                                <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
+                            <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
 
-                            }
-                            else
-                            {
-                                <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
-                            }
+                        }
+                        else
+                        {
+                            <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
                         }
                     }
-                </select>
-            </div>
+                }
+            </select>
+        </div>
         *@
 
         <div class=" form-group">
-            <input type="submit" value="Eliminar" id="btnGuardar" class="btn btn-primary" />
+            <input type="submit" value="Eliminar" id="btnGuardar" class="btn btn-danger" />
 
         </div>
-        <a href="~/EncabezadoFactura/GridEncabezadoFactura" class="btn btn-success">Lista Encabezadoscde Factura </a>
+        <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezados Factura </a>
     </form>
 
 </div>

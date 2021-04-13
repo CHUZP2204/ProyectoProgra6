@@ -4,7 +4,7 @@
 }
 
 <div class="jumbotron">
-    <h2>Nuevo Detalle Factura</h2>
+    <h2>Modificar Detalle Factura</h2>
     <form id="frmModificaDetalleFac" method="post">
 
         <div class="form-group">
@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label>Factura#:</label>
-            <select name="idEncabezadoFact" id="idEncabezadoFact" class="form-control" >
+            <select name="idEncabezadoFact" id="idEncabezadoFact" class="form-control">
                 @{
 
                     foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result ModeloEncabezado in this.ViewBag.ListaEncabezado)
@@ -51,7 +51,7 @@
                         bool esIdSOP = ModeloEncabezado.idEncabezadoFac == Model.idEncabezadoFact;
                         if (esIdSOP)
                         {
-                                <option value="@ModeloEncabezado.idEncabezadoFac" selected>Factura#@ModeloEncabezado.idEncabezadoFac Cliente#@ModeloEncabezado.idCliente</option>
+                            <option value="@ModeloEncabezado.idEncabezadoFac" selected>Factura#@ModeloEncabezado.idEncabezadoFac Cliente#@ModeloEncabezado.idCliente</option>
                         }
                         else
                         {
@@ -69,5 +69,5 @@
             <input type="submit" value="Modificar" id="btnAgregar" class="btn btn-success" />
         </div>
     </form>
-    <a href="~/DetalleFactura/GridDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
+    <a href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
 </div>

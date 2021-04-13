@@ -72,17 +72,6 @@ function creaGridKendo(data) {
                 field: 'TipoUsuario',
                 title: 'Tipo Usuario '
             },
-
-
-            {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/Usuarios/ModificaUsuario?idCliente=" + dataItem.idCliente + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/Usuarios/EliminaUsuario?idCliente=" + dataItem.idCliente + "'>Elimimar</a>"
-
-
-                }
-            }
         ],
         filterable: true, //propiedad para filtrar
 

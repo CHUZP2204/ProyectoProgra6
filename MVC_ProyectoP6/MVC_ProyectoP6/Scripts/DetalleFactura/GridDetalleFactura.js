@@ -1,5 +1,4 @@
-﻿
-$(function () {
+﻿$(function () {
     obtenerRegistros();
 });
 
@@ -9,7 +8,7 @@ $(function () {
 // RetornaEmpresas()
 function obtenerRegistros() {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/DetalleFactura/RetornaDetalleFactura'
+    var urlMetodo = '/Reportes/RetornaServicioXCliente'
     var parametros = {};
     var funcion = creaGridKendo;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -29,33 +28,26 @@ function creaGridKendo(data) {
         },
         pageable: true,  //pasar paginas numeracion 
         columns: [  //Mostrar las columnas 
-            /*{
+            {
                 field: 'idEncabezadoFact',
-                title: 'EncabezadoFact Pais '
-            },*/
-
+                title: 'idEncabezadoFact'
+            }, 
             {
-                field: 'CantidadSOP',
-                title: 'Cantidad S/P'
+                field: 'PrecioXunidad',
+                title: 'Unidad'
             },
             {
-                field: ' PrecioSOP',
-                title: ' Precio S/P' 
+                field: 'CantidadAdquirida',
+                title: 'Cantidad'
             },
-            /*{
-                field: ' idSOP',
-                title: ' Precio O Producto' 
-            },*/
-
             {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/DetalleFactura/ModificaDetalleFac?idDetalleFac=" + dataItem.idDetalleFac + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/DetalleFactura/EliminaDetalleFac?idDetalleFac=" + dataItem.idDetalleFac + "'>Elimimar</a>"
-
-
-                }
-            }
+                field: 'ProductoServicio',
+                title: 'Servicio'
+            },
+            {
+                field: 'MontoFinal',
+                title: 'Monto Final'
+            },
         ],
         filterable: true, //propiedad para filtrar
 

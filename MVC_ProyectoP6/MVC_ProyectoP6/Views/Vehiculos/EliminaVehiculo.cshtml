@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <label>Tipo Marca:</label>
-            <select name="idMarcaVehiculo" id="idMarcaVehiculo" class="form-control" readonly disabled >
+            <select name="idMarcaVehiculo" id="idMarcaVehiculo" class="form-control" readonly disabled>
                 <option value="">Favor seleccione</option>
                 @{
                     foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result ModeloTipoM in this.ViewBag.ListaTipoMarcaV)
@@ -81,7 +81,7 @@
             <input type="submit" value="Eliminar" id="btnEliminar" class="btn btn-danger" />
         </div>
     </form>
-    <a href="~/Vehiculos/GridVehiculos" class="btn btn-primary">Lista Vehiculos</a>
+    <a href="~/Vehiculos/ListaVehiculoS" class="btn btn-success">Lista Vehiculos</a>
 </div>
 
 

@@ -53,13 +53,6 @@ function creaGridKendo(data) {
                 //texto del encabezado
                 title: ' Numero Ruedas '
             },
-            {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/Vehiculos/ModificaVehiculo?idVehiculo=" + dataItem.idVehiculo + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/Vehiculos/EliminaVehiculo?idVehiculo=" + dataItem.idVehiculo + "'>Elimimar</a>"
-                }
-            }
         ],
         filterable: true, //propiedad para filtrar
 

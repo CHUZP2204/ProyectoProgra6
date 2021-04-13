@@ -43,24 +43,8 @@ function creaGridKendo(data) {
                 field: 'TipoMarcaVehiculo',
                 //texto del encabezado
                 title: 'Tipo de Marca '
-            },
-            {
-                //propiedad de la fuente de datos
-                //caseSensitive
-                field: 'idPaisFabricante',
-                //texto del encabezado
-                title: 'PaisFabricante '
-            },
-
-            {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary'  href='/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=" + dataItem.idMarcaVehiculo + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=" + dataItem.idMarcaVehiculo + "'>Elimimar</a>"
-
-
-                }
-            }
+            }, 
+  
         ],
         filterable: true, //propiedad para filtrar
 

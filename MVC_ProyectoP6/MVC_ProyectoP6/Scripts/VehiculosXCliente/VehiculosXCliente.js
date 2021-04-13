@@ -9,7 +9,7 @@ $(function () {
 // RetornaEmpresas()
 function obtenerRegistros() {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/VehiculoXcliente/RetornaVehiculosXCliente'
+    var urlMetodo = '/Reportes/RetornaVehiculosXCliente'
     var parametros = {};
     var funcion = creaGridKendo;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -32,29 +32,39 @@ function creaGridKendo(data) {
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
-                field: 'idVehiculo',
+                field: 'NombreCompleto',
                 //texto del encabezado
-                title: 'id Vehiculo '
+                title: 'Nombre Cliente '
 
             },
-
             {
                 //propiedad de la fuente de datos
                 //caseSensitive
-                field: 'idCliente',
+                field: 'Cedula',
                 //texto del encabezado
-                title: 'id Cliente '
+                title: 'Cedula '
             },
-
             {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/VehiculoXcliente/ModificaVehCliente?idVehiculoXCliente=" + dataItem.idVehiculoXCliente + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/VehiculoXcliente/EliminaVehCliente?idVehiculoXCliente=" + dataItem.idVehiculoXCliente + "'>Elimimar</a>"
-
-
-                }
-            }
+                //propiedad de la fuente de datos
+                //caseSensitive
+                field: 'PlacaVehiculo',
+                //texto del encabezado
+                title: 'Placa Vehiculo '
+            },
+            {
+                //propiedad de la fuente de datos
+                //caseSensitive
+                field: 'TipoVehiculo',
+                //texto del encabezado
+                title: 'Tipo  '
+            },
+            {
+                //propiedad de la fuente de datos
+                //caseSensitive
+                field: 'TipoMarcaVehiculo',
+                //texto del encabezado
+                title: 'Marca  '
+            },
         ],
         filterable: true, //propiedad para filtrar
 

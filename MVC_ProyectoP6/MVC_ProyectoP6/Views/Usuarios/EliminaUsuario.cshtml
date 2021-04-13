@@ -102,7 +102,7 @@
                             <select name="idProvincia" id="idProvincia" class="form-control" disabled>
                                 <option value="">Seleccione Una Provincia</option>
                                 @{
-                      
+
                                     foreach (MVC_ProyectoP6.Models.sp_RetornaProvincias_Result provincia in this.ViewBag.ListaProvincias)
                                     {
                                         bool esIdProvinciaModelo = provincia.id_Provincia == Model.idProvincia;
@@ -125,7 +125,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Canton: </label>
                         <div class="col-sm-7">
-                            <select name="idCanton" id="id_Canton" class="form-control"  disabled>
+                            <select name="idCanton" id="id_Canton" class="form-control" disabled>
                                 <option value="">Seleccione Canton</option>
                                 @{
 
@@ -150,7 +150,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Distrito: </label>
                         <div class="col-sm-7">
-                            <select name="idDistrito" id="id_Distrito" class="form-control"  disabled>
+                            <select name="idDistrito" id="id_Distrito" class="form-control" disabled>
                                 <option value="">Seleccione Un Distrito</option>
                                 @{
 
@@ -176,7 +176,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Tipo Usuario</label>
                         <div class="col-sm-7">
-                            <select name="TipoUsuario" id="TipoUsuario" class="form-control" disabled  >
+                            <select name="TipoUsuario" id="TipoUsuario" class="form-control" disabled>
                                 <option value="">Seleccione Tipo Usuario</option>
                                 if (@Model.TipoUsuario == "Administrador")
                                 {
@@ -207,7 +207,7 @@
                     <!--Espacio Boton-->
                     <button class="btn btn-danger" type="submit">Eliminar</button>
                     <!--Espacio lista usuarios-->
-                    <a href="~/Usuarios/GridClientes" class="btn btn-primary">Lista Usuarios</a>
+                    <a href="~/Usuarios/ListaUsuario" class="btn btn-primary">Lista Usuarios</a>
                 </form>
 
             </div>

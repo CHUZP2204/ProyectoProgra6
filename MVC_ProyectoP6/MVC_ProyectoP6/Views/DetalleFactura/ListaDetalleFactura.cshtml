@@ -8,6 +8,9 @@
     <h2>Lista Detalle Factura</h2>
     <a href="~/DetalleFactura/NuevoDetalleFac" class="btn btn-success">Nuevo Dato</a>
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
+    <a href="~/DetalleFactura/GridDetalleFactura" class="btn btn-success">Ver Reporte</a>
+    <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Ver Encabezados de Facturas</a>
+
     <br />
     <table class="table">
         <thead>
@@ -31,7 +34,7 @@
 
                         @foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
                         {
-                            if (ModeloSOP.idSOP == posicionModelo.idSOP )
+                            if (ModeloSOP.idSOP == posicionModelo.idSOP)
                             {
                                 <td>@ModeloSOP.TipoSOP</td>
                             }
@@ -39,7 +42,7 @@
 
                         <td>@posicionModelo.CantidadSOP</td>
                         <td>@posicionModelo.PrecioSOP</td>
-                        
+
                         <td>
                             <a href="~/DetalleFactura/ModificaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-primary">Modificar</a>
                             <a href="~/DetalleFactura/EliminaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-danger">Eliminar</a>

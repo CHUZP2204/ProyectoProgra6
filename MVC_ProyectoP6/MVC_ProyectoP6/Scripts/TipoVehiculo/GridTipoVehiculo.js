@@ -45,16 +45,6 @@ function creaGridKendo(data) {
                 //texto del encabezado
                 title: 'Tipo Vehiculo  '
             },
-
-            {
-                title: "Acciones",
-                template: function (dataItem) {
-                    return "<a class='btn btn-primary' href='/TipoVehiculo/ModificaTipoVehiculo?idTipoVehiculo=" + dataItem.idTipoVehiculo + "'>Modificar</a>"
-                        + " " + "<a class='btn btn-danger' href='/TipoVehiculo/EliminaTipoVehiculo?idTipoVehiculo=" + dataItem.idTipoVehiculo + "'>Elimimar</a>"
-
-
-                }
-            }
         ],
         filterable: true, //propiedad para filtrar
 

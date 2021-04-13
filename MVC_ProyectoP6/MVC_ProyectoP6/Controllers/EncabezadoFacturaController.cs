@@ -174,11 +174,10 @@ namespace MVC_ProyectoP6.Controllers
         }
         ///Modificar Estado factura 
         [HttpPost]
-        public ActionResult ModificarEstadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
+        public ActionResult ModificaEstadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
         {
             int registroModificado = 0;
-
-            string mensaje = "";
+           string mensaje = "";
 
             try
             {
@@ -201,7 +200,7 @@ namespace MVC_ProyectoP6.Controllers
                 }
             }
 
-
+            Response.Write("<script languaje=javascript>alert('" + mensaje + "');</script>");
             AgregarClientesViewBag();
             AgregarVehiculosViewBag();
             AgregarEstadoFacturaViewBag();
@@ -243,14 +242,14 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (cantidadRegistrosAfectados > 0)
                 {
-                    resultado = "El Registro Modificado";
+                    resultado = "El Registro fue Modificado";
                 }
                 else
                 {
                     resultado = "No se pudo Modifcar";
                 }
             }
-
+            Response.Write("<script languaje=javascript>alert('" + resultado + "');</script>");
             AgregarClientesViewBag();
             AgregarVehiculosViewBag();
             AgregarEstadoFacturaViewBag();

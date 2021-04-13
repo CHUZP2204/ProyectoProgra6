@@ -1,0 +1,99 @@
+﻿
+<div class="jumbotron">
+    <h2> Modificar Estado De La Factura</h2>
+
+    <form id="EncabezadoFactura" method="post">
+
+        <div class="form-group">
+            <label>Clientes :</label>
+            
+
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result clientes in this.ViewBag.ListaClientes)
+                    {
+                        bool esIdCliente = clientes.idCliente == Model.idCliente;
+                        if (esIdCliente)
+                        {
+                            <input type="text" name="idCliente" id="idCliente" class="form-control" value="@Model.idCliente @clientes.NombreCompleto" readonly/>
+                          
+
+                        }
+                    }
+                }
+        </div>
+
+
+        <div class="form-group">
+            <label>Vehiculo :</label>
+
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result vehiculos
+                        in this.ViewBag.ListaVehiculos)
+                    {
+                        bool esIdVehiculo = vehiculos.idVehiculo == Model.idCliente;
+                        if (esIdVehiculo)
+                        {
+                            <input type="number" name="idVehiculo" id="idVehiculo" class="form-control" value="@Model.idVehiculo" readonly/>
+                         
+
+                        }
+                    }
+                }
+        </div>
+
+        <div class=" form-group">
+            <label>Fecha</label>
+            <input type="date" name="Fecha" id="Fecha" class="form-control" value="@Model.Fecha.ToString("yyy-MM-dd")" readonly/>
+
+        </div>
+
+        <div class=" form-group">
+            <label>Monto Total Servicios</label>
+            <input type="text" name="MontoTotalServicios" id="MontoTotalServicios" class="form-control" value="@Model.MontoTotalServicios" readonly/>
+        </div>
+
+
+        <div class="form-group">
+            <label>Estado :</label>
+            <select name="estadofactura" id="estado" class="form-control" value="@Model.EstadoFactura">
+
+
+                <option value="Activa">Activa</option>
+                <option value="Anulada">Anular</option>
+
+            </select>
+        </div>
+        @*
+                        <div class="form-group">
+                <label>Detalle :</label>
+                <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac">
+
+                    @{
+                        foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
+                            this.ViewBag.ListaDetalles)
+                        {
+                            bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
+                            if (esIdDetalleFac)
+                            {
+                                <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
+
+                            }
+                            else
+                            {
+                                <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+        *@
+
+
+        <div class=" form-group">
+            <input type="submit" value="Modificar" id="btnGuardar" class="btn btn-success" />
+
+        </div>
+        <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezados Factura </a>
+    </form>
+
+</div>

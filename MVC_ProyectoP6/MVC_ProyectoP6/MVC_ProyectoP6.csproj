@@ -2166,6 +2166,8 @@
     <Content Include="Views\Usuarios\ListaUsuarioActual.cshtml" />
     <Content Include="Views\Vehiculos\ListaVehiculosClienteActual.cshtml" />
     <Content Include="Views\EncabezadoFactura\ListaFacturasClienteActual.cshtml" />
+    <Content Include="Views\EncabezadoFactura\ListaEstadoFactura.cshtml" />
+    <Content Include="Views\EncabezadoFactura\ModificaEstadoFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

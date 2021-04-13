@@ -141,6 +141,73 @@ namespace MVC_ProyectoP6.Controllers
 
         }
 
+        ///Lista Modificar Estado Factura
+        public ActionResult ListaEstadoFactura()
+        {
+
+            ///crear la variable que contiene el registro obtenidos
+            ///mediante invocar al procedimiento almacenados 
+            List<sp_RetornaEncFactura_Result> modeloVista =
+                new List<sp_RetornaEncFactura_Result>();
+
+            //asignar a la variable el resultado de llamar al SP
+            modeloVista = this.modeloBD.sp_RetornaEncFactura("").ToList();
+
+            this.AgregarClientesViewBag();
+            this.AgregarVehiculosViewBag();
+            this.AgregarDetalleViewBag();
+            //enciar el modelo a la vista
+            return View(modeloVista);
+        }
+
+        public ActionResult ModificaEstadoFactura(int idEncabezadoFac)
+        {
+            sp_RetornaEncFactura_ID_Result modeloVista = new sp_RetornaEncFactura_ID_Result();
+            modeloVista = this.modeloBD.sp_RetornaEncFactura_ID(idEncabezadoFac).FirstOrDefault();
+            AgregarClientesViewBag();
+            AgregarVehiculosViewBag();
+            AgregarEstadoFacturaViewBag();
+            AgregarDetalleViewBag();
+
+            return View(modeloVista);
+
+        }
+        ///Modificar Estado factura 
+        [HttpPost]
+        public ActionResult ModificarEstadoFactura(sp_RetornaEncFactura_ID_Result modeloVista)
+        {
+            int registroModificado = 0;
+
+            string mensaje = "";
+
+            try
+            {
+                registroModificado = this.modeloBD.sp_ModificaEstadoFactura(modeloVista.idEncabezadoFac, modeloVista.EstadoFactura);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = "Ocurrio un Error" + error.Message;
+            }
+            finally
+            {
+                if (registroModificado > 0)
+                {
+                    mensaje = "Se Actualizo El Estado De La Factura";
+                }
+                else
+                {
+                    mensaje += " No Se Actualizo El Estado Factura";
+                }
+            }
+
+
+            AgregarClientesViewBag();
+            AgregarVehiculosViewBag();
+            AgregarEstadoFacturaViewBag();
+            AgregarDetalleViewBag();
+            return View(modeloVista);
+        }
         /// <summary>
         /// Metodo Que Almacena Los Datos Ingresados En La Vista
         /// En La BD

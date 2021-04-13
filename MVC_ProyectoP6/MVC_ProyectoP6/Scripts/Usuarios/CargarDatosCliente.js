@@ -163,6 +163,8 @@ function ocultarEtiquetas() {
                 $("#admi10").hide();
                 $("#admi11").hide();
                 $("#admi12").hide();
+                $("#CRUD").hide();
+                $("#REPORTES").hide();
             }
 
         },

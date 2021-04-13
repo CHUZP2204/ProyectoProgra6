@@ -927,5 +927,18 @@ namespace MVC_ProyectoP6.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaVehiculosXCliente_Result>("sp_RetornaVehiculosXCliente", idClienteParameter);
         }
+    
+        public virtual int sp_ModificaEstadoFactura(Nullable<int> idEncabezadoFac, string estadoFactura)
+        {
+            var idEncabezadoFacParameter = idEncabezadoFac.HasValue ?
+                new ObjectParameter("idEncabezadoFac", idEncabezadoFac) :
+                new ObjectParameter("idEncabezadoFac", typeof(int));
+    
+            var estadoFacturaParameter = estadoFactura != null ?
+                new ObjectParameter("EstadoFactura", estadoFactura) :
+                new ObjectParameter("EstadoFactura", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaEstadoFactura", idEncabezadoFacParameter, estadoFacturaParameter);
+        }
     }
 }

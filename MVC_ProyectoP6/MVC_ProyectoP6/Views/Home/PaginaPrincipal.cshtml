@@ -13,32 +13,48 @@
         Listar/Crear/Modificar/Eliminar Y Generar Reportes
     </p>
     <br />
+    <div class="container">
+        <div class="col-lg-4">
+            <h4>Tus Datos</h4>
+            <div id="clienteActualDatos"></div>
+            <br />
+            <a href="~/EncabezadoFactura/ListaFacturasClienteActual" class="btn btn-primary">Mis Facturas</a>
+            <br />
+            <br />
+            <a href="~/Vehiculos/ListaVehiculosClienteActual" class="btn btn-primary">Mis Vehiculos</a>
+        </div>
 
-    <div id="clienteActualDatos"></div>
-    <br />
-    <br />
-    <a href="~/EncabezadoFactura/ListaFacturasClienteActual" class="btn btn-primary">Mis Facturas</a>
-    <br />
-    <br />
-    <a href="~/Vehiculos/ListaVehiculosClienteActual" class="btn btn-primary">Mis Vehiculos</a>
-    <br />
-    <br />
-    <a id="admi" href="~/Usuarios/ListaUsuario" class="btn btn-primary">Lista Usuarios</a>
-    <a id="admi1" href="~/Vehiculos/ListaVehiculoS" class="btn btn-primary">Lista Vehiculos</a>
-    <a id="admi2" href="~/VehiculoXcliente/ListaVehxClie" class="btn btn-primary">Lista Vehiculos Por Cliente</a>
-    <a id="admi3" href="~/TipoVehiculo/ListaTipoVehiculos" class="btn btn-primary">Lista Tipo Vehiculos</a>
-    <a id="admi4" href="~/MarcaVehiculo/ListaMarcaVehiculos" class="btn btn-primary">Lista Marca Vehiculos</a>
-    <a id="admi5" href="~/PaisFabricacion/ListaPaisFabricante" class="btn btn-primary">Lista Paises</a>
-    <a id="admi6" href="~/ServicioOProducto/ListaServicioOProducto" class="btn btn-primary">Lista Servicio Producto</a>
-    <a id="admi7" href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezado Factura</a>
-    <a id="admi8" href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
-    <br />
-    <br />
-    <a href="~/Reportes/ReporteServicioXCliente" class="btn btn-success">Reporte Servicio X Cliente </a>
-    <a href="~/Reportes/ReporteServicioXVehiculo" class="btn btn-success"> Reporte Servicios X Vehiculo</a>
-    <a href="~/Reportes/ReporteVehiculosXCliente" class="btn btn-success"> Reporte  vehiculos X Cliente</a>
-    <br />
-    <br />
+        <div class="col-lg-4">
+            <h4 id="CRUD">CRUD DATOS</h4>
+            <a id="admi" style="padding:5px; margin:3px" href="~/Usuarios/ListaUsuario" class="btn btn-primary">Lista Usuarios</a>
+            <a id="admi5" style="padding:5px; margin:3px" href="~/PaisFabricacion/ListaPaisFabricante" class="btn btn-primary">Lista Paises</a>
+
+            <a id="admi4" style="padding:5px; margin:3px" href="~/MarcaVehiculo/ListaMarcaVehiculos" class="btn btn-primary">Lista Marca Vehiculos</a>
+            <a id="admi1" style="padding:5px; margin:3px" href="~/Vehiculos/ListaVehiculoS" class="btn btn-primary">Lista Vehiculos</a>
+
+            <a id="admi8" style="padding:5px; margin:3px" href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
+            <a id="admi9" style="padding:5px; margin:3px" href="~/EncabezadoFactura/ListaEstadoFactura" class="btn btn-primary">Anular Facturas</a>
+
+            <a id="admi3" style="padding:5px; margin:3px" href="~/TipoVehiculo/ListaTipoVehiculos" class="btn btn-primary">Lista Tipo Vehiculos</a>
+            <a id="admi2" style="padding:5px; margin:3px" href="~/VehiculoXcliente/ListaVehxClie" class="btn btn-primary">Lista Vehiculos Por Cliente</a>
+
+
+            <a id="admi6" style="padding:5px; margin:3px" href="~/ServicioOProducto/ListaServicioOProducto" class="btn btn-primary">Lista Servicio Producto</a>
+            <a id="admi7" style="padding:5px; margin:3px" href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezado Factura</a>
+
+        </div>
+        <div class="col-lg-4">
+            <h4 id="REPORTES">Reportes</h4>
+            <a id="admi10" style="padding:5px; margin:3px" href="~/Reportes/ReporteServicioXCliente" class="btn btn-success">Reporte Servicio X Cliente </a>
+            <a id="admi11" style="padding:5px; margin:3px" href="~/Reportes/ReporteServicioXVehiculo" class="btn btn-success"> Reporte Servicios X Vehiculo</a>
+            <a id="admi12" style="padding:5px; margin:3px" href="~/Reportes/ReporteVehiculosXCliente" class="btn btn-success"> Reporte  vehiculos X Cliente</a>
+
+        </div>
+       
+ <br />
+        <br />
+    </div>
+ 
 
     <div class="container" id="divContenendorContenido">
         <h1 class="text-center"> Servicios </h1>
@@ -111,9 +127,9 @@
     </div>
 
 </div>
-    
-    @section scripts{
-        <script src="~/Scripts/Usuarios/CargarDatosCliente.js"></script>
-    }
+
+@section scripts{
+    <script src="~/Scripts/Usuarios/CargarDatosCliente.js"></script>
+}
 
 

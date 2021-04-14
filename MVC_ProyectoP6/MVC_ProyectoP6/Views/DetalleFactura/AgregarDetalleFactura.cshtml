@@ -31,17 +31,14 @@
 
         <div class="form-group">
             <label>Precio:</label>
-            <input type="number" name="PrecioSOP" id="PrecioSOP" class="form-control" />
+            <select name="PrecioSOP" id="PrecioSOP" class="form-control">
+            </select>
         </div>
 
         <div class="form-group">
             <label>Factura#:</label>
-            <select name="idEncabezadoFact" id="idEncabezadoFact" class="form-control" disabled>
-                @{
-                    <option value="@Model.idEncabezadoFact" selected>Factura# @Model.idEncabezadoFact</option>
 
-                }
-            </select>
+            <input type="text" name="idEncabezadoFact" id="idEncabezadoFact" class="form-control" value="@Model.idEncabezadoFact" readonly/>
         </div>
 
 
@@ -52,3 +49,6 @@
     <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Encabezado Factura </a>
 </div>
 
+@section scripts{
+    <script src="~/Scripts/DetalleFactura/cargaSyP.js"></script>
+}

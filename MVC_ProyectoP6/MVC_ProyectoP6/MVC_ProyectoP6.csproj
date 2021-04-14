@@ -2055,6 +2055,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\DetalleFactura\cargaSyP.js" />
     <Content Include="Scripts\DetalleFactura\GridDetalleFactura.js" />
     <Content Include="Scripts\EncabezadoFactura\EncabezadoFactura.js" />
     <Content Include="Scripts\EncabezadoFactura\FacturasClienteActual.js" />

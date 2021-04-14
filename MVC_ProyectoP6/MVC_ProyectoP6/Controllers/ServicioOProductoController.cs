@@ -92,7 +92,7 @@ namespace MVC_ProyectoP6.Controllers
             {
                 if (cantidadRegistrosAfectados > 0)
                 {
-                    resultado = "Registro Modificado";
+                    resultado = "Se registro Correctamente";
                 }
                 else
                 {

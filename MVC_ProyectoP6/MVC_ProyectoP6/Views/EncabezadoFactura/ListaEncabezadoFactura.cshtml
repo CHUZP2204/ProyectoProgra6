@@ -7,74 +7,76 @@
 
 <div class="jumbotron">
     <h1 style="text-align:center">Facturas</h1>
-    <h2>Lista Encabezado Factura</h2>
-    <a href="~/EncabezadoFactura/NuevoEncabezadoFactura" class="btn btn-success">Agregar Nuevo Encabezado</a>
+    <h6 style="text-align:center">Lista Encabezado Factura</h6>
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
-    <a href="~/EncabezadoFactura/GridEncabezadoFactura" class="btn btn-success">Reporte Nuevo Encabezado</a>
-    <a href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Ver Lista Detalles Factura</a>
+    <a href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
     <br />
+    <br />
+    <div class="container" style="background-color:azure;border:solid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#Factura</th>
+                    <th>Cliente </th>
+                    <th>Placa </th>
+                    <th>Fecha</th>
+                    <th>Total Factura</th>
+                    <th>Estado</th>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#Factura</th>
-                <th>Cliente </th>
-                <th>Vehiculo Placa</th>
-                <th>Fecha</th>
-                <th>Monto Total</th>
-                <th>Estado</th>
-
-                <th style="text-align:center">Acciones</th>
-                <th>Detalle Factura</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result posicionModelo
-                 in this.Model)
-                {
-                    <tr>
-                        <td>@posicionModelo.idEncabezadoFac</td>
-                        @foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result ModeloC in this.ViewBag.ListaClientes)
-                        {
-                            if (posicionModelo.idCliente == ModeloC.idCliente)
+                    <th style="text-align:center">Acciones</th>
+                    <th>Detalle Factura</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaEncFactura_Result posicionModelo
+                     in this.Model)
+                    {
+                        <tr>
+                            <td>@posicionModelo.idEncabezadoFac</td>
+                            @foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result ModeloC in this.ViewBag.ListaClientes)
                             {
-                                <td>@ModeloC.NombreCompleto.ToUpper()</td>
+                                if (posicionModelo.idCliente == ModeloC.idCliente)
+                                {
+                                    <td>@ModeloC.NombreCompleto.ToUpper()</td>
+                                }
                             }
-                        }
 
-                        @foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result ModeloV in this.ViewBag.ListaVehiculos)
-                        {
-                            if (posicionModelo.idVehiculo == ModeloV.idVehiculo)
+                            @foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result ModeloV in this.ViewBag.ListaVehiculos)
                             {
-                                <td>@ModeloV.PlacaVehiculo</td>
+                                if (posicionModelo.idVehiculo == ModeloV.idVehiculo)
+                                {
+                                    <td>@ModeloV.PlacaVehiculo</td>
+                                }
                             }
-                        }
 
 
 
 
-                        <td>@posicionModelo.Fecha.ToShortDateString()</td>
-                        <td>@posicionModelo.MontoTotalServicios</td>
-                        <td>@posicionModelo.EstadoFactura</td>
+                            <td>@posicionModelo.Fecha.ToShortDateString()</td>
+                            <td>₡@posicionModelo.MontoTotalServicios</td>
+                            <td>@posicionModelo.EstadoFactura</td>
 
-                        <td>
-                            <a href="~/EncabezadoFactura/ModificaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
-                            <a href="~/EncabezadoFactura/EliminaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>
-                            <a href="~/EncabezadoFactura/ModificaEstadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-warning">Anular</a>
+                            <td>
+                                <a href="~/EncabezadoFactura/ModificaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Modificar</a>
+                                <a href="~/EncabezadoFactura/EliminaEncabezadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-danger">Eliminar</a>
+                                <a href="~/EncabezadoFactura/ModificaEstadoFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-warning">Anular</a>
 
-                        </td>
-                        <td>
-                            <a href="~/DetalleFactura/AgregarDetalleFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-success">Agregar </a>
-                            <a href="~/DetalleFactura/ListaDetallePorId?idEncabezadoFact=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Ver </a>
+                            </td>
+                            <td>
+                                <a href="~/DetalleFactura/AgregarDetalleFactura?idEncabezadoFac=@posicionModelo.idEncabezadoFac" class="btn btn-success">Agregar </a>
+                                <a href="~/DetalleFactura/ListaDetallePorId?idEncabezadoFact=@posicionModelo.idEncabezadoFac" class="btn btn-primary">Ver </a>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
-
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <a href="~/EncabezadoFactura/NuevoEncabezadoFactura" class="btn btn-success">Agregar Factura</a>
+    <a href="~/EncabezadoFactura/GridEncabezadoFactura" class="btn btn-primary">Reporte Facturas</a>
 </div>
 
 

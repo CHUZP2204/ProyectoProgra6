@@ -103,6 +103,10 @@ function creaGridKendo(data) {
                 field: 'PrecioXunidad',
                 title: 'Precio Unidad'
             },
+            {
+                field: 'MontoFinal',
+                title: 'Total Factura'
+            },
 
         ],
         filterable: true, //propiedad para filtrar

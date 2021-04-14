@@ -7,49 +7,50 @@
     <h2 style="text-align:center">Lista Productos Adquiridos</h2>
     <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Lista Facturas</a>
     <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#Factura</th>
-                <th>ID Detalle</th>
-                <th>Tipo Servicio</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFacXenca_ID_Result posicionModelo
-                    in this.Model)
-                {
-                    <tr>
-                        <td>@posicionModelo.idEncabezadoFact</td>
-                        <td>@posicionModelo.idDetalleFac</td>
+    <br />
+    <div class="container" style="background-color:azure;border:solid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#Factura</th>
+                    <th>ID Detalle</th>
+                    <th>Tipo Servicio</th>
+                    <th>Cantidad</th>
+                    <th>Precio Por Cantidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFacXenca_ID_Result posicionModelo
+                        in this.Model)
+                    {
+                        <tr>
+                            <td>@posicionModelo.idEncabezadoFact</td>
+                            <td>@posicionModelo.idDetalleFac</td>
 
-                        @foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
-                        {
-                            if (ModeloSOP.idSOP == posicionModelo.idSOP)
+                            @foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
                             {
-                                <td>@ModeloSOP.TipoSOP</td>
+                                if (ModeloSOP.idSOP == posicionModelo.idSOP)
+                                {
+                                    <td>@ModeloSOP.TipoSOP</td>
+                                }
                             }
-                        }
 
-                        <td>@posicionModelo.CantidadSOP</td>
-                        <td>@posicionModelo.PrecioSOP</td>
+                            <td>@posicionModelo.CantidadSOP</td>
+                            <td>₡@posicionModelo.PrecioSOP</td>
 
-                        <td>
-                            <a href="~/DetalleFactura/ModificaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-primary">Modificar</a>
-                            <a href="~/DetalleFactura/EliminaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-danger">Eliminar</a>
+                            <td>
+                                <a href="~/DetalleFactura/ModificaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-primary">Modificar</a>
+                                <a href="~/DetalleFactura/EliminaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-danger">Eliminar</a>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
-
-
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

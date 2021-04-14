@@ -2,7 +2,31 @@
     ///llamamos a la función que se encargará de crear los eventos
     //que nos permitirán controlar cuando se haga una selección en las respectivas listas
     eventosChangeSOP();
+    DetalleValidaciones();
 });
+
+
+///crea las validaciones para el formulario
+function DetalleValidaciones() {
+    $("#frmDetalleFac").validate({
+        ///objeto que contiene "las condiciones" que el formulario
+        ///debe cumplir para ser considerado válido
+        rules: {
+            idSOP: {
+                required: true
+            },
+            CantidadSOP: {
+                required: true
+            },
+            PrecioSOP: {
+                required: true
+            },
+            idEncabezadoFact: {
+                required: true
+            },
+        }
+    });
+}
 
 //función que registrará los eventos necesarios para "monitorear"
 //cuando se ejecute el método change de las respectivas listas

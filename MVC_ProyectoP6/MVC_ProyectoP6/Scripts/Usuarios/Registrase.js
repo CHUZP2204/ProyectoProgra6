@@ -7,6 +7,46 @@
 ///A Partir De La Provincia Selecciona Asi Sucesivamente
 
 
+///Validar Que Campos No Este Vacios
+function creaValidacionesRegistrarse() {
+    $("#frmRegistraUsuario").validate({
+        ///objeto que contiene "las condiciones" que el formulario
+        ///debe cumplir para ser considerado válido
+        rules: {
+            Cedula: {
+                required: true
+            },
+            FechaNacimiento: {
+                required: true
+            },
+            Genero: {
+                required: true
+            },
+            NombreCompleto: {
+                required: true
+            },
+            Correo: {
+                required: true
+            },
+            idProvincia: {
+                required: true
+            },
+            idCanton: {
+                required: true
+            },
+            idDistrito: {
+                required: true
+            },
+            TipoUsuario: {
+                required: true
+            },
+            Contrasenia: {
+                required: true
+            }
+        }
+    });
+}
+
 function cargaDatosDireccion() {
     $("#idProvincia").change(function () {
         var url = '/Usuarios/AgregaCantones';///Url Del Controller y El Even
@@ -15,7 +55,7 @@ function cargaDatosDireccion() {
         var parametros = {
             id_Provincia: $("#idProvincia").val()
         }
-        $("#id_Canton").empty();
+        $("#idCanton").empty();
 
 
         $.ajax({
@@ -30,7 +70,7 @@ function cargaDatosDireccion() {
             success: function (modeloVista) {
 
                 $.each(modeloVista, function (i, modelo) {
-                    $("#id_Canton").append('<option value="' + modelo.Value + '">' +
+                    $("#idCanton").append('<option value="' + modelo.Value + '">' +
                         modelo.Text + '</option>');
                 });
             },
@@ -43,14 +83,14 @@ function cargaDatosDireccion() {
 
     ///Funcion Para Cambiar Evento De Los DropDownList
     ///A Partir De La Provincia Selecciona Asi Sucesivamente
-    $("#id_Canton").change(function () {
+    $("#idCanton").change(function () {
         var url = '/Usuarios/AgregaDistritos';///Url Del Controller y El Evento
 
         ///Forma De Obtener El Objeto Seleccionado 
         var parametros = {
-            id_Canton: $("#id_Canton").val()
+            id_Canton: $("#idCanton").val()
         }
-        $("#id_Distrito").empty();
+        $("#idDistrito").empty();
 
 
         $.ajax({
@@ -65,7 +105,7 @@ function cargaDatosDireccion() {
             success: function (modeloVista) {
 
                 $.each(modeloVista, function (i, modelo) {
-                    $("#id_Distrito").append('<option value="' + modelo.Value + '">' +
+                    $("#idDistrito").append('<option value="' + modelo.Value + '">' +
                         modelo.Text + '</option>');
                 });
             },
@@ -95,45 +135,7 @@ function creaEventosRegistrar() {
     });
 }
 
-///Validar Que Campos No Este Vacios
-function creaValidacionesRegistrarse() {
-    $("#frmRegistraUsuario").validate({
-        ///objeto que contiene "las condiciones" que el formulario
-        ///debe cumplir para ser considerado válido
-        rules: {
-            Cedula: {
-                required: true
-            },
-            FechaNacimiento: {
-                required: true
-            },
-            Genero: {
-                required: true
-            },
-            NombreCompleto: {
-                required: true
-            },
-            Correo: {
-                required: true
-            },
-            idProvincia: {
-                required: true
-            },
-            id_Canton: {
-                required: true
-            },
-            id_Distrito: {
-                required: true
-            },
-            TipoUsuario: {
-                required: true
-            },
-            Contrasenia: {
-                required: true
-            }
-        }
-    });
-}
+
 
 /// Llamar Y Registrar Cliente Con Jquery
 
@@ -148,8 +150,8 @@ function RegistraDatosCLiente() {
         pNombreC: $("#NombreCompleto").val(),
         pCorreo: $("#CorreoIngresado").val(),
         pIdProvincia: $("#idProvincia").val(),
-        pIdCanton: $("#id_Canton").val(),
-        pIdDistrito: $("#id_Distrito").val(),
+        pIdCanton: $("#idCanton").val(),
+        pIdDistrito: $("#idDistrito").val(),
         pTipoUsuario: $("#TipoUsuario").val(),
         pContrasenia: $("#ContraseniaObtenida").val()
     };

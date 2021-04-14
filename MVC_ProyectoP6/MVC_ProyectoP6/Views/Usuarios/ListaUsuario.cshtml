@@ -6,40 +6,44 @@
 
 
 <div class="jumbotron">
-    <h2>Lista Usuarios En Sistema</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre Completo</th>
-                <th>Cedula</th>
-                <th>Email</th>
-                <th>Genero</th>
-                <th>Fecha Nacimiento</th>
-                <th>Tipo Usuario</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result modeloPosicion in this.Model)
-                {
-                    <tr>
-                        <td>@modeloPosicion.NombreCompleto</td>
-                        <td>@modeloPosicion.Cedula</td>
-                        <td>@modeloPosicion.Correo</td>
-                        <td>@modeloPosicion.Genero</td>
-                        <td>@modeloPosicion.FechaNacimiento.ToShortDateString()</td>
-                        <td>@modeloPosicion.TipoUsuario</td>
-                        <td><a href="~/Usuarios/ModificaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-primary">Modificar</a> <a href="~/Usuarios/EliminaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-danger">Eliminar</a></td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-
-    <a href="~/Usuarios/NuevoUsuario" class="btn btn-success">Agregar Cliente</a>
+    <h2 style="text-align:center">Lista Usuarios En Sistema</h2>
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
-    <a href="~/Usuarios/GridClientes" class="btn btn-success">Ver Reporte</a>
+    <br />
+    <br />
+    <div class="container" style="background-color:azure;border:solid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Cedula</th>
+                    <th>Email</th>
+                    <th>Genero</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Tipo Usuario</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaClientes_Result modeloPosicion in this.Model)
+                    {
+                        <tr>
+                            <td>@modeloPosicion.NombreCompleto</td>
+                            <td>@modeloPosicion.Cedula</td>
+                            <td>@modeloPosicion.Correo</td>
+                            <td>@modeloPosicion.Genero</td>
+                            <td>@modeloPosicion.FechaNacimiento.ToShortDateString()</td>
+                            <td>@modeloPosicion.TipoUsuario</td>
+                            <td><a href="~/Usuarios/ModificaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-primary">Modificar</a> <a href="~/Usuarios/EliminaUsuario?idCliente=@modeloPosicion.idCliente" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <a href="~/Usuarios/NuevoUsuario" class="btn btn-success">Agregar Cliente</a>
+    <a href="~/Usuarios/GridClientes" class="btn btn-primary">Ver Reporte</a>
 
 
 </div>

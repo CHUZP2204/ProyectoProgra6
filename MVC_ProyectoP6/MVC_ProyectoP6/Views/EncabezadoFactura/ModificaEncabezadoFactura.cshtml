@@ -39,7 +39,7 @@
                     foreach (MVC_ProyectoP6.Models.sp_RetornaVehiculo_Result vehiculos
                         in this.ViewBag.ListaVehiculos)
                     {
-                        bool esIdVehiculo = vehiculos.idVehiculo == Model.idCliente;
+                        bool esIdVehiculo = vehiculos.idVehiculo == Model.idVehiculo;
                         if (esIdVehiculo)
                         {
                             <option value="@vehiculos.idVehiculo" selected> @vehiculos.PlacaVehiculo.ToString() </option>
@@ -50,7 +50,6 @@
                             <option value="@vehiculos.idVehiculo">@vehiculos.PlacaVehiculo.ToString()</option>
                         }
                     }
-                }
                 }
             </select>
         </div>
@@ -78,28 +77,28 @@
             </select>
         </div>
         @*
-                    <div class="form-group">
-            <label>Detalle :</label>
-            <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac">
+                        <div class="form-group">
+                <label>Detalle :</label>
+                <select name="idDetalleFac" id="idDetalleFac" class="form-control" value=" @Model.idDetalleFac">
 
-                @{
-                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
-                        this.ViewBag.ListaDetalles)
-                    {
-                        bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
-                        if (esIdDetalleFac)
+                    @{
+                        foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result detalle in
+                            this.ViewBag.ListaDetalles)
                         {
-                            <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
+                            bool esIdDetalleFac = detalle.idDetalleFac == Model.idCliente;
+                            if (esIdDetalleFac)
+                            {
+                                <option value="@detalle.idDetalleFac" selected> @detalle.CantidadSOP.ToString() </option>
 
-                        }
-                        else
-                        {
-                            <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
+                            }
+                            else
+                            {
+                                <option value="@detalle.idDetalleFac">@detalle.CantidadSOP.ToString()</option>
+                            }
                         }
                     }
-                }
-            </select>
-        </div>
+                </select>
+            </div>
         *@
 
 
@@ -111,3 +110,7 @@
     </form>
 
 </div>
+
+@section scripts{
+    <script src="~/Scripts/EncabezadoFactura/EncabezadoFactura.js"></script>
+}

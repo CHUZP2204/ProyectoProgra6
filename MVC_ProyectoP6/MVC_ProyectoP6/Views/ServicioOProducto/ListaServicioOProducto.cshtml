@@ -4,43 +4,44 @@
 }
 
 <div class="jumbotron">
-    <h2>Lista de Servicios y Productos </h2>
-    <a href="~/ServicioOProducto/NuevoServicioOproducto" class="btn btn-success">Agregar Servicios o Productos</a>
+    <h2 style="text-align:center">Lista de Servicios y Productos </h2>
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
-    <a href="~/ServicioOProducto/GridServicioOProducto" class="btn btn-success">Reporte Servicios o Productos</a>
     <br>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codigo S/P</th>
-                <th>Tipo S/P</th>
-                <th>Precio/U</th>
-                <!--<th>Cliente</th>-->
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result posicionModelo
-                 in this.Model)
-                {
-                    <tr>
-                        <td>@posicionModelo.CodigoSOP</td>
-                        <td>@posicionModelo.TipoSOP</td>
-                        <td>@posicionModelo.PrecioSOP</td>
-                        <!--<td>posicionModelo.idCliente</td>-->
+    <br />
+    <div class="container" style="background-color:azure;border:solid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Codigo S/P</th>
+                    <th>Tipo S/P</th>
+                    <th>Precio/U</th>
+                    <!--<th>Cliente</th>-->
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result posicionModelo
+                     in this.Model)
+                    {
+                        <tr>
+                            <td>@posicionModelo.CodigoSOP</td>
+                            <td>@posicionModelo.TipoSOP</td>
+                            <td>@posicionModelo.PrecioSOP</td>
+                            <!--<td>posicionModelo.idCliente</td>-->
 
-                        <td>
-                            <a href="~/ServicioOProducto/ModificaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Modificar</a>
-                            <a href="~/ServicioOProducto/EliminaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-danger">Eliminar</a>
-                        </td>
-
-
-
-                    </tr>
+                            <td>
+                                <a href="~/ServicioOProducto/ModificaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-primary">Modificar</a>
+                                <a href="~/ServicioOProducto/EliminaServicioOProducto?idSOP=@posicionModelo.idSOP" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <a href="~/ServicioOProducto/NuevoServicioOproducto" class="btn btn-success">Agregar Servicio o Producto</a>
+    <a href="~/ServicioOProducto/GridServicioOProducto" class="btn btn-primary">Reporte Servicios o Productos</a>
 
 </div>

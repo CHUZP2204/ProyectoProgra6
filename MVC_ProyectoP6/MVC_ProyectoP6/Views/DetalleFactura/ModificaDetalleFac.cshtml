@@ -5,7 +5,7 @@
 
 <div class="jumbotron">
     <h2>Modificar Detalle Factura</h2>
-    <form id="frmModificaDetalleFac" method="post">
+    <form id="frmDetalleFac" method="post">
 
         <div class="form-group">
             <label>Tipo Servicio/Producto:</label>
@@ -37,7 +37,8 @@
 
         <div class="form-group">
             <label>Precio:</label>
-            <input type="number" name="PrecioSOP" id="PrecioSOP" class="form-control" value="@Model.PrecioSOP" />
+            <select name="PrecioSOP" id="PrecioSOP" class="form-control">
+            </select>
         </div>
 
         <div class="form-group">
@@ -71,3 +72,7 @@
     </form>
     <a href="~/DetalleFactura/ListaDetalleFactura" class="btn btn-primary">Lista Detalle Factura</a>
 </div>
+
+@section scripts{
+    <script src="~/Scripts/DetalleFactura/cargaSyP.js"></script>
+}

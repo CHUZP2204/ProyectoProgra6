@@ -30,23 +30,28 @@ function creaGridKendo(data) {
         columns: [  //Mostrar las columnas 
             {
                 field: 'idEncabezadoFact',
-                title: 'idEncabezadoFact'
+                title: '#Factura'
             }, 
-            {
-                field: 'PrecioXunidad',
-                title: 'Unidad'
-            },
-            {
-                field: 'CantidadAdquirida',
-                title: 'Cantidad'
-            },
             {
                 field: 'ProductoServicio',
                 title: 'Servicio'
             },
             {
+                field: 'PrecioUnitario',
+                title: 'Precio Unitario'
+            },
+            {
+                field: 'PrecioXunidad',
+                title: 'Precio X Cantidad'
+            },
+            {
+                field: 'CantidadAdquirida',
+                title: 'Cantidad'
+            },
+
+            {
                 field: 'MontoFinal',
-                title: 'Monto Final'
+                title: 'Total Factura'
             },
         ],
         filterable: true, //propiedad para filtrar

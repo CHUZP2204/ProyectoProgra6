@@ -48,8 +48,8 @@ namespace MVC_ProyectoP6.Controllers
 
         public ActionResult RetornaVehiculosXCliente()
         {
-            List<sp_RetornaViewReportes_Result> listaVehiculosXCliente =
-                this.modeloBD.sp_RetornaViewReportes(null, null, "", "").ToList();
+            List<sp_RetornaVehiculosXCliente_Result> listaVehiculosXCliente =
+                this.modeloBD.sp_RetornaVehiculosXCliente(null).ToList();
 
             return Json(new
             {

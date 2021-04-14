@@ -40,13 +40,28 @@ function creaGridKendo(data) {
 
             },*/
             {
+                field: 'idEncabezadoFact',
+                title: '# Factura'
+
+            },
+            {
+                field: 'idDetalleFac',
+                title: '# Detalle'
+
+            },
+            {
+                field: 'NombreCompleto',
+                title: 'Cliente '
+
+            },
+            {
                 field: 'Fecha',
                 title: 'Fecha',
                 template: "#= kendo.toString(kendo.parseDate(Fecha, 'yyyy-MM-dd'), 'MM/dd/yyyy') #"
             },
             {
-                field: 'MontoTotalServicios', 
-                title: 'Monto Total Servicios '
+                field: 'MontoFinal', 
+                title: 'Total Factura'
 
             },
 

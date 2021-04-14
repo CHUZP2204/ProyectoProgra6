@@ -1361,12 +1361,12 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
             <Parameter Name="cedula" Mode="In" Type="String" />
             <Parameter Name="PlacaVehiculo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaVehiculosXCliente" ReturnType="Collection(progra6Model.sp_RetornaVehiculosXCliente_Result)">
-          <Parameter Name="idCliente" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_ModificaEstadoFactura">
             <Parameter Name="idEncabezadoFac" Mode="In" Type="Int32" />
             <Parameter Name="EstadoFactura" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaVehiculosXCliente" ReturnType="Collection(progra6Model.sp_RetornaVehiculosXCliente_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetornaCantones_Result">
@@ -2671,6 +2671,7 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ModificaEstadoFactura" FunctionName="progra6Model.Store.sp_ModificaEstadoFactura" />
           <FunctionImportMapping FunctionImportName="sp_RetornaVehiculosXCliente" FunctionName="progra6Model.Store.sp_RetornaVehiculosXCliente">
             <ResultMapping>
               <ComplexTypeMapping TypeName="progra6Model.sp_RetornaVehiculosXCliente_Result">
@@ -2684,7 +2685,6 @@ FROM [dbo].[View_VehiculosXCliente] AS [View_VehiculosXCliente]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ModificaEstadoFactura" FunctionName="progra6Model.Store.sp_ModificaEstadoFactura" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

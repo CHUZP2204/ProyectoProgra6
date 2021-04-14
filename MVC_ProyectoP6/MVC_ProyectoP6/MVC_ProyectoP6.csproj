@@ -1974,6 +1974,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Images\mecanica.png" />
+    <Content Include="Images\mecanica2.png" />
+    <Content Include="Images\mecanica3.jpg" />
     <Content Include="Images\servicios 3.jpg" />
     <Content Include="Images\Servicios1.jpg" />
     <Content Include="Images\servicios2.jpg" />
@@ -1981,6 +1984,7 @@
     <Content Include="Images\servicios5.jpg" />
     <Content Include="Images\servicios6.jpg" />
     <Content Include="Images\servios0.jpg" />
+    <Content Include="Images\slider-mecanica2.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

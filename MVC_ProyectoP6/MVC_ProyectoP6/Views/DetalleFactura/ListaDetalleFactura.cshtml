@@ -5,54 +5,57 @@
 
 
 <div class="jumbotron">
-    <h2>Lista Detalle Factura</h2>
-    <a href="~/DetalleFactura/NuevoDetalleFac" class="btn btn-success">Nuevo Dato</a>
+    <h2 style="text-align:center">Lista Detalle Factura</h2>
+
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
-    <a href="~/DetalleFactura/GridDetalleFactura" class="btn btn-success">Ver Reporte</a>
-    <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Ver Encabezados de Facturas</a>
-
+    <a href="~/EncabezadoFactura/ListaEncabezadoFactura" class="btn btn-primary">Ver Facturas</a>
     <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#Factura</th>
-                <th>ID Detalle</th>
-                <th>Tipo Servicio</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result posicionModelo
-                    in this.Model)
-                {
-                    <tr>
-                        <td>@posicionModelo.idEncabezadoFact</td>
-                        <td>@posicionModelo.idDetalleFac</td>
+    <br />
+    <div class="container" style="background-color:azure;border:solid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#Factura</th>
+                    <th>ID Detalle</th>
+                    <th>Tipo Servicio</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaDetalleFac_Result posicionModelo
+                        in this.Model)
+                    {
+                        <tr>
+                            <td>@posicionModelo.idEncabezadoFact</td>
+                            <td>@posicionModelo.idDetalleFac</td>
 
-                        @foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
-                        {
-                            if (ModeloSOP.idSOP == posicionModelo.idSOP)
+                            @foreach (MVC_ProyectoP6.Models.sp_RetornaServicioOProducto_Result ModeloSOP in this.ViewBag.ListaTipoSOP)
                             {
-                                <td>@ModeloSOP.TipoSOP</td>
+                                if (ModeloSOP.idSOP == posicionModelo.idSOP)
+                                {
+                                    <td>@ModeloSOP.TipoSOP</td>
+                                }
                             }
-                        }
 
-                        <td>@posicionModelo.CantidadSOP</td>
-                        <td>@posicionModelo.PrecioSOP</td>
+                            <td>@posicionModelo.CantidadSOP</td>
+                            <td>@posicionModelo.PrecioSOP</td>
 
-                        <td>
-                            <a href="~/DetalleFactura/ModificaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-primary">Modificar</a>
-                            <a href="~/DetalleFactura/EliminaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-danger">Eliminar</a>
+                            <td>
+                                <a href="~/DetalleFactura/ModificaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-primary">Modificar</a>
+                                <a href="~/DetalleFactura/EliminaDetalleFac?idDetalleFac=@posicionModelo.idDetalleFac" class="btn btn-danger">Eliminar</a>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
-
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <a href="~/DetalleFactura/NuevoDetalleFac" class="btn btn-success">Nuevo Dato</a>
+    <a href="~/DetalleFactura/GridDetalleFactura" class="btn btn-primary">Ver Reporte Detalle Factura</a>
 
 </div>

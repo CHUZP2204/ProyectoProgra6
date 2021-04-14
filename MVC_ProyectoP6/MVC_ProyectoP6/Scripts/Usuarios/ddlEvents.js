@@ -11,7 +11,7 @@
         var parametros = {
             id_Provincia: $("#idProvincia").val()
         }
-        $("#id_Canton").empty();
+        $("#idCanton").empty();
 
 
         $.ajax({
@@ -26,7 +26,7 @@
             success: function (modeloVista) {
 
                 $.each(modeloVista, function (i, modelo) {
-                    $("#id_Canton").append('<option value="' + modelo.Value + '">' +
+                    $("#idCanton").append('<option value="' + modelo.Value + '">' +
                         modelo.Text + '</option>');
                 });
             },
@@ -39,14 +39,14 @@
 
     ///Funcion Para Cambiar Evento De Los DropDownList
     ///A Partir De La Provincia Selecciona Asi Sucesivamente
-    $("#id_Canton").change(function () {
+    $("#idCanton").change(function () {
         var url = '/Usuarios/AgregaDistritos';///Url Del Controller y El Evento
 
         ///Forma De Obtener El Objeto Seleccionado 
         var parametros = {
-            id_Canton: $("#id_Canton").val()
+            id_Canton: $("#idCanton").val()
         }
-        $("#id_Distrito").empty();
+        $("#idDistrito").empty();
 
 
         $.ajax({
@@ -61,7 +61,7 @@
             success: function (modeloVista) {
 
                 $.each(modeloVista, function (i, modelo) {
-                    $("#id_Distrito").append('<option value="' + modelo.Value + '">' +
+                    $("#idDistrito").append('<option value="' + modelo.Value + '">' +
                         modelo.Text + '</option>');
                 });
             },
@@ -97,10 +97,10 @@ function crearValidaciones() {
             idProvincia: {
                 required: true
             },
-            id_Canton: {
+            idCanton: {
                 required: true
             },
-            id_Distrito: {
+            idDistrito: {
                 required: true
             },
             TipoUsuario: {

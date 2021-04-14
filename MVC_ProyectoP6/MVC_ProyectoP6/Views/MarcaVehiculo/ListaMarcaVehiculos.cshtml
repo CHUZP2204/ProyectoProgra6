@@ -6,49 +6,56 @@
 
 
 <div class="jumbotron">
-    <h2>Lista Marcas de Vehiculos</h2>
-    <a href="~/MarcaVehiculo/NuevaMarcaVehiculo" class="btn btn-success">Nueva Marca Vehiculo</a>
+    <h2 style="text-align:center">Lista Marcas de Vehiculos</h2>
+
     <a href="~/Home/PaginaPrincipal" class="btn btn-primary">Pagina Principal</a>
-    <a href="~/MarcaVehiculo/GridMarcaVehiculo" class="btn btn-success">Reporte Marca Vehiculo</a>
+
     <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codigo Marca</th>
-                <th>Tipo Marca </th>
-                <th>Pais Fabricante</th>
-                <th>Acciones</th>
-            </tr>
+    <br />
+    <div class="container" style="background-color:azure;border:solid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Codigo Marca</th>
+                    <th>Tipo Marca </th>
+                    <th>Pais Fabricante</th>
+                    <th>Acciones</th>
+                </tr>
 
-        </thead>
-        <tbody>
-            @{
-                foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result posicionModelo
-                    in this.Model)
-                {
-                    <tr>
-                        <td>@posicionModelo.CodigoMarcaVehiculo</td>
-                        <td>@posicionModelo.TipoMarcaVehiculo</td>
-                        @foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result modeloPais in this.ViewBag.ListaPaises)
-                        {
-                            if (modeloPais.idPaisFabricante == posicionModelo.idPaisFabricante)
+            </thead>
+            <tbody>
+                @{
+                    foreach (MVC_ProyectoP6.Models.sp_RetornaMarcaVehiculo_Result posicionModelo
+                        in this.Model)
+                    {
+                        <tr>
+                            <td>@posicionModelo.CodigoMarcaVehiculo</td>
+                            <td>@posicionModelo.TipoMarcaVehiculo</td>
+                            @foreach (MVC_ProyectoP6.Models.sp_RetornaPaisFabricante_Result modeloPais in this.ViewBag.ListaPaises)
                             {
-                                <td>@modeloPais.PaisFabricante</td>
+                                if (modeloPais.idPaisFabricante == posicionModelo.idPaisFabricante)
+                                {
+                                    <td>@modeloPais.PaisFabricante</td>
+                                }
                             }
-                        }
 
-                        <td>
-                            <a href="~/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Modificar</a>
-                            <a href="~/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-danger">Eliminar</a>
-                        </td>
+                            <td>
+                                <a href="~/MarcaVehiculo/ModificaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-primary">Modificar</a>
+                                <a href="~/MarcaVehiculo/EliminaMarcaVehiculo?idMarcaVehiculo=@posicionModelo.idMarcaVehiculo" class="btn btn-danger">Eliminar</a>
+                            </td>
 
-                    </tr>
+                        </tr>
+                    }
                 }
-            }
 
-        </tbody>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
+    <br />
+    <a href="~/MarcaVehiculo/NuevaMarcaVehiculo" class="btn btn-success">Nueva Marca</a>
+    <a href="~/MarcaVehiculo/GridMarcaVehiculo" class="btn btn-primary">Reporte Marca Vehiculo</a>
+
 
 </div>
 

@@ -2,7 +2,33 @@
     ///llamamos a la función que se encargará de crear los eventos
     //que nos permitirán controlar cuando se haga una selección en las respectivas listas
     estableceEventosChange();
+    EncabezadoValidaciones();
 });
+
+///crea las validaciones para el formulario
+function EncabezadoValidaciones() {
+    $("#EncabezadoFactura").validate({
+        ///objeto que contiene "las condiciones" que el formulario
+        ///debe cumplir para ser considerado válido
+        rules: {
+            idCliente: {
+                required: true
+            },
+            idVehiculo: {
+                required: true
+            },
+            Fecha: {
+                required: true
+            },
+            MontoTotalServicios: {
+                required: true
+            },
+            estado: {
+                required: true
+            },
+        }
+    });
+}
 
 //función que registrará los eventos necesarios para "monitorear"
 //cuando se ejecute el método change de las respectivas listas

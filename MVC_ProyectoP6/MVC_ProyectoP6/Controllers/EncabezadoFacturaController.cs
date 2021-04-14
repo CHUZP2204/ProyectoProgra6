@@ -403,8 +403,8 @@ namespace MVC_ProyectoP6.Controllers
         [HttpPost]
         public ActionResult RetornaEncabezadoFactura()
         {
-            List<sp_RetornaEncFactura_Result> listaEncabezadosFactura =
-                this.modeloBD.sp_RetornaEncFactura("").ToList();
+            List<sp_RetornaViewReportes_Result> listaEncabezadosFactura =
+                this.modeloBD.sp_RetornaViewReportes(null,null,null,null).ToList();
 
             return Json(new
             {

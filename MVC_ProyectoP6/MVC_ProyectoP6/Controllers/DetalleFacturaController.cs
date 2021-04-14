@@ -167,7 +167,7 @@ namespace MVC_ProyectoP6.Controllers
             string resultado = " ";
 
             int precioIngresado = Convert.ToInt32(modeloVista.PrecioSOP);
-            int precioFinal =0;
+            int precioFinal = 0;
 
             //Calcular Precio Final Del Detalle
             // EL Precio Se Determina Por La Cantidad Adquirida
@@ -214,7 +214,7 @@ namespace MVC_ProyectoP6.Controllers
                 montoTotalEncabezad1 = Convert.ToInt32(montoTotalEncabezado);
                 ///Obtener Los Datos Del Encabezado Requeridos Para El Sp inserta Encabezado
                 ///Esto Para Que Ningun Valor Cambie
-                
+
                 for (int posicionActual = 0; posicionActual < modeloActualizarEnca.Count; posicionActual++)
                 {
                     idClienteEncabezado = modeloActualizarEnca[posicionActual].idCliente;
@@ -223,6 +223,7 @@ namespace MVC_ProyectoP6.Controllers
                     estadoEncabezado = modeloActualizarEnca[posicionActual].EstadoFactura;
                 }
 
+                ///Actualizar Tabla Encabezado Factura Con El Valor Nuevo De Monto Total Final
                 cantidadRegistrosAfectados1 = this.ModeloBD.sp_ModificaEncabezadoFac(
                     modeloVista.idEncabezadoFact,
                     idClienteEncabezado,
@@ -286,11 +287,26 @@ namespace MVC_ProyectoP6.Controllers
             ///Si Un Procedimiento Que Ejecuta Insert, Update o Delete
             ///No Afecta Registros Implica Que Hubo Un Error
 
+
+
             int cantidadRegistrosAfectados = 0;
+            int cantidadRegistrosAfectados1 = 0;
             string resultado = " ";
 
             int precioIngresado = Convert.ToInt32(modeloVista.PrecioSOP);
+            int precioFinal = 0;
 
+            //Calcular Precio Final Del Detalle
+            // EL Precio Se Determina Por La Cantidad Adquirida
+            precioFinal = precioIngresado * modeloVista.CantidadSOP;
+
+            string estadoEncabezado = "";
+            int idClienteEncabezado = 0;
+            int idVehiculoEncabezado = 0;
+            DateTime fechaEncabezado = DateTime.MinValue;
+
+            decimal montoTotalEncabezado = 0;
+            int montoTotalEncabezad1 = 0;
             /// try Instrucciones que se intenta Realizar
             /// Catch Administra las exepciones o errores
             /// Finally Siempre se ejecuta exista o no error
@@ -303,10 +319,46 @@ namespace MVC_ProyectoP6.Controllers
                    modeloVista.idEncabezadoFact,
                    modeloVista.idSOP,
                    modeloVista.CantidadSOP,
-                   precioIngresado
-
+                   precioFinal
                    );
 
+                ///Actualizar El Valor MontoTotal De La Tabla Encabezado
+                ///Obtener Los Datos Ya Existentes
+                List<sp_RetornaEncFactura_ID_Result> modeloActualizarEnca = new List<sp_RetornaEncFactura_ID_Result>();
+
+                modeloActualizarEnca = this.ModeloBD.sp_RetornaEncFactura_ID(modeloVista.idEncabezadoFact).ToList();
+
+                ///Obtener EL Valor Total De Detalle Factura De La Columna PrecioSop 
+                List<sp_RetornaDetalleFacXenca_ID_Result> modeloDetalle = new List<sp_RetornaDetalleFacXenca_ID_Result>();
+
+                modeloDetalle = this.ModeloBD.sp_RetornaDetalleFacXenca_ID(modeloVista.idEncabezadoFact).ToList();
+
+                ///Sumar Los Valores PrecioSOP De Detalle Factura 
+                for (int posicionActual = 0; posicionActual < modeloDetalle.Count; posicionActual++)
+                {
+                    montoTotalEncabezado = montoTotalEncabezado + modeloDetalle[posicionActual].PrecioSOP;
+                }
+                montoTotalEncabezad1 = Convert.ToInt32(montoTotalEncabezado);
+                ///Obtener Los Datos Del Encabezado Requeridos Para El Sp inserta Encabezado
+                ///Esto Para Que Ningun Valor Cambie
+
+                for (int posicionActual = 0; posicionActual < modeloActualizarEnca.Count; posicionActual++)
+                {
+                    idClienteEncabezado = modeloActualizarEnca[posicionActual].idCliente;
+                    idVehiculoEncabezado = modeloActualizarEnca[posicionActual].idVehiculo;
+                    fechaEncabezado = modeloActualizarEnca[posicionActual].Fecha;
+                    estadoEncabezado = modeloActualizarEnca[posicionActual].EstadoFactura;
+                }
+
+                ///Actualizar Tabla Encabezado Factura Con El Valor Nuevo De Monto Total Final
+                cantidadRegistrosAfectados1 = this.ModeloBD.sp_ModificaEncabezadoFac(
+                    modeloVista.idEncabezadoFact,
+                    idClienteEncabezado,
+                    idVehiculoEncabezado,
+                    fechaEncabezado,
+                    montoTotalEncabezad1,
+                    estadoEncabezado
+                    );
 
 
             }
@@ -363,21 +415,75 @@ namespace MVC_ProyectoP6.Controllers
             ///No Afecta Registros Implica Que Hubo Un Error
 
             int cantidadRegistrosAfectados = 0;
+            int cantidadRegistrosAfectados1 = 0;
             string resultado = " ";
 
             int precioIngresado = Convert.ToInt32(modeloVista.PrecioSOP);
+            decimal precioFinal = 0;
 
+
+
+            string estadoEncabezado = "";
+            int idClienteEncabezado = 0;
+            int idVehiculoEncabezado = 0;
+            DateTime fechaEncabezado = DateTime.MinValue;
+
+            decimal montoTotalEncabezado = 0;
+            int montoTotalEncabezad1 = 0;
             /// try Instrucciones que se intenta Realizar
             /// Catch Administra las exepciones o errores
             /// Finally Siempre se ejecuta exista o no error
             try
             {
+                ///Actualizar El Valor MontoTotal De La Tabla Encabezado
+                ///Obtener Los Datos Ya Existentes
+                List<sp_RetornaEncFactura_ID_Result> modeloActualizarEnca = new List<sp_RetornaEncFactura_ID_Result>();
 
-                cantidadRegistrosAfectados =
-               this.ModeloBD.sp_EliminaDetalleFactura(
+                modeloActualizarEnca = this.ModeloBD.sp_RetornaEncFactura_ID(modeloVista.idEncabezadoFact).ToList();
+                ///Obtener EL Valor Total De Detalle Factura De La Columna PrecioSop 
+                List<sp_RetornaDetalleFacXenca_ID_Result> modeloDetalle = new List<sp_RetornaDetalleFacXenca_ID_Result>();
+
+                modeloDetalle = this.ModeloBD.sp_RetornaDetalleFacXenca_ID(modeloVista.idEncabezadoFact).ToList();
+
+                ///Sumar Los Valores PrecioSOP De Detalle Factura 
+                for (int posicionActual = 0; posicionActual < modeloDetalle.Count; posicionActual++)
+                {
+                    montoTotalEncabezado = montoTotalEncabezado + modeloDetalle[posicionActual].PrecioSOP;
+                }
+
+                ///Eliminar Detalle De La Tabla
+                cantidadRegistrosAfectados = this.ModeloBD.sp_EliminaDetalleFactura(
                    modeloVista.idDetalleFac
                    );
 
+
+
+
+
+                ///Realizar Calculos
+                precioFinal = montoTotalEncabezado - modeloVista.PrecioSOP;
+
+                montoTotalEncabezad1 = Convert.ToInt32(precioFinal);
+
+                ///Obtener Los Datos Del Encabezado Requeridos Para El Sp inserta Encabezado
+                ///Esto Para Que Ningun Valor Cambie
+                for (int posicionActual = 0; posicionActual < modeloActualizarEnca.Count; posicionActual++)
+                {
+                    idClienteEncabezado = modeloActualizarEnca[posicionActual].idCliente;
+                    idVehiculoEncabezado = modeloActualizarEnca[posicionActual].idVehiculo;
+                    fechaEncabezado = modeloActualizarEnca[posicionActual].Fecha;
+                    estadoEncabezado = modeloActualizarEnca[posicionActual].EstadoFactura;
+                }
+
+                ///Actualizar Tabla Encabezado Factura Con El Valor Nuevo De Monto Total Final
+                cantidadRegistrosAfectados1 = this.ModeloBD.sp_ModificaEncabezadoFac(
+                    modeloVista.idEncabezadoFact,
+                    idClienteEncabezado,
+                    idVehiculoEncabezado,
+                    fechaEncabezado,
+                    montoTotalEncabezad1,
+                    estadoEncabezado
+                    );
 
 
             }
